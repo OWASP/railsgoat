@@ -5,9 +5,16 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+ <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+ <!--[if lte IE 7]>
+ <script src="css/icomoon-font/lte-ie7.js">
+ </script>
+ <![endif]--> 
 </head>
 <body>
-
+<%= render "layouts/shared/header" %>	
+<%= render "layouts/shared/sidebar" %>
 <%= yield %>
 
 </body>
