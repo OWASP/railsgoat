@@ -1,0 +1,19 @@
+<!-- Want to use this template whether auth'd or not so I've got some code to determine how to render below -->
+<header>
+
+	<% if not current_user %>
+		<ul class="mini-nav">
+	       <li>
+	         <%= button_to "signup", "#", {:class => "btn btn-primary", :method => "get"} %>
+	       </li>
+	     </ul>
+		<ul class="mini-nav">
+	       <li>
+	         <%= button_to "login", login_path, {:class => "btn", :method => "get"} %>
+	       </li>
+	     </ul>
+	<% else %>
+	
+	<% end %>
+
+</header>

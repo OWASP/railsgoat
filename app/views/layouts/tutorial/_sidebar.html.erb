@@ -1,0 +1,163 @@
+<div id="mainnav" class="hidden-phone hidden-tablet">
+  <ul style="display: block;">
+    <li>
+      <a href="#">
+        <div class="icon">
+          <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
+        </div>
+        A1 Injection
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <div class="icon">
+          <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
+        </div>
+       A2 XSS
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <div class="icon">
+          <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
+        </div>
+        A3 Broken Auth
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <div class="icon">
+          <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
+        </div>
+        A4 Insecure DOA
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <div class="icon">
+          <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
+        </div>
+        A5 CSRF
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <div class="icon">
+          <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
+        </div>
+        A6 Security Misconfiguration
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <div class="icon">
+          <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
+        </div>
+        A7 Crypto
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <div class="icon">
+          <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
+        </div>
+        A8 URL Access
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <div class="icon">
+          <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
+        </div>
+        A9 SSL/TLS
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <div class="icon">
+          <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
+        </div>
+        A10 Redirects
+      </a>
+    </li>
+    <li class="submenu">
+      <a href="#" class="selected">
+        <div class="icon">
+          <span class="fs1" aria-hidden="true" data-icon="&#xe0aa;"></span>
+        </div>
+        Extras
+      </a>
+      <ul>
+        <li>
+          <a href="#">Edit Profile</a>
+        </li>
+        <li>
+          <a href="#">Calendar</a>
+        </li>
+        <li>
+          <a href="#">Invoice</a>
+        </li>
+        <li>
+          <a href="#">Login</a>
+        </li>
+        <li>
+          <a href="#">Error</a>
+        </li>
+        
+        <li>
+          <a href="#">Help</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+//Main menu navigation
+
+$('.submenu > a').click(function(e){
+  e.preventDefault();
+  var submenu = $(this).siblings('ul');
+  var li = $(this).parents('li');
+  var submenus = $('#mainnav li.submenu ul');
+  var submenus_parents = $('#mainnav li.submenu');
+  if(li.hasClass('open'))
+  {
+    if(($(window).width() > 768) || ($(window).width() < 479)) {
+      submenu.slideUp();
+    } else {
+      submenu.fadeOut(250);
+    }
+    li.removeClass('open');
+  } else 
+  {
+    if(($(window).width() > 768) || ($(window).width() < 479)) {
+      submenus.slideUp();     
+      submenu.slideDown();
+    } else {
+      submenus.fadeOut(250);      
+      submenu.fadeIn(250);
+    }
+    submenus_parents.removeClass('open');   
+    li.addClass('open');  
+  }
+});
+
+var ul = $('#mainnav > ul');
+
+$('#mainnav > a').click(function(e)
+{
+  e.preventDefault();
+  var mainnav = $('#mainnav');
+  if(mainnav.hasClass('open'))
+  {
+    mainnav.removeClass('open');
+    ul.slideUp(250);
+  } else 
+  {
+    mainnav.addClass('open');
+    ul.slideDown(250);
+  }
+});
+
+</script>

@@ -17,8 +17,13 @@
 
 </head>
 <body>
-<%= render "layouts/shared/header" %>	
-<%= render "layouts/shared/sidebar" %>
+<% if current_user %>	
+	<%= render "layouts/shared/header" %>	
+	<%= render "layouts/shared/sidebar" %>
+<% else %>
+	<%= render "layouts/tutorial/header" %>	
+	<%= render "layouts/tutorial/sidebar" %>	
+<% end %>
 <div class="container-fluid">
 	<div class="dashboard-wrapper">
 		<%= yield %>
