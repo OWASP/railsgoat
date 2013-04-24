@@ -19,8 +19,10 @@
 <body>
 <%= render "layouts/shared/header" %>	
 <%= render "layouts/shared/sidebar" %>
-<div class="dashboard-wrapper">
-<%= yield %>
+<div class="container-fluid">
+	<div class="dashboard-wrapper">
+		<%= yield %>
+	</div>
 </div>
 <%= render "layouts/shared/footer" %>
 </body>
