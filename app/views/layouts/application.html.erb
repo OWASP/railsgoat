@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Railsgoat</title>
+  <title>RailsGoat</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -19,6 +19,9 @@
 <body>
 <%= render "layouts/shared/header" %>	
 <%= render "layouts/shared/sidebar" %>
+<div class="dashboard-wrapper">
 <%= yield %>
+</div>
+<%= render "layouts/shared/footer" %>
 </body>
 </html>
