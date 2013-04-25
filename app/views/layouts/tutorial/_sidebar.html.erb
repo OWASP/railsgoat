@@ -88,7 +88,7 @@
         A10 Redirects
      <% end %>
     </li>
-    <li class="submenu">
+    <li id="submenu" class="submenu">
       <a href="#" class="selected">
         <div class="icon">
           <span class="fs1" aria-hidden="true" data-icon="&#xe0b8;"></span>
@@ -97,7 +97,7 @@
       </a>
       <ul>
         <li>
-          <a href="#">Guard</a>
+         <%= link_to "Guard", guard_tutorials_path %>
         </li>
         <li>
           <a href="#">Session Secret</a>

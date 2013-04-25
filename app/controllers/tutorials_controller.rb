@@ -51,4 +51,7 @@ class TutorialsController < ApplicationController
   def redirects
   end
   
+  def guard
+  end
+  
 end

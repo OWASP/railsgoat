@@ -9,7 +9,7 @@ resources :sessions do
 end
 
 resources :users do
-
+  get "account_settings"
 end
 
 resources :tutorials do
@@ -24,6 +24,7 @@ resources :tutorials do
     get "url_access"
     get "ssl_tls"
     get "redirects"
+    get "guard"
   end
 end
 

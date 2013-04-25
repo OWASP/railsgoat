@@ -17,4 +17,7 @@ class UsersController < ApplicationController
     end
   end
   
+  def account_settings
+  end
+  
 end
