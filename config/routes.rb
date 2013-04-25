@@ -13,11 +13,20 @@ resources :users do
 end
 
 resources :tutorials do
-
+  collection do 
+    get "injection"
+    get "xss"
+    get "broken_auth"
+    get "insecure_doa"
+    get "csrf"
+    get "security"
+  end
 end
 
-resources :dashboard do 
-  get "home" => "dashboard#home"
+resources :dashboard do
+  collection do 
+    get "home"
+  end
 end
 
 root :to => "sessions#new"

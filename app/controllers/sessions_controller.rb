@@ -3,14 +3,14 @@ class SessionsController < ApplicationController
   skip_before_filter :authenticated, :only => [:new, :create]
   
   def new
-    redirect_to dashboard_home_path(:dashboard_id => current_user.id) if current_user && current_user.id
+    redirect_to home_dashboard_index_path if current_user
   end
   
   def create
       user = User.authenticate(params[:email], params[:password])
       if user
         session[:id] = user.id if User.where(:id => user.id).exists?
-        redirect_to dashboard_home_path(:dashboard_id => user.id)
+        redirect_to home_dashboard_index_path
       else
         render "new"
       end

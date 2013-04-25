@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     user = User.new(params[:user])
     if user.save
       session[:id] = user.id
-      redirect_to dashboard_home_path(:dashboard_id => user.id)
+      redirect_to home_dashboard_index_path
     else
       @user = User.new
       render :new
