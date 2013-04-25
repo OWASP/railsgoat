@@ -1,0 +1,89 @@
+<div class="dashboard-wrapper">
+	<div class="main-container">
+		<div class="row-fluid">
+		    <div class="span6">
+		      <div class="widget">
+		        <div class="widget-header">
+		          <div class="title">
+		            <span class="fs1" aria-hidden="true" data-icon="&#xe023;"></span> Profile Settings 
+		            <span class="mini-title">
+		              Edit your account details
+		            </span>
+		          </div>
+		        </div>
+		        <div class="widget-body">
+			     <%= form_for @user do |f|%>
+					<div class="control-group">
+		              <%= f.label :email, nil, {:class => "control-label"}%>
+					  <%= f.text_field :email, {:class => "span12"}%>
+					</div>
+					<div class="control-group">
+					  <%= f.label :first_name, nil, {:class => "control-label"}%>
+					  <%= f.text_field :first_name, {:class => "span12"} %>
+					</div>
+					<div>
+						<%= f.label :last_name, nil, {:class => "control-label"}%>
+						<%= f.text_field :last_name, {:class => "span12"} %>
+					</div>
+					<div class="control-group">
+					  <%= f.label :password, nil, {:class => "control-label"}%>
+					  <%= f.password_field :password, {:class => "span12", :placeholder => "Enter Password"}%>
+					</div>
+					<div class="form-actions no-margin">
+					  <%= f.submit "Submit", {:class => "btn btn-info pull-right"} %>
+					</div>
+					<div class="clearfix">
+		            </div>
+			     <% end %>
+		          <!--<form class="form-horizontal no-margin">
+		            <div class="control-group">
+		              <label class="control-label" for="email1">
+		                Email Address
+		              </label>
+		              <div class="controls">
+		                <input type="text" name="email1" id="email1" class="span12" placeholder="Enter your Email Address"  />
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label" for="password1">
+		                Password
+		              </label>
+		              <div class="controls">
+		                <input type="password" name="password1" id="password1" class="span12" placeholder="6 or more characters"  />
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label" for="repPassword">
+		                Repeat Password
+		              </label>
+		              <div class="controls">
+		                <input type="password" name="repPassword" id="repPassword" class="span12" placeholder="Retype Password"  />
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label" for="name">
+		                Name
+		              </label>
+		              <div class="controls controls-row">
+		                <input class="span6" type="text" placeholder="First Name">
+		                <input class="span6 input-left-top-margins" type="text" placeholder="Last Name">
+		              </div>
+					  <div class="form-actions no-margin">
+		              <button type="submit" class="btn btn-info pull-right">
+		                Create Account
+		              </button>
+		              <div class="clearfix">
+		              </div>
+					</div>
+				</form>-->
+				
+			</div>
+		</div>
+	</div>
+</div>		
+
+           
+
+            
+            
+

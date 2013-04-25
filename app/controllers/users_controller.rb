@@ -18,6 +18,14 @@ class UsersController < ApplicationController
   end
   
   def account_settings
+    @user = current_user
+  end
+  
+  def update
+    if not (!current_user.email == params[:user][:email] ||  User.where(:email => params[:user][:email]).exists?)
+    current_user.update_attributes(params[:user])
+    end
+    redirect_to  user_account_settings_path(:user_id => current_user.id)
   end
   
 end
