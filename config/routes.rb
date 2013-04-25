@@ -19,7 +19,11 @@ resources :tutorials do
     get "broken_auth"
     get "insecure_doa"
     get "csrf"
-    get "security"
+    get "misconfig"
+    get "crypto"
+    get "url_access"
+    get "ssl_tls"
+    get "redirects"
   end
 end
 
