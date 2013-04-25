@@ -1,2 +1,38 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<div class="row-fluid">
+  <div class="span12">
+      
+
+        <div class="row-fluid">
+          <div class="span4 offset4">
+            <div class="signup">
+			<%= form_tag "sessions", :class=> "signup-wrapper" do %>
+			
+					<div class="header">
+	                  <h2>Sign Up</h2>
+	                  <p>Fill out the form below to login</p>
+	                </div>
+	
+					<div class="content">
+				    		<%= label_tag "Email Address" %>
+				    		<%= text_field_tag :email, params[:email], {:class => "input input-block-level"} %>
+				  
+				    		<%= label_tag :password, nil %>
+				    		<%= password_field_tag :password, nil, {:class => "input input-block-level"}%>
+				
+							<%= label_tag :confirm_password, nil %>
+				    		<%= password_field_tag :password_confirmation, nil, {:class => "input input-block-level"}%>
+					</div>
+				
+					<div class="actions">
+						<%= submit_tag "Login", {:class => "btn btn-info btn-large pull-right"} %>
+					</div>
+					<div class="clearfix"></div>
+				<% end %>
+
+            </div>
+          </div>
+        </div>
+     
+
+  </div>
+</div>

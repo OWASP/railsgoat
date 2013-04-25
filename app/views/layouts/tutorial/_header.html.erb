@@ -4,7 +4,7 @@
 	<% if not current_user %>
 		<ul class="mini-nav">
 	       <li>
-	         <%= button_to "signup", "#", {:class => "btn btn-primary", :method => "get"} %>
+	         <%= button_to "signup", signup_path, {:class => "btn btn-primary", :method => "get"} %>
 	       </li>
 	     </ul>
 		<ul class="mini-nav">
