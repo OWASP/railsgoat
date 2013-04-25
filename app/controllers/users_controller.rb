@@ -22,10 +22,11 @@ class UsersController < ApplicationController
   end
   
   def update
-    if not (!current_user.email == params[:user][:email] ||  User.where(:email => params[:user][:email]).exists?)
-    current_user.update_attributes(params[:user])
-    end
-    redirect_to  user_account_settings_path(:user_id => current_user.id)
+    current_user.update_attributes(params[:user].reject { |k| k == "password" })
+    pass = params[:user][:password]
+    current_user.password = pass if !(pass.blank?)
+    current_user.save!
+    redirect_to user_account_settings_path(:user_id => current_user.id)
   end
   
 end
