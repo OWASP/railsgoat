@@ -11,7 +11,7 @@ class TutorialsController < ApplicationController
   def broken_auth
   end
   
-  def insecure_doa
+  def insecure_dor
   end
   
   def csrf

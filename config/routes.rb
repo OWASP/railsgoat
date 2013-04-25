@@ -17,7 +17,7 @@ resources :tutorials do
     get "injection"
     get "xss"
     get "broken_auth"
-    get "insecure_doa"
+    get "insecure_dor"
     get "csrf"
     get "misconfig"
     get "crypto"
