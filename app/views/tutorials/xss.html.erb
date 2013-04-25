@@ -20,7 +20,7 @@
 		              </div>
 		              <div class="accordion-body in collapse" id="collapseOne" style="height: auto;">
 		                <div class="accordion-inner">
-		                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+		                  XSS flaws occur whenever an application takes untrusted data and sends it to a web browser without proper validation and escaping. XSS allows attackers to execute scripts in the victim’s browser which can hijack user sessions, deface web sites, or redirect the user to malicious sites.
 		                </div>
 		              </div>
 		            </div>
@@ -34,7 +34,10 @@
 		              </div>
 		              <div class="accordion-body collapse" id="collapseTwo" style="height: 0px;">
 		                <div class="accordion-inner">
-		                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+		                  <p><b>Stored Cross-Site Scripting - The following code was taken from app/views/layouts/shared/_header.html.erb</b></p>
+						  <font face="Courier New" style="color: rgb(69, 126, 136)"> 
+							 <p><%= @code %></p>
+					      </font>
 		                </div>
 		              </div>
 		            </div>
@@ -48,7 +51,10 @@
 		              </div>
 		              <div class="accordion-body collapse" id="collapseThree" style="height: 0px;">
 		                <div class="accordion-inner">
-		                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+		                 <p><b> Stored Cross-Site Scripting ATTACK:</b></p>
+		
+						 <p> When registering, enter your JavaScript tag such as <%= %{<script>alert("ohai")} %> in the First Name field. Upon login the header navigation bar will echo "Welcome" + your JS code. You can have your XSS code point the victim to a <%= link_to "BeEF server", "http://beefproject.com", {:style => "color: rgb(69, 126, 136)" } %> and have some fun as well.
+						 </p>
 		                </div>
 		              </div>
 		            </div>
