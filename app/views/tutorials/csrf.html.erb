@@ -20,7 +20,7 @@
 		              </div>
 		              <div class="accordion-body in collapse" id="collapseOne" style="height: auto;">
 		                <div class="accordion-inner">
-		                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+		                  <p>A CSRF attack forces a logged-on victim’s browser to send a forged HTTP request, including the victim’s session cookie and any other automatically included authentication information, to a vulnerable web application. This allows the attacker to force the victim’s browser to generate requests the vulnerable application thinks are legitimate requests from the victim.</p>
 		                </div>
 		              </div>
 		            </div>
@@ -34,7 +34,23 @@
 		              </div>
 		              <div class="accordion-body collapse" id="collapseTwo" style="height: 0px;">
 		                <div class="accordion-inner">
-		                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+		                  <p><b>Cross-Site Request Forgery (CSRF) - The following code was taken from: /app/controllers/application_controller.rb and /app/views/layouts/application.html.erb</b></p>
+						  <p>application_controller.rb<<p>
+						  <p>
+							<font face="Courier New" style="color: rgb(69, 126, 136)">
+								<%= %{# Our security guy keep talking about sea-surfing, cool story bro.}%>
+								</br><%= %{
+							        # protect_from_forgery
+									} 
+								%>
+							</font>
+						  </p>
+						  <p> application.html.erb </p>
+						  <p>
+							  <font face="Courier New" style="color: rgb(69, 126, 136)">
+									<%= @meta_code_bad %>
+							  </font>
+						  </p>
 		                </div>
 		              </div>
 		            </div>
@@ -48,7 +64,29 @@
 		              </div>
 		              <div class="accordion-body collapse" id="collapseThree" style="height: 0px;">
 		                <div class="accordion-inner">
-		                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+		                  <p><b> Cross-Site Request Forgery ATTACK:</b></p>
+							<p>
+								Save this content to an .html file and open it...
+							</p>
+						   	<p>
+								<font face="Courier New" style="color: rgb(69, 126, 136)">
+									<%= 
+						   				%{
+						   					
+						   				} 
+						   			%>
+								</font>
+							</p>
+							
+						  <p><b> Cross-Site Request Forgery SOLUTION:</b></p>
+						  <p>
+							 By Default, the protect_from_forgery directive is added under the application_controller.rb at project creation. However, occasionally developers turn it off (comment out) because of issues with JS. The solution around the JS problem is to add the following code within the header section of the application.html.erb file (or any other application layout file).
+						 </p>
+							<p>
+								<font face="Courier New" style="color: rgb(69, 126, 136)">
+									<%= @meta_code_good %>
+								</font>
+						  </p>
 		                </div>
 		              </div>
 		            </div>

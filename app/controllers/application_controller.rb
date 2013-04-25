@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   
   # Our security guy keep talking about sea-surfing, cool story bro.
-  #protect_from_forgery
+  # protect_from_forgery
   
   private
 

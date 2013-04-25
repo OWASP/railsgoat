@@ -20,7 +20,7 @@
 		              </div>
 		              <div class="accordion-body in collapse" id="collapseOne" style="height: auto;">
 		                <div class="accordion-inner">
-		                  XSS flaws occur whenever an application takes untrusted data and sends it to a web browser without proper validation and escaping. XSS allows attackers to execute scripts in the victim’s browser which can hijack user sessions, deface web sites, or redirect the user to malicious sites.
+		                 <p>XSS flaws occur whenever an application takes untrusted data and sends it to a web browser without proper validation and escaping. XSS allows attackers to execute scripts in the victim’s browser which can hijack user sessions, deface web sites, or redirect the user to malicious sites.</p>
 		                </div>
 		              </div>
 		            </div>
@@ -54,6 +54,10 @@
 		                 <p><b> Stored Cross-Site Scripting ATTACK:</b></p>
 		
 						 <p> When registering, enter your JavaScript tag such as <%= %{<script>alert("ohai")} %> in the First Name field. Upon login the header navigation bar will echo "Welcome" + your JS code. You can have your XSS code point the victim to a <%= link_to "BeEF server", "http://beefproject.com", {:style => "color: rgb(69, 126, 136)" } %> and have some fun as well.
+						 </p>
+						 <p><b> Stored Cross-Site Scripting SOLUTION:</b></p>
+						 <p> 
+							Often developers error on the side of using "html_safe" versus "raw" with the idea being one is safer than the other. In this example, simply removing the .html_safe call would both eliminate the attack (by default, Rails 3.x html encodes these dangerous chars). Rails 2.x would require that any potentially malicious content is wrapped within an h() tag. Potentially malicious content should be thought of anything that is dynamically generated. Also, it is important to note that if for some reason you wanted to render HTML code in literal form, you can use things like sanitize() or strip_tags().
 						 </p>
 		                </div>
 		              </div>

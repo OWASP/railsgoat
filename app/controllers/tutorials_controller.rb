@@ -32,6 +32,8 @@ class TutorialsController < ApplicationController
   end
   
   def csrf
+    @meta_code_bad = %{<%#= csrf_meta_tags %> <!-- <~ What is this for? I hear it helps w/ JS and Sea-surfing.....whatevz -->}
+    @meta_code_good = %{<%= csrf_meta_tags %> }
   end
   
   def misconfig
