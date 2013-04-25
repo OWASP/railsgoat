@@ -29,29 +29,8 @@
 		-->
 		Welcome, <%= current_user.first_name.html_safe %>
 	   </li>
-       <li>
-         <a href="#">
-           <div class="fs1" aria-hidden="true" data-icon="&#xe040;"></div>
-           <span class="info-label">
-             3
-           </span>
-         </a>
-       </li>
-       <li>
-         <a href="#">
-           <div class="fs1" aria-hidden="true" data-icon="&#xe04c;"></div>
-           <span class="info-label-green">
-             5
-           </span>
-         </a>
-       </li>
-       <li>
-         <a href="#">
-           <div class="fs1" aria-hidden="true" data-icon="&#xe037;"></div>
-           <span class="info-label-orange">
-             9
-           </span>
-         </a>
-       </li>
+	   <li>
+		<%= button_to "RailsGoat Tutorials", tutorials_path, {:class => "btn btn-primary", :method => "get"}%>
+	   </li>
      </ul>
 </header>

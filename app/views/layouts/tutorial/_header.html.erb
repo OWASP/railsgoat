@@ -13,7 +13,11 @@
 	       </li>
 	     </ul>
 	<% else %>
-	
+		<ul class="mini-nav">
+			<li>
+		    	<%= button_to "<- back to app", home_dashboard_index_path, {:class => "btn btn-primary", :method => "get"} %>
+		    </li>
+		</ul>
 	<% end %>
 
 </header>
