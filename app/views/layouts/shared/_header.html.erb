@@ -4,7 +4,8 @@
      </a>
      <div class="user-profile">
        <a data-toggle="dropdown" class="dropdown-toggle">
-         <img src="../assets/profile_color.jpg" alt="profile">
+         <img src=" <%= image_path('profile_color.jpg')%>"  alt="profile">
+	
        </a>
        <span class="caret"></span>
        <ul class="dropdown-menu pull-right">
@@ -19,9 +20,7 @@
            </a>
          </li>
          <li>
-           <a href="#">
-             Logout
-           </a>
+           <%= link_to "logout", logout_path %>
          </li>
        </ul>
      </div>

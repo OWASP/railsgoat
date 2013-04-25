@@ -5,7 +5,7 @@
         <div class="row-fluid">
           <div class="span4 offset4">
             <div class="signup">
-			<%= form_tag "users", :class=> "signup-wrapper" do %>
+			<%= form_for @user, :html => {:class=> "signup-wrapper"} do |f| %>
 			
 					<div class="header">
 	                  <h2>Sign Up</h2>
@@ -13,18 +13,18 @@
 	                </div>
 	
 					<div class="content">
-				    		<%= label_tag "Email Address" %>
-				    		<%= text_field_tag :email, params[:email], {:class => "input input-block-level"} %>
+				    		<%= f.label "Email Address" %>
+				    		<%= f.text_field :email, {:class => "input input-block-level"} %>
 				  
-				    		<%= label_tag :password, nil %>
-				    		<%= password_field_tag :password, nil, {:class => "input input-block-level"}%>
+				    		<%= f.label :password, nil %>
+				    		<%= f.password_field :password, {:class => "input input-block-level"}%>
 				
-							<%= label_tag :confirm_password, nil %>
-				    		<%= password_field_tag :password_confirmation, nil, {:class => "input input-block-level"}%>
+							<%= f.label :confirm_password %>
+				    		<%= f.password_field :password_confirmation, {:class => "input input-block-level"}%>
 					</div>
 				
 					<div class="actions">
-						<%= submit_tag "Submit", {:class => "btn btn-info btn-large pull-right"} %>
+						<%= f.submit "Submit", {:class => "btn btn-info btn-large pull-right"} %>
 					</div>
 					<div class="clearfix"></div>
 				<% end %>

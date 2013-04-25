@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user
-    @current_user ||= User.find_by_user_id(session[:user_id].to_s)
+    @current_user ||= User.find_by_id(session[:id].to_s)
   end
   
   def authenticated
