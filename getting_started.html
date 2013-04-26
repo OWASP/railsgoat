@@ -53,7 +53,7 @@
     <div class="container-fluid">
       <div id="mainnav" class="hidden-phone hidden-tablet">
         <ul style="display: block;">
-          <li class="active">
+          <li>
             <a href="index.html">
               <div class="icon">
                 <span class="fs1" aria-hidden="true" data-icon="&#xe001;"></span>
@@ -61,7 +61,7 @@
               Project Home
             </a>
           </li>
-          <li>
+          <li class="active">
             <a href="getting_started.html">
               <div class="icon">
                 <span class="fs1" aria-hidden="true" data-icon="&#xe068;"></span>
@@ -152,91 +152,94 @@
             </div>
             <!-- /navbar-inner -->
 		 </div> <!-- Insert code to be shown to the right of the navbar-->
-			<h1 align="center"> RailsGoat Project </h1>
-			<h3 align="center"> Welcome! </h1>
-			
-				<div class="row-fluid">
-		            <div class="span6 offset3">
-		              <div class="widget">
-		                <div class="widget-header">
-		                  <div class="title">
-		                    <span class="fs1" aria-hidden="true" data-icon="&#xe0b9;"></span> The project
-		                  </div>
-		                </div>
-		                <div class="widget-body" align="center">
-							<p>
-							 	<b style="color: rgb(181, 121, 158);">The idea is simple.</b></br> 
-							   Free training for both developers and security professionals.</br>
-							    All of it specific to the Ruby on Rails framework.</br>
-							</p>
-		                </div>
-		              </div>
-		            </div>	
-		
-					<div class="row-fluid">
-			            <div class="span6 offset3">
-			              <div class="widget">
-			                <div class="widget-header">
-			                  <div class="title">
-			                    <span class="fs1" aria-hidden="true" data-icon="&#xe071;"></span> The contributors
-			                  </div>
-			                </div>
-			                <div class="widget-body">
-								 <div class="row-fluid">
-									<div class="span3 offset1">
-										<h5 align="center"> Ken Johnson </h5>
-										<a href="#" class="img-rounded"><img src="img/profile.png" alt=""></a>
-										<ul class="icomoon-icons-container">
-								 		<a href="http://github.com/cktricky"> 
-											<li class="rounded">
-				                    		 <span class="fs1" aria-hidden="true" data-icon="&#xe18b;"></span>
-				                    		</li>
-										</a>
-										<a href="http://www.linkedin.com/profile/view?id=149508020">
-											<li class="rounded">
-				                    		  <span class="fs1" aria-hidden="true" data-icon="&#xe19f;"></span>
-				                    		</li>
-										</a>
-										<a href="https://twitter.com/cktricky"> 
-											<li class="rounded">
-				                    		  <span class="fs1" aria-hidden="true" data-icon="&#xe16f;"></span>
-				                    		</li>
-										</a>
-										</ul>
-									 	<div class="clearfix">
-					                 	   &nbsp;
-					                 	 </div>
-									</div>
-									<div class="span3 offset3">
-										<h5 align="center"> Jack Mannino </h5>
-										<a href="#" class="img-rounded"><img src="img/profile.png" alt=""></a>
-										<ul class="icomoon-icons-container">
-								 		<a href="http://github.com/jackmannino"> 
-											<li class="rounded">
-				                    		 <span class="fs1" aria-hidden="true" data-icon="&#xe18b;"></span>
-				                    		</li>
-										</a>
-										<a href="http://www.linkedin.com/profile/view?id=21640538">
-											<li class="rounded">
-				                    		  <span class="fs1" aria-hidden="true" data-icon="&#xe19f;"></span>
-				                    		</li>
-										</a>
-										<a href="https://twitter.com/jack_mannino"> 
-											<li class="rounded">
-				                    		  <span class="fs1" aria-hidden="true" data-icon="&#xe16f;"></span>
-				                    		</li>
-										</a>
-										</ul>
-									 	<div class="clearfix">
-					                 	   &nbsp;
-					                 	 </div>
-									</div>
-								 </div>
-							
-			                </div>
-			              </div>
-			            </div>
-					</div>
+			<h1 align="center"> Getting Started </h1>
+			<h3 align="center"> Let's do this! </h1>
+			<div class="row-fluid">
+	            <div class="span8 offset2">
+	              <div class="widget">
+	                <div class="widget-header">
+	                  <div class="title">
+	                    <span class="fs1" aria-hidden="true" data-icon="&#xe0b6;"></span> Getting Started
+	                  </div>
+	                </div>
+	                <div class="widget-body">
+	                  <div class="row-fluid">
+	                    <div class="span12">
+	                      <div class="row-fluid">
+	                        <div class="span12">
+	                         <h4> Where to begin </h4>
+	                        </div>
+	                      </div>
+	                      <div class="row-fluid">
+	                        <div class="span9">
+	                          <div class="tabbable tabs-left">
+	                            <ul class="nav nav-tabs" style="padding-top:15px; margin-left: 0px;">
+	                              <li class="active"><a href="#A" data-toggle="tab">Installation</a></li>
+	                              <li><a href="#B" data-toggle="tab">Running</a></li>
+	                              <li><a href="#C" data-toggle="tab">Using</a></li>
+	                            </ul>
+
+	                            <div class="tab-content">
+	                              <div class="tab-pane active" id="A">
+								  	
+									<p><b> Support Disclaimer </b></p>  
+									<p> These tutorials assume you are running Linux or Mac OS. If you are using Windows, 
+									  I've got nothing for you right now. Sorry <i class="icon-wink-2">
+			                        </i></br>
+									</p>
+	                              
+								  	<p><b> Language </b></p>  
+								  	<p> The Ruby on Rails framework is of course built on Ruby. 
+								  	  This particular version runs best on version 1.9.3 of Ruby. 
+								  	  There are several ways this can work but we will use the Ruby Version Manager.</br>
+								  	  RVM has a great site which makes it very easy to get started (installing it and Ruby) <a href="https://rvm.io/rvm/install/"><b style="color: rgb(181, 121, 158);"> available here.</b></a>
+									
+								  	</p>
+								  
+
+	                              </div>
+	                                <div class="tab-pane" id="B">
+	                                  <p><span class="label label-success">Cricket</span> <span class="label label-info" >Personal</span></p>
+	                                  <blockquote>
+	                                    Ipsum available, but the majority have suffered alteration in some form, Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC.
+	                                  </blockquote>
+	                                  <blockquote>
+	                                    It has roots in a piece of classical Latin literature from 45 BC.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC.
+	                                  </blockquote>
+	                                  <blockquote class="no-margin">
+	                                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, Contrary to popular belief literature from 45 BC.
+	                                  </blockquote>
+	                                </div>
+	                                <div class="tab-pane" id="C">
+	                                 <p><span class="label label-success" >Childhood</span> <span class="label label-info" >School</span> <span class="label" >Sweet Memories</span></p>
+	                                 <img src="http://placehold.it/80x80" alt="" style="margin-right:5px;">
+	                                 <img src="http://placehold.it/80x80" alt="" style="margin-right:5px;">
+	                                 <img src="http://placehold.it/80x80" alt="" style="margin-right:5px;">
+	                                 <img src="http://placehold.it/80x80" alt="" style="margin-right:5px;" class="hidden-phone">
+	                                 <img src="http://placehold.it/80x80" alt="" style="margin-right:5px;" class="hidden-phone">
+	                                 <img src="http://placehold.it/80x80" alt="" style="margin-right:5px;" class="hidden-phone">
+	                                 <img src="http://placehold.it/80x80" alt="" style="margin-right:5px;" class="hidden-phone">
+	                                 <img src="http://placehold.it/80x80" alt="" style="margin-right:5px;" class="hidden-phone">
+	                               </div>
+	                             </div>
+	                           </div> <!-- /tabbable -->
+	                         </div>
+	                       </div>
+	                       <div class="row-fluid">
+	                        <div class="span12 no-margin">
+	                          <p>
+	                            By <a href="#">Rahul</a> | Mar 16th, 2013 | <a href="#">29 Comments</a><button class="btn btn-primary pull-right">Details</button>
+	                          </p>
+	                        </div>
+	                      </div>
+	                    </div>
+	                  </div>
+
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+				
         </div> <!-- end code insert -->
       </div>
 
