@@ -162,9 +162,27 @@
 								  	  This particular version runs best on version 1.9.3 of Ruby. 
 								  	  There are several ways this can work but we will use the Ruby Version Manager.</br>
 								  	  RVM has a great site which makes it very easy to get started (installing it and Ruby) <a href="https://rvm.io/rvm/install/"><b style="color: rgb(181, 121, 158);"> available here.</b></a>
-									
-								  	</p>
-								  
+									</p>
+									<p>
+										1) To begin the install of RVM, from the command line, type:</br>
+										<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ \curl -#L https://get.rvm.io | bash -s stable --autolibs=3 --ruby</b> </font></br></br>
+										2) Then install Ruby 1.9.3</br>
+										<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ rvm install ruby-1.9.3</b> </font></br></br>
+										3) Then clone the repo into a directory of your choosing</br>
+										<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ git clone git://github.com/cktricky/railsgoat.git</b> </font></br></br>
+									    4) Now change into the directory you just downloaded and accept the .rvmrc file (type: yes)</br>
+										<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ cd railsgoat</b> </font></br></br>
+										5) Install the gems</br>
+										<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ bundle install</b></br></br>
+										5a) <b>if you get an error about bundler not being installed</b></br>
+										<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ gem install bundler</b> (run step 5 again)</font></br></br>
+										6) Initialize the database</br>
+										<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ rake db:setup</b></br></br>
+										7) Start the application</br>
+										<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ rails s</b></br></br>
+										8) Browse to the application at http://localhost:3000</br></br>
+										
+								   	</p>
 
 	                              </div>
 	
