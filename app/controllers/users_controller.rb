@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       session[:id] = user.id
       redirect_to home_dashboard_index_path
     else
-      @user = User.new
+      @user = user
       render :new
     end
   end
