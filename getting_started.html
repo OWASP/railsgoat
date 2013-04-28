@@ -188,8 +188,24 @@
 	                              <div class="tab-pane" id="B">
 	                               		<p><b> Pow </b></p>  
 										<p>
-											If you have not heard of Pow, it will allow you to browse to a URL name of your choice (minus the TLD always being ".dev"). For example, I want a URL of railsgoat.dev instead of localhost:3000. It is useful stuff and simple to get going. Here is the link to the <a href="http://pow.cx" target="_blank" ><b style="color: rgb(181, 121, 158);">Pow website</b></a>
+											If you have not heard of Pow, it will allow you to browse to a URL name of your choice (minus the TLD always being ".dev"). For example, I want a URL of railsgoat.dev instead of localhost:3000. It is useful stuff and simple to get going. Here is the link to the <a href="http://pow.cx" target="_blank" ><b style="color: rgb(181, 121, 158);">Pow website</b></a></br></br>
+											<b> Pow Installation </b></br>
+											1) Open a terminal, type: </br>
+											<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ curl get.pow.cx | sh</b></font></br></br>
+											2) Create a URL of your choosing (we choose railsgoat.dev). Note that I have railsgoat stored under the ~/tmp directory:</br>
+											<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ cd ~/.pow</br>
+											ln -s ~/tmp/railsgoat railsgoat</br>
+											open http://railsgoat.dev</br></b></font></br></br>
+											
+											3) You are finished!</br></br>
+											
+											3a) Remember, if you make any Rails changes that would normally require a restart of the framework (adding an initializer file, for example), you need to restart Pow. In order to do that, navigate to the railsgoat directory and type:</br>
+											<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ powder restart</b></font></br>
 										</p>
+										<p><b> Database Commands </b></p>
+										  
+											
+										 
 	                              </div>
 	
 	                              <div class="tab-pane" id="C">
