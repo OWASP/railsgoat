@@ -195,7 +195,7 @@
 											2) Create a URL of your choosing (we choose railsgoat.dev). Note that I have railsgoat stored under the ~/tmp directory:</br>
 											<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ cd ~/.pow</br>
 											ln -s ~/tmp/railsgoat railsgoat</br>
-											open http://railsgoat.dev</br></b></font></br></br>
+											open http://railsgoat.dev</b></font></br></br>
 											
 											3) You are finished!</br></br>
 											
@@ -203,7 +203,24 @@
 											<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ powder restart</b></font></br>
 										</p>
 										<p><b> Database Commands </b></p>
-										  
+										<p>
+											The following is a list of basic database commands that may be helpful when administering the site.</br></br>
+											
+											Delete the entire database</br>
+											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">$ rake db:drop</b></font></br></br>
+											
+											Create the database file</br>
+											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">$ rake db:create</b></font></br></br>
+											
+											Create the columns and migrate over any database changes</br>
+											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">$ rake db:migrate</b></font></br></br>
+											
+											Seed the database with data</br>
+											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">$ rake db:seed</b></font></br></br>
+											
+											Completely rebuild the database (deletes/creates/migrates/seeds)</br>
+											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">$ rake db:setup</b></font></br></br>
+										</p>	 
 											
 										 
 	                              </div>
