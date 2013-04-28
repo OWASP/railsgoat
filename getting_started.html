@@ -221,8 +221,26 @@
 											Completely rebuild the database (deletes/creates/migrates/seeds)</br>
 											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">$ rake db:setup</b></font></br></br>
 										</p>	 
-											
-										 
+										<p><b> Unicorn </b></p>	
+										<p>
+											If you throw a large amount of requests at this application, WEBrick just won't do. You'll need a beefier Rack HTTP Server. I'd suggest running Unicorn. Keep in mind, if you are running Pow, you are already good to go. If not running Pow and need the extra power:</br></br>
+											Start Unicorn</br>
+											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">$ rvmsudo bundle exec unicorn -p 3000</b></font></br></br>
+											Stop Unicorn</br>
+											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">type ctrl + c</b></font></br></br>
+										</p> 
+										<p><b> Updating code </b></p>
+										<p>
+											Keeping the project up-to-date is fairly easy. Navigate to the railsgoat directory.</br></br>
+											Type:</br>
+											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">$ git pull origin master</b></font></br></br>
+											Next, make sure any new gems are updated and installed:</br>
+											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">$ bundle</b></font></br></br>
+										
+											Restart Pow (if using)</br>
+											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">$ powder restart</b></font></br></br>
+										
+										</p>		
 	                              </div>
 	
 	                              <div class="tab-pane" id="C">
