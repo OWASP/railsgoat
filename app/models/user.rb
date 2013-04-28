@@ -4,10 +4,6 @@ class User < ActiveRecord::Base
   validates :password, :presence => true,
                         :confirmation => true,
                         :length => {:within => 6..40}
-                        # I think this makes sense, have both, right? If we are updating our password and creating one? 
-                        :on => :create,
-                        :on => :update
-                        # Solution? Remove both :on => statements, it will naturally take effect for any changes.
   validates_presence_of :email
   validates_uniqueness_of :email
   validates_format_of :email, :with => /.+@.+\..+/i
