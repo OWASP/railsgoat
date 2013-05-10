@@ -5602,7 +5602,7 @@ header {
 #mainnav {
   display: block;
   float: left;
-  position: fixed;
+  position: absolute;
   top: 50px; }
   #mainnav > ul {
     width: 110px;
