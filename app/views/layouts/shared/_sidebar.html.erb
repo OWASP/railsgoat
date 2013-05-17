@@ -1,6 +1,6 @@
     <div id="mainnav" class="hidden-phone hidden-tablet">
       <ul style="display: block;">
-        <li class="active">
+        <li id="home">
           <a href="#">
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe0a0;"></span>
@@ -8,6 +8,16 @@
             Dashboard
           </a>
         </li>
+        <% if is_admin? %>
+        <li id="admin_dashboard">
+           <%= link_to admin_dashboard_path(:admin_id => current_user.id) do %>
+            <div class="icon">
+              <span class="fs1" aria-hidden="true" data-icon="&#xe1c8;"></span>
+            </div>
+            Admin
+           <% end %>
+        </li>
+ 		<% end %>
         <li>
           <a href="#">
             <div class="icon">

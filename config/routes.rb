@@ -28,6 +28,10 @@ resources :tutorials do
   end
 end
 
+resources :admin do
+  get "dashboard"
+end
+
 resources :dashboard do
   collection do 
     get "home"
