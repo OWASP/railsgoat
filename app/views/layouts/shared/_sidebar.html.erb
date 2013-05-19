@@ -9,7 +9,7 @@
           </a>
         </li>
         <% if is_admin? %>
-        <li id="admin_dashboard">
+        <li id='admin'>
            <%= link_to admin_dashboard_path(:admin_id => current_user.id) do %>
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe1c8;"></span>
