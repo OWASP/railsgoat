@@ -1,12 +1,12 @@
     <div id="mainnav" class="hidden-phone hidden-tablet">
       <ul style="display: block;">
         <li id="home">
-          <a href="#">
+          <%= link_to home_dashboard_index_path do %>
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe0a0;"></span>
             </div>
             Dashboard
-          </a>
+          <% end %>
         </li>
         <% if is_admin? %>
         <li id='admin'>
