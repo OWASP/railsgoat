@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :password, :user_id, :admin, :password_confirmation, :first_name, :last_name
-  validates_confirmation_of :password, :password_confirmation
+  validates_confirmation_of :password, :password_confirmation, :on => :create
   validates :password, :presence => true,
-                        :confirmation => true,
-                        :length => {:within => 6..40}
+                       :confirmation => true,
+                       :length => {:within => 6..40},
+                       :on => :create
   validates_presence_of :email
   validates_uniqueness_of :email
   validates_format_of :email, :with => /.+@.+\..+/i

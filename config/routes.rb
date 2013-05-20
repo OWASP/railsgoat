@@ -30,6 +30,8 @@ end
 
 resources :admin do
   get "dashboard"
+  get "get_user"
+  put "update_user"
 end
 
 resources :dashboard do
