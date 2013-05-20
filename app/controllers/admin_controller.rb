@@ -1,7 +1,11 @@
 class AdminController < ApplicationController
   
   def dashboard
+  end
+  
+  def get_all_users
     @users = User.all
+    render :partial => "layouts/admin/get_all_users"
   end
   
   def get_user

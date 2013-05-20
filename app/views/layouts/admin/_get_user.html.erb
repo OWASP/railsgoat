@@ -54,6 +54,7 @@
 	  type: "POST",
 	  success: function(response) {
 	  	$('#success').show(500).delay(1500).fadeOut();
+		loadTable();
 	  },
 	  error: function(event) {
 		$('#failure').show(500).delay(1500).fadeOut();

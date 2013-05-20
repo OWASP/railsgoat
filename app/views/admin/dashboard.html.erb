@@ -33,52 +33,9 @@
 							Manage Users
 						</div>
 					</div>
-					<div class="widget-body">
-						<div id="dt_example" class="example_alt_pagination">
-		                    <table class="table table-striped table-hover table-bordered pull-left" id="data-table">    
-		                      <thead>
-		                        <tr>
-		                          <th>
-		                            Name
-		                          </th>
-		                          <th>
-		                            Email
-		                          </th>
-		                          <th>
-		                            Admin User
-		                          </th>
-		                          <th>
-		                            Action
-		                          </th>
-		                        </tr>
-		                      </thead>
-		                      <tbody>
-		                       <% @users.each do |u|%>
-		  							<tr>
-		                        	  <td style="word-wrap:break-word;">
-		                        	    <%= "#{u.first_name} #{u.last_name}"%>
-		                        	  </td>
-		                        	  <td>
-		                        	    <%= u.email%>
-		                        	  </td>
-		                        	  <td>
-		                        	    <%= u.admin ? %{<span class="fs1" aria-hidden="true" data-icon="&#xe0fe;"}.html_safe : nil %>
-		                        	  </td>
-		                        	  <td>
-		                        	    <%= link_to "Edit", "#", {:onClick => "javascript:openModal(#{u.id});" ,:role => "button", :class => "btn btn-inverse", "data-toggle" => "modal"}%>	
-										<%= link_to "Delete", "#", {:class => "btn btn-danger"}%>	
-		                        	  </td>
-		                        	</tr>
-							   <% end %>
-		                      </tbody>
-		                    </table>
-							<div id="editAcct" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-							</div>	
-		                    <div class="clearfix">
-		                    </div>
-		                  </div>
-		                </div>
-					</div>
+					<div id="userDataTable" class="widget-body">
+						
+					</div> <!-- End widget-body-->
 				</div> <!-- End widget header-->
 			</div>
 		</div>
@@ -107,8 +64,13 @@ function openModal(id){
  $("#editAcct").modal('show');
 };
 
+function loadTable(){
+	$("#userDataTable").load("/admin/"+ <%=current_user.id %> + "/get_all_users");
+};
+
 $(document).ready(
 	makeActive,
-	dataTablePagination()
+	dataTablePagination(),
+	loadTable()
 );
 </script>

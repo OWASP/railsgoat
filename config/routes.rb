@@ -32,6 +32,7 @@ resources :admin do
   get "dashboard"
   get "get_user"
   put "update_user"
+  get "get_all_users"
 end
 
 resources :dashboard do
