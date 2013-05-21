@@ -36,6 +36,7 @@
       <button class="btn" data-dismiss="modal" aria-hidden="true">
         Close
       </button>
+         <%= link_to "Delete", "#", {:id => "delete_button", :class => "btn btn-danger"} %>	
          <%= f.submit "Submit", {:id => 'submit_button', :class => "btn btn-primary pull-right"} %>
     </div>
  	     <% end %>
@@ -43,8 +44,8 @@
 <!-- End Modal -->
 
 <script type="text/javascript">
-//$(document).ready(alert(<%#= @id %>));
- $('#submit_button').click(function() {  
+
+$('#submit_button').click(function() {  
 	var valuesToSubmit = $("#account_edit").serialize();
 	$("#editAcct").modal('hide');
 	
@@ -62,4 +63,22 @@
 	});
 	  
 });
+
+$('#delete_button').click(function() {  
+	$("#editAcct").modal('hide');
+	
+	$.ajax({
+      url: "/admin/" +  <%= @user.id %> + "/delete_user.json",
+	  type: "GET",
+	  success: function(response) {
+	  	$('#success').show(500).delay(1500).fadeOut();
+		loadTable();
+	  },
+	  error: function(event) {
+		$('#failure').show(500).delay(1500).fadeOut();
+	  }
+	});
+	  
+});
+
 </script>

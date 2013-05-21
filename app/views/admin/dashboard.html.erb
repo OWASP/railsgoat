@@ -58,14 +58,8 @@ function makeActive(){
 	$('li[id="admin"]').addClass('active');
 };
 
-function openModal(id){
- var link = '/admin/'+ id +'/get_user';
- $("#editAcct").load(link);
- $("#editAcct").modal('show');
-};
-
 function loadTable(){
-	$("#userDataTable").load("/admin/"+ <%=current_user.id %> + "/get_all_users");
+	$("#userDataTable").load("/admin/"+ <%=current_user.id %> + "/get_all_users")
 };
 
 $(document).ready(

@@ -27,4 +27,15 @@ class AdminController < ApplicationController
     end
   end
   
+  def delete_user
+    user = User.find_by_id(params[:admin_id])
+    if user && !(current_user.id == user.id)
+      user.delete
+      message = true
+    end
+    respond_to do |format|
+      format.json { render :json => { :msg => message ? "success" : "failure"} }
+    end
+  end
+  
 end
