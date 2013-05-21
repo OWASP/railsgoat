@@ -13,8 +13,14 @@ class User < ActiveRecord::Base
        auth = nil
        user = find_by_email(email)
        # I heard something about hashing, dunno, why bother really. Nobody will get access to my stuff!
-       if user && user.password == password
-        auth = user
+       if user
+         if user.password == password
+           auth = user
+         else
+          raise "Incorrect Password!"
+         end 
+       else
+          raise "#{email} doesn't exist!"
        end
        return auth
   end

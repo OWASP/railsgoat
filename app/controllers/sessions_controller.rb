@@ -7,13 +7,20 @@ class SessionsController < ApplicationController
   end
   
   def create
-      user = User.authenticate(params[:email], params[:password])
+     
+      begin
+        user = User.authenticate(params[:email], params[:password])
+      rescue Exception => e
+      end
+      
       if user
         session[:id] = user.id if User.where(:id => user.id).exists?
         redirect_to home_dashboard_index_path
       else
+        flash[:error] = e.message
         render "new"
       end
+      
   end
   
   def destroy
