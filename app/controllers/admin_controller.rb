@@ -10,6 +10,8 @@ class AdminController < ApplicationController
   
   def get_user
     @user = User.find_by_id(params[:admin_id].to_s)
+    arr = ["true", "false"]
+    @admin_select = @user.admin ? arr : arr.reverse
     render :partial => "layouts/admin/get_user"
   end
   
