@@ -48,6 +48,18 @@
 
 <script type="text/javascript">
 
+function validation(){
+	$("#account_edit").validate({
+		rules: {
+		password: { 
+		      required: true, minlength: 5
+		}, 
+		c_password: { 
+		      required: true, equalTo: "#password", minlength: 5
+		}
+	});
+}
+
 $('#submit_button').click(function() {  
 	var valuesToSubmit = $("#account_edit").serialize();
 	$("#editAcct").modal('hide');
@@ -83,5 +95,7 @@ $('#delete_button').click(function() {
 	});
 	  
 });
+
+$(document).ready(validation());
 
 </script>
