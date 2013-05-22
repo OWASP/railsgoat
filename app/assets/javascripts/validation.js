@@ -28,6 +28,7 @@ function validation(){
 		success: function(label) {
 			    	label.closest('.control-group').addClass('success');
 					$("#submit_button").removeAttr('disabled');
+					$('.error').css({"color": "#333333"});
 		}
 	});
 };
