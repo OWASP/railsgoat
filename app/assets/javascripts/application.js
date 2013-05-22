@@ -21,3 +21,4 @@
 //= require date-picker/daterangepicker.js
 //= require jquery.sparkline.js
 //= require tiny-scrollbar.js
+//= require jquery.validate.js

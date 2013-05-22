@@ -1,3 +1,5 @@
+
+
 <!-- Begin Modal -->
 
     <div class="modal-header">
@@ -43,22 +45,35 @@
          <%= f.submit "Submit", {:id => 'submit_button', :class => "btn btn-primary pull-right"} %>
     </div>
  	     <% end %>
-
 <!-- End Modal -->
 
 <script type="text/javascript">
 
 function validation(){
 	$("#account_edit").validate({
-		rules: {
-		password: { 
-		      required: true, minlength: 5
-		}, 
-		c_password: { 
-		      required: true, equalTo: "#password", minlength: 5
-		}
+	    rules: {
+	        "user[password]": {
+	            required: false,
+	            minlength: 5
+	        },
+	        "user[password_confirmation]": {
+	            required: false,
+	            minlength: 5,
+	            equalTo: "#user_password"
+	        }
+	    },
+	    messages: {
+	        "user[password]": {
+	            minlength: "Your password must be at least 6 characters long"
+	        },
+	        "user[password_confirmation]": {
+	            minlength: "Your password must be at least 6 characters long",
+	            equalTo: "Please enter the same password as above"
+	        }
+	    }
 	});
-}
+};	
+	
 
 $('#submit_button').click(function() {  
 	var valuesToSubmit = $("#account_edit").serialize();
