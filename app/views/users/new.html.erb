@@ -5,7 +5,7 @@
         <div class="row-fluid">
           <div class="span4 offset4">
             <div class="signup">
-			<%= form_for @user, :html => {:class=> "signup-wrapper"} do |f| %>
+			<%= form_for @user, :html => {:id => "account_edit", :class=> "signup-wrapper"} do |f| %>
 			
 					<div class="header">
 	                  <h2>Sign Up</h2>
@@ -21,12 +21,15 @@
 				
 							<%= f.label "Last Name" %>
 				    		<%= f.text_field :last_name, {:class => "input input-block-level"} %>
-				  
-				    		<%= f.label :password, nil %>
-				    		<%= f.password_field :password, {:class => "input input-block-level"}%>
-				
-							<%= f.label :confirm_password %>
-				    		<%= f.password_field :password_confirmation, {:class => "input input-block-level"}%>
+				 
+				      		<div class="control-group">
+				    			<%= f.label :password, nil %>
+				    			<%= f.password_field :password, {:class => "input input-block-level"}%>
+				 			</div>
+							<div class="control-group">
+								<%= f.label :confirm_password %>
+				    			<%= f.password_field :password_confirmation, {:class => "input input-block-level"}%>
+							</div>
 					</div>
 				
 					<div class="actions">
@@ -42,3 +45,5 @@
 
   </div>
 </div>
+
+<%= javascript_include_tag "validation.js"%>
