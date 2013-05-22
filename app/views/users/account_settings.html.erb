@@ -12,26 +12,36 @@
 		          </div>
 		        </div>
 		        <div class="widget-body">
-			     <%= form_for @user do |f|%>
+			     <%= form_for @user, :html => {:id => "account_edit"} do |f|%>
 					<div class="control-group">
 		              <%= f.label :email, nil, {:class => "control-label"}%>
 					  <%= f.text_field :email, {:class => "span12"}%>
 					</div>
+					
 					<div class="control-group">
 					  <%= f.label :first_name, nil, {:class => "control-label"}%>
 					  <%= f.text_field :first_name, {:class => "span12"} %>
 					</div>
+					
 					<div>
 						<%= f.label :last_name, nil, {:class => "control-label"}%>
 						<%= f.text_field :last_name, {:class => "span12"} %>
 					</div>
+					
 					<div class="control-group">
 					  <%= f.label :password, nil, {:class => "control-label"}%>
 					  <%= f.password_field :password, {:class => "span12", :placeholder => "Enter Password"}%>
 					</div>
+					
+					<div class="control-group">
+				      <%= f.label :password_confirmation, nil, {:class => "control-label"}%>
+				      <%= f.password_field :password_confirmation, {:class => "span12", :placeholder => "Enter Password"} %>
+				    </div>
+				
 					<div class="form-actions no-margin">
-					  <%= f.submit "Submit", {:class => "btn btn-info pull-right"} %>
+					  <%= f.submit "Submit", {:id => 'submit_button', :class => "btn btn-info pull-right"} %>
 					</div>
+					
 					<div class="clearfix">
 		            </div>
 			     <% end %>
@@ -40,6 +50,47 @@
 		</div>
 	</div>
 </div>		
+
+<script type="text/javascript">
+
+function validation(){
+	$("#account_edit").validate({
+	    rules: {
+	        "user[password]": {
+	            required: false,
+	            minlength: 5
+	        },
+	        "user[password_confirmation]": {
+	            required: false,
+	            minlength: 5,
+	            equalTo: "#user_password"
+	        }
+	    },
+	    messages: {
+	        "user[password]": {
+	            minlength: "Your password must be at least 6 characters long"
+	        },
+	        "user[password_confirmation]": {
+	            minlength: "Your password must be at least 6 characters long",
+	            equalTo: "Please enter the same password as above"
+	        }
+	    },
+	  	highlight: function(label) {
+					$("#submit_button").attr('disabled','disabled');
+			    	$(label).closest('.control-group').addClass('error');
+	    },
+		success: function(label) {
+			    	label.closest('.control-group').addClass('success');
+					$("#submit_button").removeAttr('disabled');
+		}
+	    
+	});
+};	
+
+
+$(document).ready(validation());
+
+</script>
 
            
 
