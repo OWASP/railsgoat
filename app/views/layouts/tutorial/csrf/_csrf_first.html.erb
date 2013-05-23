@@ -1,0 +1,103 @@
+<div class="widget">
+    <div class="widget-header">
+      <div class="title">
+        <span class="fs1" aria-hidden="true" data-icon="&#xe092;"></span> A5 - Cross Site Request Forgery (CSRF)
+      </div>
+    </div>
+    <div class="widget-body">
+      <div id="accordion1" class="accordion no-margin">
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a href="#collapseOne" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
+              <i class="icon-info icon-white">
+              </i>
+              Description
+            </a>
+          </div>
+          <div class="accordion-body in collapse" id="collapseOne" style="height: auto;">
+            <div class="accordion-inner">
+              <p>A CSRF attack forces a logged-on victim’s browser to send a forged HTTP request, including the victim’s session cookie and any other automatically included authentication information, to a vulnerable web application. This allows the attacker to force the victim’s browser to generate requests the vulnerable application thinks are legitimate requests from the victim.</p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a href="#collapseTwo" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
+              <i class="icon-bug icon-white">
+              </i>
+              Bug
+            </a>
+          </div>
+          <div class="accordion-body collapse" id="collapseTwo" style="height: 0px;">
+            <div class="accordion-inner">
+              <p><b>Cross-Site Request Forgery (CSRF) - The following code was taken from: /app/controllers/application_controller.rb and /app/views/layouts/application.html.erb</b></p>
+			  <p>application_controller.rb<<p>
+			  <p>
+			     <pre class="ruby">
+				 # Our security guy keep talking about sea-surfing, cool story bro.
+				 # protect_from_forgery
+				</pre>
+					
+			  </p>
+			  <p> application.html.erb </p>
+			  <p>
+				  <pre class="ruby">
+					<%= @meta_code_bad %>
+				  </pre>
+			  </p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a href="#collapseThree" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
+              <i class="icon-lightning icon-white">
+              </i>
+              Solution
+            </a>
+          </div>
+          <div class="accordion-body collapse" id="collapseThree" style="height: 0px;">
+            <div class="accordion-inner">
+              <p><b> Cross-Site Request Forgery ATTACK:</b></p>
+				<p>
+					Save this content to an .html file and open it...
+				</p>
+			   	<p>
+					<font face="Courier New" style="color: rgb(69, 126, 136)">
+						<%= 
+			   				%{
+			   					
+			   				} 
+			   			%>
+					</font>
+				</p>
+				
+			  <p><b> Cross-Site Request Forgery SOLUTION:</b></p>
+			  <p>
+				 By Default, the protect_from_forgery directive is added under the application_controller.rb at project creation. However, occasionally developers turn it off (comment out) because of issues with JS. The solution around the JS problem is to add the following code within the header section of the application.html.erb file (or any other application layout file).
+			 </p>
+				<p>
+					<pre class="ruby">
+						<%= @meta_code_good %>
+					</pre>
+			  </p>
+            </div>
+          </div>
+        </div>
+      	<div class="accordion-group">
+          <div class="accordion-heading">
+            <a  style="background-color: rgb(181, 121, 158)" href="#collapseFour" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
+              <i class="icon-aid icon-white">
+              </i>
+              Hint
+            </a>
+          </div>
+          <div class="accordion-body collapse" id="collapseFour" style="height: 0px;">
+            <div class="accordion-inner">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+            </div>
+          </div>
+        </div>
+	 </div>
+    </div>
+  </div>
