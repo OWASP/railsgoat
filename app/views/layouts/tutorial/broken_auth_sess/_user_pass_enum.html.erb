@@ -1,7 +1,7 @@
 <div class="widget">
     <div class="widget-header">
       <div class="title">
-        <span class="fs1" aria-hidden="true" data-icon="&#xe092;"></span> A3 - Broken Authentication and Session Management (Instance #1)
+        <span class="fs1" aria-hidden="true" data-icon="&#xe092;"></span> A3 - Broken Authentication and Session Management - Username/Pass Enumeration
       </div>
     </div>
     <div class="widget-body">
@@ -17,7 +17,7 @@
           <div class="accordion-body in collapse" id="collapseOne" style="height: auto;">
             <div class="accordion-inner">
               <p>
-Application functions related to authentication and session management are often not implemented correctly, allowing attackers to compromise passwords, keys, session tokens, or exploit other implementation flaws to assume other users’ identities.
+				Overly verbose error messages that indicate whether or not a user exists can assist an attacker with brute-forcing accounts. In attempting to harvest valid usernames for a password-guessing campaign, these messages can prove very useful.
 			  </p>
             </div>
           </div>
@@ -32,7 +32,28 @@ Application functions related to authentication and session management are often
           </div>
           <div class="accordion-body collapse" id="collapseTwo" style="height: 0px;">
             <div class="accordion-inner">
-              <p><b>Broken Authentication and Session Management</b></p>
+              <p><b>Username and Password Enumeration</b></p>
+			  <p><b>Within /app/models/user.rb:</p><p>
+				
+				
+						<pre class="ruby">
+						def self.authenticate(email, password)
+					       	auth = nil
+					       	user = find_by_email(email)
+					       	# I heard something about hashing, dunno, why bother really. Nobody will get access to my stuff!
+					       	if user
+					       	  if user.password == password
+					       	    auth = user
+					       	  else
+					       	   raise "Incorrect Password!"
+					       	  end 
+					       	else
+					       	   raise "#{email} doesn't exist!"
+					       	end
+					       	return auth
+					   end
+					  </pre>
+			 		
             </div>
           </div>
         </div>

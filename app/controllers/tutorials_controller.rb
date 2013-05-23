@@ -22,7 +22,8 @@ class TutorialsController < ApplicationController
   						nothing bad will happen
   						-->
   						Welcome, <%= current_user.first_name.html_safe %>
-  			   		</li>}
+  			   	</li>
+  			   		}
   end
   
   def broken_auth

@@ -22,3 +22,20 @@
 //= require jquery.sparkline.js
 //= require tiny-scrollbar.js
 //= require jquery.validate.js
+//= require jquery.snippet.js
+
+
+function rubyCodeFormat() {
+
+$("pre.ruby").snippet("ruby",{style:"rand01",transparent:true,showNum:true});
+    // Finds <pre> elements with the class "js"
+    // and snippet highlights the JAVASCRIPT code within
+    // using a random style from the selection of 39
+    // with a transparent background
+    // without showing line numbers.
+
+};
+
+$(document).ready(function(){
+	rubyCodeFormat()
+});
