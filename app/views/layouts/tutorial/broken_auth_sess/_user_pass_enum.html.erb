@@ -33,7 +33,7 @@
           <div class="accordion-body collapse" id="collapseTwo" style="height: 0px;">
             <div class="accordion-inner">
               <p><b>Username and Password Enumeration</b></p>
-			  <p><b>Within /app/models/user.rb:</p><p>
+			  <p><b>Within /app/models/user.rb:</b><p>
 				
 				
 						<pre class="ruby">
@@ -53,8 +53,29 @@
 					       	return auth
 					   end
 					  </pre>
+					 <p>	On lines 9 and 12 you'll notice that the application generates two error messages. </p>
+					 <p><b>Within /app/controllers/sessions_controller.rb:</b><p>
+					  <pre class="ruby">
+						  def create
+
+						      begin
+						        user = User.authenticate(params[:email], params[:password])
+						      rescue Exception => e
+						      end
+
+						      if user
+						        session[:id] = user.id if User.where(:id => user.id).exists?
+						        redirect_to home_dashboard_index_path
+						      else
+						        flash[:error] = e.message
+						        render "new"
+						      end
+
+						  end
+					  </pre>
+					<p>	On line 5 you see the exception message object "e" is created. On line 11, the message is displayed. </p>	
 			  <p class="desc">
-				On lines 9 and 12 you'll notice that the application generates two error messages. One indicates the email address (username) doesn't exist on the system. The other indicates that the password is incorrect. Although the application will render both error messages, either one of the error messages would be harmful by itself. This type of information can be used by an attacker to harvest email addresses or usernames. Once that list is gathered, passwords can be guessed for each account. If the username being enumerated is actually an email address, a phishing campaign could ensue with emails made to look like they are originating from the vulnerable site.
+			 One of these messages indicates the email address (username) doesn't exist on the system. The other indicates that the password is incorrect. Although the application will render both error messages, either one of the error messages would be harmful by itself. This type of information can be used by an attacker to harvest email addresses or usernames. Once that list is gathered, passwords can be guessed for each account. If the username being enumerated is actually an email address, a phishing campaign could ensue with emails made to look like they are originating from the vulnerable site.
 			  </p>		
             </div>
           </div>
