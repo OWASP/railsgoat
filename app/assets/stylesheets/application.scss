@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
  */
+
+p.desc {
+max-width: 850px;		
+word-wrap: break-word;
+}
