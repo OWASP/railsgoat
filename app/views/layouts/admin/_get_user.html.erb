@@ -65,7 +65,7 @@ $('#submit_button').click(function() {
 	$("#editAcct").modal('hide');
 	
 	$.ajax({
-      url: "/admin/" +  <%= @user.id %> + "/update_user.json",
+      url: "/admin/" +  <%= @user.user_id %> + "/update_user.json",
 	  data: valuesToSubmit,
 	  type: "POST",
 	  success: function(response) {
@@ -83,7 +83,7 @@ $('#delete_button').click(function() {
 	$("#editAcct").modal('hide');
 	
 	$.ajax({
-      url: "/admin/" +  <%= @user.id %> + "/delete_user.json",
+      url: "/admin/" +  <%= @user.user_id %> + "/delete_user.json",
 	  type: "POST",
 	  success: function(response) {
 	  	$('#success').show(500).delay(1500).fadeOut();

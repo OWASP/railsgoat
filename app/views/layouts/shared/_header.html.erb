@@ -11,7 +11,7 @@
        <span class="caret"></span>
        <ul class="dropdown-menu pull-right">
          <li>
-			<%= link_to "account settings", user_account_settings_path(:user_id => current_user.id) %>
+			<%= link_to "account settings", user_account_settings_path(:user_id => current_user.user_id) %>
          </li>
          <li>
            <%= link_to "logout", logout_path %>

@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       end
       
       if user
-        session[:id] = user.id if User.where(:id => user.id).exists?
+        session[:user_id] = user.user_id if User.where(:user_id => user.user_id).exists?
         redirect_to home_dashboard_index_path
       else
         # Removed this code, just doesn't seem specific enough!
