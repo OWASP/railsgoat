@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_format_of :email, :with => /.+@.+\..+/i
   
+
   def self.authenticate(email, password)
        auth = nil
        user = find_by_email(email)
@@ -23,6 +24,6 @@ class User < ActiveRecord::Base
           raise "#{email} doesn't exist!"
        end
        return auth
-  end
-    
+  end  
+
 end

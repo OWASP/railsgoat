@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     redirect_to home_dashboard_index_path if current_user
   end
   
+
   def create
      
       begin
@@ -17,6 +18,8 @@ class SessionsController < ApplicationController
         session[:id] = user.id if User.where(:id => user.id).exists?
         redirect_to home_dashboard_index_path
       else
+        # Removed this code, just doesn't seem specific enough!
+        #  flash[:error] = "Either your username and password is incorrect" 
         flash[:error] = e.message
         render "new"
       end

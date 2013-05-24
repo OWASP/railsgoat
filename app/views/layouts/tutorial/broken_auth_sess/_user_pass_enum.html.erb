@@ -90,7 +90,31 @@
           </div>
           <div class="accordion-body collapse" id="collapseThree" style="height: 0px;">
             <div class="accordion-inner">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+              <p>
+				<b> Username and Password Enumeration - SOLUTION</b>
+		      </p>
+		      <p> Within /app/controllers/sessions_controller.rb</p>
+              <pre class="ruby">
+				  def create
+
+				      begin
+				        user = User.authenticate(params[:email], params[:password])
+				      rescue Exception => e
+				      end
+
+				      if user
+				        session[:id] = user.id if User.where(:id => user.id).exists?
+				        redirect_to home_dashboard_index_path
+				      else
+				        flash[:error] =  "Either your username and password is incorrect" #e.message
+				        render "new"
+				      end
+
+				  end
+	 		  </pre>
+	 		  <p class="desc">
+		 	  	Although this fix is neither systemic nor does it address the problematic code at its core (within the user model), it does provide a quick solution. On line 12, we comment out the "e.message code" and instead provide a very generic error message that lacks specificity on what credential was incorrectly entered.
+		      </p>
             </div>
           </div>
         </div>
@@ -104,8 +128,11 @@
           </div>
           <div class="accordion-body collapse" id="collapseFour" style="height: 0px;">
             <div class="accordion-inner">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
-            </div>
+				<p class="desc">
+					Enter an email address that wouldn't likely exist into the login form. Analyze the result.<br/><br/>
+					Can you leverage this to gain unauthorized access?
+				</p>	
+             </div>
           </div>
         </div>
       </div>
