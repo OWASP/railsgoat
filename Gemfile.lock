@@ -89,6 +89,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.22)
+    minitest (5.0.2)
     multi_json (1.7.2)
     polyglot (0.3.3)
     powder (0.2.0)
@@ -173,6 +174,7 @@ DEPENDENCIES
   guard-brakeman
   guard-shell
   jquery-rails
+  minitest
   powder
   rails (= 3.2.13)
   rb-fsevent

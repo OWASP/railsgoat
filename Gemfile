@@ -44,6 +44,7 @@ gem 'jquery-rails'
 
 # Pow related gem
 gem 'powder'
+gem 'minitest'
 
 # Deploy with Capistrano
 # gem 'capistrano'
