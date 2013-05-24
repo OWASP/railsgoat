@@ -31,13 +31,23 @@
           <div class="accordion-body collapse" id="collapseTwo" style="height: 0px;">
             <div class="accordion-inner">
               <p><b>Stored Cross-Site Scripting - The following code was taken from app/views/layouts/shared/_header.html.erb</b></p>
-			  <font face="Courier New" style="color: rgb(69, 126, 136)"> 
+			 
 				 <p>
   					<pre class="ruby">
 					  <%= @code %>
 	 				</pre>
                   </p>
-		      </font>
+ 				  <p class="desc">
+					Coincidentally, HTML safe is not safe from HTML Injection or "XSS" attacks. The name is deceiving. Some folks believe the raw() helper to be different than the html_safe String method. raw() is actually a wrapper for html_safe and essentially ensures exceptions are handled when the expected value is nil. 
+					<pre class="ruby">
+						# Psuedo-code to help conceptualize
+						def raw(dirty_string)
+						  dirty_string.to_s.html_safe
+						end
+					</pre>
+					
+				  </p>
+		    
             </div>
           </div>
         </div>

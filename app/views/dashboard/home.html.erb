@@ -3,54 +3,9 @@
     <div class="main-container">
 
 <div class="row-fluid">
-    <div class="span8">
-      <div class="widget no-margin">
-        <div class="widget-header">
-          <div class="title">
-            <span class="fs1" aria-hidden="true" data-icon="&#xe170;"></span> Blog posts with picture
-          </div>
-        </div>
-        <div class="widget-body">
-          <div class="row-fluid">
-            <div class="span12">
-              <div class="row-fluid">
-                <div class="span12">
-                  <h4><strong><a href="#">Post of the Day</a></strong></h4>
-                </div>
-              </div>
-              <div class="row-fluid">
-                <div class="span4">
-                  <a href="#" class="thumbnail">
-                    <img src="<%= image_path("user-display.png") %>" alt="" />
-                  </a>
-                </div>
-                <div class="span8">      
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                  </p>
-                  <p><a class="btn btn-info" href="#">Read more</a></p>
-                </div>
-              </div>
-              <div class="row-fluid">
-                <div class="span12">
-                  <p></p>
-                  <p class="icomoon-small">
-                    <span class="fs1" aria-hidden="true" data-icon="&#xe070;"></span> by <a href="#">Srinu</a> 
-                    | <span class="fs1" aria-hidden="true" data-icon="&#xe052;"></span>  Mar 16th, 2013
-                    | <span class="fs1" aria-hidden="true" data-icon="&#xe1c3;"></span> <a href="#">7 Comments</a>
-                    | <span class="fs1" aria-hidden="true" data-icon="&#xe15e;"></span> <a href="#">48 Shares</a>
-                    | <span class="fs1" aria-hidden="true" data-icon="&#xe031;"></span> Tags : <a href="#"><span class="label label-info">Sandy</span></a> 
-                    <a href="#"><span class="label label-important">Baswa</span></a> 
-                    <a href="#"><span class="label label-success">Lorem</span></a> 
-                    <a href="#"><span class="label label-warning">Sinu</span></a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>  
-        </div>
-      </div>
-    </div>
+    <div class="span12"> <!--begin span12 -->
+      <%= render :partial => "layouts/dashboard/dashboard_stats"%>
+    </div> <!-- end span12 -->
 </div>
 </div>
 
@@ -61,6 +16,9 @@ function makeActive(){
 };
 
 $(document).ready(
-	makeActive
+	makeActive,
+	 pieChartHome()
 );
+
 </script>
+
