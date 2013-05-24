@@ -53,7 +53,7 @@
             <div class="accordion-inner">
              <p><b> Stored Cross-Site Scripting ATTACK:</b></p>
 
-			 <p> When registering, enter your JavaScript tag such as <%= %{<script>alert("ohai")} %> in the First Name field. Upon login the header navigation bar will echo "Welcome" + your JS code. You can have your XSS code point the victim to a <%= link_to "BeEF server", "http://beefproject.com", {:style => "color: rgb(69, 126, 136)" } %> and have some fun as well.
+			 <p> When registering, enter your JavaScript tag such as <%= %{<script>alert("ohai")</script>} %> in the First Name field. Upon login the header navigation bar will echo "Welcome" + your JS code. You can have your XSS code point the victim to a <b><%= link_to "BeEF server", "http://beefproject.com", {:style => "color: rgb(69, 126, 136)" } %></b> and have some fun as well.
 			 </p>
 			 <p><b> Stored Cross-Site Scripting SOLUTION:</b></p>
 			 <p> 
@@ -72,7 +72,10 @@
           </div>
           <div class="accordion-body collapse" id="collapseFour" style="height: 0px;">
             <div class="accordion-inner">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+              <p class="desc">
+				Apparently we had some issues rendering people's names with weird formatting or something, I dunno, I think I fixed it by safely encoding html and rendering the necessary content.<br/><br/>
+				Your <b>Welcome</b>!
+			  </p>
             </div>
           </div>
         </div>
