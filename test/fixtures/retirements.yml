@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  total: MyString
+  employee_contrib: MyString
+  employer_contrib: MyString
+  user_id: MyString
+
+two:
+  total: MyString
+  employee_contrib: MyString
+  employer_contrib: MyString
+  user_id: MyString

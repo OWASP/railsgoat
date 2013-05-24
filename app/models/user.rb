@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => /.+@.+\..+/i
   attr_accessor :skip_user_id_assign
   before_save :assign_user_id, :on => :create
- 
+  has_one :retirement, :foreign_key => :user_id, :primary_key => :user_id
+  
   
 
   def self.authenticate(email, password)
@@ -28,7 +29,7 @@ class User < ActiveRecord::Base
        end
        return auth
   end  
-  
+    
   def assign_user_id
      unless @skip_user_id_assign.present?
       user = User.order("user_id").last
