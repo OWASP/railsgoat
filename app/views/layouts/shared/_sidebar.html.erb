@@ -27,12 +27,12 @@
           </a>
         </li>
         <li>
-          <a href="#">
+           <%= link_to user_retirement_index_path(:user_id => current_user.user_id) do %>
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe096;"></span>
             </div>
             401k Info
-          </a>
+          <% end %>
         </li>
         <li>
           <a href="#">

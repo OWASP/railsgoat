@@ -10,6 +10,11 @@ end
 
 resources :users do
   get "account_settings"
+  
+  resources :retirement do 
+     
+  end
+
 end
 
 resources :tutorials do
