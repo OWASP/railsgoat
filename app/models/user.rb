@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   end  
     
   def assign_user_id
-     unless @skip_user_id_assign.present?
+     unless @skip_user_id_assign.present? || self.user_id.present?
       user = User.order("user_id").last
       uid = user.user_id.to_i + 1 if user && user.user_id && !(User.exists?(:user_id => "#{user.user_id.to_i + 1}"))
       self.user_id = uid.to_s if uid
