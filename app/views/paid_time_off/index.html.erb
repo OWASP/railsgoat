@@ -16,8 +16,8 @@
                         <span>
                           Sick Days Taken
                         </span>
-                        <span class="pull-right">
-                          32%
+                        <span class="pull-right"> 
+                          <%= @pto.sick_days_taken %>
                         </span>
                       </div>
                       <div class="progress progress-striped active progress-danger">
@@ -31,7 +31,7 @@
                           Sick Days Earned
                         </span>
                         <span class="pull-right">
-                          32%
+                         <%= @pto.sick_days_earned %>
                         </span>
                       </div>
                       <div class="progress progress-success progress-striped active">
@@ -45,7 +45,7 @@
                           Sick Days Remaining
                         </span>
                         <span class="pull-right">
-                          84%
+                          <%= @pto.sick_days_remaining %>
                         </span>
                       </div>
                       <div class="progress progress-striped active">
@@ -76,7 +76,7 @@
 	                          PTO Days Taken
 	                        </span>
 	                        <span class="pull-right">
-	                          32%
+	                           <%= @pto.pto_taken %>
 	                        </span>
 	                      </div>
 	                      <div class="progress progress-striped active progress-danger">
@@ -90,7 +90,7 @@
 	                          PTO Days Earned
 	                        </span>
 	                        <span class="pull-right">
-	                          32%
+	                          <%= @pto.pto_earned %>
 	                        </span>
 	                      </div>
 	                      <div class="progress progress-success progress-striped active">
@@ -104,7 +104,7 @@
 	                          PTO Days Remaining
 	                        </span>
 	                        <span class="pull-right">
-	                          84%
+	                          <%= @pto.pto_days_remaining %>
 	                        </span>
 	                      </div>
 	                      <div class="progress progress-striped active">
