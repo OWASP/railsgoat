@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   attr_accessor :skip_user_id_assign
   before_save :assign_user_id, :on => :create
   has_one :retirement, :foreign_key => :user_id, :primary_key => :user_id
+  has_one :paid_time_off, :foreign_key => :user_id, :primary_key => :user_id
   
   
 

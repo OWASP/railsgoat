@@ -12,7 +12,9 @@ resources :users do
   get "account_settings"
   
   resources :retirement do 
-     
+  end
+  
+  resources :paid_time_off do 
   end
 
 end

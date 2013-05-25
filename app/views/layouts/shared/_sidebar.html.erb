@@ -35,12 +35,12 @@
           <% end %>
         </li>
         <li>
-          <a href="#">
+          <%= link_to user_paid_time_off_index_path(:user_id => current_user.user_id) do %>
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe0d2;"></span>
             </div>
             PTO
-          </a>
+         <% end %>
         </li>
         <li>
           <a href="#">

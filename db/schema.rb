@@ -11,13 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130524222129) do
+ActiveRecord::Schema.define(:version => 20130525001150) do
+
+  create_table "paid_time_offs", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "sick_days_taken"
+    t.integer  "sick_days_earned"
+    t.integer  "pto_taken"
+    t.integer  "pto_earned"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "retirements", :force => true do |t|
     t.string   "total"
     t.string   "employee_contrib"
     t.string   "employer_contrib"
-    t.integer   "user_id"
+    t.integer  "user_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
@@ -28,7 +38,7 @@ ActiveRecord::Schema.define(:version => 20130524222129) do
     t.boolean  "admin"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer   "user_id"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
