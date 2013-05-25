@@ -1,0 +1,54 @@
+<div class="dashboard-wrapper">
+	<div class="main-container">
+		<div class="row-fluid">
+		    <div class="span3">  <!-- Beginning of span-->
+		      	 <div class="widget">
+	                <div class="widget-header">
+	                  <div class="title">
+	                    <span class="fs1" aria-hidden="true" data-icon="&#xe074;"></span> Employee Contribution
+	                  </div>
+	                </div>
+	                <div class="widget-body">
+	                  <div class="current-statistics">
+	                    <div class="expenses">
+	                      <h3><%= @info.employee_contrib %></h3>
+	                    </div>
+	                  </div>
+	                </div>
+	              </div>
+		    </div> <!-- End of span-->
+			<div class="span3">  <!-- Beginning of span-->
+		      	 <div class="widget">
+	                <div class="widget-header">
+	                  <div class="title">
+	                    <span class="fs1" aria-hidden="true" data-icon="&#xe074;"></span> Employer Contribution
+	                  </div>
+	                </div>
+	                <div class="widget-body">
+	                  <div class="current-statistics">
+	                    <div class="signups">
+	                      <h3><%= @info.employer_contrib %></h3>
+	                    </div>
+	                  </div>
+	                </div>
+	              </div>
+		    </div> <!-- End of span-->
+			<div class="span3">  <!-- Beginning of span-->
+		      	 <div class="widget">
+	                <div class="widget-header">
+	                  <div class="title">
+	                    <span class="fs1" aria-hidden="true" data-icon="&#xe074;"></span> Total Contribution
+	                  </div>
+	                </div>
+	                <div class="widget-body">
+	                  <div class="current-statistics">
+	                    <div class="income">
+	                      <h3><%= @info.total %></h3>
+	                    </div>
+	                  </div>
+	                </div>
+	              </div>
+		    </div> <!-- End of span-->
+		</div>
+	</div>
+</div>
