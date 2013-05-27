@@ -1967,31 +1967,31 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
   *margin-right: .3em;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url("../img/glyphicons-halflings.png");
+  background-image: url(<%=asset_path "glyphicons-halflings.png" %>);
   background-position: 14px 14px;
   background-repeat: no-repeat;
   margin-top: 1px; }
 
 /* White icons with optional class, or on hover/active states of certain elements */
 .icon-white {
-  background-image: url("../img/glyphicons-halflings-white.png"); }
+  background-image: url(<%=asset_path "glyphicons-halflings-white.png" %>); }
 
 .nav-pills > .active > a > [class^="icon-"], .nav-pills > .active > a > [class*=" icon-"] {
-  background-image: url("../img/glyphicons-halflings-white.png"); }
+  background-image: url(<%=asset_path "glyphicons-halflings-white.png" %>); }
 
 .nav-list > .active > a > [class^="icon-"], .nav-list > .active > a > [class*=" icon-"] {
-  background-image: url("../img/glyphicons-halflings-white.png"); }
+  background-image: url(<%=asset_path "glyphicons-halflings-white.png" %>); }
 
 .navbar-inverse .nav > .active > a > [class^="icon-"], .navbar-inverse .nav > .active > a > [class*=" icon-"] {
-  background-image: url("../img/glyphicons-halflings-white.png"); }
+  background-image: url(<%=asset_path "glyphicons-halflings-white.png" %>); }
 
 .dropdown-menu > li > a:hover > [class^="icon-"], .dropdown-menu > li > a:hover > [class*=" icon-"] {
-  background-image: url("../img/glyphicons-halflings-white.png"); }
+  background-image: url(<%=asset_path "glyphicons-halflings-white.png" %>); }
 .dropdown-menu > .active > a > [class^="icon-"], .dropdown-menu > .active > a > [class*=" icon-"] {
-  background-image: url("../img/glyphicons-halflings-white.png"); }
+  background-image: url(<%=asset_path "glyphicons-halflings-white.png" %>); }
 
 .dropdown-submenu:hover > a > [class^="icon-"], .dropdown-submenu:hover > a > [class*=" icon-"] {
-  background-image: url("../img/glyphicons-halflings-white.png"); }
+  background-image: url(<%=asset_path "glyphicons-halflings-white.png" %>); }
 
 .icon-glass {
   background-position: 0 0; }
@@ -4717,7 +4717,7 @@ button.close {
   display: none; }
 
 .modal-loading .modal-image {
-  background: url(../img/loading-orange.gif) center no-repeat; }
+  background: url(<%=asset_path "loading-orange.gif" %>) center no-repeat; }
 
 .modal-gallery.fade .modal-image {
   -webkit-transition: width 0.15s ease, height 0.15s ease;
@@ -4791,7 +4791,7 @@ button.close {
       height: 40px;
       margin: 0 2px;
       outline: none;
-      background: transparent url(../img/social_icons.png) no-repeat top left;
+      background: transparent url(<%=asset_path "social_icons.png" %>) no-repeat top left;
       text-indent: -9000px;
       position: relative; }
     .fancy-tooltip-wrapper li .tooltip-facebook, .fancy-tooltip-wrapper1 li .tooltip-facebook {
@@ -5046,7 +5046,7 @@ button.close {
 .colorpicker-saturation {
   width: 100px;
   height: 100px;
-  background-image: url(../img/saturation.png);
+  background-image: url(<%=asset_path "saturation.png" %>);
   cursor: crosshair;
   float: left; }
   .colorpicker-saturation i {
@@ -5090,10 +5090,10 @@ button.close {
   margin-top: -1px; }
 
 .colorpicker-hue {
-  background-image: url(../img/hue.png); }
+  background-image: url(<%=asset_path "hue.png" %>); }
 
 .colorpicker-alpha {
-  background-image: url(../img/alpha.png);
+  background-image: url(<%=asset_path "alpha.png" %>);
   display: none; }
 
 .colorpicker {
@@ -5119,7 +5119,7 @@ button.close {
   height: 10px;
   margin-top: 5px;
   clear: both;
-  background-image: url(../img/alpha.png);
+  background-image: url(<%= "alpha.png" %>);
   background-position: 0 100%; }
   .colorpicker-color div {
     height: 10px; }
@@ -6117,13 +6117,13 @@ header {
       background: #f9f9f9; }
   #dt_example .dataTable .sorting {
     cursor: pointer;
-    background: url(../img/sorting.png) no-repeat center right; }
+    background: url(<%=asset_path "sorting.png" %>) no-repeat center right; }
   #dt_example .dataTable .sorting_asc {
     cursor: pointer;
-    background: url(../img/sorting_asc.png) no-repeat center right; }
+    background: url(<%=asset_path "sorting_asc.png" %>) no-repeat center right; }
   #dt_example .dataTable .sorting_desc {
     cursor: pointer;
-    background: url(../img/sorting_desc.png) no-repeat center right; }
+    background: url(<%=asset_path "sorting_desc.png" %>) no-repeat center right; }
 
 /* Progress UI  */
 .progress-statistics li {
