@@ -104,6 +104,26 @@ paid_time_off = [
       }
   
   ]
+  
+  schedule = [
+        {
+          :user_id => 2,
+          
+        },
+        {
+          :user_id => 3,
+          
+        },
+        {
+          :user_id => 4,
+        
+        },
+        {
+          :user_id => 5,
+          
+        }
+
+    ]
 
 
 users.each do |user_info|
@@ -116,4 +136,8 @@ end
 
 paid_time_off.each do |pto|
   PaidTimeOff.create!(pto)
+end
+
+schedule.each do |event|
+  Schedule.create!(event)
 end
