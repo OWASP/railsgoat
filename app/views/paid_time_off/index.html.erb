@@ -2,6 +2,20 @@
 	<div class="main-container">
 		<!-- Begin DP-->
 		<div class="row-fluid">
+			<!-- begin cal -->
+			<div class="span6">
+				<div class="widget">
+	              <div class="widget-header">
+	                <div class="title">
+	                  <span class="fs1" aria-hidden="true" data-icon="&#xe097;"></span> Cal
+	                </div>
+	              </div>
+	              <div class="widget-body">
+	               <div id='calendar'></div>
+	              </div>
+	            </div>
+			</div>
+			<!-- End cal-->
 			<div class="span6">
               <div class="widget">
                 <div class="widget-header">
@@ -63,13 +77,22 @@
         </div>
 	</div>
 </div>
+
 <!-- Google Visualization JS -->
 <script type="text/javascript" src="https://www.google.com/jsapi">
 </script>
+
+ <script type='text/javascript' src='../../assets/fullcalendar.js'></script>
+
 <script type="text/javascript">
 
+$('#calendar').fullCalendar({
+      
+})
+
+
  //Dropdown
-  $('.dropdown-toggle').dropdown();
+$('.dropdown-toggle').dropdown();
 
 //Date picker
 $('.date_picker').daterangepicker({
