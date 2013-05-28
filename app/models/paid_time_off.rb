@@ -3,4 +3,12 @@ class PaidTimeOff < ActiveRecord::Base
   belongs_to :user
   has_one :schedule, :foreign_key => :user_id, :primary_key => :user_id
 
+  def sick_days_remaining
+    self.sick_days_earned - self.sick_days_taken
+  end
+  
+  def pto_days_reamining
+    self.pto_earned - self.pto_taken
+  end
+
 end

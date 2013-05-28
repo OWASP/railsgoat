@@ -38,7 +38,7 @@
             <div class="widget">
               <div class="widget-header">
                 <div class="title">
-                  <span class="fs1" aria-hidden="true" data-icon="&#xe097;"></span> Column Chart
+                  <span class="fs1" aria-hidden="true" data-icon="&#xe097;"></span> Sick Days
                 </div>
               </div>
               <div class="widget-body">
@@ -72,19 +72,14 @@ $('.date_picker').daterangepicker({
 
 function drawChart3() {
     var data = google.visualization.arrayToDataTable([
-      ['Year', 'Visitors', 'Orders', 'Income', 'Expenses'],
-      ['2007', 300, 800, 900, 300],
-      ['2008', 1170, 860, 1220, 564],
-      ['2009', 260, 1120, 2870, 2340],
-      ['2010', 1030, 540, 3430, 1200],
-      ['2011', 200, 700, 1700, 770],
-      ['2012', 1170, 2160, 3920, 800], ]);
+      ['Current Date', 'Days Earned', 'Days Taken', 'Days Remaining'],
+      [ <%= "As of today: #{Date.today}".inspect.html_safe %>, <%= @pto.sick_days_earned %>,  <%= @pto.sick_days_taken %>, <%= @pto.sick_days_remaining %> ], ]);
 
     var options = {
       width: 'auto',
       height: '160',
       backgroundColor: 'transparent',
-      colors: ['#b5799e', '#579da9', '#e26666', '#1e825e', '#dba26b'],
+      colors: ['#579da9', '#e26666', '#1e825e'],
       tooltip: {
         textStyle: {
           color: '#666666',
