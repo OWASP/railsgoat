@@ -42,7 +42,21 @@
                 </div>
               </div>
               <div class="widget-body">
-                <div id="column_chart"></div>
+                <div id="column_chart_1"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+		<div class="row-fluid">
+          <div class="span12">
+            <div class="widget">
+              <div class="widget-header">
+                <div class="title">
+                  <span class="fs1" aria-hidden="true" data-icon="&#xe097;"></span> Paid Time Off
+                </div>
+              </div>
+              <div class="widget-body">
+                <div id="column_chart_2"></div>
               </div>
             </div>
           </div>
@@ -63,14 +77,15 @@ $('.date_picker').daterangepicker({
 });
 
  $(document).ready(function () {
-   drawChart3()
+   drawChart1()
+   drawChart2()
   });
 
 	 google.load("visualization", "1", {
       packages: ["corechart"]
     });
 
-function drawChart3() {
+function drawChart1() {
     var data = google.visualization.arrayToDataTable([
       ['Current Date', 'Days Earned', 'Days Taken', 'Days Remaining'],
       [ <%= "As of today: #{Date.today}".inspect.html_safe %>, <%= @pto.sick_days_earned %>,  <%= @pto.sick_days_taken %>, <%= @pto.sick_days_remaining %> ], ]);
@@ -100,7 +115,41 @@ function drawChart3() {
       },
     };
 
-    var chart = new google.visualization.ColumnChart(document.getElementById('column_chart'));
+    var chart = new google.visualization.ColumnChart(document.getElementById('column_chart_1'));
+    chart.draw(data, options);
+  }
+
+function drawChart2() {
+    var data = google.visualization.arrayToDataTable([
+      ['Current Date', 'Days Earned', 'Days Taken', 'Days Remaining'],
+      [ <%= "As of today: #{Date.today}".inspect.html_safe %>, <%= @pto.pto_earned %>,  <%= @pto.pto_taken %>, <%= @pto.pto_days_remaining %> ], ]);
+
+    var options = {
+      width: 'auto',
+      height: '160',
+      backgroundColor: 'transparent',
+      colors: ['#579da9', '#e26666', '#1e825e'],
+      tooltip: {
+        textStyle: {
+          color: '#666666',
+          fontSize: 11
+        },
+        showColorCode: true
+      },
+      legend: {
+        textStyle: {
+          color: 'black',
+          fontSize: 12
+        }
+      },
+      chartArea: {
+        left: 60,
+        top: 10,
+        height: '80%'
+      },
+    };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('column_chart_2'));
     chart.draw(data, options);
   }
 

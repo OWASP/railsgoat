@@ -7,7 +7,7 @@ class PaidTimeOff < ActiveRecord::Base
     self.sick_days_earned - self.sick_days_taken
   end
   
-  def pto_days_reamining
+  def pto_days_remaining
     self.pto_earned - self.pto_taken
   end
 
