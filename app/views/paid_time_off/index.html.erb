@@ -34,122 +34,24 @@
 		</div>	
 		<!-- End DP-->
 		<div class="row-fluid">
-			<!-- Begin Span-->
-		   	<div class="span6">
-              <div class="widget no-margin">
-                <div class="widget-header">
-                  <div class="title">
-                    <span class="fs1" aria-hidden="true" data-icon="&#xe101;"></span> Sick Days
-                  </div>
-                </div>
-                <div class="widget-body">
-                  <ul class="progress-statistics">
-                    <li>
-                      <div class="details">
-                        <span>
-                          Sick Days Taken
-                        </span>
-                        <span class="pull-right"> 
-                          <%= @pto.sick_days_taken %>
-                        </span>
-                      </div>
-                      <div class="progress progress-striped active progress-danger">
-                        <div class="bar" style="width: 78%;">
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="details">
-                        <span>
-                          Sick Days Earned
-                        </span>
-                        <span class="pull-right">
-                         <%= @pto.sick_days_earned %>
-                        </span>
-                      </div>
-                      <div class="progress progress-success progress-striped active">
-                        <div class="bar" style="width: 32%;">
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="details">
-                        <span>
-                          Sick Days Remaining
-                        </span>
-                        <span class="pull-right">
-                          <%= @pto.sick_days_remaining %>
-                        </span>
-                      </div>
-                      <div class="progress progress-striped active">
-                        <div class="bar" style="width: 84%;">
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
+          <div class="span12">
+            <div class="widget">
+              <div class="widget-header">
+                <div class="title">
+                  <span class="fs1" aria-hidden="true" data-icon="&#xe097;"></span> Column Chart
                 </div>
               </div>
+              <div class="widget-body">
+                <div id="column_chart"></div>
+              </div>
             </div>
-			<!-- End Span-->
-		</div><br/>
-		<div class="row-fluid">
-				<div class="span6">
-	              <div class="widget no-margin">
-	                <div class="widget-header">
-	                  <div class="title">
-	                    <span class="fs1" aria-hidden="true" data-icon="&#xe101;"></span> Vacation Days (PTO)
-	                  </div>
-	                </div>
-	                <div class="widget-body">
-	                  <ul class="progress-statistics">
-	                    <li>
-	                      <div class="details">
-	                        <span>
-	                          PTO Days Taken
-	                        </span>
-	                        <span class="pull-right">
-	                           <%= @pto.pto_taken %>
-	                        </span>
-	                      </div>
-	                      <div class="progress progress-striped active progress-danger">
-	                        <div class="bar" style="width: 78%;">
-	                        </div>
-	                      </div>
-	                    </li>
-	                    <li>
-	                      <div class="details">
-	                        <span>
-	                          PTO Days Earned
-	                        </span>
-	                        <span class="pull-right">
-	                          <%= @pto.pto_earned %>
-	                        </span>
-	                      </div>
-	                      <div class="progress progress-success progress-striped active">
-	                        <div class="bar" style="width: 32%;">
-	                        </div>
-	                      </div>
-	                    </li>
-	                    <li>
-	                      <div class="details">
-	                        <span>
-	                          PTO Days Remaining
-	                        </span>
-	                        <span class="pull-right">
-	                          <%= @pto.pto_days_remaining %>
-	                        </span>
-	                      </div>
-	                      <div class="progress progress-striped active">
-	                        <div class="bar" style="width: 84%;">
-	                        </div>
-	                      </div>
-	                    </li>
-	                  </ul>
-	              </div>
-		</div>	
+          </div>
+        </div>
 	</div>
 </div>
-
+<!-- Google Visualization JS -->
+<script type="text/javascript" src="https://www.google.com/jsapi">
+</script>
 <script type="text/javascript">
 
  //Dropdown
@@ -159,4 +61,52 @@
 $('.date_picker').daterangepicker({
   opens: 'right'
 });
+
+ $(document).ready(function () {
+   drawChart3()
+  });
+
+	 google.load("visualization", "1", {
+      packages: ["corechart"]
+    });
+
+function drawChart3() {
+    var data = google.visualization.arrayToDataTable([
+      ['Year', 'Visitors', 'Orders', 'Income', 'Expenses'],
+      ['2007', 300, 800, 900, 300],
+      ['2008', 1170, 860, 1220, 564],
+      ['2009', 260, 1120, 2870, 2340],
+      ['2010', 1030, 540, 3430, 1200],
+      ['2011', 200, 700, 1700, 770],
+      ['2012', 1170, 2160, 3920, 800], ]);
+
+    var options = {
+      width: 'auto',
+      height: '160',
+      backgroundColor: 'transparent',
+      colors: ['#b5799e', '#579da9', '#e26666', '#1e825e', '#dba26b'],
+      tooltip: {
+        textStyle: {
+          color: '#666666',
+          fontSize: 11
+        },
+        showColorCode: true
+      },
+      legend: {
+        textStyle: {
+          color: 'black',
+          fontSize: 12
+        }
+      },
+      chartArea: {
+        left: 60,
+        top: 10,
+        height: '80%'
+      },
+    };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('column_chart'));
+    chart.draw(data, options);
+  }
+
 </script>
