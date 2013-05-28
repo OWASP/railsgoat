@@ -3,14 +3,14 @@
 		<!-- Begin DP-->
 		<div class="row-fluid">
 			<!-- begin cal -->
-			<div class="span6">
+			<div  class="span6">
 				<div class="widget">
 	              <div class="widget-header">
 	                <div class="title">
 	                  <span class="fs1" aria-hidden="true" data-icon="&#xe097;"></span> PTO Calendar
 	                </div>
 	              </div>
-	              <div class="widget-body">
+	              <div id="calendarDiv" class="widget-body">
 	               <div id='calendar'></div>
 	              </div>
 	            </div>
@@ -24,7 +24,7 @@
                   </div>
                 </div>
                 <!-- Begin WB-->
-				<div class="widget-body">
+				<div id="scheduleDiv" class="widget-body">
                   	 <%= form_for @schedule, :url => "#",:html => {:id => "cal_update"} do |s|%>
 						 <div class="control-group">
 						  <%= s.label :event_name, "Event Name", {:class => "control-label"}%>
@@ -116,8 +116,9 @@ $('.date_picker').daterangepicker({
 });
 
  $(document).ready(function () {
-   drawChart1()
-   drawChart2()
+   drawChart1(),
+   drawChart2(),
+   resizeTopWidgets()
   });
 
 	 google.load("visualization", "1", {
@@ -191,6 +192,11 @@ function drawChart2() {
     var chart = new google.visualization.ColumnChart(document.getElementById('column_chart_2'));
     chart.draw(data, options);
   }
+
+function resizeTopWidgets(){
+	var calHeight = $("#calendarDiv").height();
+    $("#scheduleDiv").css({'height':calHeight});
+};
 
 $("#cal_update_submit").click(function(event) {
   	var valuesToSubmit = $("#cal_update").serialize();
