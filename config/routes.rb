@@ -35,6 +35,10 @@ resources :tutorials do
   end
 end
 
+resources :schedule do 
+  
+end
+
 resources :admin do
   get "dashboard"
   get "get_user"

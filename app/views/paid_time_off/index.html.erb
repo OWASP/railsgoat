@@ -23,27 +23,43 @@
                     <span class="fs1" aria-hidden="true" data-icon="&#xe052;"></span> Schedule PTO
                   </div>
                 </div>
-                <div class="widget-body">
-                  	 <form class="form-horizontal" action="#">
-	                   
-	                    <div class="control-group">
-	                      <label class="control-label" for="date_range1">
-	                        Date Range Input
-	                      </label>
-	                      <div class="controls">
-	                        <div class="input-append">
-	                          <input type="text" name="date_range1" id="date_range1" class="span8 date_picker" placeholder="Select Date"/>
-	                          <span class="add-on">
-	                            <i class="icon-calendar"></i>
-	                          </span>
-	                        </div>
-	                      </div>
-	                    </div>
-
-	                    
-	                  </form>
-                </div>
-              </div>
+                <!-- Begin WB-->
+				<div class="widget-body">
+                  	 <%= form_for @schedule, :url => "#",:html => {:id => "cal_update"} do |s|%>
+						 <div class="control-group">
+						  <%= s.label :event_name, "Event Name", {:class => "control-label"}%>
+						  <%= s.text_field :event_name, {:placeholder => "My PTO", :class => "span6"}%>
+						 </div>
+					     <div class="control-group">
+						  <%= s.text_field :event_type, {:type => "hidden", :value => "pto", :class => "span6"}%>
+						 </div>
+						 <div class="control-group">
+						  <%= s.label :event_desc, "Event Description", {:class => "control-label"}%>
+						  <%= s.text_field :event_desc, {:placeholder => "Travel to Europe", :class => "span6"}%>
+						 </div>
+						 <div class="control-group">
+		                      <label class="control-label" for="date_range1">
+		                        Event Dates
+		                      </label>
+		                      <div class="controls">
+		                        <div class="input-append">
+		                          <input type="text" name="date_range1" id="date_range1" class="span8 date_picker" placeholder="Select Date"/>
+		                          <span class="add-on">
+		                            <i class="icon-calendar"></i>
+		                          </span>
+		                        </div>
+		                      </div>
+		                 </div>
+ 							<%= s.submit "Submit", {:id => 'cal_update_submit', :class => "btn btn-primary pull-left"} %>
+					 <% end %>
+					<div class="clearfix">
+                    </div>
+	                   		
+	                  
+	                  
+                </div>		
+                 <!-- End WB-->
+			  </div>
             </div>
 		</div>	
 		<!-- End DP-->
@@ -175,5 +191,22 @@ function drawChart2() {
     var chart = new google.visualization.ColumnChart(document.getElementById('column_chart_2'));
     chart.draw(data, options);
   }
+
+$("#cal_update_submit").click(function(event) {
+  	var valuesToSubmit = $("#cal_update").serialize();
+    event.preventDefault();
+    $.ajax({
+      url: "/schedule.json",
+	  data: valuesToSubmit,
+	  type: "POST",
+	  success: function(response) {
+	  	$('#success').show(500).delay(1500).fadeOut();
+	    
+	  },
+	  error: function(event) {
+		$('#failure').show(500).delay(1500).fadeOut();
+	  }
+	});
+});
 
 </script>
