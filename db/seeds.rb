@@ -108,19 +108,38 @@ paid_time_off = [
   schedule = [
         {
           :user_id => 2,
+          :date_begin => Date.new(2014, 7, 30),
+          :date_end => Date.new(2014, 8, 2),
+          :event_type => "pto",
+          :event_desc => "vacation to france",
+          :event_name => "My 2014 Vacation"        
           
         },
         {
           :user_id => 3,
+          :date_begin => Date.new(2013, 9, 1),
+          :date_end => Date.new(2013, 9, 12),
+          :event_type => "pto",
+          :event_desc => "Going Home to see folks",
+          :event_name => "Visit Parents"
           
         },
         {
           :user_id => 4,
+          :date_begin => Date.new(2013, 9, 13),
+          :date_end => Date.new(2013, 9, 20),
+          :event_type => "pto",
+          :event_desc => "Taking kids to Grand Canyon",
+          :event_name => "AZ Trip"
         
         },
         {
           :user_id => 5,
-          
+          :date_begin => Date.new(2013, 12, 20),
+          :date_end => Date.new(2013, 12, 30),
+          :event_type => "pto",
+          :event_desc => "Xmas Staycation",
+          :event_name => "Christmas Leave"
         }
 
     ]
@@ -131,13 +150,20 @@ users.each do |user_info|
 end
 
 retirements.each do |r|
- Retirement.create!(r)
+ ret = Retirement.new(r.reject {|k| k == :user_id})
+ ret.user_id = r[:user_id]
+ ret.save
 end  
 
 paid_time_off.each do |pto|
-  PaidTimeOff.create!(pto)
+  ptoff = PaidTimeOff.new(pto.reject {|k| k == :user_id})
+  ptoff.user_id = pto[:user_id]
+  ptoff.save
+  
 end
 
 schedule.each do |event|
-  Schedule.create!(event)
+  sched = Schedule.new(event.reject {|k| k == :user_id})
+  sched.user_id = event[:user_id]
+  sched.save
 end
