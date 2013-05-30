@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
   def create
      
       begin
-        user = User.authenticate(params[:email], params[:password])
+        # Normalize the email address, why not
+        user = User.authenticate(params[:email].to_s.downcase, params[:password])
       rescue Exception => e
       end
       
