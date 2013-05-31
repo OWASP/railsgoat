@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     current_user.update_attributes(params[:user].reject { |k| k == ("password" || "password_confirmation") })
     pass = params[:user][:password]
     current_user.password = pass if !(pass.blank?)
-    current_user.save!
+    flash[:success] = "Account Updated!" if current_user.save!
     redirect_to user_account_settings_path(:user_id => current_user.user_id) 
   end
   
