@@ -1,7 +1,7 @@
 class PerformanceController < ApplicationController
   
   def index
-    @user = current_user
+    @perf = current_user.performance
   end
   
 end

@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_one :retirement, :foreign_key => :user_id, :primary_key => :user_id
   has_one :paid_time_off, :foreign_key => :user_id, :primary_key => :user_id
   has_one :work_info, :foreign_key => :user_id, :primary_key => :user_id
-  has_one :performance, :foreign_key => :user_id, :primary_key => :user_id
+  has_many :performance, :foreign_key => :user_id, :primary_key => :user_id
   
   
 
