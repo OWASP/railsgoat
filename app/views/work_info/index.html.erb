@@ -27,7 +27,7 @@
 		                <td><%= @user.work_info.income %></td>
 		                <td><%= @user.work_info.bonuses %></td>
 		                <td><%= @user.work_info.years_worked %></td>
-						<td><%= @user.work_info.SSN %></td>
+						<td class="ssn"><%= @user.work_info.SSN %></td>
 						<td><%= @user.work_info.DoB %></td>
 		              </tr>
 		           
@@ -39,3 +39,18 @@
 		</div>
 	</div>
 </div>		
+
+<script type="text/javascript">
+
+// This should be an EXCELLENT feature!!!
+function maskSSN(){
+	var fullSSN = $("td.ssn").html().replace(/\d{3}.*?\d{2}/, "*****");
+	$("td.ssn").html(fullSSN);
+	
+}
+
+$(document).ready(function () {
+   maskSSN()
+});
+
+</script>
