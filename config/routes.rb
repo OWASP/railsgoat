@@ -19,6 +19,10 @@ resources :users do
   
   resources :work_info do
   end
+  
+  resources :performance do 
+   
+  end
 
 end
 

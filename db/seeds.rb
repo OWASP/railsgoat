@@ -145,7 +145,6 @@ paid_time_off = [
     ]
     
   work_info = [
-    
     {
       :user_id => 2,
       :income => "$50,000",
@@ -178,6 +177,58 @@ paid_time_off = [
       :SSN => "222-22-2222",
       :DoB => "01-01-1982"         
     }   
+  ]
+  
+  performance = [
+    {
+      :user_id => 2,
+      :reviewer => 1,
+      :comments => "Great job! You are my hero", 
+      :date_submitted => Date.new(2012, 01, 01),
+      :score => 5
+    },
+    {
+    :user_id => 2,
+    :reviewer => 1,
+    :comments => "Once again, you've done a great job this year. We greatly appreciate your hard work.", 
+    :date_submitted => Date.new(2013, 01, 01),
+    :score => 5
+    },
+    {
+      :user_id => 3,
+      :reviewer => 1,
+      :comments => "Great worker, great attitude for this newcomer!", 
+      :date_submitted => Date.new(2013, 01, 01),
+      :score => 5
+    },
+    {
+      :user_id => 4,
+      :reviewer => 1,
+      :comments => "Wow, right out of the gate we've been very impressed but unfortunately, our system doesn't allow us to give you a full 5.0 because other ppl have gotten 5.0 ratings.", 
+      :date_submitted => Date.new(2011, 01, 01),
+      :score => 4
+    },
+    {
+      :user_id => 4,
+      :reviewer => 1,
+      :comments => "We highly recommend promotion for this employee! Consistent performer with proven leadership qualities.", 
+      :date_submitted => Date.new(2012, 01, 01),
+      :score => 5
+    },
+    {
+      :user_id => 4,
+      :reviewer => 1,
+      :comments => "Right out of the gate, Mike has made incredible moves as a newly appointed leader. His only improvement would be more cowbell. Not enough of it.", 
+      :date_submitted => Date.new(2013, 01, 01),
+      :score => 4
+    },
+    {
+       :user_id => 5,
+       :reviewer => 1,
+       :comments => "Ehh, you are okay, we will let you stay..... barely", 
+       :date_submitted => Date.new(2013, 01, 01),
+       :score => 2
+     }
   ]  
 
 
@@ -210,4 +261,10 @@ work_info.each do |wi|
   info = WorkInfo.new(wi.reject {|k| k == :user_id})
   info.user_id = wi[:user_id]
   info.save
+end
+
+performance.each do |perf|
+  p = Performance.new(perf.reject {|k| k == :user_id})
+  p.user_id = perf[:user_id]
+  p.save
 end

@@ -51,12 +51,12 @@
           <% end %>
         </li>
         <li>
-          <a href="#">
+          <%= link_to user_performance_index_path(:user_id => current_user.user_id) do %>
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe14a;"></span>
             </div>
             Performance
-          </a>
+          <% end %>
         </li>
       </ul>
     </div>
