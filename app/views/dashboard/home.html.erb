@@ -4,7 +4,9 @@
 
 <div class="row-fluid">
     <div class="span12"> <!--begin span12 -->
-      <%= render :partial => "layouts/dashboard/dashboard_stats"%>
+    <% if @user.paid_time_off %>  
+		<%= render :partial => "layouts/dashboard/dashboard_stats"%>
+	<% end %>	
     </div> <!-- end span12 -->
 </div>
 </div>

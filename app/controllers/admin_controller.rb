@@ -1,5 +1,7 @@
 class AdminController < ApplicationController
   
+  skip_before_filter :has_info
+  
   def dashboard
   end
   
