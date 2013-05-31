@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  income: MyString
+  bonuses: MyString
+  years_worked: 1
+  SSN: MyString
+  DoB: 2013-05-31
+
+two:
+  user_id: 1
+  income: MyString
+  bonuses: MyString
+  years_worked: 1
+  SSN: MyString
+  DoB: 2013-05-31

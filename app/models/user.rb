@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   before_save :assign_user_id, :on => :create
   has_one :retirement, :foreign_key => :user_id, :primary_key => :user_id
   has_one :paid_time_off, :foreign_key => :user_id, :primary_key => :user_id
+  has_one :work_info, :foreign_key => :user_id, :primary_key => :user_id
   
   
 

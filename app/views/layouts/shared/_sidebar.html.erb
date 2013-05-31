@@ -43,12 +43,12 @@
          <% end %>
         </li>
         <li>
-          <a href="#">
+           <%= link_to user_work_info_index_path(:user_id => current_user.user_id) do %>
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe0a9;"></span>
             </div>
             Work Info
-          </a>
+          <% end %>
         </li>
         <li>
           <a href="#">

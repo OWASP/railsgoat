@@ -16,6 +16,9 @@ resources :users do
   
   resources :paid_time_off do 
   end
+  
+  resources :work_info do
+  end
 
 end
 
