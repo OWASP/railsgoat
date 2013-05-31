@@ -143,6 +143,42 @@ paid_time_off = [
         }
 
     ]
+    
+  work_info = [
+    
+    {
+      :user_id => 2,
+      :income => "$50,000",
+      :bonuses => "$10,000",
+      :years_worked => 2,
+      :SSN => "555-55-5555",
+      :DoB => "01-01-1980"         
+    },
+    {
+      :user_id => 3,
+      :income => "$40,000",
+      :bonuses => "$10,000",
+      :years_worked => 1,
+      :SSN => "333-33-3333",
+      :DoB => "01-01-1979"         
+    },
+    {
+      :user_id => 4,
+      :income => "$60,000",
+      :bonuses => "$12,000",
+      :years_worked => 3,
+      :SSN => "444-44-4444",
+      :DoB => "01-01-1981"         
+    },
+    {
+      :user_id => 5,
+      :income => "$30,000",
+      :bonuses => "7,000",
+      :years_worked => 1,
+      :SSN => "222-22-2222",
+      :DoB => "01-01-1982"         
+    }   
+  ]  
 
 
 users.each do |user_info|
@@ -168,4 +204,10 @@ schedule.each do |event|
   sched = Schedule.new(event.reject {|k| k == :user_id})
   sched.user_id = event[:user_id]
   sched.save
+end
+
+work_info.each do |wi|
+  info = WorkInfo.new(wi.reject {|k| k == :user_id})
+  info.user_id = wi[:user_id]
+  info.save
 end
