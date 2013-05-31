@@ -18,8 +18,23 @@ class ScheduleController < ApplicationController
   end
   
   def get_pto_schedule
+    begin
+       schedules = current_user.paid_time_off.schedule
+       jfs = []
+       schedules.each do |s|
+          hash = Hash.new
+          hash[:id] = s[:id]
+          hash[:title] = s[:event_name]
+          hash[:start] = s[:date_begin]
+          hash[:end] = s[:date_end]
+          jfs << hash
+       end
+    rescue   
+    end
      respond_to do |format|
-       format.json {render :json => %q{[{"id":111,"title":"Event1","start":"2013-05-31","url":"http:\/\/yahoo.com\/"},{"id":222,"title":"Event2","start":"2013-05-30","end":"2013-05-30","url":"http:\/\/yahoo.com\/"}] }}
+       format.json do
+          render :json => jfs.to_json
+       end  
      end
    end
   
