@@ -36,6 +36,9 @@ resources :tutorials do
 end
 
 resources :schedule do 
+  collection do
+    get "get_pto_schedule"
+  end
   
 end
 
@@ -52,6 +55,7 @@ resources :dashboard do
     get "home"
   end
 end
+
 
 root :to => "sessions#new"
 

@@ -17,6 +17,12 @@ class ScheduleController < ApplicationController
     end
   end
   
+  def get_pto_schedule
+     respond_to do |format|
+       format.json {render :json => %q{[{"id":111,"title":"Event1","start":"2013-05-31","url":"http:\/\/yahoo.com\/"},{"id":222,"title":"Event2","start":"2013-05-30","end":"2013-05-30","url":"http:\/\/yahoo.com\/"}] }}
+     end
+   end
+  
   private
   
   # Returns a two part array consisting of dates
