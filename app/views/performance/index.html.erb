@@ -60,6 +60,7 @@ function drawChart2() {
   var data = google.visualization.arrayToDataTable([
     ['Year', 'Score'],
     <% @perf.each do |p| %>
+    // Let's just hope this data isn't suspectible during later releases ;-)
     [ <%= "#{p.date_submitted}".inspect.html_safe %>, <%= p.score %> ],
     <% end %>
     ]);
