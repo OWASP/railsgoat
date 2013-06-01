@@ -23,12 +23,16 @@ class UsersController < ApplicationController
   end
   
   def update
+    message = false
     current_user.skip_user_id_assign = true
     current_user.update_attributes(params[:user].reject { |k| k == ("password" || "password_confirmation") })
     pass = params[:user][:password]
     current_user.password = pass if !(pass.blank?)
-    flash[:success] = "Account Updated!" if current_user.save!
-    redirect_to user_account_settings_path(:user_id => current_user.user_id) 
+    message = true if current_user.save!
+    respond_to do |format|
+      format.html { redirect_to user_account_settings_path(:user_id => current_user.user_id) }
+      format.json { render :json => {:msg => message ? "success" : "false "} }
+    end
   end
   
 end
