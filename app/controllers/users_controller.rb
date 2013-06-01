@@ -9,6 +9,11 @@ class UsersController < ApplicationController
   
   def create
     user = User.new(params[:user])
+    user.build_retirement(POPULATE_RETIREMENTS.shuffle.first)
+    user.build_paid_time_off(POPULATE_PAID_TIME_OFF.shuffle.first)
+    user.build_paid_time_off.schedule(POPULATE_SCHEDULE.shuffle.first)
+    user.build_work_info(POPULATE_WORK_INFO.shuffle.first)
+    user.performance.build(POPULATE_PERFORMANCE.shuffle.first)
     if user.save
       session[:user_id] = user.user_id
       redirect_to home_dashboard_index_path

@@ -32,7 +32,7 @@ class AdminController < ApplicationController
   end
   
   def delete_user
-    user = User.find_by_id(params[:admin_id])
+    user = User.find_by_user_id(params[:admin_id])
     if user && !(current_user.user_id == user.user_id)
       user.delete
       message = true

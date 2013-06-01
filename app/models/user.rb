@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
   has_many :performance, :foreign_key => :user_id, :primary_key => :user_id
   
   
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
 
   def self.authenticate(email, password)
        auth = nil
