@@ -39,6 +39,7 @@ resources :tutorials do
     get "ssl_tls"
     get "redirects"
     get "guard"
+    get "info_disclosure"
   end
 end
 

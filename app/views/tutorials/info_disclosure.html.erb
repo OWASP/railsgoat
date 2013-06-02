@@ -1,0 +1,17 @@
+<div class="dashboard-wrapper">
+	<div class="main-container">
+		<div class="row-fluid">
+		    <div class="span12"> <!-- Begin Span12 -->
+		       <%= render :partial => "layouts/tutorial/info_disclosure/ssn_disclosure"%>
+		    </div> <!-- End Span12 -->
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+function makeActive(){
+	$('li[id="info_dislosure"]').addClass('active');
+};
+
+$(document).ready(makeActive);
+</script>
