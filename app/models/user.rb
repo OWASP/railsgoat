@@ -10,10 +10,10 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => /.+@.+\..+/i
   attr_accessor :skip_user_id_assign
   before_save :assign_user_id, :on => :create
-  has_one :retirement, :foreign_key => :user_id, :primary_key => :user_id
-  has_one :paid_time_off, :foreign_key => :user_id, :primary_key => :user_id
-  has_one :work_info, :foreign_key => :user_id, :primary_key => :user_id
-  has_many :performance, :foreign_key => :user_id, :primary_key => :user_id
+  has_one :retirement, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
+  has_one :paid_time_off, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
+  has_one :work_info, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
+  has_many :performance, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
   
   
   def full_name
