@@ -25,7 +25,6 @@ class User < ActiveRecord::Base
   def self.authenticate(email, password)
        auth = nil
        user = find_by_email(email)
-       # I heard something about hashing, dunno, why bother really. Nobody will get access to my stuff!
        if user
          if user.password == Digest::MD5.hexdigest(password)
            auth = user
