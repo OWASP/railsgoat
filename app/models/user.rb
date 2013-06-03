@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => /.+@.+\..+/i
   attr_accessor :skip_user_id_assign
   before_save :assign_user_id, :on => :create
+  before_save :encrypt_password
   has_one :retirement, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
   has_one :paid_time_off, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
   has_one :work_info, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
@@ -26,7 +27,7 @@ class User < ActiveRecord::Base
        user = find_by_email(email)
        # I heard something about hashing, dunno, why bother really. Nobody will get access to my stuff!
        if user
-         if user.password == password
+         if user.password == Digest::MD5.hexdigest(password)
            auth = user
          else
           raise "Incorrect Password!"
@@ -43,6 +44,12 @@ class User < ActiveRecord::Base
       uid = user.user_id.to_i + 1 if user && user.user_id && !(User.exists?(:user_id => "#{user.user_id.to_i + 1}"))
       self.user_id = uid.to_s if uid
      end
+  end
+  
+  def encrypt_password
+    if self.password.present?
+      self.password = Digest::MD5.hexdigest(password)
+    end
   end
 
 end
