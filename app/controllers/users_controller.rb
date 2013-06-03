@@ -23,7 +23,8 @@ class UsersController < ApplicationController
   end
   
   def account_settings
-    @user = current_user
+    #@user = current_user
+    @user = User.find(:first, :conditions => "user_id = '#{params[:user_id]}'")
   end
   
   def update
