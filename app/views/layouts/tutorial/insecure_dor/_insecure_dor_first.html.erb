@@ -16,7 +16,9 @@
           </div>
           <div class="accordion-body in collapse" id="collapseOne" style="height: auto;">
             <div class="accordion-inner">
-              <p>
+              <p class="desc">
+	A direct object reference occurs when a developer exposes a reference to an internal implementation object, such as a file, directory, or database key. Without an access control check or other protection, attackers can manipulate these references to access unauthorized data.
+	 		  </p>
             </div>
           </div>
         </div>
@@ -30,7 +32,27 @@
           </div>
           <div class="accordion-body collapse" id="collapseTwo" style="height: 0px;">
             <div class="accordion-inner">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+              <p class="desc">
+				Within the app/controllers/work_info_controller.rb file the follow code can be found:
+	 		  </p>
+	 		  <pre class="ruby">
+				<%= %q{
+				 class WorkInfoController < ApplicationController
+
+				  def index
+				    @user = User.find_by_user_id(params[:user_id])
+				    if !(@user)
+				      flash[:error] = "Sorry, no user with that user id exists"
+				      redirect_to home_dashboard_index_path
+				    end
+				  end
+
+				end 
+				} %>
+			  </pre>
+			  <p class="desc">
+				Instead of using the current_user object which, takes the user ID value from the user's session and is normally resilient against tampering, the user ID is pulled from the request parameter (user id in the RESTful URL). Additionally, even in the session, User IDs should be sufficiently random and the sessions stored in a persistent manner (ActiveRcord) versus using the Base64 encoded / HMAC validation session schema.
+			  </p>	
             </div>
           </div>
         </div>
@@ -44,7 +66,24 @@
           </div>
           <div class="accordion-body collapse" id="collapseThree" style="height: 0px;">
             <div class="accordion-inner">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+              <p><b>Insecure Direct Object Reference - ATTACK</b></p>
+ 			  <p class="desc">
+				 Navigate to the work info page, observe your user ID in the URL /users/<%= "<:user id>"%>/work_info.
+				 Now change it to someone else's user ID.<br/><br/> Example - /users/2/work_info
+	          </p>	
+			  <p><b>Insecure Direct Object Reference - SOLUTION</b></p>
+			  <p class="desc">
+				The easiest way to fix this is to reference the current_user object. Also, it might make sense to not disclose any more sensitive information than necessary (re: error message).
+	          </p>
+			  <pre class="ruby">
+				  def index
+				    <span style="background-color:yellow">@user = current_user</span>
+				    if !(@user) || @user.admin 
+				      <span style="background-color:yellow">flash[:error] = "Apologies, looks like something went wrong"</span>
+				      redirect_to home_dashboard_index_path
+				    end
+				  end
+			  </pre>	 
             </div>
           </div>
         </div>
@@ -58,7 +97,7 @@
           </div>
           <div class="accordion-body collapse" id="collapseFour" style="height: 0px;">
             <div class="accordion-inner">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+              Hmmm, that's a lot of info under work info, hope that is secure
             </div>
           </div>
         </div>
