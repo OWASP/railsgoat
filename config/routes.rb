@@ -40,6 +40,7 @@ resources :tutorials do
     get "redirects"
     get "guard"
     get "info_disclosure"
+    get "mass_assignment"
   end
 end
 

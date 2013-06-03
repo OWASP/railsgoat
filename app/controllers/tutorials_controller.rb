@@ -102,4 +102,8 @@ class TutorialsController < ApplicationController
   @good_code_2 = %q{<td class="ssn"><%= @user.work_info.last_four %></td>}  
   end
   
+  def mass_assignment
+  
+  end
+  
 end
