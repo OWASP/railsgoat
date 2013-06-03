@@ -41,6 +41,7 @@ resources :tutorials do
     get "guard"
     get "info_disclosure"
     get "mass_assignment"
+    get "constantize"
   end
 end
 
