@@ -37,6 +37,7 @@
 		        </div>
 		        <div class="widget-body">
 			     <%= form_for @user, :html => {:id => "account_edit"} do |f|%>
+			         <%= f.hidden_field :user_id%>
 					<div class="control-group">
 		              <%= f.label :email, nil, {:class => "control-label"}%>
 					  <%= f.text_field :email, {:class => "span12"}%>

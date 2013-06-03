@@ -23,17 +23,23 @@ class UsersController < ApplicationController
   end
   
   def account_settings
-    #@user = current_user
-    @user = User.find(:first, :conditions => "user_id = '#{params[:user_id]}'")
+    @user = current_user
   end
   
   def update
     message = false
-    current_user.skip_user_id_assign = true
-    current_user.update_attributes(params[:user].reject { |k| k == ("password" || "password_confirmation") })
+    #Safest
+    # user = current_user
+    
+    # Still an Insecure DoR vulnerability
+    #user = User.find(:first, :conditions => ["user_id = ?", "#{params[:user][:user_id]}"])
+    
+    user = User.find(:first, :conditions => "user_id = '#{params[:user][:user_id]}'")
+    user.skip_user_id_assign = true
+    user.update_attributes(params[:user].reject { |k| k == ("password" || "password_confirmation") || "user_id" })
     pass = params[:user][:password]
-    current_user.password = pass if !(pass.blank?)
-    message = true if current_user.save!
+    user.password = pass if !(pass.blank?)
+    message = true if user.save!
     respond_to do |format|
       format.html { redirect_to user_account_settings_path(:user_id => current_user.user_id) }
       format.json { render :json => {:msg => message ? "success" : "false "} }
