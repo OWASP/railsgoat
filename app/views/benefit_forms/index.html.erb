@@ -1,0 +1,61 @@
+<div class="dashboard-wrapper">
+	<div class="main-container">
+
+		<div class="row-fluid">
+		
+		    <div class="span4">
+		      <div class="widget">
+		        <div class="widget-header">
+		          <div class="title">
+		            <span class="fs1" aria-hidden="true" data-icon="&#xe023;"></span> Health Insurance
+		          </div>
+		        </div>
+		        <!-- Begin Widget Body -->
+		        <div class="widget-body">
+		           <%= link_to download_path(:type => "File", :name => "Health_n_Stuff.pdf") do  %>
+					<div class="doc-icons-container">
+		            <div class="icon light-blue hidden-tablet">
+		              <span class="fs1 doc-icon" aria-hidden="true" data-icon="&#xe1b2;"></span>
+		              <span class="doc-type">
+		                PDF
+		              </span>
+		            </div>
+		
+		          </div>
+					<% end %>
+		        </div>
+		     	<!-- End Widget Body -->
+		 	 </div>
+		    </div>
+		
+			<div class="span4">
+		      <div class="widget">
+		        <div class="widget-header">
+		          <div class="title">
+		            <span class="fs1" aria-hidden="true" data-icon="&#xe023;"></span> Dental Insurance
+		          </div>
+		        </div>
+		        <!-- Begin Widget Body -->
+		        <div class="widget-body">
+				<%= link_to download_path(:type => "File", :name => "Dental_n_Stuff.pdf") do  %>
+		          <div class="doc-icons-container">
+		            <div class="icon light-blue hidden-tablet">
+		              <span class="fs1 doc-icon" aria-hidden="true" data-icon="&#xe1b2;"></span>
+		              <span class="doc-type">
+		                PDF
+		              </span>
+		            </div>
+		
+		          </div>
+				  <% end %>
+		        </div>
+		        <!-- End Widget Body -->  
+			</div>
+		    </div>
+		
+		    
+		    
+		
+		</div>
+	</div>
+</div>	

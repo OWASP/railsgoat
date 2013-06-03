@@ -23,8 +23,14 @@ resources :users do
   resources :performance do 
    
   end
+  
+  resources :benefit_forms do 
+    
+  end
 
 end
+
+get "download" => "benefit_forms#download"
 
 resources :tutorials do
   collection do 
