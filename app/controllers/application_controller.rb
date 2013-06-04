@@ -18,13 +18,13 @@ class ApplicationController < ActionController::Base
   end
 
   def is_admin?
-    admin = current_user.admin if current_user 
+    current_user.admin if current_user 
   end
 
   def administrative
     if not is_admin?
      reset_session
-     redirect_to login_path 
+     redirect_to root_url
    end
   end
   

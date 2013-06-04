@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
   
+ # before_filter :administrative
   skip_before_filter :has_info
   
   def dashboard
