@@ -16,7 +16,12 @@
           </div>
           <div class="accordion-body in collapse" id="collapseOne" style="height: auto;">
             <div class="accordion-inner">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+	  		 <p class="desc">
+              OWASP Description - Web applications frequently redirect and forward users to other pages and websites, and use untrusted data to determine the destination pages. Without proper validation, attackers can redirect victims to phishing or malware sites, or use forwards to access unauthorized pages.
+  			 </p>
+	  		 <p class="desc">
+              Railsgoat allows the redirection to the paths previously requested but for which the user did not have access. Following authentication, the user is redirected.
+  			 </p>
             </div>
           </div>
         </div>
@@ -30,7 +35,31 @@
           </div>
           <div class="accordion-body collapse" id="collapseTwo" style="height: 0px;">
             <div class="accordion-inner">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+   				<p class="desc">
+					The application performs zero validation of the path for which they will redirect users, following authentication. The URL parameter is used to determine where to redirect the user, if the url parameter is not present, the user will be redirect to their home page.
+	 			</p>
+				<pre class="ruby"> 
+					def create
+				      <span style="background-color:yellow">path = params[:url].present? ? params[:url] : home_dashboard_index_path</span>    
+				      begin
+				        # Normalize the email address, why not
+				        user = User.authenticate(params[:email].to_s.downcase, params[:password])
+				       # @url = params[:url]
+				      rescue Exception => e
+				      end
+
+				      if user
+				        session[:user_id] = user.user_id if User.where(:user_id => user.user_id).exists?
+				        redirect_to path
+				      else
+				        # Removed this code, just doesn't seem specific enough!
+				        #  flash[:error] = "Either your username and password is incorrect" 
+				        flash[:error] = e.message
+				        render "new"
+				      end         
+				  end
+				</pre>	
+				
             </div>
           </div>
         </div>
@@ -44,7 +73,26 @@
           </div>
           <div class="accordion-body collapse" id="collapseThree" style="height: 0px;">
             <div class="accordion-inner">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+             <p><b>Unvalidated Redirects and Forwards - ATTACK</b></p>
+			 <p class="desc">
+				Ensure you are logged out of the application. When requesting the login page, ensure you append a url=<your test url here>. Then, authenticate to the application. Once authenticated, you should be redirected to your test url.
+			 </p>	
+			 <p><b>Unvalidated Redirects and Forwards - SOLUTION</b></p>
+			 <p class="desc">
+				To fix this vulnerability, validate the path. In our case, we really only want to redirect users to our site so the TLD is not important. In this case, leveraging URI.parse() can be incredibly helpful. We can change the code to something like:
+			 </p>
+			 <pre class="ruby">
+				  path = home_dashboard_index_path    
+				  begin 
+				   if params[:url].present?
+				   	path = URI.parse(params[:url]).path
+				   end
+				  rescue 
+				  end
+			 </pre>
+			 <p class="desc">
+				Further validation can occur with regular expression. If you must redirect to another application, remember to use URI.parse() and the host, path, and scheme (ssl or not) options FIRST, prior to performing regular expression validation. Additionally, always open and close your validation regexp using Ruby anchor tags \A and \z.
+			 </p>
             </div>
           </div>
         </div>
@@ -58,7 +106,9 @@
           </div>
           <div class="accordion-body collapse" id="collapseFour" style="height: 0px;">
             <div class="accordion-inner">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
+	 		<p>
+            Read the description section, fairly big hint there.
+			</p>
             </div>
           </div>
         </div>  
