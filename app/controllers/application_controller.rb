@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
   end
   
   def authenticated
-     redirect_to root_url and reset_session if not current_user
+     path = request.fullpath.present? ? root_url(:url =>  request.fullpath) : root_url
+     redirect_to path and reset_session if not current_user
   end
 
   def is_admin?
