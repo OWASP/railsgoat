@@ -15,5 +15,8 @@
 /tmp
 .elasticbeanstalk/
 
+<<<<<<< HEAD
+=======
 # Ignore Mac folder settings
+>>>>>>> d9f4ac72d59c99ffa009f32b1a51ed5f13ab067f
 .DS_Store
