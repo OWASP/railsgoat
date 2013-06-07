@@ -36,6 +36,24 @@ class TutorialsController < ApplicationController
   def csrf
     @meta_code_bad = %{<%#= csrf_meta_tags %> <!-- <~ What is this for? I hear it helps w/ JS and Sea-surfing.....whatevz -->}
     @meta_code_good = %{<%= csrf_meta_tags %> }
+    @ajax_code_good = %q{
+      ("#example_submit_button_id").click(function(event) {
+          var valuesToSubmit = $("#example_form_id").serialize();
+          event.preventDefault();
+          $.ajax(\{
+            url: "/example",
+      	  data: valuesToSubmit,
+      	  type: "POST",
+      	  success: function(response) \{
+      		  alert('success!');
+      	  },
+      	  error: function(event) \{
+      		 alert('failure!');
+      	  \}
+      	\});
+      \});
+      
+    \} }
   end
   
   def misconfig
