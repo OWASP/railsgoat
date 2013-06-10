@@ -6,6 +6,10 @@ class TutorialsController < ApplicationController
   def index
   end
   
+  def credentials
+    render :partial => "layouts/tutorial/credentials/creds"
+  end
+  
   def show
     render "injection"
   end

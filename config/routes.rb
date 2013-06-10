@@ -34,6 +34,7 @@ get "download" => "benefit_forms#download"
 
 resources :tutorials do
   collection do 
+    get "credentials"
     get "injection"
     get "xss"
     get "broken_auth"

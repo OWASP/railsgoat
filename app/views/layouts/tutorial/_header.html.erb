@@ -1,6 +1,5 @@
 <!-- Want to use this template whether auth'd or not so I've got some code to determine how to render below -->
 <header>
-
 	<% if not current_user %>
 		<ul class="mini-nav">
 	       <li>
@@ -19,5 +18,21 @@
 		    </li>
 		</ul>
 	<% end %>
+	<ul class="mini-nav">
+       <li>
+         <%= button_to "Tutorial Credentials", "#", {:id => "show_creds_btn", :class => "btn btn-danger", :method => "get"} %>
+       </li>
+     </ul>
 
 </header>
+
+	<div id="modal_div" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myAlert" aria-hidden="true">
+	</div>
+
+<script type="text/javascript">
+
+$('#show_creds_btn').click(function() {  
+	$("#modal_div").load(<%= credentials_tutorials_path.inspect.html_safe %>);
+	$("#modal_div").modal("show");
+});
+</script>
