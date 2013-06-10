@@ -29,6 +29,8 @@
 //= require jquery.easy-pie-chart.js
 
 function rubyCodeFormat() {
+	
+
 
 $("pre.ruby").snippet("ruby",{style:"rand01",transparent:true,showNum:true});
     // Finds <pre> elements with the class "js"
