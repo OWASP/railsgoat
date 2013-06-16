@@ -26,7 +26,7 @@
             Benefit Forms
           <% end %>
         </li>
-        <li>
+        <li id="retirement">
            <%= link_to user_retirement_index_path(:user_id => current_user.user_id) do %>
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe096;"></span>
@@ -34,7 +34,7 @@
             401k Info
           <% end %>
         </li>
-        <li>
+        <li id="pto">
           <%= link_to user_paid_time_off_index_path(:user_id => current_user.user_id) do %>
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe0d2;"></span>
@@ -42,7 +42,7 @@
             PTO
          <% end %>
         </li>
-        <li>
+        <li id="employee_info">
            <%= link_to user_work_info_index_path(:user_id => current_user.user_id) do %>
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe0a9;"></span>
@@ -50,7 +50,7 @@
             Work Info
           <% end %>
         </li>
-        <li>
+        <li id="performance">
           <%= link_to user_performance_index_path(:user_id => current_user.user_id) do %>
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe14a;"></span>

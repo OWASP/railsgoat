@@ -50,8 +50,14 @@ function maskSSN(){
 }
 
 
+function makeActive(){
+	$('li[id="employee_info"]').addClass('active');
+};
+	
+
 $(document).ready(function () {
-   maskSSN()
+   maskSSN(),
+   makeActive()
 });
 
 </script>

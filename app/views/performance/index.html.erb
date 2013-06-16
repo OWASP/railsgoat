@@ -115,8 +115,13 @@ function drawChart2() {
   chart.draw(data, options);
 }
 
+function makeActive(){
+	$('li[id="performance"]').addClass('active');
+};
+
 $(document).ready(function () {
-  drawChart2()
+  drawChart2(),
+  makeActive()
 });
 
 </script>
