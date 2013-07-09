@@ -52,7 +52,11 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    em-websocket (0.5.0)
+      eventmachine (>= 0.12.9)
+      http_parser.rb (~> 0.5.3)
     erubis (2.7.0)
+    eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
     fastercsv (1.5.5)
@@ -68,15 +72,23 @@ GEM
     guard-brakeman (0.6.3)
       brakeman (>= 1.8.2)
       guard (>= 1.1.0)
+    guard-livereload (1.3.0)
+      em-websocket (>= 0.2.0)
+      guard (>= 1.5.0)
+      multi_json (~> 1.0)
     guard-shell (0.5.1)
       guard (>= 1.1.0)
     haml (4.0.2)
       tilt
     highline (1.6.16)
     hike (1.2.2)
+    http_parser.rb (0.5.3)
     i18n (0.6.1)
     journey (1.0.4)
-    jquery-rails (2.2.1)
+    jquery-fileupload-rails (0.4.1)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+    jquery-rails (3.0.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.7.7)
@@ -101,6 +113,8 @@ GEM
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
+    rack-livereload (0.3.15)
+      rack
     rack-ssl (1.3.3)
       rack
     rack-test (0.6.2)
@@ -172,10 +186,13 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   foreman
   guard-brakeman
+  guard-livereload
   guard-shell
+  jquery-fileupload-rails
   jquery-rails
   minitest
   powder
+  rack-livereload
   rails (= 3.2.13)
   rb-fsevent
   sass-rails (~> 3.2.3)

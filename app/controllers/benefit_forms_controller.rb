@@ -1,6 +1,7 @@
 class BenefitFormsController < ApplicationController
   
   def index
+    @benefits = Benefits.new
   end
 
 
@@ -12,6 +13,10 @@ class BenefitFormsController < ApplicationController
    rescue
      redirect_to user_benefit_forms_path(:user_id => current_user.user_id)
    end
+  end
+  
+  def upload
+    
   end
 
   

@@ -27,6 +27,8 @@
 //= require jquery.validate.js
 //= require jquery.snippet.js
 //= require jquery.easy-pie-chart.js
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
 
 function rubyCodeFormat() {
 	

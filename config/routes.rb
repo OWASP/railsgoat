@@ -31,6 +31,7 @@ resources :users do
 end
 
 get "download" => "benefit_forms#download"
+post "upload" => "benefit_forms#upload"
 
 resources :tutorials do
   collection do 
