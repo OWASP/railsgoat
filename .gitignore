@@ -17,3 +17,6 @@
 
 # Ignore Mac folder settings
 .DS_Store
+
+# Ignore data directory
+/public/data

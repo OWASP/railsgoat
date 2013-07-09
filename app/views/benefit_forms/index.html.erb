@@ -69,17 +69,18 @@
 					    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
 					    <div>
 					      <div>
+						 	<%= hidden_field "benefits", "backup", :value => false %>
 					        <!-- The fileinput-button span is used to style the file input field as button -->
 					        <span class="btn btn-success fileinput-button">
 					          <i class="icon-plus icon-white"></i>
-					          <span>Add files...</span>
-					          <%= f.file_field :upload %>
+					          <span>Add file</span>
+					          <%= f.file_field :upload  %>
 					        </span>
 					        <button id="start_upload" type="submit" class="btn btn-primary start">
 					          <i class="icon-upload icon-white"></i>
 					          <span><%= t('fileupload.start_upload') %></span>
 					        </button>
-					        <input type="checkbox" class="toggle">
+							<br/><br/><span class="filename">Nothing selected</span>
 					      </div>
 					      <div class="span5">
 					        <!-- The global progress bar -->
@@ -111,7 +112,14 @@
 
 <script type="text/javascript">
    
-
+	$(function() {
+	     $("#benefits_upload").change(function (){
+	      	 var fileName = $(this).val();
+			 $(".filename").html(fileName);
+	     });
+		
+	  });
+	
 	function makeActive(){
 		$('li[id="benefit_forms"]').addClass('active');
 	};
@@ -119,5 +127,6 @@
  	$(document).ready(
  	   makeActive
  	);
+
 	
 </script>
