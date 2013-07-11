@@ -124,8 +124,16 @@
 			   </pre>
 			   <p><b>SQL Injection - SOLUTION</b></p>
 			   <p class="desc">
-				The solution is fairly simple and because this is so poorly done there are numerous ways to fix the vulnerability. One option, is to abstract a file creation method and pass it options such as the path and filename, then call it twice, once for the initial upload and another for the backup. Another option is to make a copy through the use of the 
+				The solution is fairly simple and because this is so poorly done there are numerous ways to fix the vulnerability. One option, is to abstract a file creation method and pass it options such as the path and filename, then call it twice, once for the initial upload and another for the backup. Another option is to make a copy through the use of the FileUtils. 
 			   </p>
+			   <p>
+				As an example:
+			   </p>	
+			   <pre class="ruby"> 
+					def self.make_backup(file, data_path, full_file_name)
+					   FileUtils.cp "#{full_file_name}", "#{data_path}/bak#{Time.now.to_i}_#{file.original_filename}"
+					 end
+			   </pre>	
             </div>
           </div>
         </div>
