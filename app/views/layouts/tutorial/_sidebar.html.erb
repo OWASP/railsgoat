@@ -16,22 +16,23 @@
         A1 Injection
      <% end %>
     </li>
+	<li id="broken_auth">
+      <%= link_to broken_auth_tutorials_path do %>
+        <div class="icon">
+          <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
+        </div>
+        A2 Broken Auth
+      <% end %>
+    </li>
     <li id="xss">
      <%= link_to xss_tutorials_path do %>
         <div class="icon">
           <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
         </div>
-       A2 XSS
+       A3 XSS
       <% end %>
     </li>
-    <li id="broken_auth">
-      <%= link_to broken_auth_tutorials_path do %>
-        <div class="icon">
-          <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
-        </div>
-        A3 Broken Auth
-      <% end %>
-    </li>
+    
     <li id="insecure_dor">
       <%= link_to insecure_dor_tutorials_path do %>
         <div class="icon">
@@ -40,36 +41,36 @@
         A4 Insecure DOR
       <% end %>
     </li>
-    <li id="csrf">
-      <%= link_to csrf_tutorials_path do %>
-        <div class="icon">
-          <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
-        </div>
-        A5 CSRF
-      <% end %>
-    </li>
-    <li id="misconfig">
+	<li id="misconfig">
       <%= link_to misconfig_tutorials_path do %>
         <div class="icon">
           <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
         </div>
-        A6 Misconfig
+        A5 Misconfig
       <% end %>
     </li>
-    <li id="crypto">
-      <%= link_to crypto_tutorials_path do %>
+    <li id="sensitive_exposure">
+      <%= link_to "#" do %>
         <div class="icon">
           <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
         </div>
-        A7 Crypto
+        A6 Exposure
       <% end %>
     </li>
-    <li id="url_access">
+    <li id="access">
       <%= link_to url_access_tutorials_path do %>
         <div class="icon">
           <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
         </div>
-        A8 URL Access
+        A7 Access
+      <% end %>
+    </li>
+	<li id="csrf">
+      <%= link_to csrf_tutorials_path do %>
+        <div class="icon">
+          <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
+        </div>
+        A8 CSRF
       <% end %>
     </li>
     <li id="ssl_tls">
@@ -77,7 +78,7 @@
         <div class="icon">
           <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
         </div>
-        A9 SSL/TLS
+        A9 Components
       <% end %>
     </li>
     <li id="redirects">
