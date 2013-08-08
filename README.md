@@ -1,3 +1,16 @@
+### Developer Note ###
+<p/>
+Conversion to the OWASP Top 10, 2013 is under way. 
+
+You can view progress within the top-10-2013 branch.
+
+    git fetch origin
+    git checkout top-10-2013
+Then proceed with browsing the site as normal :thumbsup:
+<hr/>
+
+### License Stuff ###
+
 The MIT License (MIT)
 
 Copyright (c) 2013  The Open Web Application Security Project
@@ -19,3 +32,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+<hr/>
