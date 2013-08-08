@@ -19,6 +19,12 @@ group :development do
   gem 'rack-livereload'
 end
 
+gem 'gauntlt'
+
+group :development, :test do
+  gem 'rspec-rails'
+end
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -46,7 +52,9 @@ gem 'jquery-rails'
 
 # Pow related gem
 gem 'powder'
-gem 'minitest'
+
+gem 'aruba'
+gem 'minitest', '~> 4.0', :require=> "minitest/autorun"
 
 # Deploy with Capistrano
 # gem 'capistrano'
