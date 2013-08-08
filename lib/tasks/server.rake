@@ -3,6 +3,12 @@ namespace :server do
      desc "Start Rails"
      task :start do
        sh("rails s -d")
+      pid_file = "tmp/pids/server.pid"
+       if !(File.exists?(pid_file))
+         sh("rails s -d")
+       else
+         puts "[+] Server is already running"
+       end
      end
      
      desc "Stop Rails"
@@ -15,4 +21,3 @@ namespace :server do
         end
      end
 end
-
