@@ -127,6 +127,10 @@ class TutorialsController < ApplicationController
   def mass_assignment
   end
   
+  def guantlt
+    
+  end
+  
   def constantize
   end
   

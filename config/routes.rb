@@ -50,6 +50,7 @@ resources :tutorials do
     get "info_disclosure"
     get "mass_assignment"
     get "constantize"
+    get "gauntlt"
   end
 end
 
