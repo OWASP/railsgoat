@@ -25,17 +25,28 @@ class User < ActiveRecord::Base
   def self.authenticate(email, password)
        auth = nil
        user = find_by_email(email)
-       if user
+        raise "#{email} doesn't exist!" if !(user)
          if user.password == Digest::MD5.hexdigest(password)
            auth = user
          else
           raise "Incorrect Password!"
          end 
-       else
-          raise "#{email} doesn't exist!"
-       end
        return auth
   end  
+   
+=begin
+  # More secure version, but still lacking a decent hashing routine
+  def self.authenticate(email, password)
+       user = find_by_email(email)
+        if user and Rack::Utils.secure_compare(user.password, Digest::MD5.hexdigest(password))
+          return user
+        else
+          raise "Incorrect username or password"
+        end 
+   end
+=end   
+
+
     
   def assign_user_id
      unless @skip_user_id_assign.present? || self.user_id.present?
