@@ -35,10 +35,10 @@ class User < ActiveRecord::Base
   end  
    
 =begin
-  # More secure version, but still lacking a decent hashing routine
+  # More secure version, still lacking a decent hashing routine, this is for timing attack prevention
   def self.authenticate(email, password)
-       user = find_by_email(email)
-        if user and Rack::Utils.secure_compare(user.password, Digest::MD5.hexdigest(password))
+       user = find_by_email(email) || User.new(:password => '')
+        if Rack::Utils.secure_compare(user.password, Digest::MD5.hexdigest(password))
           return user
         else
           raise "Incorrect username or password"
