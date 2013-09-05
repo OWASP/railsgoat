@@ -25,6 +25,9 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+group :test do 
+	gem 'rspec'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -52,9 +55,13 @@ gem 'jquery-rails'
 
 # Pow related gem
 gem 'powder'
+<<<<<<< HEAD
 
 gem 'aruba'
 gem 'minitest', '~> 4.0', :require=> "minitest/autorun"
+=======
+#gem 'minitest'
+>>>>>>> adding rspec and auto test runs
 
 # Deploy with Capistrano
 # gem 'capistrano'

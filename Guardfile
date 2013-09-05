@@ -20,3 +20,9 @@ guard 'livereload', host: "railsgoat.dev", port: '35727' do
   # Rails Assets Pipeline
   watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html))).*}) { |m| "/assets/#{m[3]}" }
 end
+
+guard :shell do
+  watch(%r{test/unit/.+\.rb}) { system("rake")} 
+  watch(%r{test/functional/.+\.rb}) { system("rake")} 
+
+end
