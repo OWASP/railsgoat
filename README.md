@@ -30,6 +30,10 @@ You can view progress within the top-10-2013 branch.
 Then proceed with browsing the site as normal :thumbsup:
 <hr/>
 
+### Build Info ###
+
+[![Code Climate](https://codeclimate.com/github/OWASP/railsgoat.png)](https://codeclimate.com/github/OWASP/railsgoat)
+
 ### License Stuff ###
 
 The MIT License (MIT)
