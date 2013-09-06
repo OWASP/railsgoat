@@ -55,13 +55,11 @@ gem 'jquery-rails'
 
 # Pow related gem
 gem 'powder'
-<<<<<<< HEAD
 
 gem 'aruba'
 gem 'minitest', '~> 4.0', :require=> "minitest/autorun"
-=======
+
 #gem 'minitest'
->>>>>>> adding rspec and auto test runs
 
 # Deploy with Capistrano
 # gem 'capistrano'
