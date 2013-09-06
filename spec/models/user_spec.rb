@@ -1,0 +1,28 @@
+require 'spec_helper.rb'
+
+describe User do
+	it "can be instantiated" do
+		User.new.should be_an_instance_of(User)
+	end
+
+	it "should require a email" do
+  		User.new(:email => "").should_not be_valid
+	end
+
+	it "should require valid email" do
+		User.new(:email => "tester@gmail.com@gmail.com").should_not be_valid
+	end
+
+	it "should require unique email" do
+		user = User.all.first
+		User.new(:email => user.email).should_not be_valid
+	end
+
+	it "name can be updated" do 
+		new_name = "Bobby"
+		user = User.all.first
+		user.first_name = new_name
+		user.save!
+		User.all.first.first_name.should == new_name
+	end
+end
