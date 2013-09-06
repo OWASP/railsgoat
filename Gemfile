@@ -12,6 +12,7 @@ gem 'foreman'
 group :development do
   gem 'brakeman'
   gem 'guard-brakeman'
+	gem 'guard-rspec'
   gem 'rb-fsevent'
   gem 'guard-shell'
   gem 'bundler-audit'
@@ -23,10 +24,6 @@ gem 'gauntlt'
 
 group :development, :test do
   gem 'rspec-rails'
-end
-
-group :test do 
-	gem 'rspec'
 end
 
 # Gems used only for assets and not required
