@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   has_many :performance, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
   
   
+  private
+  
   def full_name
     "#{self.first_name} #{self.last_name}"
   end

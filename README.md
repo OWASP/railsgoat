@@ -1,3 +1,24 @@
+## Getting Started ##
+#### With Ruby, Rubygems, Git, and Bundler installed ####
+
+	git clone https://github.com/OWASP/railsgoat.git
+
+	cd railsgoat
+
+	rvm use 1.9.3@railsgoat --create
+
+	bundle
+
+	rake db:create
+
+	rake db:migrate
+
+	rails s
+
+	open http://0.0.0.0:3000
+
+	Start hacking!!!
+
 ### Developer Note ###
 <p/>
 Conversion to the OWASP Top 10, 2013 is under way. 
@@ -8,6 +29,10 @@ You can view progress within the top-10-2013 branch.
     git checkout top-10-2013
 Then proceed with browsing the site as normal :thumbsup:
 <hr/>
+
+### Build Info ###
+
+[![Code Climate](https://codeclimate.com/github/OWASP/railsgoat.png)](https://codeclimate.com/github/OWASP/railsgoat)
 
 ### License Stuff ###
 
