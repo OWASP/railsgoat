@@ -18,6 +18,7 @@ group :development do
   gem 'bundler-audit'
   gem 'guard-livereload'
   gem 'rack-livereload'
+	gem 'travis-lint'
 end
 
 gem 'gauntlt'
