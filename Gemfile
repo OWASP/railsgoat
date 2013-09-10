@@ -63,3 +63,7 @@ gem 'minitest', '~> 4.0', :require=> "minitest/autorun"
 
 # To use debugger
 # gem 'debugger'
+
+gem 'execjs'
+gem 'therubyracer'
+
