@@ -3,6 +3,7 @@ class Performance < ActiveRecord::Base
   belongs_to :user  
   
   def reviewer_name
-   User.find_by_id(self.reviewer).full_name
+   u = User.find_by_id(self.reviewer)
+   u.full_name if u.respond_to?('fullname')
   end
 end
