@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
          end 
        return auth
   end  
-   
+    
 =begin
   # More secure version, still lacking a decent hashing routine, this is for timing attack prevention
   def self.authenticate(email, password)
@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
           raise "Incorrect username or password"
         end 
    end
-=end   
+=end  
 
 
     
