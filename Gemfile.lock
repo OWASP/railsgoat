@@ -243,6 +243,7 @@ DEPENDENCIES
   jquery-rails
   minitest (~> 4.0)
   powder
+  pry
   rack-livereload
   rails (= 3.2.13)
   rb-fsevent

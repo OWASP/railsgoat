@@ -11,13 +11,14 @@ gem 'foreman'
 
 group :development do
   gem 'brakeman'
-  gem 'guard-brakeman'
-	gem 'guard-rspec'
-  gem 'rb-fsevent'
-  gem 'guard-shell'
   gem 'bundler-audit'
+  gem 'guard-brakeman'
   gem 'guard-livereload'
+  gem 'guard-rspec'
+  gem 'guard-shell'
+  gem 'pry'
   gem 'rack-livereload'
+  gem 'rb-fsevent'
 	gem 'travis-lint'
 end
 

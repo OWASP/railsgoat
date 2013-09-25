@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     
     user = User.find(:first, :conditions => "user_id = '#{params[:user][:user_id]}'")
     user.skip_user_id_assign = true
-    user.update_attributes(params[:user].reject { |k| k == ("password" || "password_confirmation") || "user_id" })
+    user.update_attributes(params[:user].reject { |k| %w(password password_confirmation user_id).include? k })
     pass = params[:user][:password]
     user.password = pass if !(pass.blank?)
     message = true if user.save!
