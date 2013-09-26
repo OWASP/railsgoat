@@ -6,3 +6,4 @@
 .elasticbeanstalk/
 .DS_Store
 /public/data
+*.png
