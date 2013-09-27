@@ -6,7 +6,7 @@ feature 'xss' do
     @normal_user = UserFixture.normal_user
   end
 
-  scenario 'injection attack on account_settings', :js => true do
+  scenario 'xss attack on account_settings', :js => true do
     login @normal_user
 
     visit "/users/#{@normal_user.user_id}/account_settings"
