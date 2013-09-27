@@ -2,22 +2,15 @@ require 'spec_helper'
 
 feature 'sql injection' do
   before do
-    User.delete_all
-    Rails.application.load_seed
-    @normal_user = User.create!(:first_name => 'Joe', :last_name => 'Schmoe',
-                                :email => 'joe@schmoe.com', :password => 'aoeuaoeu', :password_confirmation => 'aoeuaoeu')
+    UserFixture.reset_all_users
+    @normal_user = UserFixture.normal_user
     @admin_user = User.where("admin='t'").first
   end
 
   scenario 'injection attack on account_settings' do
     @admin_user.admin.should be_true
 
-    visit '/'
-    within('.signup') do
-      fill_in 'email', :with => 'joe@schmoe.com'
-      fill_in 'password', :with => 'aoeuaoeu'
-    end
-    click_on 'Login'
+    login(@normal_user)
 
     visit "/users/#{@normal_user.user_id}/account_settings"
     within('#account_edit') do
