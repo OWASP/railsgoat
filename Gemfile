@@ -25,6 +25,9 @@ end
 gem 'gauntlt'
 
 group :development, :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'poltergeist'
   gem 'rspec-rails'
 end
 
@@ -56,7 +59,7 @@ gem 'jquery-rails'
 gem 'powder'
 
 gem 'aruba'
-gem 'minitest', '~> 4.0', :require=> "minitest/autorun"
+#gem 'minitest', '~> 4.0', :require=> "minitest/autorun"
 
 #gem 'minitest'
 
