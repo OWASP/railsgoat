@@ -33,9 +33,12 @@ class UsersController < ApplicationController
     
     user = User.find(:first, :conditions => "user_id = '#{params[:user][:user_id]}'")
     user.skip_user_id_assign = true
+    user.skip_hash_password = true
     user.update_attributes(params[:user].reject { |k| %w(password password_confirmation user_id).include? k })
-    pass = params[:user][:password]
-    user.password = pass if !(pass.blank?)
+    if !(params[:user][:password].empty?) && (params[:user][:password] == params[:user][:password_confirmation])
+      user.skip_hash_password = false
+      user.password = params[:user][:password]
+    end 
     message = true if user.save!
     respond_to do |format|
       format.html { redirect_to user_account_settings_path(:user_id => current_user.user_id) }

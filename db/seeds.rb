@@ -7,6 +7,7 @@ users = [
        :email => "admin@metacorp.com", 
        :admin => true, 
        :password => "admin1234", 
+       :password_confirmation => "admin1234", 
        :first_name => "Admin", 
        :last_name => "", 
        :user_id =>1 
@@ -15,6 +16,7 @@ users = [
        :email => "jack@metacorp.com", 
        :admin => false, 
        :password => "yankeessuck", 
+       :password_confirmation => "yankeessuck", 
        :first_name => "Jack", 
        :last_name => "Mannino", 
        :user_id => 2
@@ -23,6 +25,7 @@ users = [
        :email => "jim@metacorp.com", 
        :admin => false, 
        :password => "alohaowasp", 
+       :password_confirmation => "alohaowasp", 
        :first_name => "Jim", 
        :last_name => "Manico", 
        :user_id =>3 
@@ -31,6 +34,7 @@ users = [
        :email => "mike@metacorp.com", 
        :admin => false, 
        :password => "motorcross1445", 
+       :password_confirmation => "motorcross1445", 
        :first_name => "Mike", 
        :last_name => "McCabe", 
        :user_id =>4 
@@ -39,6 +43,7 @@ users = [
        :email => "ken@metacorp.com", 
        :admin => false, 
        :password => "citrusblend", 
+       :password_confirmation => "citrusblend", 
        :first_name => "Ken", 
        :last_name => "Johnson", 
        :user_id =>5 
@@ -233,7 +238,7 @@ paid_time_off = [
 
 
 users.each do |user_info|
-  user = User.new(user_info.reject {|k| k == :user_id})
+  user = User.new(user_info.reject {|k| k == :user_id })
   user.user_id = user_info[:user_id]
   user.save
 end
