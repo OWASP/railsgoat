@@ -18,7 +18,6 @@ feature 'xss' do
       fill_in 'user_password_confirmation', :with => @normal_user.clear_password
     end
     click_on 'Submit'
-    save_screenshot('screenshot.post.submit.png')
 
     visit '/'
 

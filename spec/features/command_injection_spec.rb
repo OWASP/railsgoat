@@ -21,10 +21,8 @@ feature 'command injection' do
         attach_file 'benefits_upload', hackety_file
         find(:xpath, "//input[@id='benefits_backup']", :visible => false).set 'true'
       end
-      save_screenshot('screenshot.before.upload.png')
       click_on 'Start Upload'
     end
-    save_screenshot('screenshot.after.upload.png')
     File.exists?(legit_file).should be_false
   end
 end
