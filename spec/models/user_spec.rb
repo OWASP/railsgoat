@@ -1,6 +1,15 @@
 require 'spec_helper.rb'
 
 describe User do
+  before(:all) do
+    UserFixture.reset_all_users
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  after(:all) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
 	it "can be instantiated" do
 		User.new.should be_an_instance_of(User)
 	end
@@ -10,7 +19,7 @@ describe User do
 	end
 
 	it "should require valid email" do
-		User.new(:email => "tester@gmail.com@gmail.com").should_not be_valid
+		User.new(:email => "@gmail.com").should_not be_valid
 	end
 
 	it "should require unique email" do
