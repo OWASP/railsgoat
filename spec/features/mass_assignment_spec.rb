@@ -6,7 +6,7 @@ feature 'sql injection' do
     @normal_user = UserFixture.normal_user
   end
 
-  scenario 'mass assignment attack on account_settings' do
+  scenario 'mass assignment attack update account_settings' do
     @normal_user.admin.should be_false
 
     login(@normal_user)
@@ -17,6 +17,21 @@ feature 'sql injection' do
                         :password_confirmation => @normal_user.clear_password}}
     page.driver.put "/users/#{@normal_user.user_id}.json", params
 
-    @normal_user.reload.admin.should be_true
+    pending(:if => verifying_fixed?) { @normal_user.reload.admin.should be_true }
+  end
+
+  scenario 'mass assignment attack create new account' do
+    params = {:user => {:admin => 't',
+                        :email => 'hackety@h4x0rs.c0m',
+                        :first_name => 'hackety',
+                        :last_name => 'hax',
+                        :password => 'foobarewe',
+                        :password_confirmation => 'foobarewe'}}
+    page.driver.post '/users', params
+
+    pending(:if => verifying_fixed?) {
+      User.last.email.should == 'hackety@h4x0rs.c0m'
+      User.last.admin.should be_true
+    }
   end
 end

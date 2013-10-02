@@ -14,6 +14,6 @@ feature 'unvalidated redirect' do
     end
     click_on 'Login'
 
-    current_url.should == 'http://example.com/do/evil/things'
+    pending(:if => verifying_fixed?) { current_url.should == 'http://example.com/do/evil/things' }
   end
 end

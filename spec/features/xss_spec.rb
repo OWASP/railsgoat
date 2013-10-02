@@ -21,7 +21,7 @@ feature 'xss' do
 
     visit '/'
 
-    find('form.button_to input.btn.btn-primary').value.should == 'RailsGoat h4x0r3d'
+    pending(:if => verifying_fixed?) { find('form.button_to input.btn.btn-primary').value.should == 'RailsGoat h4x0r3d' }
 
     # might be nice to demonstrate posting cookie contents or somesuch, but
     # this at least shows the vulnerability still exists.

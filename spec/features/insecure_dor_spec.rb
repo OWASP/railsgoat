@@ -13,9 +13,11 @@ feature 'insecure direct object reference' do
     download_url = first('.widget-body a')[:href]
     visit download_url.sub(/name=(.*?)&/, 'name=../../config/database.yml&')
 
-    page.status_code.should == 200
-    page.response_headers['Content-Disposition'].should include('database.yml')
-    page.response_headers['Content-Length'].should == '576'
+    pending(:if => verifying_fixed?) {
+      page.status_code.should == 200
+      page.response_headers['Content-Disposition'].should include('database.yml')
+      page.response_headers['Content-Length'].should == '576'
+    }
   end
 
   scenario 'view any user work_info' do
@@ -24,6 +26,6 @@ feature 'insecure direct object reference' do
     @normal_user.user_id.should_not == 2
     visit '/users/2/work_info'
 
-    first('td').text.should == 'Jack Mannino'
+    pending(:if => verifying_fixed?) { first('td').text.should == 'Jack Mannino' }
   end
 end

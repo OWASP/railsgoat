@@ -10,6 +10,6 @@ feature 'url access' do
     login @normal_user
 
     visit '/admin/1/dashboard'
-    current_path.should == '/admin/1/dashboard'
+    pending(:if => verifying_fixed?) { current_path.should == '/admin/1/dashboard' }
   end
 end

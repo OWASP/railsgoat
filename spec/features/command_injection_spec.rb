@@ -8,7 +8,7 @@ feature 'command injection' do
   end
 
   scenario 'injection attack on file upload', :js => true do
-    login(@normal_user)
+    login @normal_user
 
     legit_file = File.join(Rails.root, 'public', 'data', 'legit.txt')
     File.open(legit_file, 'w') { |f| f.puts 'totes legit' }
@@ -23,6 +23,6 @@ feature 'command injection' do
       end
       click_on 'Start Upload'
     end
-    File.exists?(legit_file).should be_false
+    pending(:if => verifying_fixed?) { File.exists?(legit_file).should be_false }
   end
 end
