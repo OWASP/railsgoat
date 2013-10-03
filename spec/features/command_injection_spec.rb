@@ -7,7 +7,7 @@ feature 'command injection' do
     @normal_user = UserFixture.normal_user
   end
 
-  scenario 'injection attack on file upload', :js => true do
+  scenario 'attack', :js => true do
     login @normal_user
 
     legit_file = File.join(Rails.root, 'public', 'data', 'legit.txt')

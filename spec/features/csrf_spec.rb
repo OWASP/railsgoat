@@ -7,7 +7,7 @@ feature 'csrf' do
     @normal_user = UserFixture.normal_user
   end
 
-  scenario 'csrf attack to pto', :js => true do
+  scenario 'attack', :js => true do
     visit '/'
     # TODO: is there a way to get this without visiting root first?
     base_url = current_url
