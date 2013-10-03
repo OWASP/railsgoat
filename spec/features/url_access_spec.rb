@@ -6,7 +6,7 @@ feature 'url access' do
     @normal_user = UserFixture.normal_user
   end
 
-  scenario 'admin route not protected', :js => true do
+  scenario 'attack', :js => true do
     login @normal_user
 
     visit '/admin/1/dashboard'

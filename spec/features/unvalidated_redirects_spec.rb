@@ -6,7 +6,7 @@ feature 'unvalidated redirect' do
     @normal_user = UserFixture.normal_user
   end
 
-  scenario 'login redirects to anywhere', :js => true do
+  scenario 'attack', :js => true do
     visit '/?url=http://example.com/do/evil/things'
     within('.signup') do
       fill_in 'email', :with => @normal_user.email

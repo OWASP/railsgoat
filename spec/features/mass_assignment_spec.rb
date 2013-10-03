@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-feature 'sql injection' do
+feature 'mass assignment' do
   before do
     UserFixture.reset_all_users
     @normal_user = UserFixture.normal_user
   end
 
-  scenario 'mass assignment attack update account_settings' do
+  scenario 'attack one' do
     @normal_user.admin.should be_false
 
     login(@normal_user)
@@ -20,7 +20,7 @@ feature 'sql injection' do
     pending(:if => verifying_fixed?) { @normal_user.reload.admin.should be_true }
   end
 
-  scenario 'mass assignment attack create new account' do
+  scenario 'attack two' do
     params = {:user => {:admin => 't',
                         :email => 'hackety@h4x0rs.c0m',
                         :first_name => 'hackety',

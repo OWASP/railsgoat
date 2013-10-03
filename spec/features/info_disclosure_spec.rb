@@ -9,7 +9,7 @@ feature 'sensitive information disclosure' do
 
   # this won't work with javascript_driver, as it'll apply the javascript
   # function to mask this value and the source will be overwritten.
-  scenario 'full ssn returned to view' do
+  scenario 'attack' do
     login @normal_user
 
     visit "/users/#{@normal_user.user_id}/work_info"

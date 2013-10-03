@@ -6,7 +6,7 @@ feature 'insecure direct object reference' do
     @normal_user = UserFixture.normal_user
   end
 
-  scenario 'download production configuration' do
+  scenario 'attack one' do
     login(@normal_user)
 
     visit "/users/#{@normal_user.user_id}/benefit_forms"
@@ -20,7 +20,7 @@ feature 'insecure direct object reference' do
     }
   end
 
-  scenario 'view any user work_info' do
+  scenario 'attack two' do
     login(@normal_user)
 
     @normal_user.user_id.should_not == 2
