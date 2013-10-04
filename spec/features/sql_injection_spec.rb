@@ -7,7 +7,7 @@ feature 'sql injection' do
     @admin_user = User.where("admin='t'").first
   end
 
-  scenario 'injection attack on account_settings' do
+  scenario 'attack' do
     @admin_user.admin.should be_true
 
     login(@normal_user)

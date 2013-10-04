@@ -6,7 +6,7 @@ feature 'broken_auth' do
     @normal_user = UserFixture.normal_user
   end
 
-  scenario 'TMI during login - username' do
+  scenario 'one' do
     visit '/'
     within('.signup') do
       fill_in 'email', :with => @normal_user.email + 'not'
@@ -16,7 +16,7 @@ feature 'broken_auth' do
     pending(:if => verifying_fixed?) { find('div#flash_notice').text.should == "#{@normal_user.email}not doesn't exist!" }
   end
 
-  scenario 'TMI during login - password' do
+  scenario 'two' do
     visit '/'
     within('.signup') do
       fill_in 'email', :with => @normal_user.email
