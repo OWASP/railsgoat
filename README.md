@@ -48,6 +48,7 @@ Then proceed with browsing the site as normal :thumbsup:
 ### Build Info ###
 
 [![Code Climate](https://codeclimate.com/github/OWASP/railsgoat.png)](https://codeclimate.com/github/OWASP/railsgoat)
+
 [![Build Status](https://travis-ci.org/mccabe615/railsgoat.png?branch=master)](https://travis-ci.org/mccabe615/railsgoat)
 
 ### License Stuff ###
