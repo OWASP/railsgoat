@@ -5,13 +5,11 @@
 
 	cd railsgoat
 
-	rvm use 1.9.3@railsgoat --create
+	rvm use 1.9.3@railsgoat --create # https://rvm.io/
 
 	bundle
 
-	rake db:create
-
-	rake db:migrate
+	rake db:setup
 
 	rails s
 
@@ -50,6 +48,7 @@ Then proceed with browsing the site as normal :thumbsup:
 ### Build Info ###
 
 [![Code Climate](https://codeclimate.com/github/OWASP/railsgoat.png)](https://codeclimate.com/github/OWASP/railsgoat)
+[![Build Status](https://travis-ci.org/mccabe615/railsgoat.png?branch=master)](https://travis-ci.org/mccabe615/railsgoat)
 
 ### License Stuff ###
 
