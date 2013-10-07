@@ -15,7 +15,8 @@ class UsersController < ApplicationController
       redirect_to home_dashboard_index_path
     else
       @user = user
-      render :new
+      flash[:error] = user.errors.full_messages.to_sentence
+      redirect_to :sign_up
     end
   end
   
