@@ -16,7 +16,7 @@ def verifying_fixed?
 ******************************************************************************
   You are running the RailsGoat Capybara Specs in Training mode. These specs
   are supposed to fail, indicating vulnerabilities exist. They contain
-  spoilers, so do not read the code in spec/features if your goal is to
+  spoilers, so do not read the code in spec/vulnerabilities if your goal is to
   learn more about patching the vulnerabilities. You should fix the
   vulnerabilities in the application in order to get these specs to pass**.
   You can use them to measure your progress.
