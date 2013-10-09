@@ -15,15 +15,11 @@ feature 'improper password hashing' do
   end
 
   scenario 'with md5 and salt' do
-    if @normal_user.has_attribute?('salt')
-      new_pass = 'testpassword'
-      @normal_user.password = new_pass
-      @normal_user.password_confirmation = new_pass
-      @normal_user.save
-      pending(:if => verifying_fixed?) {Digest::MD5.hexdigest(@normal_user.salt + new_pass).should == @normal_user.password}
-    else
-      #fail test if salt attribute not defined
-      true.should == false
-    end
+    pending unless @normal_user.has_attribute?('salt')
+    new_pass = 'testpassword'
+    @normal_user.password = new_pass
+    @normal_user.password_confirmation = new_pass
+    @normal_user.save
+    pending(:if => verifying_fixed?) {Digest::MD5.hexdigest(@normal_user.salt + new_pass).should == @normal_user.password}
   end
 end
