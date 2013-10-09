@@ -25,6 +25,7 @@ end
 gem 'gauntlt'
 
 group :development, :test do
+  gem 'launchy'
   gem 'capybara'
   gem 'database_cleaner', '< 1.1.0'
   gem 'poltergeist'
