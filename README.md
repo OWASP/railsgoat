@@ -25,7 +25,7 @@ in the application.
 To run them, though, you'll first need to [install PhantomJS](https://github.com/jonleighton/poltergeist#installing-phantomjs),
 which is required by the Poltergeist Capybara driver. Then just rake:
 
-  rake
+  rake training
 
 NOTE: As vulnerabilities are fixed in the application, these specs won't change from to passing but to _pending_.
 
