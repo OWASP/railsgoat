@@ -7,7 +7,7 @@ feature 'sql injection' do
     @admin_user = User.where("admin='t'").first
   end
 
-  scenario 'injection attack on account_settings' do
+  scenario 'attack' do
     @admin_user.admin.should be_true
 
     login(@normal_user)
@@ -23,8 +23,10 @@ feature 'sql injection' do
     end
     click_on 'Submit'
 
-    @admin_user = User.where("admin='t'").first
-    @admin_user.email.should == 'joe.admin@schmoe.com'
-    @admin_user.admin.should == true
+    pending(:if => verifying_fixed?) {
+      @admin_user = User.where("admin='t'").first
+      @admin_user.email.should == 'joe.admin@schmoe.com'
+      @admin_user.admin.should == true
+    }
   end
 end

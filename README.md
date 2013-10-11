@@ -5,13 +5,11 @@
 
 	cd railsgoat
 
-	rvm use 1.9.3@railsgoat --create
+	rvm use 1.9.3@railsgoat --create # https://rvm.io/
 
 	bundle
 
-	rake db:create
-
-	rake db:migrate
+	rake db:setup
 
 	rails s
 
@@ -19,7 +17,24 @@
 
 	Start hacking!!!
 
+### Running Capybara Tests ###
+
+RailsGoat now includes a set of _failing_ Capybara RSpecs, each one indicating a separate vulnerability exists
+in the application.
+
+To run them, though, you'll first need to [install PhantomJS](https://github.com/jonleighton/poltergeist#installing-phantomjs),
+which is required by the Poltergeist Capybara driver. Then just rake:
+
+  rake training
+
+NOTE: As vulnerabilities are fixed in the application, these specs won't change from to passing but to _pending_.
+
 ### Developer Note ###
+
+As changes are made to the application, the Capybara RSpecs can be used to verify the vulnerabilities
+in the application are still intact. To use them in this way, and have them _pass_ instead of fail,
+set the `RAILSGOAT_MAINTAINER` environment variable.
+
 <p/>
 Conversion to the OWASP Top 10, 2013 is under way. 
 
@@ -33,6 +48,8 @@ Then proceed with browsing the site as normal :thumbsup:
 ### Build Info ###
 
 [![Code Climate](https://codeclimate.com/github/OWASP/railsgoat.png)](https://codeclimate.com/github/OWASP/railsgoat)
+
+[![Build Status](https://travis-ci.org/mccabe615/railsgoat.png?branch=master)](https://travis-ci.org/mccabe615/railsgoat)
 
 ### License Stuff ###
 
