@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require wysiwyg/wysihtml5-0.3.0.js
 //= require jquery.min.js
-//= require bootstrap.js
 //= require jquery.scrollUp.js
 //= require wysiwyg/bootstrap-wysihtml5.js
 //= require bootstrap-colorpicker.js
