@@ -240,22 +240,26 @@ paid_time_off = [
     {
       :receiver_id => 2,
       :creator_id => 5,
-      :message => 'Your benefits have been updated.'
+      :message => 'Your benefits have been updated.',
+      :read => false
     },
     {
       :receiver_id => 3,
       :creator_id => 4,
-      :message => 'Please update your profile.'
+      :message => 'Please update your profile.',
+      :read => false
     },
     {
       :receiver_id => 4,
       :creator_id => 3,
-      :message => 'Welcome to Railsgoat.'
+      :message => 'Welcome to Railsgoat.',
+      :read => false
     },
     {
       :receiver_id => 5,
       :creator_id => 2,
-      :message => 'Hello friend.'
+      :message => 'Hello friend.',
+      :read => false
     }
   ]
 
