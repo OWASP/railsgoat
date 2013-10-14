@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   has_one :paid_time_off, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
   has_one :work_info, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
   has_many :performance, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
-
+  has_many :messages, :foreign_key => :receiver_id, :primary_key => :user_id, :dependent => :destroy
 
 
   def build_benefits_data
@@ -26,12 +26,12 @@ class User < ActiveRecord::Base
     build_work_info(POPULATE_WORK_INFO.shuffle.first)
     performance.build(POPULATE_PERFORMANCE.shuffle.first)
   end
-
-  private
   
   def full_name
     "#{self.first_name} #{self.last_name}"
   end
+
+private
 
   def self.authenticate(email, password)
        auth = nil
