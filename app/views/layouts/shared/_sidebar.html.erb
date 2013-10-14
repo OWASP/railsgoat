@@ -58,6 +58,14 @@
             Performance
           <% end %>
         </li>
+        <li id="messages">
+          <%= link_to user_messages_path(:user_id => current_user.user_id) do %>
+            <div class="icon">
+              <span class="fs1" aria-hidden="true" data-icon="&#xe040;"></span>
+            </div>
+            Messages
+          <% end %>
+        </li>
       </ul>
     </div>
 

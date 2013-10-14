@@ -234,7 +234,34 @@ paid_time_off = [
        :date_submitted => Date.new(2013, 01, 01),
        :score => 2
      }
-  ]  
+  ]
+
+    messages = [
+    {
+      :receiver_id => 2,
+      :creator_id => 5,
+      :message => 'Your benefits have been updated.',
+      :read => false
+    },
+    {
+      :receiver_id => 3,
+      :creator_id => 4,
+      :message => 'Please update your profile.',
+      :read => false
+    },
+    {
+      :receiver_id => 4,
+      :creator_id => 3,
+      :message => 'Welcome to Railsgoat.',
+      :read => false
+    },
+    {
+      :receiver_id => 5,
+      :creator_id => 2,
+      :message => 'Hello friend.',
+      :read => false
+    }
+  ]
 
 
 users.each do |user_info|
@@ -272,4 +299,10 @@ performance.each do |perf|
   p = Performance.new(perf.reject {|k| k == :user_id})
   p.user_id = perf[:user_id]
   p.save
+end
+
+messages.each do |message|
+  m = Message.new(message.reject {|k| k == :creator_id})
+  m.creator_id = message[:creator_id]
+  m.save
 end
