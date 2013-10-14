@@ -28,6 +28,9 @@ resources :users do
     
   end
 
+  resources :messages do 
+  end
+  
 end
 
 get "download" => "benefit_forms#download"

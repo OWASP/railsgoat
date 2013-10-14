@@ -20,6 +20,8 @@ group :development do
   gem 'rack-livereload'
   gem 'rb-fsevent'
 	gem 'travis-lint'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 gem 'gauntlt'
