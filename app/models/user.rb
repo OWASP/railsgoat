@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   has_one :paid_time_off, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
   has_one :work_info, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
   has_many :performance, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
-  has_many :message, :foreign_key => :receiver_id, :dependent => :destroy
+  has_many :messages, :foreign_key => :receiver_id, :primary_key => :user_id, :dependent => :destroy
 
 
   def build_benefits_data

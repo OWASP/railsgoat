@@ -5,24 +5,31 @@
           <div class="widget">
             <div class="widget-header">
               <div class="title">
-                <span class="fs1" aria-hidden="true" data-icon="&#xe088;"></span> Messages for <%= current_user.full_name %>
+                <span class="fs1" aria-hidden="true" data-icon="&#xe022;"></span> Messages for <%= current_user.full_name %>
+                  <span class="fs1" aria-hidden="true" data-icon="&#xe006;"><%= link_to "Send Message", new_user_message_path %></span>
               </div>
             </div>
             <div class="widget-body">
               <table class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th style="width:10%">From:</th>
-                    <th style="width:8%">Date</th>
+                    <th style="width:7%">From:</th>
+                    <th style="width:6%">Date</th>
                     <th style="width:16%">Message</th>
+                    <th style="width:6%">Actions</th>
                   </tr>
                 </thead>
-                <% @messages.each do |message| %>
                 <tbody>
                     <tr>
-                    <td><%= message.creator_id %></td>
-                    <td><%= message.created_at %></td>
+                    <% if @messages.empty? %>
+                    <td><%= "No messages!" %></td><td></td><td></td><td></td>
+                    <% end %>
+                <% @messages.each do |message| %>
+                    <td><%= message.creator_name %></td>
+                    <td><%= message.created_at.to_date %></td>
                     <td><%= message.message %></td>
+                    <td><%= link_to "Details", user_message_path(:id => message.id), {:class => "btn btn-info pull-left"}%>
+                    <%= link_to "Delete", user_message_path(:id => message.id), {:method => 'delete', :class => "btn btn-danger pull-left"}%></td>
                     </tr>
                 </tbody>
                 <% end %>
@@ -32,140 +39,6 @@
         </div>
     </div>
   </div>
-</div>  
-
-      <!--/.fluid-container-->
-    </div>
-    <footer>
-      <p>
-        &copy; BlackForest 2013
-      </p>
-    </footer>
-    <script src="js/jquery.min.js">
-    </script>
-    <script src="js/bootstrap.js">
-    </script>
-    <script type="text/javascript" src="js/date-picker/date.js">
-    </script>
-    <script type="text/javascript" src="js/date-picker/daterangepicker.js">
-    </script>
-    
-    <script type="text/javascript">
-      //ScrollUp
-      $(function () {
-        $.scrollUp({
-          scrollName: 'scrollUp', // Element ID
-          topDistance: '300', // Distance from top before showing element (px)
-          topSpeed: 300, // Speed back to top (ms)
-          animation: 'fade', // Fade, slide, none
-          animationInSpeed: 400, // Animation in speed (ms)
-          animationOutSpeed: 400, // Animation out speed (ms)
-          scrollText: 'Scroll to top', // Text for element
-          activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
-        });
-      });
-
-      //Tooltip
-      $('a').tooltip('hide');
-
-      //Main menu navigation
-      
-      $('.submenu > a').click(function(e){
-        e.preventDefault();
-        var submenu = $(this).siblings('ul');
-        var li = $(this).parents('li');
-        var submenus = $('#mainnav li.submenu ul');
-        var submenus_parents = $('#mainnav li.submenu');
-        if(li.hasClass('open'))
-        {
-          if(($(window).width() > 768) || ($(window).width() < 479)) {
-            submenu.slideUp();
-          } else {
-            submenu.fadeOut(250);
-          }
-          li.removeClass('open');
-        } else 
-        {
-          if(($(window).width() > 768) || ($(window).width() < 479)) {
-            submenus.slideUp();     
-            submenu.slideDown();
-          } else {
-            submenus.fadeOut(250);      
-            submenu.fadeIn(250);
-          }
-          submenus_parents.removeClass('open');   
-          li.addClass('open');  
-        }
-      });
-      
-      var ul = $('#mainnav > ul');
-      
-      $('#mainnav > a').click(function(e)
-      {
-        e.preventDefault();
-        var mainnav = $('#mainnav');
-        if(mainnav.hasClass('open'))
-        {
-          mainnav.removeClass('open');
-          ul.slideUp(250);
-        } else 
-        {
-          mainnav.addClass('open');
-          ul.slideDown(250);
-        }
-      });
-
-
-      //Range Date Picker
-
-      $('.report_range').daterangepicker({
-        ranges: {
-          'Today': ['today', 'today'],
-          'Yesterday': ['yesterday', 'yesterday'],
-          'Last 7 Days': [Date.today().add({
-            days: -6
-          }), 'today'],
-          'Last 30 Days': [Date.today().add({
-            days: -29
-          }), 'today'],
-          'This Month': [Date.today().moveToFirstDayOfMonth(), Date.today().moveToLastDayOfMonth()],
-          'Last Month': [Date.today().moveToFirstDayOfMonth().add({
-            months: -1
-          }), Date.today().moveToFirstDayOfMonth().add({
-            days: -1
-          })]
-        },
-        opens: 'left',
-        format: 'MM/dd/yyyy',
-        separator: ' to ',
-        startDate: Date.today().add({
-          days: -29
-        }),
-        endDate: Date.today(),
-        minDate: '01/01/2012',
-        maxDate: '12/31/2013',
-        locale: {
-          applyLabel: 'Submit',
-          fromLabel: 'From',
-          toLabel: 'To',
-          customRangeLabel: 'Custom Range',
-          daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-          monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-          firstDay: 1
-        },
-        showWeekNumbers: true,
-        buttonClasses: ['btn-danger']
-      },
-
-      function (start, end) {
-        $('.report_range span').html(start.toString('MMMM d, yyyy') + ' - ' + end.toString('MMMM d, yyyy'));
-      });
-
-      //Set the initial state of the picker label
-      $('.report_range span').html(Date.today().add({
-        days: -29
-      }).toString('MMMM d, yyyy') + ' - ' + Date.today().toString('MMMM d, yyyy'));
-      </script>
-      
-    </body>
-    </html>
+</div>      
+</body>
+</html>
