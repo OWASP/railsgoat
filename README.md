@@ -5,7 +5,7 @@
 
 	cd railsgoat
 
-	rvm use 1.9.3@railsgoat --create # https://rvm.io/
+	rvm use 2.0.0@railsgoat --create # https://rvm.io/
 
 	bundle
 

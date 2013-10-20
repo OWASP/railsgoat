@@ -32,6 +32,8 @@ group :development, :test do
   gem 'database_cleaner', '< 1.1.0'
   gem 'poltergeist'
   gem 'rspec-rails'
+  gem 'simple_cov'
+  gem 'simplecov', :require => false
 end
 
 # Gems used only for assets and not required
