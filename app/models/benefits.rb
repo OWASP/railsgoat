@@ -10,15 +10,16 @@ class Benefits < ActiveRecord::Base
    make_backup(file, data_path, full_file_name) if backup == "true"
  end
  
- def self.make_backup(file, data_path, full_file_name)
-   system("cp #{full_file_name} #{data_path}/bak#{Time.now.to_i}_#{file.original_filename}")
-   # FileUtils.cp "#{full_file_name}", "#{data_path}/bak#{Time.now.to_i}_#{file.original_filename}"
- end
+ def self.make_backup(*params)
+    if File.exists?(full_file_name)
+     system("cp #{full_file_name} #{data_path}/bak#{Time.now.to_i}_#{file.original_filename}")
+    end
+  end
 
 =begin 
- def self.make_backup(file, data_path, full_file_name)
-   FileUtils.cp "#{full_file_name}", "#{data_path}/bak#{Time.now.to_i}_#{file.original_filename}"
- end
+  def self.make_backup(file, data_path, full_file_name)
+    FileUtils.cp "#{full_file_name}", "#{data_path}/bak#{Time.now.to_i}_#{file.original_filename}"
+  end
 =end 
  
 end
