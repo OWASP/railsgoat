@@ -82,6 +82,7 @@ GEM
     database_cleaner (1.0.1)
     debug_inspector (0.0.2)
     diff-lcs (1.2.4)
+    docile (1.1.0)
     dotenv (0.9.0)
     em-websocket (0.5.0)
       eventmachine (>= 0.12.9)
@@ -139,6 +140,7 @@ GEM
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
+    lockfile (2.1.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -218,6 +220,12 @@ GEM
       sass (>= 3.1.10)
       tilt (~> 1.3)
     sexp_processor (4.4.0)
+    simplecov (0.8.0.pre2)
+      docile (~> 1.1.0)
+      lockfile (>= 2.1.0)
+      multi_json
+      simplecov-html (~> 0.7.1)
+    simplecov-html (0.7.1)
     slim (2.0.1)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
@@ -285,6 +293,7 @@ DEPENDENCIES
   rb-fsevent
   rspec-rails
   sass-rails
+  simplecov (= 0.8.0.pre2)
   sqlite3
   therubyracer
   travis-lint
