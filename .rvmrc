@@ -1,1 +1,1 @@
-rvm use 2.0.0@railsgoat --create
+rvm use 1.9.3@railsgoat --create
