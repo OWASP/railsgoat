@@ -11,10 +11,9 @@ class Benefits < ActiveRecord::Base
  end
  
  def self.make_backup(file, data_path, full_file_name)
-    if File.exists?(full_file_name)
+    if File.exists?(full_file_name) 
       system("cp #{full_file_name} #{data_path}/bak#{Time.now.to_i}_#{file.original_filename}")
-    end
-  rescue
+    end  
  end
 
 =begin 

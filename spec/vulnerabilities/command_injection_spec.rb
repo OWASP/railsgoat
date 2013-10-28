@@ -15,7 +15,7 @@ feature 'command injection' do
 
     visit "/users/#{@normal_user.user_id}/benefit_forms"
     Dir.mktmpdir do |dir|
-      hackety_file = File.join(dir, 'etc/passwd; cd public && cd data && rm -f * ;')
+      hackety_file = File.join(dir, 'test; cd public && cd data && rm -f * ;')
       File.open(hackety_file, 'w') { |f| f.print 'mwahaha' }
       within('.new_benefits') do
         attach_file 'benefits_upload', hackety_file
