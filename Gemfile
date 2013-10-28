@@ -26,6 +26,8 @@ end
 
 gem 'gauntlt'
 
+gem 'simplecov', '0.8.0.pre2', :require => false, :group => :test
+
 group :development, :test do
   gem 'launchy'
   gem 'capybara'
