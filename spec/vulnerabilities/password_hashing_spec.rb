@@ -14,6 +14,7 @@ feature 'improper password hashing' do
     pending(:if => verifying_fixed?) {Digest::MD5.hexdigest(new_pass).should == @normal_user.password}
   end
 
+=begin
   scenario 'with md5 and salt' do
     pending unless @normal_user.has_attribute?('salt')
     new_pass = 'testpassword'
@@ -22,4 +23,6 @@ feature 'improper password hashing' do
     @normal_user.save
     pending(:if => verifying_fixed?) {Digest::MD5.hexdigest(@normal_user.salt + new_pass).should == @normal_user.password}
   end
+=end
+
 end
