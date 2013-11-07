@@ -60,7 +60,7 @@
             <div class="accordion-inner">
               <p><b> Cross-Site Request Forgery ATTACK:</b></p>
 				<p class="desc">
-					The application allows users to update their calendar and schedule PTO events (PTO section). Due to the fact CSRF protections are disabled, the AJAX request will send the authenticity token but the application will <b>not</b> validate either it's presence or validity. Create an html page using the code shown below, authenticate as another user, click on it, review the new calendar (change the dates under date_range1). You should see this HTML code will work, even if you hadn't navigated to the PTO section prior to sending it.
+					The application allows users to update their calendar and schedule PTO events (PTO section). Due to the fact CSRF protections are disabled, the AJAX request will send the authenticity token but the application will <b>not</b> validate either its presence or validity. Create an html page using the code shown below, authenticate as another user, click on it, review the new calendar (change the dates under date_range1). You should see this HTML code will work, even if you hadn't navigated to the PTO section prior to sending it.
 				</p>
 			   	<p>
 				 <pre class="ruby">
