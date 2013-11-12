@@ -45,7 +45,7 @@ resources :tutorials do
     get "insecure_dor"
     get "csrf"
     get "misconfig"
-    get "crypto"
+    get "exposure"
     get "url_access"
     get "ssl_tls"
     get "redirects"
