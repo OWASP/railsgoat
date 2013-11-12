@@ -5,12 +5,12 @@
 # However, RailsGoat maintainers need the Capybara features to pass to indicate
 # changes to the site have not inadvertently removed or fixed any vulnerabilities
 # since the whole point is to provide a site for a developer to fix.
-@@displayed_spec_notice = false
+$displayed_spec_notice = false
 
 def verifying_fixed?
   maintainer_env_name = 'RAILSGOAT_MAINTAINER'
   result = !ENV[maintainer_env_name]
-  if !@@displayed_spec_notice && result
+  if !$displayed_spec_notice && result
     puts <<-NOTICE
 
     ******************************************************************************
@@ -30,7 +30,7 @@ def verifying_fixed?
   a 'pending' state.
 ******************************************************************************
     NOTICE
-    @@displayed_spec_notice = true
+    $displayed_spec_notice = true
   end
   result
 end
