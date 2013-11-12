@@ -17,7 +17,8 @@
           <div class="accordion-body in collapse" id="collapseOne" style="height: auto;">
             <div class="accordion-inner">
 	  		 <p class="desc">
-              OWASP Description - Web applications frequently redirect and forward users to other pages and websites, and use untrusted data to determine the destination pages. Without proper validation, attackers can redirect victims to phishing or malware sites, or use forwards to access unauthorized pages.
+              Applications frequently redirect users to other pages, or use internal forwards in a similar manner. Sometimes the target page is specified in an unvalidated parameter, allowing attackers to choose the destination page.
+              Detecting unchecked redirects is easy. Look for redirects where you can set the full URL. Unchecked forwards are harder, because they target internal pages.
   			 </p>
 	  		 <p class="desc">
               Railsgoat allows the redirection to the paths previously requested but for which the user did not have access. Following authentication, the user is redirected.
