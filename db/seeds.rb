@@ -184,6 +184,21 @@ paid_time_off = [
     }   
   ]
   
+  key_mgmt = [
+    {
+      :user_id => 2,
+    },
+    {
+      :user_id => 3,
+    },
+    {
+      :user_id => 4,
+    },
+    {
+      :user_id => 5,    
+    }   
+  ]
+  
   performance = [
     {
       :user_id => 2,
@@ -289,11 +304,11 @@ schedule.each do |event|
   sched.save
 end
 
-work_info.each do |wi|
-  info = WorkInfo.new(wi.reject {|k| k == :user_id})
-  info.user_id = wi[:user_id]
-  info.save
+key_mgmt.each do |key|
+  KeyManagement.create(:user_id => key[:user_id], :iv => Digest::SHA2.new.to_s)
 end
+
+
 
 performance.each do |perf|
   p = Performance.new(perf.reject {|k| k == :user_id})
@@ -306,3 +321,11 @@ messages.each do |message|
   m.creator_id = message[:creator_id]
   m.save
 end
+
+
+work_info.each do |wi|
+  info = WorkInfo.new(wi.reject {|k| k == :user_id})
+  info.user_id = wi[:user_id]
+  info.save
+end
+
