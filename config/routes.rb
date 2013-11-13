@@ -45,7 +45,7 @@ Railsgoat::Application.routes.draw do
       get "insecure_dor"
       get "csrf"
       get "misconfig"
-      get "crypto"
+      get "exposure"
       get "url_access"
       get "insecure_components"
       get "ssl_tls"
@@ -57,39 +57,12 @@ Railsgoat::Application.routes.draw do
       get "gauntlt"
     end
   end
-<<<<<<< HEAD
-  
-end
-
-get "download" => "benefit_forms#download"
-post "upload" => "benefit_forms#upload"
-
-resources :tutorials do
-  collection do 
-    get "credentials"
-    get "injection"
-    get "xss"
-    get "broken_auth"
-    get "insecure_dor"
-    get "csrf"
-    get "misconfig"
-    get "exposure"
-    get "url_access"
-    get "ssl_tls"
-    get "redirects"
-    get "guard"
-    get "info_disclosure"
-    get "mass_assignment"
-    get "constantize"
-    get "gauntlt"
-=======
 
   resources :schedule do
     collection do
       get "get_pto_schedule"
     end
 
->>>>>>> f0ca17df79bce4b15917780924ceef8407300fbb
   end
 
   resources :admin do
