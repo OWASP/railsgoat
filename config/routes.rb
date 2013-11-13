@@ -48,6 +48,7 @@ Railsgoat::Application.routes.draw do
       get "exposure"
       get "url_access"
       get "insecure_components"
+      get "access_control"
       get "ssl_tls"
       get "redirects"
       get "guard"
