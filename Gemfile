@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.15'
+#don't upgrade
+gem 'rails', '3.2.11'
+gem 'rack', '1.4.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

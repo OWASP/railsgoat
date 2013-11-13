@@ -17,7 +17,7 @@
           <div class="accordion-body in collapse" id="collapseSSNOne" style="height: auto;">
             <div class="accordion-inner">
 			  <p class="desc">
-              	The Railsgoat application stores Social Security Numbers in plain-text and because of this, it fails to adequately protect these numbers from theft.
+              	The Railsgoat application stores and transmits Social Security Numbers insecurely.
  			  </p>
             </div>
           </div>
@@ -32,8 +32,11 @@
           </div>
           <div class="accordion-body collapse" id="collapseSSNTwo" style="height: 0px;">
             <div class="accordion-inner">
-	          <p class="desc">
-              The WorkInfo model (app/models/work_info.rb) is where the code to encrypt this data should be. However, as seen, is missing any routine to do so.
+	            <p class="desc">
+		 				The Railsgoat application stores user's Social Security Numbers in plain-text within the database and because of this, it fails to adequately protect these numbers from theft. Additionally, the user's full SSN is sent back to the user within an HTTP response from the application.
+				</p>
+			  <p class="desc">
+              The WorkInfo model (app/models/work_info.rb) is missing code to encrypt this data prior to storage. Additionally, while code exists to render only the last 4 numbers of an SSN, at no time is it used.
  			  </p>
  			  <pre class="ruby">
 				class WorkInfo < ActiveRecord::Base
