@@ -15,7 +15,6 @@ class TutorialsController < ApplicationController
   end
   
   def injection
-  
   end
   
   def xss
@@ -61,6 +60,9 @@ class TutorialsController < ApplicationController
   end
   
   def misconfig
+  end
+
+  def insecure_components
   end
   
   def crypto

@@ -1,0 +1,81 @@
+<div class="widget">
+    <div class="widget-header">
+      <div class="title">
+        <span class="fs1" aria-hidden="true" data-icon="&#xe092;"></span> A9 - Using Components with Known Vulnerabilities
+      </div>
+    </div>
+    <div class="widget-body">
+      <div id="accordion1" class="accordion no-margin">
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a href="#collapseOne" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
+              <i class="icon-info icon-white">
+              </i>
+              Description
+            </a>
+          </div>
+          <div class="accordion-body in collapse" id="collapseOne" style="height: auto;">
+            <div class="accordion-inner">
+              <p class="desc">
+              Virtually every application has these issues because most development teams don’t focus on ensuring their components/libraries are up to date. In many cases, the developers don’t even know all the components they are using, never mind their versions. Component dependencies make things even worse.
+	 		        </p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a href="#collapseTwo" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
+              <i class="icon-bug icon-white">
+              </i>
+              Bug
+            </a>
+          </div>
+          <div class="accordion-body collapse" id="collapseTwo" style="height: 0px;">
+            <div class="accordion-inner">
+              <p class="desc">
+				Within the Gemfile the following gem versions are set. These versions of Rails and Rack are both vulnerable to multiple attacks.
+	 		  </p>
+	 		  <pre class="ruby">
+				<%= %q{
+          gem 'rails', '3.2.11'
+          gem 'rack', '1.4.3'
+				} %>
+			  </pre>
+			  <p class="desc">
+			  </p>	
+            </div>
+          </div>
+        </div>
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a href="#collapseThree" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
+              <i class="icon-lightning icon-white">
+              </i>
+              Solution
+            </a>
+          </div>
+          <div class="accordion-body collapse" id="collapseThree" style="height: 0px;">
+            <div class="accordion-inner">
+			  <p class="desc">
+				    To fix this issue, simply update your gems after unpinning the gem versions. You should always run the most up to date version possible and run Bundler-Audit Regularly.
+	          </p>
+            </div>
+          </div>
+        </div>
+      	<div class="accordion-group">
+          <div class="accordion-heading">
+            <a  style="background-color: rgb(181, 121, 158)" href="#collapseFour" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
+              <i class="icon-aid icon-white">
+              </i>
+              Hint
+            </a>
+          </div>
+          <div class="accordion-body collapse" id="collapseFour" style="height: 0px;">
+            <div class="accordion-inner">
+                Remeber to keep your gems up to date!
+            </div>
+          </div>
+        </div>
+	</div>
+    </div>
+  </div>
