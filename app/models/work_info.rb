@@ -8,10 +8,14 @@ class WorkInfo < ActiveRecord::Base
     "***-**-" << self.SSN[-4,4]
   end
   
-  def encrypt_ssn
+  def encrypt_ssn(data)
   end
   
-  def decrypt_ssn
+  def decrypt_ssn(encrypted_data)
+  end
+  
+  def cipher_mode
+    'aes-256-cbc'
   end
   
 end
