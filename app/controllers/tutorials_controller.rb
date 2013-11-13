@@ -64,6 +64,9 @@ class TutorialsController < ApplicationController
 
   def insecure_components
   end
+
+  def access_control
+  end
   
   def crypto
   end

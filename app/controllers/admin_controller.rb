@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   
- # before_filter :administrative
+  before_filter :administrative, :if => :admin_param
   skip_before_filter :has_info
   
   def dashboard
@@ -45,4 +45,10 @@ class AdminController < ApplicationController
     end
   end
   
+
+  private
+
+  def admin_param
+    params[:admin_id] != '1'
+  end
 end
