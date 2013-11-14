@@ -1,78 +1,95 @@
-## Getting Started ##
-#### With Ruby, Rubygems, Git, and Bundler installed ####
+# RailsGoat [![Build Status](https://api.travis-ci.org/OWASP/railsgoat.png?branch=master)](https://travis-ci.org/OWASP/railsgoat) [![Code Climate](https://codeclimate.com/github/OWASP/railsgoat.png)](https://codeclimate.com/github/OWASP/railsgoat)
 
-	git clone https://github.com/OWASP/railsgoat.git
+RailsGoat is a vulnerable version of the Ruby on Rails Framework. It includes vulnerabilities from the OWASP Top 10, as well as some "extras" that the initial project contributors felt worthwhile to share. This project is designed to educate both developers, as well as security professionals.
 
-	cd railsgoat
+## Getting Started
 
-	rvm use 1.9.3@railsgoat --create # https://rvm.io/
+Requirements: **Ruby 1.9.3**
 
-	bundle
+To begin, install the Ruby Version Manager (RVM):
 
-	rake db:setup
+```
+$ curl -L https://get.rvm.io | bash -s stable --autolibs=3 --ruby=1.9.3
+```
 
-	rails s
+After installing the package, clone this repo:
 
-	open http://0.0.0.0:3000
+```
+$ git clone git@github.com:OWASP/railsgoat.git
+```
 
-	Start hacking!!!
+Navigate into the directory and accept the notice by typing `yes`:
+```
+*****************************************************************************************************
+* NOTICE                                                                                            *
+*****************************************************************************************************
+* RVM has encountered a new or modified .rvmrc file in the current directory, this is a shell       *
+* script and therefore may contain any shell commands.                                              *
+*                                                                                                   *
+* Examine the contents of this file carefully to be sure the contents are safe before trusting it!  *
+* Do you wish to trust '/path/to/railsgoat/.rvmrc'?                                                 *
+* Choose v[view] below to view the contents                                                         *
+*****************************************************************************************************
+y[es], n[o], v[iew], c[cancel]>
+```
 
-### Running Capybara Tests ###
+Install the project dependencies:
 
-RailsGoat now includes a set of _failing_ Capybara RSpecs, each one indicating a separate vulnerability exists
-in the application.
+```
+$ bundle install
+```
 
-To run them, though, you'll first need to [install PhantomJS](https://github.com/jonleighton/poltergeist#installing-phantomjs),
-which is required by the Poltergeist Capybara driver. Then just rake:
+If you receive an error, make sure you have `bundler` installed:
 
-  rake training
+```
+$ gem install bundler
+```
 
-NOTE: As vulnerabilities are fixed in the application, these specs won't change from to passing but to _pending_.
+Initialize the database:
 
-### Developer Note ###
+```
+$ rake db:setup
+```
 
-As changes are made to the application, the Capybara RSpecs can be used to verify the vulnerabilities
-in the application are still intact. To use them in this way, and have them _pass_ instead of fail,
-set the `RAILSGOAT_MAINTAINER` environment variable.
+Start the WEBrick HTTP Server:
 
-<p/>
-Conversion to the OWASP Top 10, 2013 is under way. 
+```
+$ rails server
+```
 
-You can view progress within the top-10-2013 branch.
+Open your favorite browser, navigate to `http://localhost:3000` and start hacking!
 
-    git fetch origin
-    git checkout top-10-2013
+## Capybara Tests
+
+RailsGoat now includes a set of failing Capybara RSpecs, each one indicating that a separate vulnerability exists in the application. To run them, you first need to install [PhantomJS](https://github.com/jonleighton/poltergeist#installing-phantomjs), which is required by the Poltergeist Capybara driver. Upon installation, simply run the following rake task:
+
+```
+$ rake training
+```
+
+Please note, as vulnerabilities are fixed in the application, these specs will not change to `passing`, but to `pending`.
+
+## Contributing
+
+As changes are made to the application, the Capybara RSpecs can be used to verify that the vulnerabilities in the application are still intact. To use them in this way, and have them `pass` instead of `fail`, set the `RAILSGOAT_MAINTAINER` environment variable.
+
+Conversion to the OWASP Top 10, 2013 is under way. You can view progress within the `top-10-2013` branch.
+
+```
+$ git fetch origin
+$ git checkout top-10-2013
+```
+
 Then proceed with browsing the site as normal :thumbsup:
-<hr/>
 
-### Build Info ###
-
-[![Code Climate](https://codeclimate.com/github/OWASP/railsgoat.png)](https://codeclimate.com/github/OWASP/railsgoat)
-
-[![Build Status](https://travis-ci.org/OWASP/railsgoat.png?branch=master)](https://travis-ci.org/OWASP/railsgoat)
-
-### License Stuff ###
+# License
 
 The MIT License (MIT)
 
-Copyright (c) 2013  The Open Web Application Security Project
+Copyright (c) 2013 The Open Web Application Security Project
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-<hr/>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
