@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   
-  #before_filter :administrative
+  before_filter :administrative, :if => :admin_param
   skip_before_filter :has_info
   
   def dashboard
@@ -43,6 +43,12 @@ class AdminController < ApplicationController
     respond_to do |format|
       format.json { render :json => { :msg => message ? "success" : "failure"} }
     end
+  end
+
+  private
+
+  def admin_param
+    params[:id] == '1'
   end
   
 end
