@@ -20,16 +20,16 @@ $ git clone git@github.com:OWASP/railsgoat.git
 
 Navigate into the directory and accept the notice by typing `yes`:
 ```
-*****************************************************************************************************
-* NOTICE                                                                                            *
-*****************************************************************************************************
-* RVM has encountered a new or modified .rvmrc file in the current directory, this is a shell       *
-* script and therefore may contain any shell commands.                                              *
-*                                                                                                   *
-* Examine the contents of this file carefully to be sure the contents are safe before trusting it!  *
-* Do you wish to trust '/path/to/railsgoat/.rvmrc'?                                                 *
-* Choose v[view] below to view the contents                                                         *
-*****************************************************************************************************
+****************************************************************************************************
+* NOTICE                                                                                           *
+****************************************************************************************************
+* RVM has encountered a new or modified .rvmrc file in the current directory, this is a shell      *
+* script and therefore may contain any shell commands.                                             *
+*                                                                                                  *
+* Examine the contents of this file carefully to be sure the contents are safe before trusting it! *
+* Do you wish to trust '/path/to/railsgoat/.rvmrc'?                                                *
+* Choose v[view] below to view the contents                                                        *
+****************************************************************************************************
 y[es], n[o], v[iew], c[cancel]>
 ```
 
@@ -67,7 +67,7 @@ RailsGoat now includes a set of failing Capybara RSpecs, each one indicating tha
 $ rake training
 ```
 
-Please note, as vulnerabilities are fixed in the application, these specs will not change to `passing`, but to `pending`.
+NOTE: As vulnerabilities are fixed in the application, these specs will not change to `passing`, but to `pending`.
 
 ## Contributing
 
