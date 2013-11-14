@@ -36,20 +36,13 @@
 		 				The Railsgoat application stores user's Social Security Numbers in plain-text within the database and because of this, it fails to adequately protect these numbers from theft. Additionally, the user's full SSN is sent back to the user within an HTTP response from the application.
 				</p>
 			  <p class="desc">
-              The WorkInfo model (app/models/work_info.rb) is missing code to encrypt this data prior to storage. Additionally, while code exists to render only the last 4 numbers of an SSN, at no time is it used.
+              The WorkInfo model (app/models/work_info.rb) is missing code to encrypt this data prior to storage. Additionally, while code exists to render only the last 4 numbers of an SSN (shown below), at no time is it used.
  			  </p>
  			  <pre class="ruby">
-				class WorkInfo < ActiveRecord::Base
-				  attr_accessible :DoB, :SSN, :bonuses, :income, :years_worked
-				  belongs_to :user
-
 				  # We should probably use this
 				  def last_four
-				    "***-**-" << self.SSN[-4,4]
+				    "***-**-" << self.decrypt_ssn[-4,4]
 				  end
-
-				end
-	
 			  </pre>
  			 
             </div>
@@ -72,15 +65,55 @@
 				<li>Only authorized users can access decrypted copies of the data </li>
 				<li>Use a strong algorithm</li>
 				<li>Strong key is generated, protected from unauthorized access, and key change is planned for.</li><br/>
-				One additional item to note with rails specifically, the framework makes it easy to determine the type of environment running, example:
-				<pre class="ruby">
-					Rails.env.production?
-				</pre>
-				...or
-				<pre class="ruby">
-					Rails.env.development?
-				</pre>		
-				This allows developers to easily create different keys for development and production and should be considered an asset to utilize. While development keys are usually stored within the source code of most rails applications, and developers with access to the repo can download those keys, the same should NOT hold true for production keys.
+			  </p>	
+				
+			  <p class="desc">
+			  	 In the following code, we demonstrate switching from the storage of full SSN(s) in clear-text to storing them in the AES-256 encrypted format. The first thing to do is build the encrypt and decrypt functions. These can be found within app/models/work_info.rb.
+			  </p>		
+			  <pre class="ruby">
+				  def encrypt_ssn
+				     aes = OpenSSL::Cipher::Cipher.new(cipher_type)
+				     aes.encrypt
+				     aes.key = key
+				     aes.iv = iv if iv != nil
+				     self.encrypted_ssn = aes.update(self.SSN) + aes.final
+				     self.SSN = nil
+				  end
+
+				  def decrypt_ssn
+				     aes = OpenSSL::Cipher::Cipher.new(cipher_type)
+				     aes.decrypt
+				     aes.key = key
+				     aes.iv = iv if iv != nil
+				     aes.update(self.encrypted_ssn) + aes.final
+				  end
+				
+				  def key
+				    raise "Key Missing" if !(KEY)
+				    KEY
+				  end
+
+				  def iv
+				    raise "No IV for this User" if !(self.key_management.iv)
+				    self.key_management.iv
+				  end
+
+				  def cipher_type
+				    'aes-256-cbc'
+				  end
+			  </pre>	
+			  <p class="desc">
+			  	Also within the WorkInfo model, we add the following line of code...
+			  </p>
+			  <pre class="ruby">
+			  	 before_save :encrypt_ssn
+			  </pre>
+			  <p class="desc">
+			  	The remaining pieces are: 
+			    <li> We "seed" the database with per-user initialization vectors (IV) and store them within the key_management table</li>
+			 	<li> Separate production and development encryption keys. Production keys should be stored in an HSM, environment variable, etc. but never within the source code. Development keys are irrelevant if not being used for real data</li>
+			 	<li> Change the view where SSNs are called and rendered to the user so that the "last_four" method is called instead</li>
+				<li> For new user's who are registering, we create an initialization specific to their account</li>
 			  </p>	
             </div>
           </div>
