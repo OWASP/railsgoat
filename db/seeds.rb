@@ -33,8 +33,8 @@ users = [
      {
        :email => "mike@metacorp.com", 
        :admin => false, 
-       :password => "motorcross1445", 
-       :password_confirmation => "motorcross1445", 
+       :password => "motocross1445", 
+       :password_confirmation => "motocross1445", 
        :first_name => "Mike", 
        :last_name => "McCabe", 
        :user_id =>4 
