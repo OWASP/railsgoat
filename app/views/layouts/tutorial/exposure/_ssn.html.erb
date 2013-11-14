@@ -115,6 +115,39 @@
 			 	<li> Change the view where SSNs are called and rendered to the user so that the "last_four" method is called instead</li>
 				<li> For new user's who are registering, we create an initialization specific to their account</li>
 			  </p>	
+			  <pre class="ruby">
+				 # SEED DATA
+				 work_info.each do |wi|
+				  list = [:user_id, :SSN]
+				  info = WorkInfo.new(wi.reject {|k| list.include?(k)})
+				  info.user_id = wi[:user_id]
+				  info.build_key_management({:user_id => wi[:user_id], :iv => SecureRandom.hex(32) })
+				  info.SSN = wi[:SSN]
+				  info.save
+				end
+			  </pre>
+			  <pre class="ruby">
+				# SEPARATE PROD AND DEV KEYS (config/initializers/key.rb)
+				if Rails.env.production?
+				  # Specify env variable/location/etc. to retrieve key from
+				elsif Rails.env.development?
+				  KEY = "123456789101112123456789101112123456789101112"
+				end
+			  </pre>	
+			 <pre class="ruby">
+				# CHANGE VIEW TO CALL LAST FOUR METHOD (app/views/work_info/index.html.erb)
+				<%= CGI.unescapeHTML("&lt;td class=&quot;ssn&quot;&gt;&lt;%= @user.work_info.last_four %&gt;&lt;/td&gt;") %>
+			  </pre>
+			 <pre class="ruby">
+			def build_benefits_data
+			   build_retirement(POPULATE_RETIREMENTS.shuffle.first)
+			   build_paid_time_off(POPULATE_PAID_TIME_OFF.shuffle.first).schedule.build(POPULATE_SCHEDULE.shuffle.first)
+			   build_work_info(POPULATE_WORK_INFO.shuffle.first)
+			   # Uncomment below line to use encrypted SSN(s)
+			   work_info.build_key_management(:iv => SecureRandom.hex(32))
+			   performance.build(POPULATE_PERFORMANCE.shuffle.first)
+			end
+			 </pre>	
             </div>
           </div>
         </div>
