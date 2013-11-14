@@ -52,7 +52,6 @@ Railsgoat::Application.routes.draw do
       get "ssl_tls"
       get "redirects"
       get "guard"
-      get "info_disclosure"
       get "mass_assignment"
       get "constantize"
       get "gauntlt"

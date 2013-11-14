@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'sensitive information disclosure' do
+feature 'sensitive data exposure' do
   before do
     UserFixture.reset_all_users
     @normal_user = UserFixture.normal_user
