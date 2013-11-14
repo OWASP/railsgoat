@@ -66,13 +66,13 @@
         </p>  
         <p><b>Failure to Restrict URL Access - SOLUTION</b></p>
         <p class="desc">
-        The code is already available to restrict access to the admin controller by role within app/controllers/application_controller.rb. The additional condition that if the admin_id param equals 1 means the filter can be circumvented by an attacker. The way to fix this issue is to enforce the filter on all access requests to the admin dashboard as follows:
+        The code is already available to restrict access to the admin controller by role within app/controllers/application_controller.rb. The additional condition that if the admin_id param equals 1 means the filter can be circumvented by an attacker. The way to fix this issue is to remove the conditional and enforce the filter on all access requests to the admin dashboard as follows:
         </p>
         <pre class="ruby">
         <%= %q{
         class AdminController < ApplicationController
         
-          before_filter :administrative, :if => :admin_param
+          before_filter :administrative
         } %>
         </pre>
         </div>
