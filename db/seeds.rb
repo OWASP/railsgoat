@@ -33,8 +33,8 @@ users = [
      {
        :email => "mike@metacorp.com", 
        :admin => false, 
-       :password => "motorcross1445", 
-       :password_confirmation => "motorcross1445", 
+       :password => "motocross1445", 
+       :password_confirmation => "motocross1445", 
        :first_name => "Mike", 
        :last_name => "McCabe", 
        :user_id =>4 
@@ -289,12 +289,6 @@ schedule.each do |event|
   sched.save
 end
 
-work_info.each do |wi|
-  info = WorkInfo.new(wi.reject {|k| k == :user_id})
-  info.user_id = wi[:user_id]
-  info.save
-end
-
 performance.each do |perf|
   p = Performance.new(perf.reject {|k| k == :user_id})
   p.user_id = perf[:user_id]
@@ -306,3 +300,21 @@ messages.each do |message|
   m.creator_id = message[:creator_id]
   m.save
 end
+
+work_info.each do |wi|
+  info = WorkInfo.new(wi.reject {|k| k == :user_id } )
+  info.user_id = wi[:user_id]
+  info.save
+end
+
+
+=begin
+work_info.each do |wi|
+  list = [:user_id, :SSN]
+  info = WorkInfo.new(wi.reject {|k| list.include?(k)})
+  info.user_id = wi[:user_id]
+  info.build_key_management({:user_id => wi[:user_id], :iv => SecureRandom.hex(32) })
+  info.SSN = wi[:SSN]
+  info.save
+end
+=end

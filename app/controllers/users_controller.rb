@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     else
       @user = user
       flash[:error] = user.errors.full_messages.to_sentence
-      redirect_to :sign_up
+      redirect_to :signup
     end
   end
 

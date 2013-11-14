@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
   def administrative
     if not is_admin?
-     reset_session
+     #reset_session
      redirect_to root_url
    end
   end

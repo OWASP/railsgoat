@@ -5,7 +5,13 @@ class User < ActiveRecord::Base
                        :length => {:within => 6..40},
                        :on => :create,
                        :if => :password#,
-                       #:format => {:with => /\A.*(?=.{10,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\@\#\$\%\^\&\+\=]).*\z/}
+=begin                       :format => {:with => /\A.*(?=.{10,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\@\#\$\%\^\&\+\=]).*\z/}
+  validates :password, :presence => true,
+                        :confirmation => true,
+                        :on => :update,
+                        :if => :password,
+                        :format => {:with => /\A.*(?=.{10,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\@\#\$\%\^\&\+\=]).*\z/}
+=end  
   validates_presence_of :email
   validates_uniqueness_of :email
   validates_format_of :email, :with => /.+@.+\..+/i
@@ -24,6 +30,8 @@ class User < ActiveRecord::Base
     build_retirement(POPULATE_RETIREMENTS.shuffle.first)
     build_paid_time_off(POPULATE_PAID_TIME_OFF.shuffle.first).schedule.build(POPULATE_SCHEDULE.shuffle.first)
     build_work_info(POPULATE_WORK_INFO.shuffle.first)
+    # Uncomment below line to use encrypted SSN(s)
+    #work_info.build_key_management(:iv => SecureRandom.hex(32))
     performance.build(POPULATE_PERFORMANCE.shuffle.first)
   end
   
@@ -36,17 +44,28 @@ private
   def self.authenticate(email, password)
        auth = nil
        user = find_by_email(email)
-       if user
+        raise "#{email} doesn't exist!" if !(user)
          if user.password == Digest::MD5.hexdigest(password)
            auth = user
          else
           raise "Incorrect Password!"
          end 
-       else
-          raise "#{email} doesn't exist!"
-       end
        return auth
   end 
+    
+=begin
+  # More secure version, still lacking a decent hashing routine, this is for timing attack prevention
+  def self.authenticate(email, password)
+       user = find_by_email(email) || User.new(:password => "")
+        if Rack::Utils.secure_compare(user.password, Digest::MD5.hexdigest(password))
+          return user
+        else
+          raise "Incorrect username or password"
+        end 
+   end
+=end  
+
+
     
   def assign_user_id
      unless @skip_user_id_assign.present? || self.user_id.present?
