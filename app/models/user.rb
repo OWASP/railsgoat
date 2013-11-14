@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
     build_retirement(POPULATE_RETIREMENTS.shuffle.first)
     build_paid_time_off(POPULATE_PAID_TIME_OFF.shuffle.first).schedule.build(POPULATE_SCHEDULE.shuffle.first)
     build_work_info(POPULATE_WORK_INFO.shuffle.first)
+    # Uncomment below line to use encrypted SSN(s)
+    #work_info.build_key_management(:iv => SecureRandom.hex(32))
     performance.build(POPULATE_PERFORMANCE.shuffle.first)
   end
   
