@@ -48,7 +48,7 @@ class AdminController < ApplicationController
   private
 
   def admin_param
-    params[:id] == '1'
+    params[:admin_id] != '1'
   end
   
 end
