@@ -15,20 +15,19 @@ def verifying_fixed?
 
     ******************************************************************************
     You are running the RailsGoat Capybara Specs in Training mode. These specs
-    are supposed to fail, indicating vulnerabilities exist. They contain
-    spoilers, so do not read the code in spec/vulnerabilities if your goal is to
-      learn more about patching the vulnerabilities. You should fix the
-      vulnerabilities in the application in order to get these specs to pass**.
-        You can use them to measure your progress.
+    are supposed to fail, indicating vulnerabilities exist. They contain spoilers,
+    so do not read the code in spec/vulnerabilities if your goal is to learn more
+    about patching the vulnerabilities. You should fix the vulnerabilities in the
+    application in order to get these specs to pass**. You can use them to measure
+    your progress.
 
-        These same specs will pass if you set the #{maintainer_env_name} ENV
-      variable.
+    These same specs will pass if you set the #{maintainer_env_name} ENV variable.
 
-        **NOTE: The RSpec pending feature is used to toggle the outcome of these
-      specs between Training mode and RailsGoat Maintainer mode, so when the
-      vulnerabilities are removed, these specs actually won't 'pass' but go into
-  a 'pending' state.
-******************************************************************************
+    **NOTE: The RSpec pending feature is used to toggle the outcome of these specs
+    between Training mode and RailsGoat Maintainer mode. When the vulnerabilities
+    are removed, the specs will not "pass," but rather go into a "pending" state.
+    ******************************************************************************
+
     NOTICE
     $displayed_spec_notice = true
   end
