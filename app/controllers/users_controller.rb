@@ -1,4 +1,3 @@
-require 
 class UsersController < ApplicationController
 
   skip_before_filter :has_info
