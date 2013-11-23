@@ -1,7 +1,19 @@
+require 
 class UsersController < ApplicationController
 
   skip_before_filter :has_info
-  skip_before_filter :authenticated, :only => [:new, :create]
+  skip_before_filter :authenticated, :only => [:new, :create, :forgot_password]
+
+  def forgot_password
+    @user = User.find_by_email(params[:email]) unless params[:email].nil?
+    
+    if @user && password_reset_mailer_setup(@user)
+      flash[:success] = "Password reset email sent to #{params[:email]}"
+      redirect_to :login
+    else
+      flash[:error] = "There was an issue sending password reset email to #{params[:email]}".html_safe unless params[:email].nil?
+    end
+  end
 
   def new
     @user = User.new
@@ -50,6 +62,18 @@ class UsersController < ApplicationController
       flash[:error] = "Could not update user!"
       redirect_to user_account_settings_path(:user_id => current_user.user_id)
     end
+  end
+
+  private
+
+  def password_reset_mailer_setup(user)
+    token = generate_token(user.id, user.email)
+    #reset_password_mailer(user.email, token)
+  end
+
+  def generate_token(id, email)
+    hash = Digest::MD5.hexdigest(email)
+    "#{id}~#{hash}"
   end
 
 end

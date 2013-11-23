@@ -3,6 +3,7 @@ Railsgoat::Application.routes.draw do
   get "login" => "sessions#new"
   get "signup" => "users#new"
   get "logout" => "sessions#destroy"
+  match "forgot_password" => "users#forgot_password"
 
   resources :sessions do
 
