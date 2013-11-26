@@ -3,7 +3,7 @@ ActionMailer::Base.smtp_settings = {
   :port              => 2525,
   :authentication    => :plain,
   :user_name         => ENV['MAILTRAP_USERNAME'],
-  :password          => ENV['MAILTRAP_PASSWORD'],
+  :password          => ENV['MAILTRAP_PASSWORD']
 }
 
 ActionMailer::Base.delivery_method = :smtp

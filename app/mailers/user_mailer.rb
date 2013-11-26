@@ -1,3 +1,8 @@
 class UserMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "noreply@railsgoat.dev"
+
+  def forgot_password(email, token)
+    @token = token
+    mail(to: "#{email}", subject: "Reset your RailsGoat password")
+  end
 end
