@@ -10,7 +10,6 @@ gem 'rack', '1.4.0'
 gem 'sqlite3'
 gem 'foreman'
 
-
 group :development do
   gem 'brakeman'
   gem 'bundler-audit'
