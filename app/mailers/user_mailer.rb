@@ -3,6 +3,8 @@ class UserMailer < ActionMailer::Base
 
   def forgot_password(email, token)
     @token = token
-    mail(to: "#{email}", subject: "Reset your RailsGoat password")
+    @url = url_for(controller: "password_resets", action: "reset_password", only_path: false) + "?token=#{token}"
+
+    mail(to: "#{email}", subject: "Reset your MetaCorp password")
   end
 end
