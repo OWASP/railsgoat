@@ -72,7 +72,7 @@ class UsersController < ApplicationController
 
   def generate_token(id, email)
     hash = Digest::MD5.hexdigest(email)
-    "#{id}~#{hash}"
+    "#{id}-#{hash}"
   end
 
 end
