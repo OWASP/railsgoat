@@ -6,7 +6,6 @@ class PasswordResetsController < ApplicationController
 
     if token && is_valid?(token)
       flash[:success] = "Password reset token confirmed! Please create a new password."
-      #redirect_to :reset_password
     else
       flash[:error] = "Invalid password reset token. Please try again."
       redirect_to :login
