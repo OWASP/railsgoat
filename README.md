@@ -69,6 +69,27 @@ $ rake training
 
 NOTE: As vulnerabilities are fixed in the application, these specs will not change to `passing`, but to `pending`.
 
+## Processing Email
+
+In order for RailsGoat to effectively process email, you will first need to run MailCatcher, an SMTP server that will intercept email messages and display them in a web interface.
+
+To start an instance of MailCatcher, simply run:
+
+```
+$ mailcatcher
+```
+
+If successful, you should see the following output:
+
+```
+Starting MailCatcher
+==> smtp://127.0.0.1:1025
+==> http://127.0.0.1:1080
+*** MailCatcher runs as a daemon by default. Go to the web interface to quit.
+```
+
+Alternatively, you can run MailCatcher in the foreground by running `mailcatcher -f` in your terminal.
+
 ## Contributing
 
 As changes are made to the application, the Capybara RSpecs can be used to verify that the vulnerabilities in the application are still intact. To use them in this way, and have them `pass` instead of `fail`, set the `RAILSGOAT_MAINTAINER` environment variable.

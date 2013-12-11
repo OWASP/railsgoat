@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def forgot_password
     @user = User.find_by_email(params[:email]) unless params[:email].nil?
-    
+
     if @user && password_reset_mailer_setup(@user)
       flash[:success] = "Password reset email sent to #{params[:email]}"
       redirect_to :login
@@ -67,12 +67,12 @@ class UsersController < ApplicationController
 
   def password_reset_mailer_setup(user)
     token = generate_token(user.id, user.email)
-    #reset_password_mailer(user.email, token)
+    UserMailer.forgot_password(user.email, token).deliver
   end
 
   def generate_token(id, email)
     hash = Digest::MD5.hexdigest(email)
-    "#{id}~#{hash}"
+    "#{id}-#{hash}"
   end
 
 end
