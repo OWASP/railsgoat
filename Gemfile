@@ -10,7 +10,6 @@ gem 'rack', '1.4.0'
 gem 'sqlite3'
 gem 'foreman'
 
-
 group :development do
   gem 'brakeman'
   gem 'bundler-audit'
@@ -50,7 +49,6 @@ group :assets do
   gem 'uglifier'
 end
 
-
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
@@ -79,3 +77,5 @@ gem 'aruba'
 gem 'execjs'
 gem 'therubyracer'
 
+# Add SMTP server support using MailCatcher
+gem 'mailcatcher'
