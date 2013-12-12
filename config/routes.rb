@@ -3,8 +3,10 @@ Railsgoat::Application.routes.draw do
   get "login" => "sessions#new"
   get "signup" => "users#new"
   get "logout" => "sessions#destroy"
-  match "forgot_password" => "users#forgot_password"
-  match "password_resets" => "password_resets#reset_password"
+  match "forgot_password" => "password_resets#forgot_password"
+  get "password_resets" => "password_resets#confirm_token"
+  post "password_resets" => "password_resets#reset_password"
+
 
   resources :sessions do
   end
