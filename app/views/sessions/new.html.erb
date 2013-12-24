@@ -15,14 +15,14 @@
 
           <div class="content">
             <%= hidden_field_tag :url, @url%>
-            <%= label_tag "Email Address" %>
-            <%= text_field_tag :email, params[:email], {:class => "input input-block-level"} %>
-            <%= label_tag :password, nil %>
-            <%= password_field_tag :password, nil, {:class => "input input-block-level"}%>
+            <%= text_field_tag :email, params[:email], {:class => "input input-block-level", :placeholder=>"Email"} %>
+            <%= password_field_tag :password, nil, {:class => "input input-block-level", :placeholder=>"Password"}%>
           </div>
 
           <div class="actions">
-            <%= link_to "Forgot Password", forgot_password_path, {:class => "btn btn-danger btn-large"} %>
+	 		<span class="checkbox-wrapper">
+            	<%= link_to "Forgot Password", forgot_password_path, {:class=>"pull-left"}%>
+			</span>	
             <%= submit_tag "Login", {:class => "btn btn-info btn-large pull-right"} %>
           </div>
 
