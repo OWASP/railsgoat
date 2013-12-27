@@ -94,14 +94,7 @@ Alternatively, you can run MailCatcher in the foreground by running `mailcatcher
 
 As changes are made to the application, the Capybara RSpecs can be used to verify that the vulnerabilities in the application are still intact. To use them in this way, and have them `pass` instead of `fail`, set the `RAILSGOAT_MAINTAINER` environment variable.
 
-Conversion to the OWASP Top 10, 2013 is under way. You can view progress within the `top-10-2013` branch.
-
-```
-$ git fetch origin
-$ git checkout top-10-2013
-```
-
-Then proceed with browsing the site as normal :thumbsup:
+Conversion to the OWASP Top Ten 2013 completed in November, 2013.
 
 # License
 
