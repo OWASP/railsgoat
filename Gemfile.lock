@@ -120,7 +120,7 @@ GEM
     guard-rspec (4.2.0)
       guard (>= 2.1.1)
       rspec (>= 2.14, < 4.0)
-    guard-shell (0.5.2)
+    guard-shell (0.6.0)
       guard (>= 1.1.0)
     haml (4.0.4)
       tilt
