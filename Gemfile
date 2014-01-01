@@ -27,12 +27,12 @@ end
 
 gem 'gauntlt'
 
-gem 'simplecov', '0.8.0.pre2', :require => false, :group => :test
+gem 'simplecov', :require => false, :group => :test
 
 group :development, :test do
   gem 'launchy'
   gem 'capybara'
-  gem 'database_cleaner', '< 1.1.0'
+  gem 'database_cleaner'
   gem 'poltergeist'
   gem 'rspec-rails'
 end
