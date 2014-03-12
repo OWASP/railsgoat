@@ -5,9 +5,17 @@ class Api::V1::UsersController < ApplicationController
    before_filter :extrapolate_user
   
      respond_to :json
-     
+    
      def index
-      respond_with @user
+       # We removed the .as_json code from the model, just seemed like extra work.
+       # dunno, maybe useful at a later time?
+       #respond_with @user.admin ? User.all.as_json : @user.as_json
+       
+       respond_with @user.admin ? User.all : @user
+     end
+     
+     def show
+       respond_with @user.as_json
      end
      
 private

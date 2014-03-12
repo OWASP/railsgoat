@@ -37,6 +37,13 @@ class User < ActiveRecord::Base
   def full_name
     "#{self.first_name} #{self.last_name}"
   end
+  
+=begin
+  # Instead of the entire user object being returned, we can use this to filter.
+  def as_json
+    super(only: [:user_id, :email, :first_name, :last_name])
+  end
+=end
 
 private
 
