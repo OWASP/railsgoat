@@ -25,6 +25,11 @@
 			</span>	
             <%= submit_tag "Login", {:class => "btn btn-info btn-large pull-right"} %>
           </div>
+		  
+		  <div class="field">
+		    <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+		    <%= label_tag :remember_me %>
+		  </div>
 
           <div class="clearfix"></div>
           <% end %>
