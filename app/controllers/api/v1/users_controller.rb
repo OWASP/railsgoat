@@ -43,6 +43,8 @@ private
       hash == digest 
      end
      
+     # We had some issues with the token and url encoding...
+     # this is an attempt to normalize the data.
      def unescape_token(token="")
        @clean_token = CGI::unescape(token)
      end

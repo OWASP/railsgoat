@@ -58,6 +58,7 @@ Railsgoat::Application.routes.draw do
       get "mass_assignment"
       get "constantize"
       get "gauntlt"
+      get "logic_flaws"
     end
   end
 
