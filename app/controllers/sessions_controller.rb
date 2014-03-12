@@ -30,6 +30,7 @@ class SessionsController < ApplicationController
   end
   
   def destroy
+    cookies.delete(:auth_token)
     reset_session
     redirect_to root_path
   end
