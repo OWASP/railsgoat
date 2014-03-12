@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user
-    @current_user ||= User.find_by_auth_token!(cookies[:auth_token].to_s)
+    @current_user ||= User.find_by_auth_token(cookies[:auth_token].to_s)
   end
 
   def authenticated
