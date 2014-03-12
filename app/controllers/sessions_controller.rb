@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
       end
       
       if user
-        session[:user_id] = user.user_id if User.where(:user_id => user.user_id).exists?
+        cookies.permanent[:auth_token = user.auth_token ] if User.where(:user_id => user.user_id).exists?
         redirect_to path
       else
         # Removed this code, just doesn't seem specific enough!
