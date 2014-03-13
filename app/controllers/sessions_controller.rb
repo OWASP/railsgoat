@@ -19,7 +19,11 @@ class SessionsController < ApplicationController
       end
       
       if user
-        session[:user_id] = user.user_id if User.where(:user_id => user.user_id).exists?
+        if params[:remember_me]
+        cookies.permanent[:auth_token] = user.auth_token if User.where(:user_id => user.user_id).exists?
+        else
+        cookies[:auth_token] = user.auth_token if User.where(:user_id => user.user_id).exists?
+        end
         redirect_to path
       else
         # Removed this code, just doesn't seem specific enough!
@@ -30,6 +34,7 @@ class SessionsController < ApplicationController
   end
   
   def destroy
+    cookies.delete(:auth_token)
     reset_session
     redirect_to root_path
   end
