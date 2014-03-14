@@ -1,4 +1,7 @@
+require 'encryption'
+
 class User < ActiveRecord::Base
+
   attr_accessible :email, :admin, :first_name, :last_name, :user_id, :password, :password_confirmation
   validates :password, :presence => true,
                        :confirmation => true,
@@ -87,42 +90,9 @@ private
     end
   end
   
-  # Added a re-usable encryption routine, shouldn't be an issue!
-  def encrypt_sensitive_value(val="")
-     aes = OpenSSL::Cipher::Cipher.new(cipher_type)
-     aes.encrypt
-     aes.key = key
-     aes.iv = iv if iv != nil
-     #self.encrypted_ssn = aes.update(self.SSN) + aes.final
-     #self.SSN = nil
-  end
-  
-  def decrypt_ssn
-     aes = OpenSSL::Cipher::Cipher.new(cipher_type)
-     aes.decrypt
-     aes.key = key
-     aes.iv = iv if iv != nil
-     #aes.update(self.encrypted_ssn) + aes.final
-  end
-  
-  # Should be able to just re-use the same key we already have!
-  def key
-    raise "Key Missing" if !(KEY)
-    KEY
-  end
-  
-  def iv
-    raise "No IV for this User" if !(self.key_management.iv)
-    #self.key_management.iv
-  end
-  
-  def cipher_type
-    'aes-256-cbc'
-  end
-  
   def generate_token(column)
     begin
-      #self[column] = 
+      self[column] = Encryption.encrypt_sensitive_value(self.user_id)
     end while User.exists?(column => self[column])
   end
 
