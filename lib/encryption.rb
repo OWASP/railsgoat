@@ -1,3 +1,5 @@
+require './config/initializers/key'
+
 module Encryption
  
   # Added a re-usable encryption routine, shouldn't be an issue!
