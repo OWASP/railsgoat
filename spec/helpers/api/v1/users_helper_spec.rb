@@ -1,4 +1,4 @@
-require 'spec_helper'
+=begin require 'spec_helper'
 
 # Specs in this file have access to a helper object that includes
 # the Api::V1::UsersHelper. For example:
@@ -13,3 +13,4 @@ require 'spec_helper'
 describe Api::V1::UsersHelper do
   pending "add some examples to (or delete) #{__FILE__}"
 end
+=end
