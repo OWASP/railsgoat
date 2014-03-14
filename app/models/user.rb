@@ -1,4 +1,7 @@
+require 'encryption'
+
 class User < ActiveRecord::Base
+
   attr_accessible :email, :admin, :first_name, :last_name, :user_id, :password, :password_confirmation
   validates :password, :presence => true,
                        :confirmation => true,
@@ -23,7 +26,7 @@ class User < ActiveRecord::Base
   has_one :work_info, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
   has_many :performance, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
   has_many :messages, :foreign_key => :receiver_id, :primary_key => :user_id, :dependent => :destroy
-
+  before_create { generate_token(:auth_token) }
 
   def build_benefits_data
     build_retirement(POPULATE_RETIREMENTS.shuffle.first)
@@ -71,8 +74,6 @@ private
    end
 =end  
 
-
-    
   def assign_user_id
      unless @skip_user_id_assign.present? || self.user_id.present?
       user = User.order("user_id").last
@@ -87,6 +88,12 @@ private
         self.password = Digest::MD5.hexdigest(password)
       end
     end
+  end
+  
+  def generate_token(column)
+    begin
+      self[column] = Encryption.encrypt_sensitive_value(self.user_id)
+    end while User.exists?(column => self[column])
   end
 
 end
