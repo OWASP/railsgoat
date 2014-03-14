@@ -83,7 +83,8 @@ class TutorialsController < ApplicationController
   def guard
   end
   
- 
+  def logic_flaws
+  end
   
   def mass_assignment
   end

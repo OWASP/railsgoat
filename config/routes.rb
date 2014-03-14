@@ -33,7 +33,7 @@ Railsgoat::Application.routes.draw do
 
     resources :messages do
     end
-
+  
   end
 
   get "download" => "benefit_forms#download"
@@ -58,6 +58,7 @@ Railsgoat::Application.routes.draw do
       get "mass_assignment"
       get "constantize"
       get "gauntlt"
+      get "logic_flaws"
     end
   end
 
@@ -81,6 +82,12 @@ Railsgoat::Application.routes.draw do
       get "home"
     end
   end
+  
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+        resources :users
+    end
+   end
 
 
   root :to => "sessions#new"
