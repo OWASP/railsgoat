@@ -22,7 +22,8 @@ class SessionsController < ApplicationController
         if params[:remember_me]
         cookies.permanent[:auth_token] = user.auth_token if User.where(:user_id => user.user_id).exists?
         else
-        cookies[:auth_token] = user.auth_token if User.where(:user_id => user.user_id).exists?
+          session[:user_id] = user.user_id if User.where(:user_id => user.user_id).exists?
+        #cookies[:auth_token] = user.auth_token if User.where(:user_id => user.user_id).exists?
         end
         redirect_to path
       else
