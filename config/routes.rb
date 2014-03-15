@@ -33,6 +33,9 @@ Railsgoat::Application.routes.draw do
 
     resources :messages do
     end
+    
+    resources :pay do
+    end
   
   end
 
