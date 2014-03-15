@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   has_one :work_info, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
   has_many :performance, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
   has_many :messages, :foreign_key => :receiver_id, :primary_key => :user_id, :dependent => :destroy
+  has_many :pay, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
   before_create { generate_token(:auth_token) }
 
   def build_benefits_data
