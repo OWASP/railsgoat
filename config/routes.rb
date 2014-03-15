@@ -35,6 +35,9 @@ Railsgoat::Application.routes.draw do
     end
     
     resources :pay do
+      collection do
+        post "update_dd_info"
+      end
     end
   
   end
