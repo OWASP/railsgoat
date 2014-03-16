@@ -82,13 +82,18 @@
 			    <table class="table table-condensed table-striped table-hover table-bordered pull-left" id="data_table">    
 			      <thead>
 			        <tr>
-			          <th style="width:25%">
-			            Bank Account Number
+			          <th style="width:30%">
+			            Encrypted Bank Account Number
+						<%=link_to "#", { :style => "color:#AA6F93", :id =>	"encrypted_acct_question"} do %>
+						<span class="box1">
+								<span aria-hidden="true" class="icon-question"></span>
+						</span>
+						<% end %>
 			          </th>
 			          <th style="width:25%">
 			            Bank Routing Number
 			          </th>
-			          <th style="width:25%">
+			          <th style="width:20%">
 			            Percentage of Deposit
 			          </th>
 			          <th style="width:25%">
@@ -266,6 +271,14 @@ $("#dd_form_btn").click(function(event) {
  	  }
  	});
  });
+
+$("#encrypted_acct_question").click(function(event) {
+	event.preventDefault();
+	alert("For your safety your account number is stored encrypted as well as presented to you \nin an encrypted form.\n\n" +
+		   "For your convenience, you can decrypt your bank account number at any time using our\n" +
+		   "conveniently located decryption function."
+		)
+});
 
 /*
 	Make the sidebar element "Pay" active.
