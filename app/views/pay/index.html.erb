@@ -30,7 +30,7 @@
               <div class="widget">
                 <div class="widget-header">
                   <div class="title">
-                    <span class="fs1" aria-hidden="true" data-icon="&#xe14c;"></span> Direct Deposit
+                    <span class="fs1" aria-hidden="true" data-icon="&#xe08e;"></span> Direct Deposit
                   </div>
                 </div>
                 <div class="widget-body">
@@ -109,6 +109,35 @@
 	 </div
 	  <!-- End Dynamic Table ColSpan Table -->
 		<!-- ###################-->
+		
+		<!-- Begin Row-Fluid for Decryption Input -->
+		<div class="row-fluid">
+		   	<div class="span9">
+              <div class="widget">
+                <div class="widget-header">
+                  <div class="title">
+                    <span class="fs1" aria-hidden="true" data-icon="&#xe11b;"></span> Decrypt Bank Account Number
+                  </div>
+                </div>
+                <div class="widget-body">
+					<div class="row-fluid">
+						<%= form_tag "#", {:class => "form-horizontal", :id => "decrypt_form" } do %>
+							<!-- Begin inputs-->
+							
+								<div class="input-append">
+								  <%= text_field_tag :value_to_decrypt, params[:value_to_decrypt], {:placeholder => "Bank Account Number"} %>	
+								  <span class="add-on">#</span>
+								</div>
+						
+							<!-- End Inputs -->
+							<%= submit_tag "Submit", {:id => "decrypt_btn", :style => "margin-left: 10px;", :class => "btn btn-medium btn-primary"} %>
+						<% end %>	
+					</div>	
+                </div>
+              </div>
+            </div>
+		</div>
+		<!-- Row-Fluid for Decryption Input -->
 	</div>
 </div>
 
@@ -117,7 +146,7 @@
 <script type="text/javascript">
 
 function buildDeleteLink(dd_id){
-	var link = '<a href="/users/' + '<%= current_user.id %>' + '/pay/'+ dd_id + '" data-method="delete" rel="nofollow">' +
+	var link = '<a href="/users/' + '<%= current_user.id %>' + '/pay/'+ dd_id + '" data-method="delete" rel="nofollow" class="delete-row">' +
 	                            '<i class="icon-trash">'+
 	                            '</i></a>' 	
 	return link
@@ -162,6 +191,28 @@ $('.delete-row').click(function () {
           $(this).remove();
         });
     return false;
+});
+
+function decryptShow(response){
+	var msg = jQuery.parseJSON(JSON.stringify(response));
+	alert("Decrypted Account Number: " + msg.account_num);
+};
+
+$("#decrypt_btn").click(function(event){
+	var valuesToSubmit = $("#decrypt_form").serialize();
+	event.preventDefault();
+	$.ajax({
+      url: <%= sanitize(decrypted_bank_acct_num_user_pay_index_path(:format => "json", :user_id => current_user.user_id).inspect) %>,
+ 	  data: valuesToSubmit,
+ 	  type: "POST",
+ 	  success: function(response) {
+ 		$('#success').show(500).delay(1500).fadeOut();
+		decryptShow(response);
+ 	  },
+ 	  error: function(event) {
+ 		$('#failure').show(500).delay(1500).fadeOut();
+ 	  }
+ 	});
 });
 
 $("#dd_form_btn").click(function(event) {
