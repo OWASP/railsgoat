@@ -63,149 +63,126 @@
             </div>
 		</div>
 		<!-- End  Row-Fluid for Inputs-->
-		<!-- Begin Table Stuff -->
-		<div class="row-fluid">
-            <div class="span9">
-              <div class="widget no-margin">
-                <div class="widget-header">
-                  <div class="title">
-                    <span class="fs1" aria-hidden="true" data-icon="&#xe14a;"></span> Deletable Table Row
-                  </div>
-                </div>
-                <div class="widget-body">
-                  <table class="table table-striped table-bordered no-margin">
-                    <thead>
-                      <tr>
-                        <th style="width:25%">
-                          Bank Account Number
-                        </th>
-                        <th style="width:25%">
-                          Bank Routing Number
-                        </th>
-                        <th style="width:25%">
-                         Percentage of Deposit
-                        </th>
-                        <th style="width:25%">
-                          Actions
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td >
-                          1
-                        </td>
-                        <td>
-                          Srinu
-                        </td>
-                        <td class="hidden-phone">
-                          Active
-                        </td>
-                        <td class="hidden-phone">
-                          <a class="delete-row" data-original-title="Delete" href="#">
+		
+		<!-- ###################-->
+		<!-- Begin Dynamic Table ColSpan Table -->
+	  <div class="row-fluid">
+	    <div class="span9">
+	      <div class="widget">
+
+	        <!-- Begin Widget Header-->
+	        <div class="widget-header">
+	          <div class="title">
+	            <span class="fs1" aria-hidden="true" data-icon="&#xe14a;"></span> Accounts
+	          </div>
+	        </div>
+			<!-- End Widget Header-->
+			<div class="widget-body">
+			  <div id="dt_example" class="example_alt_pagination">
+			    <table class="table table-condensed table-striped table-hover table-bordered pull-left" id="data_table">    
+			      <thead>
+			        <tr>
+			          <th style="width:25%">
+			            Bank Account Number
+			          </th>
+			          <th style="width:25%">
+			            Bank Routing Number
+			          </th>
+			          <th style="width:25%">
+			            Percentage of Deposit
+			          </th>
+			          <th style="width:25%">
+			            Action
+			          </th>
+			        </tr>
+			      </thead>
+			      <tbody>
+			        <!--<tr>
+			          <td>
+			            December
+			          </td>
+			          <td>
+			            14.7 %
+			          </td>
+			          <td>
+			            31.1 %
+			          </td>
+			          <td>
+			           	<a class="delete-row" data-original-title="Delete" href="#">
                             <i class="icon-trash">
                             </i>
                           </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          2
-                        </td>
-                        <td>
-                          Baswa
-                        </td>
-                        <td class="hidden-phone">
-                          Active
-                        </td>
-                        <td class="hidden-phone">
-                          <a class="delete-row" data-original-title="Delete" href="#">
-                            <i class="icon-trash">
-                            </i>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          3
-                        </td>
-                        <td>
-                          Prem
-                        </td>
-                        <td class="hidden-phone">
-                          Inactive
-                        </td>
-                        <td class="hidden-phone">
-                          <a class="delete-row" data-original-title="Delete" href="#">
-                            <i class="icon-trash">
-                            </i>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          4
-                        </td>
-                        <td>
-                          Arjun
-                        </td>
-                        <td class="hidden-phone">
-                          Active
-                        </td>
-                        <td class="hidden-phone">
-                          <a class="delete-row" data-original-title="Delete" href="#">
-                            <i class="icon-trash">
-                            </i>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          5
-                        </td>
-                        <td>
-                          Gajju
-                        </td>
-                        <td class="hidden-phone">
-                          Inactive
-                        </td>
-                        <td class="hidden-phone">
-                          <a class="delete-row" data-original-title="Delete" href="#">
-                            <i class="icon-trash">
-                            </i>
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-			<!-- End Table Stuff-->
-		</div>
+			          </td>
+			        </tr>-->
+			      </tbody>
+			    </table>
+			    <div class="clearfix">
+			    </div>
+			</div>
+			</div> <!-- end of widget body-->
+	    </div>
+	  </div>
+	 </div
+	  <!-- End Dynamic Table ColSpan Table -->
+		<!-- ###################-->
 	</div>
 </div>
 
+<%= javascript_include_tag "jquery.dataTables.js" %>
+
 <script type="text/javascript">
+
+function parseDirectDepostInfo(response){
+	var msg = jQuery.parseJSON(JSON.stringify(response));
+	 $.each(msg.user, function(index, val){
+		$('#data_table').dataTable().fnAddData( [
+			 	val.bank_account_num,
+				val.bank_routing_num,
+				val.percent_of_deposit,
+			   "test"
+		] );
+	});
+	
+};
+
+function populateTable() {
+	$('#data_table').dataTable().fnClearTable();
+	$.ajax({
+      url: <%= sanitize(user_pay_path(:format => "json", :user_id => current_user.user_id, :id => current_user.user_id).inspect) %>,
+ 	  type: "GET",
+ 	  success: function(response) {
+ 		parseDirectDepostInfo(response);
+ 	  },
+ 	  error: function(event) {
+ 		$('#failure').show(500).delay(1500).fadeOut();
+ 	  }
+ 	});
+};
+
+function createDataTable(){
+	$('#data_table').dataTable({
+      "sPaginationType": "full_numbers"
+    });	
+};
 
 $('.delete-row').click(function () {
         var conf = confirm('Continue delete?');
         if (conf) $(this).parents('tr').fadeOut(function () {
           $(this).remove();
         });
-          return false;
-        });
-
+    return false;
+});
 
 $("#dd_form_btn").click(function(event) {
      var valuesToSubmit = $("#bank_info_form").serialize();
      event.preventDefault();
      $.ajax({
-       url: <%= sanitize(update_dd_info_user_pay_index_path(:format => "json").inspect) %>,
+      url: <%= sanitize(update_dd_info_user_pay_index_path(:format => "json").inspect) %>,
  	  data: valuesToSubmit,
  	  type: "POST",
  	  success: function(response) {
  		$('#success').show(500).delay(1500).fadeOut();
+		populateTable();
  	  },
  	  error: function(event) {
  		$('#failure').show(500).delay(1500).fadeOut();
@@ -217,6 +194,10 @@ $("#dd_form_btn").click(function(event) {
 		$('li[id="pay"]').addClass('active');
 	};
 	
- $(document).ready(makeActive)
+ $(document).ready(
+	makeActive,
+	createDataTable(),
+	populateTable()
+  )
 
 </script>
