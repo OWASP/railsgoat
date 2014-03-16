@@ -145,6 +145,10 @@
 
 <script type="text/javascript">
 
+/*
+  buildDeleteLink accepts a direct deposit ID and builds a link that enables
+  a user to delete that direct deposit entry
+*/
 function buildDeleteLink(dd_id){
 	var link = '<a href="/users/' + '<%= current_user.id %>' + '/pay/'+ dd_id + '" data-method="delete" rel="nofollow" class="delete-row">' +
 	                            '<i class="icon-trash">'+
@@ -152,6 +156,10 @@ function buildDeleteLink(dd_id){
 	return link
 };
 
+/*
+	parseDirectDepositInfo accepts the response object and parses the JSON response, then
+	populates the direct deposit data table.
+*/
 function parseDirectDepostInfo(response){
 	var msg = jQuery.parseJSON(JSON.stringify(response));
 	 $.each(msg.user, function(index, val){
@@ -165,6 +173,11 @@ function parseDirectDepostInfo(response){
 	
 };
 
+/*
+	populateTable will first clear the existing dd table, then call the appropriate
+	endpoint to retrieve direct deposit entries and finally, provide parseDirectDepositInfo
+	with the response from the endpoint in order to populate the data table.
+*/
 function populateTable() {
 	$('#data_table').dataTable().fnClearTable();
 	$.ajax({
@@ -179,12 +192,19 @@ function populateTable() {
  	});
 };
 
+/*
+	createDataTable initializes the dd table as a datatable
+*/
 function createDataTable(){
 	$('#data_table').dataTable({
       "sPaginationType": "full_numbers"
     });	
 };
 
+/*
+	This function doesn't really work right now but is supposed to offer the user a 
+	"delete confirmation" message
+*/
 $('.delete-row').click(function () {
         var conf = confirm('Continue delete?');
         if (conf) $(this).parents('tr').fadeOut(function () {
@@ -193,11 +213,21 @@ $('.delete-row').click(function () {
     return false;
 });
 
+/*
+	decryptShow parses the json response from the application and then renders
+	a decrypted version of the user's account number
+*/
 function decryptShow(response){
 	var msg = jQuery.parseJSON(JSON.stringify(response));
 	alert("Decrypted Account Number: " + msg.account_num);
 };
 
+/*
+	This function overrides the decrypt buttons (submit button's) native behavior,
+	allowing an ajax call to be made with the decrypt_form's inputs which is decrypted
+	server side with a JSON response containing the decrypted value. The decrypted value is
+	then passed to decryptShow();
+*/
 $("#decrypt_btn").click(function(event){
 	var valuesToSubmit = $("#decrypt_form").serialize();
 	event.preventDefault();
@@ -215,6 +245,11 @@ $("#decrypt_btn").click(function(event){
  	});
 });
 
+/*
+	This function overrides the dd_form_btn's native behavior in order to submit an ajax request
+	that updates the user's direct deposit information. Upon success, the populateTable() function
+	is called in order to update the dataTable on the page to reflect the latest entry.
+*/
 $("#dd_form_btn").click(function(event) {
      var valuesToSubmit = $("#bank_info_form").serialize();
      event.preventDefault();
@@ -232,14 +267,22 @@ $("#dd_form_btn").click(function(event) {
  	});
  });
 
-	function makeActive(){
-		$('li[id="pay"]').addClass('active');
-	};
-	
- $(document).ready(
-	makeActive,
-	createDataTable(),
-	populateTable()
-  )
+/*
+	Make the sidebar element "Pay" active.
+*/
+function makeActive(){
+	$('li[id="pay"]').addClass('active');
+};
+
+/*
+	1) makeActive - Adds the active class to the sidebar element
+	2) createDataTable - Initializes the dataTable as such
+	3) populateTable - populates the newly initialized dataTable
+*/	
+$(document).ready(
+   makeActive,
+   createDataTable(),
+   populateTable()
+ )
 
 </script>
