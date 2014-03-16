@@ -13,7 +13,7 @@ class PayController < ApplicationController
     pay.user_id = current_user.user_id
     msg = true if pay.save! 
     respond_to do |format|
-      format.json {render :json => {:msg => :world} }
+      format.json {render :json => {:msg => msg } }
     end
   end
   
@@ -21,6 +21,16 @@ class PayController < ApplicationController
    respond_to do |format|
      format.json { render :json => {:user => current_user.pay.as_json} }
    end
+  end
+  
+  def destroy
+    pay = Pay.find_by_id(params[:id])
+    if pay.present? and pay.destroy
+      flash[:success] = "Successfully Deleted Entry"
+    else
+      flash[:error] = "Unable to process that request at this time"
+    end
+    redirect_to user_pay_index_path
   end
   
 end

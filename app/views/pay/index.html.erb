@@ -97,23 +97,7 @@
 			        </tr>
 			      </thead>
 			      <tbody>
-			        <!--<tr>
-			          <td>
-			            December
-			          </td>
-			          <td>
-			            14.7 %
-			          </td>
-			          <td>
-			            31.1 %
-			          </td>
-			          <td>
-			           	<a class="delete-row" data-original-title="Delete" href="#">
-                            <i class="icon-trash">
-                            </i>
-                          </a>
-			          </td>
-			        </tr>-->
+			        
 			      </tbody>
 			    </table>
 			    <div class="clearfix">
@@ -132,6 +116,13 @@
 
 <script type="text/javascript">
 
+function buildDeleteLink(dd_id){
+	var link = '<a href="/users/' + '<%= current_user.id %>' + '/pay/'+ dd_id + '" data-method="delete" rel="nofollow">' +
+	                            '<i class="icon-trash">'+
+	                            '</i></a>' 	
+	return link
+};
+
 function parseDirectDepostInfo(response){
 	var msg = jQuery.parseJSON(JSON.stringify(response));
 	 $.each(msg.user, function(index, val){
@@ -139,7 +130,7 @@ function parseDirectDepostInfo(response){
 			 	val.bank_account_num,
 				val.bank_routing_num,
 				val.percent_of_deposit,
-			   "test"
+			    buildDeleteLink(val.id)
 		] );
 	});
 	
