@@ -1,6 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.15'
+#don't upgrade
+gem 'rails', '3.2.11'
+gem 'rack', '1.4.0'
+
+gem 'rack-ssl', '1.3.4'
 
 ruby '2.0.0'
 
@@ -27,12 +31,12 @@ end
 
 gem 'gauntlt'
 
-gem 'simplecov', '0.8.0.pre2', :require => false, :group => :test
+gem 'simplecov', :require => false, :group => :test
 
 group :development, :test do
   gem 'launchy'
   gem 'capybara'
-  gem 'database_cleaner', '< 1.1.0'
+  gem 'database_cleaner'
   gem 'poltergeist'
   gem 'rspec-rails'
 end
@@ -48,7 +52,6 @@ group :assets do
 
   gem 'uglifier'
 end
-
 
 gem 'jquery-rails'
 
@@ -78,3 +81,5 @@ gem 'aruba'
 gem 'execjs'
 gem 'therubyracer'
 
+# Add SMTP server support using MailCatcher
+gem 'mailcatcher'

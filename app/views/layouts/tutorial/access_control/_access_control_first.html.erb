@@ -1,7 +1,7 @@
 <div class="widget">
     <div class="widget-header">
       <div class="title">
-        <span class="fs1" aria-hidden="true" data-icon="&#xe092;"></span> Information Disclosure (Sensitive)
+        <span class="fs1" aria-hidden="true" data-icon="&#xe092;"></span> A7 - Missing Function Level Access Control
       </div>
     </div>
     <div class="widget-body">
@@ -16,9 +16,7 @@
           </div>
           <div class="accordion-body in collapse" id="collapseOne" style="height: auto;">
             <div class="accordion-inner">
-             <p class="desc">
-			  The application stores and returns full social security numbers. The clear-text storage of this value within the database falls under <%= link_to "Insecure Cryptographic Storage", crypto_tutorials_path, {:style => "color: rgb(181, 121, 158)"}%>. However, the other failure here is that the application returns this full SSN value within the response for the user's Work Info page. Although a portion of the SSN value is obfuscated using JavaScript (when rendered in the browser), any attacker who has positioned themselves to sniff this traffic or read the user's browser cache can extract the full value from the source. 
-			 </p>
+             Many web applications check URL access rights before rendering protected links and buttons. However, applications need to perform similar access control checks each time these pages are accessed, or attackers will be able to forge URLs to access these hidden pages anyway.
             </div>
           </div>
         </div>
@@ -32,16 +30,23 @@
           </div>
           <div class="accordion-body collapse" id="collapseTwo" style="height: 0px;">
             <div class="accordion-inner">
-               <p>
-				The bug is introduced within app/views/work_info/index.html.erb, seen on line 20:
-			   </p>
-			   <p>
-			   		<pre class="ruby">
-						<%= @bad_code_1 %>
-				 	</pre>
-				
-				The value, stored unencrypted, is called directly from the database. (line 20)
-			   </p>	
+              <p class="desc">
+        Rails provides the ability to apply before_filter(s) which run prior to rendering content to the user. This is helpful when restricting access to content based on the user's role. These filters can be skipped on certain actions or controllers and entirely if certain conditions are met. In this case, the before_filter is being skipped if the admin_id param is equal to 1.
+        </p>
+        <pre class="ruby">
+        <%= %q{
+        class AdminController < ApplicationController
+        
+          before_filter :administrative, :if => :admin_param
+
+          ...
+
+          def admin_param
+            params[:id] == '1'
+          end
+        } %>
+        </pre>   
+   
             </div>
           </div>
         </div>
@@ -55,29 +60,25 @@
           </div>
           <div class="accordion-body collapse" id="collapseThree" style="height: 0px;">
             <div class="accordion-inner">
-			 <p>
-              A model method to return only the last four digits already exists. The following code was taken from the WorkInfo model - app/models/work_info.rb:
-			 </p>
-			 <p class="desc">
-				<pre class="ruby">
-					<%= @good_code_1%>
-			    </pre>
-			</p>
-			<p class="desc">		
-			  Essentially, this takes the SSN string from the DB, retrieves only the last four characters in the string, and concatenates the last four characters with asterisks. Because this occurs at the model level, the view page never calls the full SSN value and therefore the user's browser never receives the full SSN. The view code would need to change from...
-				<pre class="ruby">
-					<%= @bad_code_2 %>
-			    </pre>
-			    to...
-			    <pre class="ruby">
-					<%= @good_code_2 %>
-				</pre>
-			 </p>	
-			
-            </div>
-          </div>
+              <p><b>Failure to Restrict URL Access - ATTACK</b></p>
+        <p class="desc">
+        Request the following URL: /admin/1/dashboard and have fun :-)
+        </p>  
+        <p><b>Failure to Restrict URL Access - SOLUTION</b></p>
+        <p class="desc">
+        The code is already available to restrict access to the admin controller by role within app/controllers/application_controller.rb. The additional condition that if the admin_id param equals 1 means the filter can be circumvented by an attacker. The way to fix this issue is to remove the conditional and enforce the filter on all access requests to the admin dashboard as follows:
+        </p>
+        <pre class="ruby">
+        <%= %q{
+        class AdminController < ApplicationController
+        
+          before_filter :administrative
+        } %>
+        </pre>
         </div>
-     	<div class="accordion-group">
+        </div>
+        </div>
+      <div class="accordion-group">
           <div class="accordion-heading">
             <a  style="background-color: rgb(181, 121, 158)" href="#collapseFour" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
               <i class="icon-aid icon-white">
@@ -85,14 +86,13 @@
               Hint
             </a>
           </div>
+          </div>
           <div class="accordion-body collapse" id="collapseFour" style="height: 0px;">
             <div class="accordion-inner">
-			 <p>
-              Inspect your work information closely
- 			 </p>
+              I bet there is some admin functionality in here :-)
             </div>
           </div>
-        </div> 
-	 </div>
+        </div>
+  </div>
     </div>
   </div>

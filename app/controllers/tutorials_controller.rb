@@ -15,7 +15,6 @@ class TutorialsController < ApplicationController
   end
   
   def injection
-  
   end
   
   def xss
@@ -62,6 +61,12 @@ class TutorialsController < ApplicationController
   
   def misconfig
   end
+
+  def insecure_components
+  end
+
+  def access_control
+  end
   
   def crypto
   end
@@ -78,53 +83,14 @@ class TutorialsController < ApplicationController
   def guard
   end
   
-  def info_disclosure
-    @bad_code_1 = 
-    %q{
-    <table class="table table-bordered table-striped">
-            <thead>
-              <tr>
-				<th style="width:16%">Full Name</th>
-                <th style="width:16%">Income</th>
-                <th style="width:16%">Bonuses</th>
-                <th style="width:16%">Years w/ MetaCorp</th>
-                <th style="width:16%">SSN</th>
-				<th style="width:16%">DoB</th>
-              </tr>
-            </thead>
-            <tbody>
-            
-			  <tr>
-                <td><%= "#{@user.first_name} #{@user.last_name}" %></td>
-                <td><%= @user.work_info.income %></td>
-                <td><%= @user.work_info.bonuses %></td>
-                <td><%= @user.work_info.years_worked %></td>
-				<td class="ssn"><%= @user.work_info.SSN %></td>
-				<td><%= @user.work_info.DoB %></td>
-              </tr>
-           
-            </tbody>
-          </table>
-      }
-    
-    @good_code_1 = %q{
-      class WorkInfo < ActiveRecord::Base
-        attr_accessible :DoB, :SSN, :bonuses, :income, :years_worked
-        belongs_to :user
-
-        # We should probably use this
-        def last_four
-          "***-**-" << self.SSN[-4,4]
-        end
-
-      end
-    }  
-    
-  @bad_code_2 = %q{<td class="ssn"><%= @user.work_info.SSN %></td>}
-  @good_code_2 = %q{<td class="ssn"><%= @user.work_info.last_four %></td>}  
+  def logic_flaws
   end
   
   def mass_assignment
+  end
+  
+  def guantlt
+    
   end
   
   def constantize

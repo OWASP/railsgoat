@@ -2,7 +2,7 @@
 	<div class="main-container">
 		<div class="row-fluid">
 		    <div class="span12"> <!-- Begin Span12 -->
-		       <%= render :partial => "layouts/tutorial/info_disclosure/ssn_disclosure"%>
+		      <%= render :partial => "layouts/tutorial/insecure_components/insecure_components_first" %>
 		    </div> <!-- End Span12 -->
 		</div>
 	</div>
@@ -10,8 +10,7 @@
 
 <script type="text/javascript">
 function makeActive(){
-	$('li[id="info_dislosure"]').addClass('active');
-	$('li[id="submenu"]').addClass('active open');
+	$('li[id="insecure_components"]').addClass('active');
 };
 
 $(document).ready(makeActive);

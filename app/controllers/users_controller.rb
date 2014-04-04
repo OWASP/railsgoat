@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   skip_before_filter :has_info
   skip_before_filter :authenticated, :only => [:new, :create]
 
+
   def new
     @user = User.new
   end
@@ -16,7 +17,7 @@ class UsersController < ApplicationController
     else
       @user = user
       flash[:error] = user.errors.full_messages.to_sentence
-      redirect_to :sign_up
+      redirect_to :signup
     end
   end
 

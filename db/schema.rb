@@ -11,9 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131011180207) do
+ActiveRecord::Schema.define(:version => 20140315002730) do
 
   create_table "benefits", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "key_managements", :force => true do |t|
+    t.string   "iv"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -35,6 +42,15 @@ ActiveRecord::Schema.define(:version => 20131011180207) do
     t.integer  "pto_earned"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "pays", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "bank_account_num"
+    t.string   "bank_routing_num"
+    t.integer  "percent_of_deposit"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "performances", :force => true do |t|
@@ -76,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20131011180207) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "auth_token"
   end
 
   create_table "work_infos", :force => true do |t|
@@ -85,8 +102,9 @@ ActiveRecord::Schema.define(:version => 20131011180207) do
     t.integer  "years_worked"
     t.string   "SSN"
     t.date     "DoB"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.binary   "encrypted_ssn"
   end
 
 end
