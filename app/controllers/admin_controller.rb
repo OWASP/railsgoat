@@ -7,11 +7,11 @@ class AdminController < ApplicationController
   end
 
   def analytics
-
     if params[:field].nil?
       fields = "*"
     else
-      fields = params[:field].map {|k,v| k}.join(",")
+      #fields = params[:field].map {|k,v| k }.join(",")
+      fields = params[:field].map {|k,v| Analytics.parse_field(k) }.join(",")
     end
 
     if params[:ip]
