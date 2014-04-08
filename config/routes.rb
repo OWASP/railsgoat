@@ -82,6 +82,7 @@ Railsgoat::Application.routes.draw do
     post "delete_user"
     put "update_user"
     get "get_all_users"
+    get "analytics"
   end
 
   resources :dashboard do
