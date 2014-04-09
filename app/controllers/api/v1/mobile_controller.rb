@@ -16,6 +16,8 @@ class Api::V1::MobileController < ApplicationController
     if params[:class]
       model = params[:class].classify.constantize
       respond_with model.all.to_json
+    else
+      respond_with nil.to_json
     end
   end
 

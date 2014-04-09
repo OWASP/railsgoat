@@ -33,14 +33,14 @@ Railsgoat::Application.routes.draw do
 
     resources :messages do
     end
-    
+
     resources :pay do
       collection do
         post "update_dd_info"
         post "decrypted_bank_acct_num"
       end
     end
-  
+
   end
 
   get "download" => "benefit_forms#download"
@@ -90,10 +90,11 @@ Railsgoat::Application.routes.draw do
       get "home"
     end
   end
-  
+
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
         resources :users
+        resources :mobile
     end
    end
 
