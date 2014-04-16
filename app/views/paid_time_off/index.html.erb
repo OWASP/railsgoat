@@ -124,17 +124,15 @@
 
 
 
-	function makeActive(){
-		$('li[id="pto"]').addClass('active');
-	};
-	
-
-
+function makeActive(){
+	$('li[id="pto"]').addClass('active');
+};
 
 
 $('#calendar').fullCalendar({
-      events: <%= get_pto_schedule_schedule_index_path(:format => "json").inspect.html_safe %>,    
-})
+      events: <%= get_pto_schedule_schedule_index_path(:format => "json").inspect.html_safe %>,  
+});
+
 
 
 //Date picker
@@ -146,7 +144,7 @@ $('.date_picker').daterangepicker({
    drawChart1(),
    drawChart2(),
    resizeTopWidgets(),
-	makeActive()
+   makeActive()
   });
 
 	 google.load("visualization", "1", {
