@@ -4,12 +4,13 @@ RailsGoat is a vulnerable version of the Ruby on Rails Framework. It includes vu
 
 ## Getting Started
 
-Requirements: **Ruby 1.9.3**
+
 
 To begin, install the Ruby Version Manager (RVM):
 
 ```
 $ curl -L https://get.rvm.io | bash -s stable --autolibs=3 --ruby=1.9.3
+$ rvm use 2.0.0@railsgoat --create # https://rvm.io/
 ```
 
 After installing the package, clone this repo:
