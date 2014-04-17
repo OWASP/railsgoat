@@ -6,7 +6,7 @@ gem 'rack', '1.4.0'
 
 gem 'rack-ssl', '1.3.4'
 
-ruby '2.0.0'
+ruby '2.1.1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
