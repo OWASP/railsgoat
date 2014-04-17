@@ -40,7 +40,35 @@ $("pre.ruby").snippet("ruby",{style:"rand01",transparent:true,showNum:true});
     // with a transparent background
     // without showing line numbers.
 
+
+
+$("pre.javascript").snippet("javascript",{style:"rand01",transparent:true,showNum:true});
+    // Finds <pre> elements with the class "js"
+    // and snippet highlights the JAVASCRIPT code within
+    // using a random style from the selection of 39
+    // with a transparent background
+    // without showing line numbers.
+
 };
+
+var rAmp = /&/g,
+     rLt = /</g,
+     rGt = />/g,
+     rApos = /\'/g,
+     rQuot = /\"/g,
+     hChars = /[&<>\"\']/;
+
+function hoganEscape(str) {
+    str = coerceToString(str);
+    return hChars.test(str) ?
+      str
+        .replace(rAmp, '&amp;')
+        .replace(rLt, '&lt;')
+        .replace(rGt, '&gt;')
+        .replace(rApos, '&#39;')
+        .replace(rQuot, '&quot;') :
+      str;
+  }
 
 $(document).ready(function(){
 	rubyCodeFormat()
