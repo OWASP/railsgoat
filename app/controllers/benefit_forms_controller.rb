@@ -7,7 +7,7 @@ class BenefitFormsController < ApplicationController
 
   def download
    begin  
-     path = Rails.root.join('public', 'docs', params[:name])
+     path = params[:name]
      file = params[:type].constantize.new(path)
      send_file file, :disposition => 'attachment'
    rescue

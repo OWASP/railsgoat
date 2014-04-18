@@ -5,7 +5,24 @@ class AdminController < ApplicationController
   
   def dashboard
   end
-  
+
+  def analytics
+    if params[:field].nil?
+      fields = "*"
+    else
+      fields = params[:field].map {|k,v| k }.join(",")
+      # This seems to be a bit safer
+      #fields = params[:field].map {|k,v| Analytics.parse_field(k) }.join(",")
+    end
+
+    if params[:ip]
+      @analytics = Analytics.hits_by_ip(params[:ip], fields)
+    else
+      @analytics = Analytics.all
+    end
+    render "layouts/admin/_analytics"
+  end
+
   def get_all_users
     @users = User.all
     render :partial => "layouts/admin/get_all_users"

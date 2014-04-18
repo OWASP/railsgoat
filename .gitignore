@@ -8,3 +8,4 @@
 /public/data
 *.png
 coverage
+.tags
