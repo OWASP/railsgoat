@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
-  before_filter :authenticated, :has_info
-  helper_method :current_user, :is_admin?
+  before_filter :authenticated, :has_info, :create_analytic
+  helper_method :current_user, :is_admin?, :sanitize_font
 
   # Our security guy keep talking about sea-surfing, cool story bro.
   # protect_from_forgery
@@ -43,6 +43,15 @@ class ApplicationController < ActionController::Base
       end
     end
     redirect_to home_dashboard_index_path if redirect
+  end
+
+  def create_analytic
+    Analytics.create({ :ip_address => request.remote_ip, :referrer => request.referrer, :user_agent => request.user_agent})
+  end
+
+  def sanitize_font(css)
+    css
+    # css if css.match(/\A[0-9]+([\%]|pt)\z/)
   end
 
 end
