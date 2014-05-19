@@ -28,6 +28,8 @@
 //= require jquery.easy-pie-chart.js
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
+//= require jsapi
+//= html5.js
 
 function rubyCodeFormat() {
 	
