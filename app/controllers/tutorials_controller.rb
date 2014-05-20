@@ -93,7 +93,7 @@ class TutorialsController < ApplicationController
     
   end
   
-  def constantize
+  def metaprogramming
   end
   
 end

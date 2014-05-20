@@ -63,9 +63,9 @@ Railsgoat::Application.routes.draw do
       get "redirects"
       get "guard"
       get "mass_assignment"
-      get "constantize"
       get "gauntlt"
       get "logic_flaws"
+      get "metaprogramming"
     end
   end
 
