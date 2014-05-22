@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
 
   def index
     @messages = current_user.messages
+    @message = Message.new
   end
 
   def show
@@ -17,10 +18,6 @@ class MessagesController < ApplicationController
     else
       flash[:error] = "Could not delete message."
     end
-  end
-
-  def new
-    @message = Message.new
   end
 
   def create
