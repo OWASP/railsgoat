@@ -53,6 +53,10 @@ $("pre.javascript").snippet("javascript",{style:"rand01",transparent:true,showNu
 
 };
 
+function coerceToString(val) {
+  return String((val === null || val === undefined) ? '' : val);
+}
+
 var rAmp = /&/g,
      rLt = /</g,
      rGt = />/g,
