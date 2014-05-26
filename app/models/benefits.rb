@@ -4,7 +4,7 @@ class Benefits < ActiveRecord::Base
  def self.save(file, backup=false)
    data_path = Rails.root.join("public", "data")
    full_file_name = "#{data_path}/#{file.original_filename}"
-   f = File.open(full_file_name, "w+")
+   f = File.open(full_file_name, "wb+")
    f.write file.read
    f.close
    make_backup(file, data_path, full_file_name) if backup == "true"
