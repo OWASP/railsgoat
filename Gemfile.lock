@@ -91,7 +91,7 @@ GEM
       http_parser.rb (~> 0.6.0)
     erubis (2.7.0)
     eventmachine (1.0.3)
-    execjs (2.0.2)
+    execjs (2.1.0)
     fastercsv (1.5.5)
     ffi (1.9.3)
     foreman (0.66.0)
