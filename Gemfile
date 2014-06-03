@@ -38,7 +38,7 @@ group :development, :test, :mysql do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'poltergeist'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '2.14.2'
 end
 
 group :mysql do
