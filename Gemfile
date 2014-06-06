@@ -4,8 +4,6 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.11'
 gem 'rack', '1.4.0'
 
-gem 'rack-ssl', '1.3.4'
-
 ruby '2.0.0'
 
 # Bundle edge Rails instead:
