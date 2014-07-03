@@ -4,13 +4,10 @@ RailsGoat is a vulnerable version of the Ruby on Rails Framework. It includes vu
 
 ## Getting Started
 
-
-
 To begin, install the Ruby Version Manager (RVM):
 
 ```
-$ curl -L https://get.rvm.io | bash -s stable --autolibs=3 --ruby=1.9.3
-$ rvm use 2.1.2@railsgoat --create # https://rvm.io/
+$ curl -L https://get.rvm.io | bash -s stable --autolibs=3 --ruby=2.1.2
 ```
 
 After installing the package, clone this repo:
@@ -19,22 +16,7 @@ After installing the package, clone this repo:
 $ git clone git@github.com:OWASP/railsgoat.git
 ```
 
-Navigate into the directory and accept the notice by typing `yes`:
-```
-****************************************************************************************************
-* NOTICE                                                                                           *
-****************************************************************************************************
-* RVM has encountered a new or modified .rvmrc file in the current directory, this is a shell      *
-* script and therefore may contain any shell commands.                                             *
-*                                                                                                  *
-* Examine the contents of this file carefully to be sure the contents are safe before trusting it! *
-* Do you wish to trust '/path/to/railsgoat/.rvmrc'?                                                *
-* Choose v[view] below to view the contents                                                        *
-****************************************************************************************************
-y[es], n[o], v[iew], c[cancel]>
-```
-
-Install the project dependencies:
+Navigate into the directory and install the dependencies:
 
 ```
 $ bundle install
@@ -52,7 +34,7 @@ Initialize the database:
 $ rake db:setup
 ```
 
-Start the WEBrick HTTP Server:
+Start the Thin web server:
 
 ```
 $ rails server
