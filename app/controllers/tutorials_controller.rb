@@ -1,5 +1,4 @@
 class TutorialsController < ApplicationController
-
   skip_before_filter :has_info
   skip_before_filter :authenticated
 
@@ -18,16 +17,16 @@ class TutorialsController < ApplicationController
   end
 
   def xss
-      	@code = %{
-  					<li style="color: #FFFFFF">
-  						<!--
-  						I'm going to use HTML safe because we had some weird stuff
-  						going on with funny chars and jquery, plus it says safe so I'm guessing
-  						nothing bad will happen
-  						-->
-  						Welcome, <%= current_user.first_name.html_safe %>
-  			   	</li>
-  			   		}
+    @code = %{
+      <li style="color: #FFFFFF">
+        <!--
+        I'm going to use HTML safe because we had some weird stuff
+        going on with funny chars and jquery, plus it says safe so I'm guessing
+        nothing bad will happen
+        -->
+        Welcome, <%= current_user.first_name.html_safe %>
+      </li>
+    }
   end
 
   def broken_auth
@@ -45,15 +44,15 @@ class TutorialsController < ApplicationController
           event.preventDefault();
           $.ajax(\{
             url: "/example",
-      	  data: valuesToSubmit,
-      	  type: "POST",
-      	  success: function(response) \{
-      		  alert('success!');
-      	  },
-      	  error: function(event) \{
-      		 alert('failure!');
-      	  \}
-      	\});
+          data: valuesToSubmit,
+          type: "POST",
+          success: function(response) \{
+            alert('success!');
+          },
+          error: function(event) \{
+           alert('failure!');
+          \}
+        \});
       \});
 
     \} }
@@ -95,5 +94,4 @@ class TutorialsController < ApplicationController
 
   def metaprogramming
   end
-
 end

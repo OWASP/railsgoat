@@ -17,19 +17,19 @@ end
 </head>
 <body>
 <% if current_user %>
-	<%= render "layouts/shared/header" %>
-	<%= render "layouts/shared/sidebar" %>
+  <%= render "layouts/shared/header" %>
+  <%= render "layouts/shared/sidebar" %>
 <% else %>
-	<%= render "layouts/tutorial/header" %>
-	<%= render "layouts/tutorial/sidebar" %>
+  <%= render "layouts/tutorial/header" %>
+  <%= render "layouts/tutorial/sidebar" %>
 <% end %>
 <div class="container-fluid">
-	<div class="dashboard-wrapper">
-		<%= render "layouts/shared/messages" %>
-		<%= yield %>
-	</div>
+  <div class="dashboard-wrapper">
+    <%= render "layouts/shared/messages" %>
+    <%= yield %>
+  </div>
 </div>
-	<%= render "layouts/shared/footer" %>
+  <%= render "layouts/shared/footer" %>
 
 <script type="text/javascript">
 

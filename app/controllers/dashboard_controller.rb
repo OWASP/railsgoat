@@ -1,5 +1,4 @@
 class DashboardController < ApplicationController
-
   skip_before_filter :has_info
 
   def home
@@ -10,5 +9,4 @@ class DashboardController < ApplicationController
     	cookies[:font] = params[:font]
     end
   end
-
 end

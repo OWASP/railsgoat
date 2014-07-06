@@ -1,5 +1,4 @@
 class Api::V1::MobileController < ApplicationController
-
   skip_before_filter :authenticated
   before_filter :mobile_request?
 
@@ -30,5 +29,4 @@ class Api::V1::MobileController < ApplicationController
       request.user_agent =~ /ios|android/i
     end
   end
-
 end

@@ -1,5 +1,4 @@
 <header>
-
     <span style="color:#eee;margin-left:10px;">
      Font Size:
      <a href="<%= home_dashboard_index_path %>?font=8pt" style="font-size:10pt;color:#eee;">A</a>
@@ -13,7 +12,7 @@
        <span class="caret"></span>
        <ul class="dropdown-menu pull-right">
          <li>
-			<%= link_to "account settings", user_account_settings_path(:user_id => current_user.user_id) %>
+      <%= link_to "account settings", user_account_settings_path(:user_id => current_user.user_id) %>
          </li>
          <li>
            <%= link_to "logout", logout_path %>
@@ -21,16 +20,16 @@
        </ul>
      </div>
      <ul class="mini-nav">
-	   <li style="color: #FFFFFF">
-		<!--
-		I'm going to use HTML safe because we had some weird stuff
-		going on with funny chars and jquery, plus it says safe so I'm guessing
-		nothing bad will happen
-		-->
-		Welcome, <%= current_user.first_name.html_safe %>
-	   </li>
-	   <li>
-		<%= button_to "RailsGoat Tutorials", tutorials_path, {:class => "btn btn-primary", :method => "get"}%>
-	   </li>
+     <li style="color: #FFFFFF">
+    <!--
+    I'm going to use HTML safe because we had some weird stuff
+    going on with funny chars and jquery, plus it says safe so I'm guessing
+    nothing bad will happen
+    -->
+    Welcome, <%= current_user.first_name.html_safe %>
+     </li>
+     <li>
+    <%= button_to "RailsGoat Tutorials", tutorials_path, {:class => "btn btn-primary", :method => "get"}%>
+     </li>
      </ul>
 </header>

@@ -39,5 +39,4 @@ class PayController < ApplicationController
       format.json {render :json => {:account_num => decrypted || "No Data" }}
     end
   end
-
 end

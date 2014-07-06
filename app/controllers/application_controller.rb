@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-
   before_filter :authenticated, :has_info, :create_analytic
   helper_method :current_user, :is_admin?, :sanitize_font
 
@@ -53,5 +52,4 @@ class ApplicationController < ActionController::Base
     css
     # css if css.match(/\A[0-9]+([\%]|pt)\z/)
   end
-
 end

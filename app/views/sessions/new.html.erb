@@ -37,15 +37,13 @@
 
           <div class="actions">
 
-            	<%= link_to "Forgot Password", forgot_password_path, {:class=>"pull-left"}%><br/>
-			 	<%= submit_tag "Login", {:class => "btn btn-info btn-large pull-right"} %>
-			<span class="checkbox-wrapper">
-				  <%= check_box_tag :remember_me, 1, params[:remember_me], {:id => "form-terms", :class => "checkbox", :type => "checkbox"} %>
-				  <label class="checkbox-label" for="form-terms"></label> <span class="label-text">Remember</span>
+              <%= link_to "Forgot Password", forgot_password_path, {:class=>"pull-left"}%><br/>
+        <%= submit_tag "Login", {:class => "btn btn-info btn-large pull-right"} %>
+      <span class="checkbox-wrapper">
+          <%= check_box_tag :remember_me, 1, params[:remember_me], {:id => "form-terms", :class => "checkbox", :type => "checkbox"} %>
+          <label class="checkbox-label" for="form-terms"></label> <span class="label-text">Remember</span>
 
-			</span>
-
-
+      </span>
 
           <div class="clearfix"></div>
           <% end %>

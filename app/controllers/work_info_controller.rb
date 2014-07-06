@@ -1,5 +1,4 @@
 class WorkInfoController < ApplicationController
-
   def index
     @user = User.find_by_user_id(params[:user_id])
     if !(@user) || @user.admin
@@ -18,5 +17,4 @@ class WorkInfoController < ApplicationController
     end
   end
 =end
-
 end

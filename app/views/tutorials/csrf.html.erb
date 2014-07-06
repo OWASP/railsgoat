@@ -1,16 +1,16 @@
 <div class="dashboard-wrapper">
-	<div class="main-container">
-		<div class="row-fluid">
-		    <div class="span12"> <!-- Begin Span12-->
-		       <%= render :partial => "layouts/tutorial/csrf/csrf_first"%>
-		    </div> <!-- End Span12-->
-		</div>
-	</div>
+  <div class="main-container">
+    <div class="row-fluid">
+        <div class="span12"> <!-- Begin Span12-->
+           <%= render :partial => "layouts/tutorial/csrf/csrf_first"%>
+        </div> <!-- End Span12-->
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript">
 function makeActive(){
-	$('li[id="csrf"]').addClass('active');
+  $('li[id="csrf"]').addClass('active');
 };
 
 $(document).ready(makeActive);

@@ -1,5 +1,4 @@
 class AdminController < ApplicationController
-
   before_filter :administrative, :if => :admin_param
   skip_before_filter :has_info
 
@@ -67,5 +66,4 @@ class AdminController < ApplicationController
   def admin_param
     params[:admin_id] != '1'
   end
-
 end

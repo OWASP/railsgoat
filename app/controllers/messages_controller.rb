@@ -33,5 +33,4 @@ class MessagesController < ApplicationController
       end
     end
   end
-
 end

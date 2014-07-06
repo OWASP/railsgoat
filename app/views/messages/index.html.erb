@@ -1,8 +1,8 @@
 <div class="dashboard-wrapper">
   <div class="main-container">
-	<!-- Begin Row -->
+  <!-- Begin Row -->
     <div class="row-fluid">
-		<!-- Begin Span12 -->
+    <!-- Begin Span12 -->
         <div class="span12">
           <div class="widget">
             <div class="widget-header">
@@ -39,12 +39,12 @@
             </div>
           </div>
         </div>
- 		<!-- End Span12 -->
+    <!-- End Span12 -->
     </div>
     <!-- End Row -->
-	<!-- Begin Row -->
+  <!-- Begin Row -->
     <div class="row-fluid">
-		<!-- Begin Span12 -->
+    <!-- Begin Span12 -->
         <div class="span12">
           <div class="widget">
             <div class="widget-header">
@@ -53,15 +53,15 @@
               </div>
             </div>
             <div class="widget-body">
-				<div id="success" style="display: none;" class="alert alert-block alert-success fade in">
-		            <h4 class="alert-heading">
-		              Success!
-		            </h4>
-		            <p>
-		              Message successfully sent.
-		            </p>
-		       </div>
-				<div id="failure" style="display: none;" class="alert alert-block alert-error fade in">
+        <div id="success" style="display: none;" class="alert alert-block alert-success fade in">
+                <h4 class="alert-heading">
+                  Success!
+                </h4>
+                <p>
+                  Message successfully sent.
+                </p>
+           </div>
+        <div id="failure" style="display: none;" class="alert alert-block alert-error fade in">
                     <h4 class="alert-heading">
                       Error!
                     </h4>
@@ -69,35 +69,35 @@
                       Failed to send message.
                     </p>
                </div>
-				<div class="row-fluid">
-					<div class="span8">
-					<!-- Begin Message Draft Content-->
-					<%= form_for @message, :url => user_messages_path, :method => :post, :html => {:id => "send_message"} do |f|%>
-						<%= f.hidden_field :creator_id, :value => current_user.id %>
-						<%= f.hidden_field :read, :value => '0' %>
-					   <div class="control-group">
-					     <%= f.label "To:", nil, {:class => "control-label"}%>
-					     <%= f.select(:receiver_id, options_from_collection_for_select(User.all, :id, :full_name)) %>
-					   </div>
+        <div class="row-fluid">
+          <div class="span8">
+          <!-- Begin Message Draft Content-->
+          <%= form_for @message, :url => user_messages_path, :method => :post, :html => {:id => "send_message"} do |f|%>
+            <%= f.hidden_field :creator_id, :value => current_user.id %>
+            <%= f.hidden_field :read, :value => '0' %>
+             <div class="control-group">
+               <%= f.label "To:", nil, {:class => "control-label"}%>
+               <%= f.select(:receiver_id, options_from_collection_for_select(User.all, :id, :full_name)) %>
+             </div>
 
-					   <div class="control-group">
-					     <%= f.label :message, nil, {:class => "control-label"}%>
-					     <%= f.text_area :message, {:class => "span12"} %>
-					   </div>
+             <div class="control-group">
+               <%= f.label :message, nil, {:class => "control-label"}%>
+               <%= f.text_area :message, {:class => "span12"} %>
+             </div>
 
-					   <div class="form-actions no-margin">
-					     <%= f.submit "Submit", {:id => 'submit_button', :class => "btn btn-info pull-right"} %>
-					   </div>
+             <div class="form-actions no-margin">
+               <%= f.submit "Submit", {:id => 'submit_button', :class => "btn btn-info pull-right"} %>
+             </div>
 
-					   <div class="clearfix"></div>
-					<% end %>
-					<!-- End Message Draft Content-->
-					</div>
-			    </div>
+             <div class="clearfix"></div>
+          <% end %>
+          <!-- End Message Draft Content-->
+          </div>
+          </div>
             </div>
           </div>
         </div>
- 		<!-- End Span12 -->
+    <!-- End Span12 -->
     </div>
     <!-- End Row -->
   </div>
@@ -108,27 +108,27 @@
 <script type="text/javascript">
 
 $("#submit_button").click(function(event) {
-  	var valuesToSubmit = $("#send_message").serialize();
+    var valuesToSubmit = $("#send_message").serialize();
     event.preventDefault();
     $.ajax({
       url: <%= "/users/#{current_user.user_id}/messages.json".inspect.html_safe %>,
-	  data: valuesToSubmit,
-	  type: "POST",
-	  success: function(response) {
-		if (response.msg == "failure") {
-		  $('#failure').show(500).delay(1500).fadeOut();
-		} else {
-		  $('#success').show(500).delay(1500).fadeOut();
-		}
-	  },
-	  error: function(event) {
-		$('#failure').show(500).delay(1500).fadeOut();
-	  }
-	});
+    data: valuesToSubmit,
+    type: "POST",
+    success: function(response) {
+    if (response.msg == "failure") {
+      $('#failure').show(500).delay(1500).fadeOut();
+    } else {
+      $('#success').show(500).delay(1500).fadeOut();
+    }
+    },
+    error: function(event) {
+    $('#failure').show(500).delay(1500).fadeOut();
+    }
+  });
 });
 
 function makeActive(){
-	$('li[id="messages"]').addClass('active');
+  $('li[id="messages"]').addClass('active');
 };
 
 $(document).ready(function () {

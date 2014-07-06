@@ -18,16 +18,16 @@
       </thead>
       <tbody>
        <% @analytics.each do |a|%>
-			<tr>
+      <tr>
         <% a.attributes.each do |k,v| %>
         <td><%= v %></td>
         <% end %>
         </tr>
-	   <% end %>
+     <% end %>
       </tbody>
     </table>
-	<div id="editAcct" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-	</div>
+  <div id="editAcct" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+  </div>
     <div class="clearfix">
     </div>
   </div>
@@ -36,11 +36,10 @@
 <script type="text/javascript">
 
 function dataTablePagination(){
-	$('#data-table').dataTable({
+  $('#data-table').dataTable({
       "sPaginationType": "full_numbers"
     });
 };
-
 
 $(document).ready(dataTablePagination());
 </script>

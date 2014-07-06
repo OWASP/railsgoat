@@ -4,7 +4,6 @@ class BenefitFormsController < ApplicationController
     @benefits = Benefits.new
   end
 
-
   def download
    begin
      path = params[:name]
@@ -26,7 +25,6 @@ class BenefitFormsController < ApplicationController
     redirect_to user_benefit_forms_path(:user_id => current_user.user_id)
   end
 
-
 =begin
     # More secure version
     def download
@@ -47,6 +45,4 @@ class BenefitFormsController < ApplicationController
      end
     end
 =end
-
-
 end

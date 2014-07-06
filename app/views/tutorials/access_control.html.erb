@@ -1,16 +1,16 @@
 <div class="dashboard-wrapper">
-	<div class="main-container">
-		<div class="row-fluid">
-		    <div class="span12"> <!-- Begin Span12 -->
-		      <%= render :partial => "layouts/tutorial/access_control/access_control_first" %>
-		    </div> <!-- End Span12 -->
-		</div>
-	</div>
+  <div class="main-container">
+    <div class="row-fluid">
+        <div class="span12"> <!-- Begin Span12 -->
+          <%= render :partial => "layouts/tutorial/access_control/access_control_first" %>
+        </div> <!-- End Span12 -->
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript">
 function makeActive(){
-	$('li[id="access_control"]').addClass('active');
+  $('li[id="access_control"]').addClass('active');
 };
 
 $(document).ready(makeActive);

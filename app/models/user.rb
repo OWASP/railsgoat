@@ -1,7 +1,6 @@
 require 'encryption'
 
 class User < ActiveRecord::Base
-
   attr_accessible :email, :admin, :first_name, :last_name, :user_id, :password, :password_confirmation
   validates :password, :presence => true,
                        :confirmation => true,
@@ -49,18 +48,18 @@ class User < ActiveRecord::Base
   end
 =end
 
-private
+  private
 
   def self.authenticate(email, password)
-       auth = nil
-       user = find_by_email(email)
-        raise "#{email} doesn't exist!" if !(user)
-         if user.password == Digest::MD5.hexdigest(password)
-           auth = user
-         else
-          raise "Incorrect Password!"
-         end
-       return auth
+    auth = nil
+    user = find_by_email(email)
+    raise "#{email} doesn't exist!" if !(user)
+    if user.password == Digest::MD5.hexdigest(password)
+      auth = user
+    else
+      raise "Incorrect Password!"
+    end
+    return auth
   end
 
 =begin
@@ -76,11 +75,11 @@ private
 =end
 
   def assign_user_id
-     unless @skip_user_id_assign.present? || self.user_id.present?
+    unless @skip_user_id_assign.present? || self.user_id.present?
       user = User.order("user_id").last
       uid = user.user_id.to_i + 1 if user && user.user_id && !(User.exists?(:user_id => "#{user.user_id.to_i + 1}"))
       self.user_id = uid.to_s if uid
-     end
+    end
   end
 
   def hash_password
@@ -96,5 +95,4 @@ private
       self[column] = Encryption.encrypt_sensitive_value(self.user_id)
     end while User.exists?(column => self[column])
   end
-
 end

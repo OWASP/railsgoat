@@ -1,5 +1,4 @@
 class Pay < ActiveRecord::Base
-
   # mass-assignable attributes
   attr_accessible :bank_account_num, :bank_routing_num, :percent_of_deposit
 
@@ -21,5 +20,4 @@ class Pay < ActiveRecord::Base
   def encrypt_bank_account_num
     self.bank_account_num = Encryption.encrypt_sensitive_value(self.bank_account_num)
   end
-
 end
