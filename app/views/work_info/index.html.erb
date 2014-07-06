@@ -21,7 +21,7 @@
 		              </tr>
 		            </thead>
 		            <tbody>
-		            
+
 					  <tr>
 		                <td><%= "#{@user.first_name} #{@user.last_name}" %></td>
 		                <td><%= @user.work_info.income %></td>
@@ -33,7 +33,7 @@
 						<!-- End Secure Version -->
 						<td><%= @user.work_info.DoB %></td>
 		              </tr>
-		           
+
 		            </tbody>
 		          </table>
 		        </div>
@@ -41,7 +41,7 @@
 		    </div>
 		</div>
 	</div>
-</div>		
+</div>
 
 <script type="text/javascript">
 
@@ -49,14 +49,14 @@
 function maskSSN(){
 	var fullSSN = $("td.ssn").html().replace(/\d{3}.*?\d{2}/, "*****");
 	$("td.ssn").html(fullSSN);
-	
+
 }
 
 
 function makeActive(){
 	$('li[id="employee_info"]').addClass('active');
 };
-	
+
 
 $(document).ready(function () {
    maskSSN(),

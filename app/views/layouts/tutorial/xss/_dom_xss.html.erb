@@ -17,7 +17,7 @@
           <div class="accordion-body in collapse" id="collapseFive" style="height: auto;">
             <div class="accordion-inner">
              <p>
-             DOM Based XSS (or as it is called in some texts, “type-0 XSS”) is an XSS attack wherein the attack payload is executed as a result of modifying the DOM “environment” in the victim’s browser used by the original client side script, so that the client side code runs in an “unexpected” manner. That is, the page itself (the HTTP response that is) does not change, but the client side code contained in the page executes differently due to the malicious modifications that have occurred in the DOM environment.	
+             DOM Based XSS (or as it is called in some texts, “type-0 XSS”) is an XSS attack wherein the attack payload is executed as a result of modifying the DOM “environment” in the victim’s browser used by the original client side script, so that the client side code runs in an “unexpected” manner. That is, the page itself (the HTTP response that is) does not change, but the client side code contained in the page executes differently due to the malicious modifications that have occurred in the DOM environment.
              </p>
             </div>
           </div>
@@ -36,8 +36,8 @@
 			    The following code was taken from app/views/sessions/new.html.erb:
 			  </p>
 			  <pre class="javascript">
-				 <%= 
-				%{ 
+				 <%=
+				%{
 	 <script>
 	 	//document.write("<select style=\"width: 100px;\">");
 	 	//document.write("<OPTION value=1>English</OPTION>");
@@ -50,13 +50,13 @@
 	  \} catch(err) \{
 	  \}
 	  //document.write("</select>");
-     </script> 
-				} 
+     </script>
+				}
 				%>
 			  </pre>
 			  <p class="desc">
 				The code (above) takes user input (params), and renders it back on the page without any output encoding or escaping.
-			  </p>	
+			  </p>
             </div>
           </div>
         </div>
@@ -71,14 +71,14 @@
           <div class="accordion-body collapse" id="collapseSeven" style="height: 0px;">
             <div class="accordion-inner">
              <p><b> Stored Cross-Site Scripting ATTACK:</b></p>
-			 <p class="desc"> 
+			 <p class="desc">
 				Ensure you are signed out of the application first. Make sure you are using something like Firefox as Safari/Chrome won't work for this exercise. Then, use the following link (substitute hostname for your actual hostname) to execute an alert box:
 			 </p>
 			 <pre>
 				<%= %{http://127.0.0.1:3000/#test=<script>alert(1)</script>} %>
-			 </pre>	
+			 </pre>
 			 <p><b> Stored Cross-Site Scripting SOLUTION:</b></p>
-			 <p> 
+			 <p>
 			   Leverage the Hogan function for escaping (found in the application.js file) to escape user input:
 			 </p>
 			 <pre class="javascript">
@@ -97,10 +97,10 @@
 	  \}
 	   //document.write("</select>");
 	 </script>
-				}	
-				
+				}
+
 				%>
-			 </pre>	
+			 </pre>
             </div>
           </div>
         </div>

@@ -32,7 +32,7 @@
        A3 XSS
       <% end %>
     </li>
-    
+
     <li id="insecure_dor">
       <%= link_to insecure_dor_tutorials_path do %>
         <div class="icon">
@@ -108,7 +108,7 @@
         </li>
 		<li id="logic_flaws">
 			<%= link_to "Logic Flaws", logic_flaws_tutorials_path %>
-		</li>	
+		</li>
 		<li id="metaprogramming">
 			<%= link_to "Meta- Programming", metaprogramming_tutorials_path %>
 		</li>
@@ -134,17 +134,17 @@ $('.submenu > a').click(function(e){
       submenu.fadeOut(250);
     }
     li.removeClass('open');
-  } else 
+  } else
   {
     if(($(window).width() > 768) || ($(window).width() < 479)) {
-      submenus.slideUp();     
+      submenus.slideUp();
       submenu.slideDown();
     } else {
-      submenus.fadeOut(250);      
+      submenus.fadeOut(250);
       submenu.fadeIn(250);
     }
-    submenus_parents.removeClass('open');   
-    li.addClass('open');  
+    submenus_parents.removeClass('open');
+    li.addClass('open');
   }
 });
 
@@ -158,7 +158,7 @@ $('#mainnav > a').click(function(e)
   {
     mainnav.removeClass('open');
     ul.slideUp(250);
-  } else 
+  } else
   {
     mainnav.addClass('open');
     ul.slideDown(250);

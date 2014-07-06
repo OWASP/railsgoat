@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
                         :confirmation => true,
                         :if => :password,
                         :format => {:with => /\A.*(?=.{10,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\@\#\$\%\^\&\+\=]).*\z/}
-=end  
+=end
   validates_presence_of :email
   validates_uniqueness_of :email
   validates_format_of :email, :with => /.+@.+\..+/i
@@ -37,11 +37,11 @@ class User < ActiveRecord::Base
     #work_info.build_key_management(:iv => SecureRandom.hex(32))
     performance.build(POPULATE_PERFORMANCE.shuffle.first)
   end
-  
+
   def full_name
     "#{self.first_name} #{self.last_name}"
   end
-  
+
 =begin
   # Instead of the entire user object being returned, we can use this to filter.
   def as_json
@@ -59,10 +59,10 @@ private
            auth = user
          else
           raise "Incorrect Password!"
-         end 
+         end
        return auth
-  end 
-    
+  end
+
 =begin
   # More secure version, still lacking a decent hashing routine, this is for timing attack prevention
   def self.authenticate(email, password)
@@ -71,9 +71,9 @@ private
           return user
         else
           raise "Incorrect username or password"
-        end 
+        end
    end
-=end  
+=end
 
   def assign_user_id
      unless @skip_user_id_assign.present? || self.user_id.present?
@@ -82,7 +82,7 @@ private
       self.user_id = uid.to_s if uid
      end
   end
-  
+
   def hash_password
     unless @skip_hash_password == true
       if password.present?
@@ -90,7 +90,7 @@ private
       end
     end
   end
-  
+
   def generate_token(column)
     begin
       self[column] = Encryption.encrypt_sensitive_value(self.user_id)

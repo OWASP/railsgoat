@@ -54,7 +54,7 @@
 				     decoded = Base64.strict_decode64("#{val}")
 				     aes.update("#{decoded}") + aes.final
 				  end
-				</pre>	
+				</pre>
 				<p class="desc">
 					We have placed this code under the lib directory so that we have a re-usable encryption routine. This code is used to generate a user's <b><i>auth_token</b></i> cookie responsible for authorization and access. However, we've also used this same code when encrypting a user's bank account number. This means, a user can enter in any value they would like and will receive it's encrypted equivalent back from the application. Essentially, a user has the ability to generate the auth_token cookie for any user ID and authorize as that user.<br/><br/>
 				 Within the app/models/pay.rb file we have a before hook that will save a user's bank account number as an encrypted value:
@@ -62,14 +62,14 @@
 				<pre class="ruby">
 				  # callbacks
 				  before_save <span style="background-color:yellow">:encrypt_bank_account_num</span>
-					
+
 				  def encrypt_bank_account_num
 				  	self.bank_account_num = <span style="background-color:yellow">Encryption.encrypt_sensitive_value(self.bank_account_num)</span>
 				  end
-				</pre>	
+				</pre>
 				<p class="desc">
 					Additionally, we render that encrypted value (purposefully) when the <b><i>show</i></b> action is created within the app/controllers/pay_controller.rb file:
-				</p>	
+				</p>
 				<pre class="ruby">
 				   def show
 				   	respond_to do |format|
@@ -79,16 +79,16 @@
 				</pre>
 				<p class="desc">
 					Lastly, we re-use this same routine within the following code is used to create a user's <b><i>auth_token</b></i> cookie upon sign-up or creation (app/models/user.rb):
-				</p>	
+				</p>
 				<pre class="ruby">
 					before_create { generate_token(:auth_token) }
-					
+
 				   def generate_token(column)
 				   	begin
 				   		self[column] = <span style="background-color:yellow">Encryption.encrypt_sensitive_value(self.user_id)</span>
 				   	end while User.exists?(column => self[column])
 				   end
-				</pre>	
+				</pre>
             </div>
           </div>
         </div>
@@ -126,7 +126,7 @@
               My "Remember Me" cookie looks familiar, almost like one of those values you get when you enter your bank account number.
             </div>
           </div>
-        </div> 
+        </div>
 	 </div>
     </div>
   </div>

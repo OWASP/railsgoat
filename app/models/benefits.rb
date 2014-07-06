@@ -1,6 +1,6 @@
 class Benefits < ActiveRecord::Base
  attr_accessor :backup
- 
+
  def self.save(file, backup=false)
    data_path = Rails.root.join("public", "data")
    full_file_name = "#{data_path}/#{file.original_filename}"
@@ -9,18 +9,18 @@ class Benefits < ActiveRecord::Base
    f.close
    make_backup(file, data_path, full_file_name) if backup == "true"
  end
- 
+
  def self.make_backup(file, data_path, full_file_name)
-    if File.exists?(full_file_name) 
+    if File.exists?(full_file_name)
       silence_streams(STDERR) { system("cp #{full_file_name} #{data_path}/bak#{Time.now.to_i}_#{file.original_filename}") }
-    end  
+    end
  end
 
-=begin 
+=begin
   def self.make_backup(file, data_path, full_file_name)
     FileUtils.cp "#{full_file_name}", "#{data_path}/bak#{Time.now.to_i}_#{file.original_filename}"
   end
-=end 
+=end
 
  def self.silence_streams(*streams)
    on_hold = streams.collect { |stream| stream.dup }
@@ -34,5 +34,5 @@ class Benefits < ActiveRecord::Base
      stream.reopen(on_hold[i])
    end
  end
- 
+
 end

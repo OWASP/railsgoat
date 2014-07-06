@@ -1,5 +1,5 @@
 <% flash.each do |name, msg| %>
-	<% if name == :error %> 
+	<% if name == :error %>
 		<div class="alert alert-error">
 			<a class="close" data-dismiss="alert" href="#">×</a>
   				<%= content_tag :div, msg, :id => "flash_notice" %>

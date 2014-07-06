@@ -36,11 +36,11 @@
 			  <pre class="ruby">
 				<%= %q{
 				class AdminController < ApplicationController
-				
+
 				  skip_before_filter :has_info
 				} %>
-			  </pre>	 
-	 
+			  </pre>
+
             </div>
           </div>
         </div>
@@ -57,34 +57,34 @@
               <p><b>Failure to Restrict URL Access - ATTACK</b></p>
 			  <p class="desc">
 				Request the following URL /admin/1/dashboard and have fun :-)
-			  </p>	
+			  </p>
 			  <p><b>Failure to Restrict URL Access - SOLUTION</b></p>
 			  <p class="desc">
 				The code is already available to restrict access to the admin controller by role within app/controllers/application_controller.rb:
 			  </p>
 			  <pre class="ruby">
 				helper_method :current_user, <span style="background-color:yellow">:is_admin?</span>
-				
+
 				def is_admin?
-			    	current_user.admin if current_user 
+			    	current_user.admin if current_user
 			  	end
-			
+
 			  	def administrative
 			  	  if not is_admin?
 			  	   reset_session
 			  	   redirect_to root_url
 			  	 end
 			  	end
-			  </pre>	
+			  </pre>
 			  <p>
 				Then add the following line within app/controllers/admin_controller.rb
-			  </p>	
+			  </p>
 			  <pre class="ruby">
 				class AdminController < ApplicationController
 
 				  <span style="background-color:yellow">before_filter :administrative</span>
 				  skip_before_filter :has_info
-			  </pre>	
+			  </pre>
             </div>
           </div>
         </div>

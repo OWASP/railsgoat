@@ -34,8 +34,8 @@
             <div class="accordion-inner">
               <p><b>Username and Password Enumeration</b></p>
 			  <p><b>Within /app/models/user.rb:</b><p>
-				
-				
+
+
 						<pre class="ruby">
 						def self.authenticate(email, password)
 					       	auth = nil
@@ -46,7 +46,7 @@
 					       	    auth = user
 					       	  else
 					       	   raise "Incorrect Password!"
-					       	  end 
+					       	  end
 					       	else
 					       	   raise "#{email} doesn't exist!"
 					       	end
@@ -73,10 +73,10 @@
 
 						  end
 					  </pre>
-					<p>	On line 5 you see the exception message object "e" is created. On line 11, the message is displayed. </p>	
+					<p>	On line 5 you see the exception message object "e" is created. On line 11, the message is displayed. </p>
 			  <p class="desc">
 			 One of these messages indicates the email address (username) doesn't exist on the system. The other indicates that the password is incorrect. Although the application will render both error messages, either one of the error messages would be harmful by itself. This type of information can be used by an attacker to harvest email addresses or usernames. Once that list is gathered, passwords can be guessed for each account. If the username being enumerated is actually an email address, a phishing campaign could ensue with emails made to look like they are originating from the vulnerable site.
-			  </p>		
+			  </p>
             </div>
           </div>
         </div>
@@ -131,7 +131,7 @@
 				<p class="desc">
 					Enter an email address that wouldn't likely exist into the login form. Analyze the result.<br/><br/>
 					Can you leverage this to gain unauthorized access?
-				</p>	
+				</p>
              </div>
           </div>
         </div>

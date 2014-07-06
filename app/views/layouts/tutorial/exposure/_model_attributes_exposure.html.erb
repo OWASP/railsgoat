@@ -18,7 +18,7 @@
             <div class="accordion-inner">
 			 <p class="desc">
 			 	The application's API returns a model object (user or users). Using respond_with, the API returns the full model object. It is simple but exposes information such as the user's password and other user attributes that you may wish to keep invisible.
-			 </p>	
+			 </p>
             </div>
           </div>
         </div>
@@ -51,7 +51,7 @@
 			  <p class="desc">
 				The <i>as_json</i> method referenced in the comments section of the index action exists within the user model in order to override and safely protect our model from only rendering certain attributes. It is unused (commented out), app/models/user.rb:
 			  </p>
-			  <pre class="ruby">	
+			  <pre class="ruby">
 				  # Instead of the entire user object being returned, we can use this to filter.
 				  def as_json
 				    super(only: [:user_id, :email, :first_name, :last_name])
@@ -69,14 +69,14 @@
 	X-Request-Id: c3b0a57861087c0b827aab231747ef0c
 	X-Runtime: 0.051734
 	Connection: close
-	
+
 	{"admin":false,"created_at":"2014-01-23T16:17:10Z","email":
 	"jack@metacorp.com","first_name":"Jack","id":2,"last_name":"Mannino","password":
 	"b46dd2888a0904972649cc880a93f4dd","updated_at":"2014-01-23T16:17:10Z","user_id":2}
 			  </pre>
 			  <p class="desc">
 				Note that all attributes associated with this user are returned via the API.
-			  </p>				
+			  </p>
             </div>
           </div>
         </div>
@@ -121,7 +121,7 @@
 	Connection: close
 
 	{"email":"jack@metacorp.com","first_name":"Jack","last_name":"Mannino","user_id":2}
-				</pre>						
+				</pre>
             </div>
           </div>
         </div>

@@ -44,7 +44,7 @@
 				    "***-**-" << self.decrypt_ssn[-4,4]
 				  end
 			  </pre>
- 			 
+
             </div>
           </div>
         </div>
@@ -65,11 +65,11 @@
 				<li>Only authorized users can access decrypted copies of the data </li>
 				<li>Use a strong algorithm</li>
 				<li>Strong key is generated, protected from unauthorized access, and key change is planned for.</li><br/>
-			  </p>	
-				
+			  </p>
+
 			  <p class="desc">
 			  	 In the following code, we demonstrate switching from the storage of full SSN(s) in clear-text to storing them in the AES-256 encrypted format. The first thing to do is build the encrypt and decrypt functions. These can be found within app/models/work_info.rb.
-			  </p>		
+			  </p>
 			  <pre class="ruby">
 				  def encrypt_ssn
 				     aes = OpenSSL::Cipher::Cipher.new(cipher_type)
@@ -87,7 +87,7 @@
 				     aes.iv = iv if iv != nil
 				     aes.update(self.encrypted_ssn) + aes.final
 				  end
-				
+
 				  def key
 				    raise "Key Missing" if !(KEY)
 				    KEY
@@ -101,7 +101,7 @@
 				  def cipher_type
 				    'aes-256-cbc'
 				  end
-			  </pre>	
+			  </pre>
 			  <p class="desc">
 			  	Also within the WorkInfo model, we add the following line of code...
 			  </p>
@@ -109,12 +109,12 @@
 			  	 before_save :encrypt_ssn
 			  </pre>
 			  <p class="desc">
-			  	The remaining pieces are: 
+			  	The remaining pieces are:
 			    <li> We "seed" the database with per-user initialization vectors (IV) and store them within the key_management table</li>
 			 	<li> Separate production and development encryption keys. Production keys should be stored in an HSM, environment variable, etc. but never within the source code. Development keys are irrelevant if not being used for real data</li>
 			 	<li> Change the view where SSNs are called and rendered to the user so that the "last_four" method is called instead</li>
 				<li> For new user's who are registering, we create an initialization specific to their account</li>
-			  </p>	
+			  </p>
 			  <pre class="ruby">
 				 # SEED DATA
 				 work_info.each do |wi|
@@ -133,7 +133,7 @@
 				elsif Rails.env.development?
 				  KEY = "123456789101112123456789101112123456789101112"
 				end
-			  </pre>	
+			  </pre>
 			 <pre class="ruby">
 				# CHANGE VIEW TO CALL LAST FOUR METHOD (app/views/work_info/index.html.erb)
 				<%= CGI.unescapeHTML("&lt;td class=&quot;ssn&quot;&gt;&lt;%= @user.work_info.last_four %&gt;&lt;/td&gt;") %>
@@ -147,7 +147,7 @@
 			   work_info.build_key_management(:iv => SecureRandom.hex(32))
 			   performance.build(POPULATE_PERFORMANCE.shuffle.first)
 			end
-			 </pre>	
+			 </pre>
             </div>
           </div>
         </div>

@@ -37,7 +37,7 @@
 			  </p>
 			  <pre class="ruby">
 				  def download
-			   		begin  
+			   		begin
 			   		  <span style="background-color:yellow">path = Rails.root.join('public', 'docs', params[:name])</span>
 			   		  <span style="background-color:yellow">file = params[:type].constantize.new(path)</span>
 			   		  send_file file, :disposition => 'attachment'
@@ -48,7 +48,7 @@
 			  </pre>
 			  <p class="desc">
 				The location of the file to render is dynamically generated based on user input (params[:name]). This means the user controls the location of the file to be retrieved. Additionally, the params[:type] (File) is not validated to make sure it matches up with expected values.
-			  </p>	 	
+			  </p>
             </div>
           </div>
         </div>
@@ -65,10 +65,10 @@
                <p><b> Constantize ATTACK:</b></p>
 			   <p class="desc">
 				In order to attack this weakness, navigate to the benefit forms page and observe the link to download either the health or dental documents.
-			   </p>	
+			   </p>
 			   <pre class="ruby">
 				 http://railsgoat.dev/download?name=Health_n_Stuff.pdf&type=File
-			   </pre> 
+			   </pre>
 			   <p>
 				Change the name parameter to something a little more fun like:
 			    </p>
@@ -77,10 +77,10 @@
 				</pre>
 				<p class="desc">
 					This second request string specifies to navigate back two directories and then look for config/intiializers/secret_token.rb. It is important to note, even when Rails.root.join is used, leveraging path traversal (ex: ../../) allows the attacker to retrieve any file that the application's user has permissions to.<br/><br/>  Example:
-				</p>	
+				</p>
 				<pre class="ruby">
 					../../../../../../../etc/passwd&type=File
-				</pre>	
+				</pre>
 			   <p><b> Constantize SOLUTION:</b></p>
 			   <p class="desc">
 				 In this instance and as always, there are multiple ways to fix this. A simple method to secure this function by validating user input is as follows:
@@ -89,14 +89,14 @@
 					# More secure version
 				    def download
 				     <span style="background-color:yellow">file_assoc = {"1" => "Health_n_Stuff.pdf", "2" => "Dental_n_Stuff.pdf"}</span>
-				     begin  
+				     begin
 				       <span style="background-color:yellow">if file_assoc.has_key?(params[:name].to_s)</span>
 				          path = Rails.root.join('public', 'docs', file_assoc[params[:name].to_s])
 				          <span style="background-color:yellow">if params[:type] == "File"</span>
-				            file = params[:type].constantize.new(path)  
+				            file = params[:type].constantize.new(path)
 				            send_file file, :disposition => 'attachment'
-				          end 
-				       else 
+				          end
+				       else
 				         file =  Rails.root.join('public', 'docs', "Dental_n_Stuff.pdf")
 				         send_file file, :disposition => 'attachment'
 				       end
@@ -107,7 +107,7 @@
 				</pre>
 				<p class="desc">
 					The fix ultimately boils down to leveraging a hash, if the hash has the key provided by the user, the value associated with that key is the name of the file to be returned.
-				</p>	
+				</p>
             </div>
           </div>
         </div>
@@ -124,7 +124,7 @@
               It can be very helpful for employees to download benefit forms.
             </div>
           </div>
-        </div> 
+        </div>
 	 </div>
     </div>
   </div>

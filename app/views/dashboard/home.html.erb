@@ -1,19 +1,19 @@
 <div class="dashboard-wrapper">
-    
+
     <div class="main-container">
 
 		<div class="row-fluid">
 		    <div class="span12"> <!--begin span12 -->
-		    <% if @user.paid_time_off %>  
+		    <% if @user.paid_time_off %>
 				<%= render :partial => "layouts/dashboard/dashboard_stats"%>
-			<% end %>	
+			<% end %>
 		    </div> <!-- end span12 -->
 		</div>
-	</div>	
+	</div>
 </div>
 
 <script type="text/javascript">
- 
+
 
 function makeActive(){
 	$('li[id="home"]').addClass('active');

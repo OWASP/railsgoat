@@ -37,7 +37,7 @@
 			  </p>
 			  <p>
 				 Within app/controllers/users_controller.rb
-			  </p>	
+			  </p>
 			  <pre class="ruby">
 				  def update
 				    message = false
@@ -55,7 +55,7 @@
 			  </pre>
 			  <p class="desc">
 				The injection vulnerability is introduced when user-supplied input is placed within the SQL string that will be executed as a query. The application will not be able to determine which portion of this query is data and which portion is a query as the user input is interpolated or co-mingled with the query string.
-			  </p>		 
+			  </p>
             </div>
           </div>
         </div>
@@ -92,7 +92,7 @@
 			  </pre>
 			   <p class="desc">
 				Now we will inject some SQL Query syntax that will return the first result of a query that looks for users that have an admin attribute that is true. So essentially, instead of looking up the user whose data we will change by our user ID, we tell the database to return the first admin and update their data. In this instance, we are changing admin@metacorp.com's password to testtest. We can later login as that user. Granted, we could just change the user_id to 1 and do the same thing, and there are other ways to exploit this weakness but this is a clear-cut example of SQL Injection. <b> It is important to note that we have omitted the email, first, and last name parameters as a duplicate email address will cause errors. Additionally, we do not wish to change the admin's first and last name as this would alert the admin to the "hack".</b>
-			   </p>	
+			   </p>
 			   <pre class="ruby">
 				POST /users/5.json HTTP/1.1
 				Host: railsgoat.dev
@@ -110,7 +110,7 @@
 				Cache-Control: no-cache
 
 				utf8=â&_method=put&authenticity_token=GXhLKKhfBXdFx5i6iqHEd5E32Kebn1+G35eA87RW1tU=&<span style="background:yellow">user[user_id]=5') OR admin = 't' --'")</span>&user[password]=testtest1&user[password_confirmation]=testtest1
-			   </pre>			 
+			   </pre>
 			  <p><b>SQL Injection - SOLUTION</b></p>
 			  <p class="desc">
 				In this instance, the more secure route would be to reference the current_user object versus pulling from the database manually, using POST parameters provided by the user.<br/><br/>
@@ -119,7 +119,7 @@
 				  def update
 				    message = false
 				    <span style="background-color:yellow">user = current_user</span>
-				   
+
 				    user.skip_user_id_assign = true
 				    user.update_attributes(params[:user].reject { |k| k == ("password" || "password_confirmation") || "user_id" })
 				    pass = params[:user][:password]
@@ -136,7 +136,7 @@
 			  </p>
 			  <pre class="ruby">
 				user = User.find(:first, :conditions => ["user_id = ?", "#{params[:user][:user_id]}"])
-			  </pre>			 
+			  </pre>
             </div>
           </div>
         </div>
@@ -153,7 +153,7 @@
               I wonder who else's account needs updating?
             </div>
           </div>
-        </div> 
+        </div>
 	 </div>
     </div>
   </div>

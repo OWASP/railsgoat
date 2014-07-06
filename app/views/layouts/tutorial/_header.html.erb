@@ -31,7 +31,7 @@
 
 <script type="text/javascript">
 
-$('#show_creds_btn').click(function(event) {  
+$('#show_creds_btn').click(function(event) {
 	event.preventDefault();
 	$("#modal_div").load(<%= credentials_tutorials_path.inspect.html_safe %>);
 	$("#modal_div").modal("show");

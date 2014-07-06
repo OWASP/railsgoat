@@ -1,7 +1,7 @@
 <div class="widget">
     <div class="widget-header">
       <div class="title">
-        <span class="fs1" aria-hidden="true" data-icon="&#xe092;"></span> A1 - SQL Injection - ActiveRecord Scope 
+        <span class="fs1" aria-hidden="true" data-icon="&#xe092;"></span> A1 - SQL Injection - ActiveRecord Scope
       </div>
     </div>
     <div class="widget-body">
@@ -21,10 +21,10 @@
 			 </p>
 			 <pre><i>
 "Scoping allows you to specify commonly-used queries which can be referenced as <br/>method calls on the association objects or models."
-			 </i></pre>	
+			 </i></pre>
 			 <p class="desc">
-				This means that we can call a scope as a method and that the scope can be used for common queries such as <i>where</i> and <i>join</i>. Developers must be careful not to interpolate or concatenate user input into these scope calls as this can lead to SQL Injection. This is a common mistake made and can have serious consequences. 
-			 </p>	
+				This means that we can call a scope as a method and that the scope can be used for common queries such as <i>where</i> and <i>join</i>. Developers must be careful not to interpolate or concatenate user input into these scope calls as this can lead to SQL Injection. This is a common mistake made and can have serious consequences.
+			 </p>
             </div>
           </div>
         </div>
@@ -53,7 +53,7 @@
 			  </pre>
 			 <p class="desc">
 				Additionally, within app/controllers/admin_controller.rb:
-			 </p>	
+			 </p>
 			 <pre class="ruby">
 			  def analytics
 			    if params[:field].nil?
@@ -72,7 +72,7 @@
 			 </pre>
 			 <p class="desc">
 				Within the controller we call the method <i>hits_by_ip</i>. This method is actually a scope as highlighted (above) in the Analytics model. The field object, defined within the controller, represents user-input that is intended to control the column returned by the SQL query. The field object represents the HTTP Request's parameter key. So this means we can control at least a portion of the query. Due to the fact that this input is used as an interpolated value within the query string, we have control over a larger portion of the query.
-			 </p>	
+			 </p>
             </div>
           </div>
         </div>
@@ -89,7 +89,7 @@
                <p><b>SQL Injection - ATTACK</b></p>
 			   <p class="desc">
 			   	Navigate to the admin analytics panel. Send a request to search by an IP. Modify the request to change the parameter key to a partial SQL statement that returns all users and their information from the database:
-			   </p>	
+			   </p>
 			   <pre>
 				GET /admin/1/analytics?ip=127.0.0.1&field%5B*%20from%20users--%5D= HTTP/1.1
 				Host: railsgoat.dev
@@ -100,9 +100,9 @@
 				Cookie:[redacted]
 				Connection: keep-alive
 			   </pre>
-			   <p class="desc">	
+			   <p class="desc">
 				Essentially we are changing the intended SQL query from:
-			   </p>	
+			   </p>
 			   <pre>
 				SELECT <span style="background-color:yellow">UserInput</span> FROM "analytics"  WHERE "analytics"."ip_address" = '127.0.0.1' ORDER BY id DESC
 			   </pre>
@@ -111,11 +111,11 @@
 			   </p>
 			   <pre>
 				SELECT * from users-- FROM "analytics" WHERE "analytics"."ip_address" = '127.0.0.1' ORDER BY id DESC
-			   </pre>	
+			   </pre>
 			   <p><b>SQL Injection - SOLUTION</b></p>
 			   <p class="desc">
 				To resolve this issue, do not interpolate user-provided input into SQL queries. However, it is always a good idea to create a whitelist of acceptable values when writing any code that is intended to be powerful and very flexible but that also leverages user-input to make these potentially security-impacting decisions. Within the Analytics model, we have a method called <i>parse_field</i>:
-			   </p>	
+			   </p>
 			   <pre class="ruby">
 				 def self.parse_field(field)
 				  	valid_fields = ["ip_address", "referrer", "user_agent"]
@@ -146,7 +146,7 @@
 				    render "layouts/admin/_analytics"
 				  end
 			   </pre>
-			   <p class="desc">	
+			   <p class="desc">
 				Effectively, we've changed any malicious data provided by the user into the number '1' by leveraging the above code.
 			   </p>
             </div>
@@ -165,7 +165,7 @@
               Administrative analytics functionality need further security analysis. Now might be a good time to test for SQLi.
             </div>
           </div>
-        </div> 
+        </div>
 	 </div>
     </div>
   </div>

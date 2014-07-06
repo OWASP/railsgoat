@@ -47,12 +47,12 @@
 				    end
 				  end
 
-				end 
+				end
 				} %>
 			  </pre>
 			  <p class="desc">
 				Instead of using the current_user object which, takes the user ID value from the user's session and is normally resilient against tampering, the user ID is pulled from the request parameter (user id in the RESTful URL). Additionally, even in the session, User IDs should be sufficiently random and the sessions stored in a persistent manner (ActiveRcord) versus using the Base64 encoded / HMAC validation session schema.
-			  </p>	
+			  </p>
             </div>
           </div>
         </div>
@@ -70,7 +70,7 @@
  			  <p class="desc">
 				 Navigate to the work info page, observe your user ID in the URL /users/<%= "<:user id>"%>/work_info.
 				 Now change it to someone else's user ID.<br/><br/> Example - /users/2/work_info
-	          </p>	
+	          </p>
 			  <p><b>Insecure Direct Object Reference - SOLUTION</b></p>
 			  <p class="desc">
 				The easiest way to fix this is to reference the current_user object. Also, it might make sense to not disclose any more sensitive information than necessary (re: error message).
@@ -78,12 +78,12 @@
 			  <pre class="ruby">
 				  def index
 				    <span style="background-color:yellow">@user = current_user</span>
-				    if !(@user) || @user.admin 
+				    if !(@user) || @user.admin
 				      <span style="background-color:yellow">flash[:error] = "Apologies, looks like something went wrong"</span>
 				      redirect_to home_dashboard_index_path
 				    end
 				  end
-			  </pre>	 
+			  </pre>
             </div>
           </div>
         </div>
