@@ -16,9 +16,9 @@
           </div>
           <div class="accordion-body in collapse" id="collapseCryptoOne" style="height: auto;">
             <div class="accordion-inner">
-			<p class="desc">
+      <p class="desc">
               The Railsgoat application allows employees of Metacorp to choose the <b><i>Remember Me</b></i> option at login, which creates a cookie named <b><i>auth-token</i></b>. The encryption routine used to generate the <b><i>auth-token</i></b> allows the application to extract a user ID. When decrypted, a user ID is extracted and the user is authorized appropriately. This same encryption routine is used elsewhere in the application in a manner such that a clever attacker can generate an auth_token cookie with whatever user ID they prefer and authorize to the application as a different user.
-			</p>
+      </p>
             </div>
           </div>
         </div>
@@ -32,63 +32,63 @@
           </div>
           <div class="accordion-body collapse" id="collapseCryptoTwo" style="height: 0px;">
             <div class="accordion-inner">
-             	<p class="desc">
-				 Within the file lib/encryption.rb, there are two encryption related methods that we have exposed:
-				</p>
-				<pre class="ruby">
-				  # Added a re-usable encryption routine, shouldn't be an issue!
-				  def self.encrypt_sensitive_value(val="")
-				     aes = OpenSSL::Cipher::Cipher.new(cipher_type)
-				     aes.encrypt
-				     aes.key = key
-				     aes.iv = iv if iv != nil
-				     new_val = aes.update("#{val}") + aes.final
-				     Base64.strict_encode64(new_val).encode('utf-8')
-				  end
+              <p class="desc">
+         Within the file lib/encryption.rb, there are two encryption related methods that we have exposed:
+        </p>
+        <pre class="ruby">
+          # Added a re-usable encryption routine, shouldn't be an issue!
+          def self.encrypt_sensitive_value(val="")
+             aes = OpenSSL::Cipher::Cipher.new(cipher_type)
+             aes.encrypt
+             aes.key = key
+             aes.iv = iv if iv != nil
+             new_val = aes.update("#{val}") + aes.final
+             Base64.strict_encode64(new_val).encode('utf-8')
+          end
 
-				  def self.decrypt_sensitive_value(val="")
-				     aes = OpenSSL::Cipher::Cipher.new(cipher_type)
-				     aes.decrypt
-				     aes.key = key
-				     aes.iv = iv if iv != nil
-				     decoded = Base64.strict_decode64("#{val}")
-				     aes.update("#{decoded}") + aes.final
-				  end
-				</pre>	
-				<p class="desc">
-					We have placed this code under the lib directory so that we have a re-usable encryption routine. This code is used to generate a user's <b><i>auth_token</b></i> cookie responsible for authorization and access. However, we've also used this same code when encrypting a user's bank account number. This means, a user can enter in any value they would like and will receive it's encrypted equivalent back from the application. Essentially, a user has the ability to generate the auth_token cookie for any user ID and authorize as that user.<br/><br/>
-				 Within the app/models/pay.rb file we have a before hook that will save a user's bank account number as an encrypted value:
-				</p>
-				<pre class="ruby">
-				  # callbacks
-				  before_save <span style="background-color:yellow">:encrypt_bank_account_num</span>
-					
-				  def encrypt_bank_account_num
-				  	self.bank_account_num = <span style="background-color:yellow">Encryption.encrypt_sensitive_value(self.bank_account_num)</span>
-				  end
-				</pre>	
-				<p class="desc">
-					Additionally, we render that encrypted value (purposefully) when the <b><i>show</i></b> action is created within the app/controllers/pay_controller.rb file:
-				</p>	
-				<pre class="ruby">
-				   def show
-				   	respond_to do |format|
-				   	  format.json { render :json => {:user => <span style="background-color:yellow">current_user.pay.as_json</span>} }
-				   	end
-				  end
-				</pre>
-				<p class="desc">
-					Lastly, we re-use this same routine within the following code is used to create a user's <b><i>auth_token</b></i> cookie upon sign-up or creation (app/models/user.rb):
-				</p>	
-				<pre class="ruby">
-					before_create { generate_token(:auth_token) }
-					
-				   def generate_token(column)
-				   	begin
-				   		self[column] = <span style="background-color:yellow">Encryption.encrypt_sensitive_value(self.user_id)</span>
-				   	end while User.exists?(column => self[column])
-				   end
-				</pre>	
+          def self.decrypt_sensitive_value(val="")
+             aes = OpenSSL::Cipher::Cipher.new(cipher_type)
+             aes.decrypt
+             aes.key = key
+             aes.iv = iv if iv != nil
+             decoded = Base64.strict_decode64("#{val}")
+             aes.update("#{decoded}") + aes.final
+          end
+        </pre>
+        <p class="desc">
+          We have placed this code under the lib directory so that we have a re-usable encryption routine. This code is used to generate a user's <b><i>auth_token</b></i> cookie responsible for authorization and access. However, we've also used this same code when encrypting a user's bank account number. This means, a user can enter in any value they would like and will receive it's encrypted equivalent back from the application. Essentially, a user has the ability to generate the auth_token cookie for any user ID and authorize as that user.<br/><br/>
+         Within the app/models/pay.rb file we have a before hook that will save a user's bank account number as an encrypted value:
+        </p>
+        <pre class="ruby">
+          # callbacks
+          before_save <span style="background-color:yellow">:encrypt_bank_account_num</span>
+
+          def encrypt_bank_account_num
+            self.bank_account_num = <span style="background-color:yellow">Encryption.encrypt_sensitive_value(self.bank_account_num)</span>
+          end
+        </pre>
+        <p class="desc">
+          Additionally, we render that encrypted value (purposefully) when the <b><i>show</i></b> action is created within the app/controllers/pay_controller.rb file:
+        </p>
+        <pre class="ruby">
+           def show
+            respond_to do |format|
+              format.json { render :json => {:user => <span style="background-color:yellow">current_user.pay.as_json</span>} }
+            end
+          end
+        </pre>
+        <p class="desc">
+          Lastly, we re-use this same routine within the following code is used to create a user's <b><i>auth_token</b></i> cookie upon sign-up or creation (app/models/user.rb):
+        </p>
+        <pre class="ruby">
+          before_create { generate_token(:auth_token) }
+
+           def generate_token(column)
+            begin
+              self[column] = <span style="background-color:yellow">Encryption.encrypt_sensitive_value(self.user_id)</span>
+            end while User.exists?(column => self[column])
+           end
+        </pre>
             </div>
           </div>
         </div>
@@ -103,17 +103,17 @@
           <div class="accordion-body collapse" id="collapseCryptoThree" style="height: 0px;">
             <div class="accordion-inner">
                <p><b> Insecure Encryption Re-use ATTACK:</b></p>
-				<p class="desc">
-			   	 Navigate to the <b><i>Pay</b></i> section of the application. Enter your bank account number but use the number <b><i>1</i></b> as your bank account number. Once the information is entered and submitted, you'll see the encrypted value of your bank account number (1) returned. URL encode the special characters (+ and ==) and use this value as your <b><i>auth_token</i></b> cookie. Navigate to your dashboard and you'll have the ability to access administrative functionality.
-			    </p>
-			   <p><b> Insecure Encryption Re-use SOLUTION:</b></p>
-				<p class="desc">
-			     Create an entirely new encryption routine or create the SHA1 hash with a different salt.
-				</p>
+        <p class="desc">
+           Navigate to the <b><i>Pay</b></i> section of the application. Enter your bank account number but use the number <b><i>1</i></b> as your bank account number. Once the information is entered and submitted, you'll see the encrypted value of your bank account number (1) returned. URL encode the special characters (+ and ==) and use this value as your <b><i>auth_token</i></b> cookie. Navigate to your dashboard and you'll have the ability to access administrative functionality.
+          </p>
+         <p><b> Insecure Encryption Re-use SOLUTION:</b></p>
+        <p class="desc">
+           Create an entirely new encryption routine or create the SHA1 hash with a different salt.
+        </p>
             </div>
           </div>
         </div>
-     	<div class="accordion-group">
+      <div class="accordion-group">
           <div class="accordion-heading">
             <a  style="background-color: rgb(181, 121, 158)" href="#collapseCryptoFour" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
               <i class="icon-aid icon-white">
@@ -126,7 +126,7 @@
               My "Remember Me" cookie looks familiar, almost like one of those values you get when you enter your bank account number.
             </div>
           </div>
-        </div> 
-	 </div>
+        </div>
+   </div>
     </div>
   </div>

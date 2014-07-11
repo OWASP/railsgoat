@@ -16,9 +16,9 @@
           </div>
           <div class="accordion-body in collapse" id="collapseCompOne" style="height: auto;">
             <div class="accordion-inner">
-				<p class="desc">
+        <p class="desc">
               A timing attack can exist in several forms. This specific case relates to username (email address) enumeration. By leveraging an automated tool, an attacker can review any subtle variation in response times after submitting a login request to determine if the application is performing a computationally intense function. Meaning, if a function is run once a user is discovered, even if the password is incorrect, this information provides the user with valid or invalid usernames.
-				</p>
+        </p>
             </div>
           </div>
         </div>
@@ -32,28 +32,28 @@
           </div>
           <div class="accordion-body collapse" id="collapseCompTwo" style="height: 0px;">
             <div class="accordion-inner">
-				<p>
-					Within app/models/user.rb
-				</p>	
-	          	<pre class="ruby">
-			  	    def self.authenticate(email, password)
-			  	         auth = nil
-			  	         <span style="background-color: yellow"> user = find_by_email(email)</span>
-			  	          raise "#{email} doesn't exist!" if !(user)
-			  	           <span style="background-color: yellow">if user.password == Digest::MD5.hexdigest(password)</span>
-			  	             auth = user
-			  	           else
-			  	            raise "Incorrect Password!"
-			  	           end 
-			  	         return auth
-			  	    end
-			  	</pre>
-			   	<p class="desc">
-					Ignore for a moment that the application actually tells you whether or not an email address exists :-). Instead, let's look at what would happen if this error message wasn't so specific. Even if the error message vulnerability was mitigated (because it indicates whether or not a user exists), there will be some variations in the application's response between a user that exists and one that does not (however so slight, considering MD5 is in use). 
-			   	</p>
-				<p class="desc">
-				To understand why, let's follow the flow of this code example. Firstly, the application look for a user by email. If not found, nothing else really happens. No further processing, password comparison, etc. If a user <i>is</i> found, we will perform a password comparison and process as normal.
-				</p>
+        <p>
+          Within app/models/user.rb
+        </p>
+              <pre class="ruby">
+              def self.authenticate(email, password)
+                   auth = nil
+                   <span style="background-color: yellow"> user = find_by_email(email)</span>
+                    raise "#{email} doesn't exist!" if !(user)
+                     <span style="background-color: yellow">if user.password == Digest::MD5.hexdigest(password)</span>
+                       auth = user
+                     else
+                      raise "Incorrect Password!"
+                     end
+                   return auth
+              end
+          </pre>
+          <p class="desc">
+          Ignore for a moment that the application actually tells you whether or not an email address exists :-). Instead, let's look at what would happen if this error message wasn't so specific. Even if the error message vulnerability was mitigated (because it indicates whether or not a user exists), there will be some variations in the application's response between a user that exists and one that does not (however so slight, considering MD5 is in use).
+          </p>
+        <p class="desc">
+        To understand why, let's follow the flow of this code example. Firstly, the application look for a user by email. If not found, nothing else really happens. No further processing, password comparison, etc. If a user <i>is</i> found, we will perform a password comparison and process as normal.
+        </p>
             </div>
           </div>
         </div>
@@ -68,29 +68,29 @@
           <div class="accordion-body collapse" id="collapseCompThree" style="height: 0px;">
             <div class="accordion-inner">
               <p><b>Lack of Password Complexity - SOLUTION</b></p>
-			  <p>
-				Within app/models/user.rb:
-			  </p>	
-			  <pre class="ruby">
-				 def self.authenticate(email, password)
-				       <span style="background-color: yellow">user = find_by_email(email) || User.new(:password => "")</span>
-				        <span style="background-color: yellow">if Rack::Utils.secure_compare(user.password, Digest::MD5.hexdigest(password))</span>
-				          return user
-				        else
-				          raise "Incorrect username or password"
-				        end 
-				   end
-			  </pre>
-			  <p class="desc">
-				To mitigate this attack and shore up our weakness, we do two things. The first is to find a user by email, if they don't exist, create a new user object in memory (not in the database) and assign it a blank password value. This means, regardless of whether or not a user exists, we will have a user to perform some processing on. The next is, we take the input from the user and match it against the user object's password leveraging secure_compare. This is a function (secure_compare) used to ensure that when a comparison happens, it will always take the same amount of time.
-			  </p>	
-			  <p class="desc">
-				 In summary, we have ensured that regardless of whether or not a user exists, a password comparison will always occur and it will take the same amount of time to complete.
-			  </p>	
+        <p>
+        Within app/models/user.rb:
+        </p>
+        <pre class="ruby">
+         def self.authenticate(email, password)
+               <span style="background-color: yellow">user = find_by_email(email) || User.new(:password => "")</span>
+                <span style="background-color: yellow">if Rack::Utils.secure_compare(user.password, Digest::MD5.hexdigest(password))</span>
+                  return user
+                else
+                  raise "Incorrect username or password"
+                end
+           end
+        </pre>
+        <p class="desc">
+        To mitigate this attack and shore up our weakness, we do two things. The first is to find a user by email, if they don't exist, create a new user object in memory (not in the database) and assign it a blank password value. This means, regardless of whether or not a user exists, we will have a user to perform some processing on. The next is, we take the input from the user and match it against the user object's password leveraging secure_compare. This is a function (secure_compare) used to ensure that when a comparison happens, it will always take the same amount of time.
+        </p>
+        <p class="desc">
+         In summary, we have ensured that regardless of whether or not a user exists, a password comparison will always occur and it will take the same amount of time to complete.
+        </p>
             </div>
           </div>
         </div>
-		<div class="accordion-group">
+    <div class="accordion-group">
           <div class="accordion-heading">
             <a  style="background-color: rgb(181, 121, 158)" href="#collapseCompFour" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
               <i class="icon-aid icon-white">
@@ -100,9 +100,9 @@
           </div>
           <div class="accordion-body collapse" id="collapseCompFour" style="height: 0px;">
             <div class="accordion-inner">
-				<p class="desc">
-					Timing is everything. Authenticating is important too.
-				</p>	
+        <p class="desc">
+          Timing is everything. Authenticating is important too.
+        </p>
              </div>
           </div>
         </div>

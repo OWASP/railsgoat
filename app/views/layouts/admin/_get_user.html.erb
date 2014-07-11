@@ -1,7 +1,4 @@
-
-
 <!-- Begin Modal -->
-
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
         ×
@@ -11,89 +8,89 @@
       </h4>
     </div>
     <div class="modal-body">
-      <div class="row-fluid">  
+      <div class="row-fluid">
         <div class="span8">
-	      <%= form_for @user, :html => {:id => "account_edit"} do |f| %>
-	      <div class="control-group">
-		  <%= f.label :email, nil, {:class => "control-label"}%>
-		  <%= f.text_field :email, {:class => "span12"}%>
-		  </div>
-		
-		  <div class="control-group">
-		  <%= f.label :first_name, nil, {:class => "control-label"}%>
-		  <%= f.text_field :first_name, {:class => "span12"} %>
-		  </div>
-		
-		  <div class="control-group">
-		  <%= f.label :last_name, nil, {:class => "control-label"}%>
-		  <%= f.text_field :last_name, {:class => "span12"} %>
-		  </div>	
-            
+        <%= form_for @user, :html => {:id => "account_edit"} do |f| %>
+        <div class="control-group">
+      <%= f.label :email, nil, {:class => "control-label"}%>
+      <%= f.text_field :email, {:class => "span12"}%>
+      </div>
+
+      <div class="control-group">
+      <%= f.label :first_name, nil, {:class => "control-label"}%>
+      <%= f.text_field :first_name, {:class => "span12"} %>
+      </div>
+
+      <div class="control-group">
+      <%= f.label :last_name, nil, {:class => "control-label"}%>
+      <%= f.text_field :last_name, {:class => "span12"} %>
+      </div>
+
          <div class="control-group">
-		  <%= f.label :password, nil, {:class => "control-label"}%>
-		  <%= f.password_field :password, {:class => "span12", :placeholder => "Enter Password"}%>
-		 </div>
-		
-		 <div class="control-group">
-		  <%= f.label :password_confirmation, nil, {:class => "control-label"}%>
-		  <%= f.password_field :password_confirmation, {:class => "span12", :placeholder => "Enter Password"} %>
-		 </div> 
-		 
-		  <%= f.label :admin, nil, {:class => "control-label"}%>
-		  <%= f.select(:admin, @admin_select) %>
+      <%= f.label :password, nil, {:class => "control-label"}%>
+      <%= f.password_field :password, {:class => "span12", :placeholder => "Enter Password"}%>
+     </div>
+
+     <div class="control-group">
+      <%= f.label :password_confirmation, nil, {:class => "control-label"}%>
+      <%= f.password_field :password_confirmation, {:class => "span12", :placeholder => "Enter Password"} %>
+     </div>
+
+      <%= f.label :admin, nil, {:class => "control-label"}%>
+      <%= f.select(:admin, @admin_select) %>
         </div>
       </div>
-      <div class="row-fluid">  
+      <div class="row-fluid">
       </div>
     </div>
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">
         Close
       </button>
-         <%= link_to "Delete", "#", {:id => "delete_button", :class => "btn btn-danger pull-left"} %>	
+         <%= link_to "Delete", "#", {:id => "delete_button", :class => "btn btn-danger pull-left"} %>
          <%= f.submit "Submit", {:id => 'submit_button', :class => "btn btn-primary pull-right"} %>
     </div>
- 	     <% end %>
+       <% end %>
 <!-- End Modal -->
 
 <%= javascript_include_tag ('validation.js')%>
 
 <script type="text/javascript">
 
-$('#submit_button').click(function() {  
-	var valuesToSubmit = $("#account_edit").serialize();
-	$("#editAcct").modal('hide');
-	
-	$.ajax({
+$('#submit_button').click(function() {
+  var valuesToSubmit = $("#account_edit").serialize();
+  $("#editAcct").modal('hide');
+
+  $.ajax({
       url: "/admin/" +  <%= @user.user_id %> + "/update_user.json",
-	  data: valuesToSubmit,
-	  type: "POST",
-	  success: function(response) {
-	  	$('#success').show(500).delay(1500).fadeOut();
-		loadTable();
-	  },
-	  error: function(event) {
-		$('#failure').show(500).delay(1500).fadeOut();
-	  }
-	});
-	  
+    data: valuesToSubmit,
+    type: "POST",
+    success: function(response) {
+      $('#success').show(500).delay(1500).fadeOut();
+    loadTable();
+    },
+    error: function(event) {
+    $('#failure').show(500).delay(1500).fadeOut();
+    }
+  });
+
 });
 
-$('#delete_button').click(function() {  
-	$("#editAcct").modal('hide');
-	
-	$.ajax({
+$('#delete_button').click(function() {
+  $("#editAcct").modal('hide');
+
+  $.ajax({
       url: "/admin/" +  <%= params[:admin_id] %> + "/delete_user.json",
-	  type: "POST",
-	  success: function(response) {
-	  	$('#success').show(500).delay(1500).fadeOut();
-		loadTable();
-	  },
-	  error: function(event) {
-		$('#failure').show(500).delay(1500).fadeOut();
-	  }
-	});
-	  
+    type: "POST",
+    success: function(response) {
+      $('#success').show(500).delay(1500).fadeOut();
+    loadTable();
+    },
+    error: function(event) {
+    $('#failure').show(500).delay(1500).fadeOut();
+    }
+  });
+
 });
 
 </script>

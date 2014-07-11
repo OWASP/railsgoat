@@ -17,9 +17,9 @@
             Admin
            <% end %>
         </li>
- 		<% end %>
+    <% end %>
         <li id="benefit_forms">
-		<%= link_to user_benefit_forms_path(:user_id => current_user.user_id) do %>
+    <%= link_to user_benefit_forms_path(:user_id => current_user.user_id) do %>
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe05c;"></span>
             </div>
@@ -66,8 +66,8 @@
             Messages
           <% end %>
         </li>
-		<li id="pay">
-		  <%= link_to user_pay_index_path(:user_id => current_user.user_id) do %>
+    <li id="pay">
+      <%= link_to user_pay_index_path(:user_id => current_user.user_id) do %>
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe038;"></span>
             </div>
@@ -77,52 +77,52 @@
       </ul>
     </div>
 
-	<script type="text/javascript">
-	//Main menu navigation
+  <script type="text/javascript">
+  //Main menu navigation
 
-	$('.submenu > a').click(function(e){
-	  e.preventDefault();
-	  var submenu = $(this).siblings('ul');
-	  var li = $(this).parents('li');
-	  var submenus = $('#mainnav li.submenu ul');
-	  var submenus_parents = $('#mainnav li.submenu');
-	  if(li.hasClass('open'))
-	  {
-	    if(($(window).width() > 768) || ($(window).width() < 479)) {
-	      submenu.slideUp();
-	    } else {
-	      submenu.fadeOut(250);
-	    }
-	    li.removeClass('open');
-	  } else 
-	  {
-	    if(($(window).width() > 768) || ($(window).width() < 479)) {
-	      submenus.slideUp();     
-	      submenu.slideDown();
-	    } else {
-	      submenus.fadeOut(250);      
-	      submenu.fadeIn(250);
-	    }
-	    submenus_parents.removeClass('open');   
-	    li.addClass('open');  
-	  }
-	});
+  $('.submenu > a').click(function(e){
+    e.preventDefault();
+    var submenu = $(this).siblings('ul');
+    var li = $(this).parents('li');
+    var submenus = $('#mainnav li.submenu ul');
+    var submenus_parents = $('#mainnav li.submenu');
+    if(li.hasClass('open'))
+    {
+      if(($(window).width() > 768) || ($(window).width() < 479)) {
+        submenu.slideUp();
+      } else {
+        submenu.fadeOut(250);
+      }
+      li.removeClass('open');
+    } else
+    {
+      if(($(window).width() > 768) || ($(window).width() < 479)) {
+        submenus.slideUp();
+        submenu.slideDown();
+      } else {
+        submenus.fadeOut(250);
+        submenu.fadeIn(250);
+      }
+      submenus_parents.removeClass('open');
+      li.addClass('open');
+    }
+  });
 
-	var ul = $('#mainnav > ul');
+  var ul = $('#mainnav > ul');
 
-	$('#mainnav > a').click(function(e)
-	{
-	  e.preventDefault();
-	  var mainnav = $('#mainnav');
-	  if(mainnav.hasClass('open'))
-	  {
-	    mainnav.removeClass('open');
-	    ul.slideUp(250);
-	  } else 
-	  {
-	    mainnav.addClass('open');
-	    ul.slideDown(250);
-	  }
-	});
+  $('#mainnav > a').click(function(e)
+  {
+    e.preventDefault();
+    var mainnav = $('#mainnav');
+    if(mainnav.hasClass('open'))
+    {
+      mainnav.removeClass('open');
+      ul.slideUp(250);
+    } else
+    {
+      mainnav.addClass('open');
+      ul.slideDown(250);
+    }
+  });
 
-	</script>
+  </script>

@@ -1,17 +1,17 @@
 <div class="dashboard-wrapper">
-	<div class="main-container">
-		<div class="row-fluid">
-		    <div class="span12">
-		      <%= render :partial => ("layouts/tutorial/metaprogramming/benefit_forms_constantize")%>
-		    </div> <!-- End Span12-->
-		</div>
-	</div>
+  <div class="main-container">
+    <div class="row-fluid">
+        <div class="span12">
+          <%= render :partial => ("layouts/tutorial/metaprogramming/benefit_forms_constantize")%>
+        </div> <!-- End Span12-->
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript">
 function makeActive(){
-	$('li[id="metaprogramming"]').addClass('active');
-	$('li[id="submenu"]').addClass('active open');
+  $('li[id="metaprogramming"]').addClass('active');
+  $('li[id="submenu"]').addClass('active open');
 };
 
 $(document).ready(makeActive);

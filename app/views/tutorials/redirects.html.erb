@@ -1,16 +1,16 @@
 <div class="dashboard-wrapper">
-	<div class="main-container">
-		<div class="row-fluid">
-		    <div class="span12"> <!-- Begin Span12 -->
-		    	<%= render :partial => "layouts/tutorial/redirects/redirects_first"%>
-		    </div> <!-- End Span12 -->
-		</div>
-	</div>
+  <div class="main-container">
+    <div class="row-fluid">
+        <div class="span12"> <!-- Begin Span12 -->
+          <%= render :partial => "layouts/tutorial/redirects/redirects_first"%>
+        </div> <!-- End Span12 -->
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript">
 function makeActive(){
-	$('li[id="redirects"]').addClass('active');
+  $('li[id="redirects"]').addClass('active');
 };
 
 $(document).ready(makeActive);

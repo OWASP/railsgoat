@@ -6,13 +6,12 @@ class PaidTimeOff < ActiveRecord::Base
   def sick_days_remaining
     self.sick_days_earned - self.sick_days_taken
   end
-  
+
   def pto_days_remaining
     self.pto_earned - self.pto_taken
   end
-  
+
   def sick_days_taken_percentage
     result = self.sick_days_taken.to_f /  self.sick_days_earned.to_f * 100.0
   end
-
 end

@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) 2013  The Open Web Application Security Project
+Copyright (c) 2013-2014 The Open Web Application Security Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

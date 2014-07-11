@@ -1,6 +1,6 @@
 <div id="mainnav"class="hidden-phone hidden-tablet">
   <ul style="display: block;">
-	<li id="tutorials_home">
+  <li id="tutorials_home">
       <%= link_to tutorials_path, :html => {:method => "get"} do %>
         <div class="icon">
           <span class="fs1" aria-hidden="true" data-icon="&#xe001;"></span>
@@ -16,7 +16,7 @@
         A1 Injection
      <% end %>
     </li>
-	<li id="broken_auth">
+  <li id="broken_auth">
       <%= link_to broken_auth_tutorials_path do %>
         <div class="icon">
           <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
@@ -32,7 +32,7 @@
        A3 XSS
       <% end %>
     </li>
-    
+
     <li id="insecure_dor">
       <%= link_to insecure_dor_tutorials_path do %>
         <div class="icon">
@@ -41,7 +41,7 @@
         A4 Insecure DOR
       <% end %>
     </li>
-	<li id="misconfig">
+  <li id="misconfig">
       <%= link_to misconfig_tutorials_path do %>
         <div class="icon">
           <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
@@ -65,7 +65,7 @@
         A7 Access Control
       <% end %>
     </li>
-	<li id="csrf">
+  <li id="csrf">
       <%= link_to csrf_tutorials_path do %>
         <div class="icon">
           <span class="fs1" aria-hidden="true" data-icon="&#xe094;"></span>
@@ -97,21 +97,21 @@
         Extras
       </a>
       <ul>
-		<li id="gauntlt">
+    <li id="gauntlt">
           <%= link_to "gauntlt", gauntlt_tutorials_path %>
         </li>
         <li id="guard">
          <%= link_to "Guard", guard_tutorials_path %>
         </li>
-		<li id="mass_assignment">
+    <li id="mass_assignment">
           <%= link_to "Mass Assignment", mass_assignment_tutorials_path %>
         </li>
-		<li id="logic_flaws">
-			<%= link_to "Logic Flaws", logic_flaws_tutorials_path %>
-		</li>	
-		<li id="metaprogramming">
-			<%= link_to "Meta- Programming", metaprogramming_tutorials_path %>
-		</li>
+    <li id="logic_flaws">
+      <%= link_to "Logic Flaws", logic_flaws_tutorials_path %>
+    </li>
+    <li id="metaprogramming">
+      <%= link_to "Meta- Programming", metaprogramming_tutorials_path %>
+    </li>
       </ul>
     </li>
   </ul>
@@ -134,17 +134,17 @@ $('.submenu > a').click(function(e){
       submenu.fadeOut(250);
     }
     li.removeClass('open');
-  } else 
+  } else
   {
     if(($(window).width() > 768) || ($(window).width() < 479)) {
-      submenus.slideUp();     
+      submenus.slideUp();
       submenu.slideDown();
     } else {
-      submenus.fadeOut(250);      
+      submenus.fadeOut(250);
       submenu.fadeIn(250);
     }
-    submenus_parents.removeClass('open');   
-    li.addClass('open');  
+    submenus_parents.removeClass('open');
+    li.addClass('open');
   }
 });
 
@@ -158,7 +158,7 @@ $('#mainnav > a').click(function(e)
   {
     mainnav.removeClass('open');
     ul.slideUp(250);
-  } else 
+  } else
   {
     mainnav.addClass('open');
     ul.slideDown(250);

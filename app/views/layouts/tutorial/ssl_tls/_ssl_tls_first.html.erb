@@ -17,8 +17,8 @@
           <div class="accordion-body in collapse" id="collapseOne" style="height: auto;">
             <div class="accordion-inner">
               <p class="desc">
-	 Applications frequently fail to authenticate, encrypt, and protect the confidentiality and integrity of sensitive network traffic. When they do, they sometimes support weak algorithms, use expired or invalid certificates, or do not use them correctly.
-	 		  </p>
+   Applications frequently fail to authenticate, encrypt, and protect the confidentiality and integrity of sensitive network traffic. When they do, they sometimes support weak algorithms, use expired or invalid certificates, or do not use them correctly.
+        </p>
             </div>
           </div>
         </div>
@@ -33,8 +33,8 @@
           <div class="accordion-body collapse" id="collapseTwo" style="height: 0px;">
             <div class="accordion-inner">
              <p class="desc">
-				The application currently does not use SSL (this is not the bug). Once it does, we will show the bug. For now, check out the solution section.
-			 </p>
+        The application currently does not use SSL (this is not the bug). Once it does, we will show the bug. For now, check out the solution section.
+       </p>
             </div>
           </div>
         </div>
@@ -49,21 +49,21 @@
           <div class="accordion-body collapse" id="collapseThree" style="height: 0px;">
             <div class="accordion-inner">
               <p class="desc">
-				In order to enforce transport layer security and ensure all requests are made over SSL, navigate to the environment file that matches the environment you would like to apply this to and add:
-			  </p>
-			  <pre class="ruby">
-				 config.force_ssl = true
-			  </pre>
-			  <p class="desc">
-				To protect sessions from being sent over non-encrypted channels, mark your cookies with the secure flag. Under config/initializers/session_store.rb added the following option (highlighted):
-			  </p>	 	
-			  <pre class="ruby">
-				Railsgoat::Application.config.session_store :cookie_store, key: '_railsgoat_session'<span style="background-color:yellow">, :secure => true
-			  </pre>	
+        In order to enforce transport layer security and ensure all requests are made over SSL, navigate to the environment file that matches the environment you would like to apply this to and add:
+        </p>
+        <pre class="ruby">
+         config.force_ssl = true
+        </pre>
+        <p class="desc">
+        To protect sessions from being sent over non-encrypted channels, mark your cookies with the secure flag. Under config/initializers/session_store.rb added the following option (highlighted):
+        </p>
+        <pre class="ruby">
+        Railsgoat::Application.config.session_store :cookie_store, key: '_railsgoat_session'<span style="background-color:yellow">, :secure => true
+        </pre>
             </div>
           </div>
         </div>
-		<div class="accordion-group">
+    <div class="accordion-group">
           <div class="accordion-heading">
             <a  style="background-color: rgb(181, 121, 158)" href="#collapseFour" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
               <i class="icon-aid icon-white">

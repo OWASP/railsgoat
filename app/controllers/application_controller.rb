@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-
   before_filter :authenticated, :has_info, :create_analytic
   helper_method :current_user, :is_admin?, :sanitize_font
 
@@ -10,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= (
-      User.find_by_auth_token(cookies[:auth_token].to_s) || 
+      User.find_by_auth_token(cookies[:auth_token].to_s) ||
       User.find_by_user_id(session[:user_id].to_s)
     )
   end
@@ -53,5 +52,4 @@ class ApplicationController < ActionController::Base
     css
     # css if css.match(/\A[0-9]+([\%]|pt)\z/)
   end
-
 end

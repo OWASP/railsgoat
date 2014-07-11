@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
-
   skip_before_filter :has_info
   skip_before_filter :authenticated, :only => [:new, :create]
-
 
   def new
     @user = User.new
@@ -52,5 +50,4 @@ class UsersController < ApplicationController
       redirect_to user_account_settings_path(:user_id => current_user.user_id)
     end
   end
-
 end

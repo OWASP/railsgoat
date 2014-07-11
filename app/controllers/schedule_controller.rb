@@ -1,7 +1,8 @@
 class ScheduleController < ApplicationController
+
   def create
     message = false
-    
+
       if params[:schedule][:event_type] == "pto"
         sched = Schedule.new(params[:schedule])
         sched.date_begin, sched.date_end = format_schedule_date(params[:date_range1])
@@ -11,12 +12,12 @@ class ScheduleController < ApplicationController
           message = true
         end
       end
-      
+
     respond_to do |format|
       format.json {render :json => {:msg => message ? "success" : "failure" }}
     end
   end
-  
+
   def get_pto_schedule
     begin
        schedules = current_user.paid_time_off.schedule
@@ -29,17 +30,17 @@ class ScheduleController < ApplicationController
           hash[:end] = s[:date_end]
           jfs << hash
        end
-    rescue   
+    rescue
     end
      respond_to do |format|
        format.json do
           render :json => jfs.to_json
-       end  
+       end
      end
    end
-  
+
   private
-  
+
   # Returns a two part array consisting of dates
   # First value is the begin date and the second is the end date
   def format_schedule_date(date_array)
@@ -50,10 +51,9 @@ class ScheduleController < ApplicationController
        date = Date.strptime(s.strip, '%m/%d/%Y')
        vals <<(date)
      end
-   rescue ArgumentError  
+   rescue ArgumentError
      return []
    end
      return vals
   end
-    
 end
