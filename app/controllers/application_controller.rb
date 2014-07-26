@@ -1,11 +1,16 @@
 class ApplicationController < ActionController::Base
-  before_filter :authenticated, :has_info, :create_analytic
+  before_filter :authenticated, :has_info, :create_analytic, :mailer_options
   helper_method :current_user, :is_admin?, :sanitize_font
 
   # Our security guy keep talking about sea-surfing, cool story bro.
   # protect_from_forgery
 
   private
+
+  def mailer_options
+    ActionMailer::Base.default_url_options[:protocol] = request.protocol
+    ActionMailer::Base.default_url_options[:host]     = request.host_with_port
+  end
 
   def current_user
     @current_user ||= (
