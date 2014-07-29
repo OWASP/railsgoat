@@ -22,7 +22,7 @@ group :development, :mysql do
   gem 'pry'
   gem 'rack-livereload'
   gem 'rb-fsevent'
-	gem 'travis-lint'
+  gem 'travis-lint'
   gem 'better_errors'
   gem 'binding_of_caller'
 end
