@@ -1,3 +1,4 @@
+<% if @user.paid_time_off %>
 <!-- Begin easy pie charts container -->
  <div class="easy-pie-charts-container">
    <div class="pie-chart">
@@ -44,7 +45,7 @@
    </div>
  </div>
  <!-- End easy pie charts container -->
-
+<% end %>
 <script type="text/javascript">
 $(document).ready(
   pieChartHome()
