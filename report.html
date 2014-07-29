@@ -1,0 +1,1606 @@
+<!DOCTYPE HTML SYSTEM>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Brakeman Report</title>
+  <script>
+    function toggle(context) {
+      var elem = document.getElementById(context);
+
+      if (elem.style.display != "block")
+        elem.style.display = "block";
+      else
+        elem.style.display = "none";
+
+      elem.parentNode.scrollIntoView();
+    }
+  </script>
+  <style>
+    /* CSS style used for HTML reports */
+
+body {
+  font-family: sans-serif;
+  color: #161616;
+}
+
+a {
+  color: #161616;
+}
+
+p {
+  font-weight: bold;
+  font-size: 11pt;
+  color: #2D0200;
+ }
+
+ th {
+   background-color: #980905;
+   border-bottom: 5px solid #530200;
+   color: white;
+   font-size: 11pt;
+   padding: 1px 8px 1px 8px;
+ }
+
+ td {
+   border-bottom: 2px solid white;
+   font-family: monospace;
+   padding: 5px 8px 1px 8px;
+ }
+
+ table {
+   background-color: #FCF4D4;
+   border-collapse: collapse;
+ }
+
+ h1 {
+   color: #2D0200;
+   font-size: 14pt;
+ }
+
+ h2 {
+   color: #2D0200;
+   font-size: 12pt;
+ }
+
+ span.high-confidence {
+   font-weight:bold;
+   color: red;
+ }
+
+ span.med-confidence {
+ }
+
+ span.weak-confidence {
+   color:gray;
+ }
+
+ div.warning_message {
+   cursor: pointer;
+ }
+
+ div.warning_message:hover {
+   background-color: white;
+ }
+
+ table caption {
+   background-color: #FFE;
+   padding: 2px;
+ }
+
+ table.context {
+   margin-top: 5px;
+   margin-bottom: 5px;
+   border-left: 1px solid #90e960;
+   color: #212121;
+ }
+
+ tr.context {
+   background-color: white;
+ }
+
+ tr.first {
+   border-top: 1px solid #7ecc54;
+   padding-top: 2px;
+ }
+
+ tr.error {
+  background-color: #f4c1c1 !important
+ }
+
+ tr.near_error {
+  background-color: #f4d4d4 !important
+ }
+
+ tr.alt {
+   background-color: #e8f4d4;
+ }
+
+ td.context {
+   padding: 2px 10px 0px 6px;
+   border-bottom: none;
+ }
+
+ td.context_line {
+   padding: 2px 8px 0px 7px;
+   border-right: 1px solid #b3bda4;
+   border-bottom: none;
+   color: #6e7465;
+ }
+
+ pre.context {
+   margin-bottom: 1px;
+ }
+
+ .user_input {
+   background-color: #fcecab;
+ }
+
+ div.render_path {
+   display: none;
+   background-color: #ffe;
+   padding: 5px;
+   margin: 2px 0px 2px 0px;
+ }
+
+ div.template_name {
+   cursor: pointer;
+ }
+
+ div.template_name:hover {
+   background-color: white;
+ }
+
+  </style>
+</head>
+<body>
+
+<h1>Brakeman Report</h1>
+<table>
+  <tr>
+    <th>Application Path</th>
+    <th>Rails Version</th>
+    <th>Brakeman Version</th>
+    <th>Report Time</th>
+    <th>Checks Performed</th>
+  </tr>
+  <tr>
+    <td>/Users/cktricky/tmp/railsgoat</td>
+    <td>3.2.11</td>
+    <td>2.6.1
+    <td>
+      2014-07-29 12:41:05 -0500<br><br>
+      2.412842 seconds
+    </td>
+    <td>BasicAuth, ContentTag, CrossSiteScripting, DefaultRoutes, Deserialize, DetailedExceptions, DigestDoS, EscapeFunction, Evaluation, Execute, FileAccess, FilterSkipping, ForgerySetting, HeaderDoS, I18nXSS, JRubyXML, JSONParsing, LinkTo, LinkToHref, MailTo, MassAssignment, ModelAttrAccessible, ModelAttributes, ModelSerialize, NestedAttributes, NumberToCurrency, QuoteTableName, Redirect, RegexDoS, Render, RenderDoS, ResponseSplitting, SQL, SQLCVEs, SSLVerify, SafeBufferManipulation, SanitizeMethods, SelectTag, SelectVulnerability, Send, SendFile, SessionSettings, SimpleFormat, SingleQuotes, SkipBeforeFilter, StripTags, SymbolDoS, TranslateBug, UnsafeReflection, ValidationRegex, WithoutProtection, YAMLParsing</td>
+  </tr>
+</table>
+<br>
+<h2 id='summary'>Summary</h2>
+<table>
+  <tr>
+    <th>Scanned/Reported</th>
+    <th>Total</th>
+  </tr>
+  <tr>
+    <td>Controllers</td>
+    <td>17</td>
+  </tr>
+  <tr>
+    <td>Models</td>
+    <td>11</td>
+  </tr>
+  <tr>
+    <td>Templates</td>
+    <td>73</td>
+  </tr>
+  <tr>
+    <td>Errors</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>Security Warnings</td>
+    <td>27 <span class='high-confidence'>(16)</span></td>
+  </tr>
+  
+  <tr>
+    <td>Ignored Warnings</td>
+    <td>0</td>
+  </tr>
+  
+</table>
+<br>
+<table>
+  <tr>
+    <th>Warning Type</th>
+    <th>Total</th>
+  </tr>
+  
+  <tr>
+    <td>Attribute Restriction</td>
+    <td>1</td>
+  </tr>
+  
+  <tr>
+    <td>Command Injection</td>
+    <td>1</td>
+  </tr>
+  
+  <tr>
+    <td>Cross Site Scripting</td>
+    <td>5</td>
+  </tr>
+  
+  <tr>
+    <td>Cross-Site Request Forgery</td>
+    <td>1</td>
+  </tr>
+  
+  <tr>
+    <td>Denial of Service</td>
+    <td>2</td>
+  </tr>
+  
+  <tr>
+    <td>File Access</td>
+    <td>1</td>
+  </tr>
+  
+  <tr>
+    <td>Format Validation</td>
+    <td>1</td>
+  </tr>
+  
+  <tr>
+    <td>Mass Assignment</td>
+    <td>5</td>
+  </tr>
+  
+  <tr>
+    <td>Remote Code Execution</td>
+    <td>5</td>
+  </tr>
+  
+  <tr>
+    <td>SQL Injection</td>
+    <td>3</td>
+  </tr>
+  
+  <tr>
+    <td>Session Setting</td>
+    <td>2</td>
+  </tr>
+  
+</table>
+<br>
+<h2>Security Warnings</h2>  
+<table>
+  <tr>
+    <th>Confidence</th>
+    <th>Class</th>
+    <th>Method</th>
+    <th>Warning Type</th>
+    <th>Message</th>
+  </tr>
+  
+  <tr>
+    <td><span class='high-confidence'>High</span></td>
+    <td>BenefitFormsController</td>
+    <td>download</td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/file_access/">File Access</a></td>
+    <td><div class='warning_message' onClick="toggle('context4');toggle('message4');toggle('full_message4')" ><span id='message4' style='display:block' >Parameter value used in file name near line 11: send_file(params[:type].constantize.new(params[:name]...</span><span id='full_message4' style='display:none'>Parameter value used in file name near line 11: send_file(<span class="user_input">params[:type].constantize.new(params[:name])</span>, :disposition =&gt; &quot;attachment&quot;)</span><table id='context4' class='context' style='display:none'><caption>app/controllers/benefit_forms_controller.rb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>7</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>  def download</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>8</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>   begin</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>9</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>     path = params[:name]</pre>
+            </td>
+          </tr>
+          <tr class='context alt near_error'>
+            <td class='context_line'>
+              <pre class='context'>10</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>     file = params[:type].constantize.new(path)</pre>
+            </td>
+          </tr>
+          <tr class='context error'>
+            <td class='context_line'>
+              <pre class='context'>11</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>     send_file file, :disposition =&gt; &#39;attachment&#39;</pre>
+            </td>
+          </tr>
+          <tr class='context alt near_error'>
+            <td class='context_line'>
+              <pre class='context'>12</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>   rescue</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>13</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>     redirect_to user_benefit_forms_path(:user_id =&gt; current_user.user_id)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>14</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>   end</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>15</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  end</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+  
+  <tr>
+    <td><span class='high-confidence'>High</span></td>
+    <td>Api::V1::MobileController</td>
+    <td>show</td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/remote_code_execution/">Remote Code Execution</a></td>
+    <td><div class='warning_message' onClick="toggle('context9');toggle('message9');toggle('full_message9')" ><span id='message9' style='display:block' >Unsafe reflection method constantize called with parameter value near line 9: <span class="user_input">params[:class].classify</span>...</span><span id='full_message9' style='display:none'>Unsafe reflection method constantize called with parameter value near line 9: <span class="user_input">params[:class].classify</span>.constantize</span><table id='context9' class='context' style='display:none'><caption>app/controllers/api/v1/mobile_controller.rb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>5</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>  respond_to :json</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>7</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  def show</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>8</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    if params[:class]</pre>
+            </td>
+          </tr>
+          <tr class='context alt error'>
+            <td class='context_line'>
+              <pre class='context'>9</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      model = params[:class].classify.constantize</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>10</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      respond_with model.find(params[:id]).to_json</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>11</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    end</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>12</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  end</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>14</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  def index</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+  
+  <tr>
+    <td><span class='high-confidence'>High</span></td>
+    <td>Api::V1::MobileController</td>
+    <td>index</td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/remote_code_execution/">Remote Code Execution</a></td>
+    <td><div class='warning_message' onClick="toggle('context10');toggle('message10');toggle('full_message10')" ><span id='message10' style='display:block' >Unsafe reflection method constantize called with parameter value near line 16: params[:class].classif...</span><span id='full_message10' style='display:none'>Unsafe reflection method constantize called with parameter value near line 16: <span class="user_input">params[:class].classify</span>.constantize</span><table id='context10' class='context' style='display:none'><caption>app/controllers/api/v1/mobile_controller.rb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>11</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>    end</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>12</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  end</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>14</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  def index</pre>
+            </td>
+          </tr>
+          <tr class='context alt near_error'>
+            <td class='context_line'>
+              <pre class='context'>15</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    if params[:class]</pre>
+            </td>
+          </tr>
+          <tr class='context error'>
+            <td class='context_line'>
+              <pre class='context'>16</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      model = params[:class].classify.constantize</pre>
+            </td>
+          </tr>
+          <tr class='context alt near_error'>
+            <td class='context_line'>
+              <pre class='context'>17</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      respond_with model.all.to_json</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>18</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    else</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>19</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      respond_with nil.to_json</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>20</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    end</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>21</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  end</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+  
+  <tr>
+    <td><span class='high-confidence'>High</span></td>
+    <td>BenefitFormsController</td>
+    <td>download</td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/remote_code_execution/">Remote Code Execution</a></td>
+    <td><div class='warning_message' onClick="toggle('context11');toggle('message11');toggle('full_message11')" ><span id='message11' style='display:block' >Unsafe reflection method constantize called with parameter value near line 10: <span class="user_input">params[:type]</span>.constant...</span><span id='full_message11' style='display:none'>Unsafe reflection method constantize called with parameter value near line 10: <span class="user_input">params[:type]</span>.constantize</span><table id='context11' class='context' style='display:none'><caption>app/controllers/benefit_forms_controller.rb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>5</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>  end</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>7</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  def download</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>8</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>   begin</pre>
+            </td>
+          </tr>
+          <tr class='context alt near_error'>
+            <td class='context_line'>
+              <pre class='context'>9</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>     path = params[:name]</pre>
+            </td>
+          </tr>
+          <tr class='context error'>
+            <td class='context_line'>
+              <pre class='context'>10</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>     file = params[:type].constantize.new(path)</pre>
+            </td>
+          </tr>
+          <tr class='context alt near_error'>
+            <td class='context_line'>
+              <pre class='context'>11</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>     send_file file, :disposition =&gt; &#39;attachment&#39;</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>12</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>   rescue</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>13</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>     redirect_to user_benefit_forms_path(:user_id =&gt; current_user.user_id)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>14</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>   end</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>15</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  end</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+  
+  <tr>
+    <td><span class='high-confidence'>High</span></td>
+    <td></td>
+    <td></td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/session_setting/">Session Setting</a></td>
+    <td><div class='warning_message' onClick="toggle('context5');toggle('message5');toggle('full_message5')" >Session cookies should be set to HTTP only near line 3<table id='context5' class='context' style='display:none'><caption>config/initializers/session_store.rb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>1</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'># Be sure to restart your server when you modify this file.</pre>
+          </td>
+        </tr>
+          <tr class='context alt error'>
+            <td class='context_line'>
+              <pre class='context'>3</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>Railsgoat::Application.config.session_store :cookie_store, key: &#39;_railsgoat_session&#39;, httponly: false</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>5</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'># Use the database for sessions instead of the cookie-based default,</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>6</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'># which shouldn&#39;t be used to store highly confidential information</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>7</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'># (create the session table with &quot;rails generate session_migration&quot;)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>8</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'># Railsgoat::Application.config.session_store :active_record_store</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+  
+  <tr>
+    <td><span class='high-confidence'>High</span></td>
+    <td></td>
+    <td></td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/session_setting/">Session Setting</a></td>
+    <td><div class='warning_message' onClick="toggle('context6');toggle('message6');toggle('full_message6')" >Session secret should not be included in version control near line 7<table id='context6' class='context' style='display:none'><caption>config/initializers/secret_token.rb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>3</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'># Your secret key for verifying the integrity of signed cookies.</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>4</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'># If you change this key, all old signed cookies will become invalid!</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>5</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'># Make sure the secret is at least 30 characters and all random,</pre>
+            </td>
+          </tr>
+          <tr class='context alt near_error'>
+            <td class='context_line'>
+              <pre class='context'>6</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'># no regular words or you&#39;ll be exposed to dictionary attacks.</pre>
+            </td>
+          </tr>
+          <tr class='context error'>
+            <td class='context_line'>
+              <pre class='context'>7</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>Railsgoat::Application.config.secret_token = &#39;2f1d90a26236c3245d96f5606c201a780dc9ca687e5ed82b45e211bb5dc84c1870f61ca9e002dad5dd8a149c9792d8f07f31a9575065cca064bd6af44f8750e4&#39;</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+  
+  <tr>
+    <td><span class='high-confidence'>High</span></td>
+    <td>UsersController</td>
+    <td>update</td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/sql_injection/">SQL Injection</a></td>
+    <td><div class='warning_message' onClick="toggle('context8');toggle('message8');toggle('full_message8')" ><span id='message8' style='display:block' >Possible SQL injection near line 34: User.find(:first, :conditions =&gt; (&quot;user_id = &#39;#{params[:user][:u...</span><span id='full_message8' style='display:none'>Possible SQL injection near line 34: User.find(:first, :conditions =&gt; (&quot;user_id = &#39;#{<span class="user_input">params[:user][:user_id]</span>}&#39;&quot;))</span><table id='context8' class='context' style='display:none'><caption>app/controllers/users_controller.rb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>29</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>    # user = current_user</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>31</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    # Still an Insecure DoR vulnerability</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>32</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    #user = User.find(:first, :conditions =&gt; [&quot;user_id = ?&quot;, &quot;#{params[:user][:user_id]}&quot;])</pre>
+            </td>
+          </tr>
+          <tr class='context alt error'>
+            <td class='context_line'>
+              <pre class='context'>34</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    user = User.find(:first, :conditions =&gt; &quot;user_id = &#39;#{params[:user][:user_id]}&#39;&quot;)</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>35</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    if user</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>36</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      user.skip_user_id_assign = true</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>37</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      user.skip_hash_password = true</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>38</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      user.update_attributes(params[:user].reject { |k| %w(password password_confirmation user_id).include? k })</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>39</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      if !(params[:user][:password].empty?) &amp;&amp; (params[:user][:password] == params[:user][:password_confirmation])</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+  
+  <tr>
+    <td><span class='high-confidence'>High</span></td>
+    <td></td>
+    <td></td>
+    <td><a rel="no-referrer" href="https://groups.google.com/d/msg/ruby-security-ann/niK4drpSHT4/g8JW8ZsayRkJ">SQL Injection</a></td>
+    <td>Rails 3.2.11 contains a SQL injection vulnerability (CVE-2013-6417). Upgrade to 3.2.16</td>
+  </tr>
+  
+  <tr>
+    <td><span class='med-confidence'>Medium</span></td>
+    <td>Benefits</td>
+    <td>Benefits.make_backup</td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/command_injection/">Command Injection</a></td>
+    <td><div class='warning_message' onClick="toggle('context3');toggle('message3');toggle('full_message3')" ><span id='message3' style='display:block' >Possible command injection near line 15: system(&quot;cp #{<span class="user_input">(local full_file_name)</span>} #{(local data_path)}/ba...</span><span id='full_message3' style='display:none'>Possible command injection near line 15: system(&quot;cp #{<span class="user_input">(local full_file_name)</span>} #{(local data_path)}/bak#{Time.now.to_i}_#{(local file).original_filename}&quot;)</span><table id='context3' class='context' style='display:none'><caption>app/models/benefits.rb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>10</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>    make_backup(file, data_path, full_file_name) if backup == &quot;true&quot;</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>11</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  end</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>13</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  def self.make_backup(file, data_path, full_file_name)</pre>
+            </td>
+          </tr>
+          <tr class='context alt near_error'>
+            <td class='context_line'>
+              <pre class='context'>14</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    if File.exists?(full_file_name)</pre>
+            </td>
+          </tr>
+          <tr class='context error'>
+            <td class='context_line'>
+              <pre class='context'>15</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      silence_streams(STDERR) { system(&quot;cp #{full_file_name} #{data_path}/bak#{Time.now.to_i}_#{file.original_filename}&quot;) }</pre>
+            </td>
+          </tr>
+          <tr class='context alt near_error'>
+            <td class='context_line'>
+              <pre class='context'>16</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    end</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>17</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  end</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>19</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>=begin</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>20</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  def self.make_backup(file, data_path, full_file_name)</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+  
+  <tr>
+    <td><span class='med-confidence'>Medium</span></td>
+    <td></td>
+    <td></td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/denial_of_service/">Denial of Service</a></td>
+    <td>Rails 3.2.11 has a denial of service vulnerability in ActiveRecord: upgrade to 3.2.13 or patch</td>
+  </tr>
+  
+  <tr>
+    <td><span class='med-confidence'>Medium</span></td>
+    <td></td>
+    <td></td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/remote_code_execution/">Remote Code Execution</a></td>
+    <td><div class='warning_message' onClick="toggle('context1');toggle('message1');toggle('full_message1')" ><span id='message1' style='display:block' >Rails 3.2.11 with globbing routes is vulnerable to directory traversal and remote code execution. Pat...</span><span id='full_message1' style='display:none'>Rails 3.2.11 with globbing routes is vulnerable to directory traversal and remote code execution. Patch or upgrade to 3.2.18</span><table id='context1' class='context' style='display:none'><caption>config/routes.rb</caption></table></div></td>
+  </tr>
+  
+  <tr>
+    <td><span class='med-confidence'>Medium</span></td>
+    <td>Analytics</td>
+    <td>hits_by_ip</td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/sql_injection/">SQL Injection</a></td>
+    <td><div class='warning_message' onClick="toggle('context7');toggle('message7');toggle('full_message7')" >Possible SQL injection near line 4: select(&quot;#{<span class="user_input">(local col)</span>}&quot;)<table id='context7' class='context' style='display:none'><caption>app/models/analytics.rb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>1</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>class Analytics &lt; ActiveRecord::Base</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>2</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  attr_accessible :ip_address, :referrer, :user_agent</pre>
+            </td>
+          </tr>
+          <tr class='context error'>
+            <td class='context_line'>
+              <pre class='context'>4</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  scope :hits_by_ip, -&gt;(ip,col=&quot;*&quot;) { select(&quot;#{col}&quot;).where(:ip_address =&gt; ip).order(&quot;id DESC&quot;)}</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>6</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  def self.count_by_col(col)</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>7</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    calculate(:count, col)</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>8</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  end</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+  
+  <tr>
+    <td><span class='med-confidence'>Medium</span></td>
+    <td>PasswordResetsController</td>
+    <td>reset_password</td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/unsafe_deserialization">Remote Code Execution</a></td>
+    <td><div class='warning_message' onClick="toggle('context2');toggle('message2');toggle('full_message2')" >Marshal.load called with parameter value near line 5: Marshal.load(Base64.decode64(<span class="user_input">params[:user]</span>))<table id='context2' class='context' style='display:none'><caption>app/controllers/password_resets_controller.rb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>1</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>class PasswordResetsController &lt; ApplicationController</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>2</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  skip_before_filter :authenticated</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>4</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  def reset_password</pre>
+            </td>
+          </tr>
+          <tr class='context alt error'>
+            <td class='context_line'>
+              <pre class='context'>5</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    user = Marshal.load(Base64.decode64(params[:user])) unless params[:user].nil?</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>7</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    if user &amp;&amp; params[:password] &amp;&amp; params[:confirm_password] &amp;&amp; params[:password] == params[:confirm_password]</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>8</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      user.password = params[:password]</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>9</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      user.save!</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>10</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      flash[:success] = &quot;Your password has been reset please login&quot;</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+  
+  <tr>
+    <td><span class='med-confidence'>Medium</span></td>
+    <td></td>
+    <td></td>
+    <td><a rel="no-referrer" href="https://groups.google.com/d/msg/ruby-security-ann/9WiRn2nhfq0/2K2KRB4LwCMJ">Cross Site Scripting</a></td>
+    <td>Rails 3.2.11 has a vulnerability in number helpers (CVE-2014-0081). Upgrade to Rails version 3.2.17</td>
+  </tr>
+  
+  <tr>
+    <td><span class='med-confidence'>Medium</span></td>
+    <td></td>
+    <td></td>
+    <td><a rel="no-referrer" href="https://groups.google.com/d/msg/ruby-security-ann/A-ebV4WxzKg/KNPTbX8XAQUJ">Denial of Service</a></td>
+    <td>Rails 3.2.11 has a denial of service vulnerability (CVE-2013-6414). Upgrade to Rails version 3.2.16</td>
+  </tr>
+  
+</table>
+<p>Controller Warnings</p>
+<table>
+  <tr>
+    <th>Confidence</th>
+    <th>Controller</th>
+    <th>Warning Type</th>
+    <th>Message</th>
+  </tr>
+
+  <tr>
+    <td><span class='high-confidence'>High</span></td>
+    <td>ApplicationController</td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/cross-site_request_forgery/">Cross-Site Request Forgery</a></td>
+    <td>&#39;protect_from_forgery&#39; should be called in ApplicationController</td>
+  </tr>
+
+</table><p>Model Warnings</p>
+<table>
+  <tr>
+    <th>Confidence</th>
+    <th>Model</th>
+    <th>Warning Type</th>
+    <th>Message</th>
+  </tr>
+
+  <tr>
+    <td><span class='high-confidence'>High</span></td>
+    <td>Benefits</td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/attribute_restriction/">Attribute Restriction</a></td>
+    <td>Mass assignment is not restricted using attr_accessible</td>
+  </tr>
+
+  <tr>
+    <td><span class='high-confidence'>High</span></td>
+    <td>User</td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/format_validation/">Format Validation</a></td>
+    <td><div class='warning_message' onClick="toggle('context12');toggle('message12');toggle('full_message12')" >Insufficient validation for &#39;email&#39; using /.+@.+\..+/i. Use \A and \z as anchors near line 12<table id='context12' class='context' style='display:none'><caption>app/models/user.rb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>7</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>                       :length =&gt; {:within =&gt; 6..40},</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>8</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>                       :on =&gt; :create,</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>9</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>                       :if =&gt; :password</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>10</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>=begin</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>11</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  validates :password, :presence =&gt; true,</pre>
+            </td>
+          </tr>
+          <tr class='context alt error'>
+            <td class='context_line'>
+              <pre class='context'>12</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>                        :confirmation =&gt; true,</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>13</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>                        :if =&gt; :password,</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>14</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>                        :format =&gt; {:with =&gt; /\A.*(?=.{10,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\@\#\$\%\^\&amp;\+\=]).*\z/}</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>15</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>=end</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>16</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  validates_presence_of :email</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>17</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  validates_uniqueness_of :email</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+
+  <tr>
+    <td><span class='high-confidence'>High</span></td>
+    <td>User</td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/mass_assignment/">Mass Assignment</a></td>
+    <td>Potentially dangerous attribute available for mass assignment: :admin</td>
+  </tr>
+
+  <tr>
+    <td><span class='weak-confidence'>Weak</span></td>
+    <td>KeyManagement</td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/mass_assignment/">Mass Assignment</a></td>
+    <td>Potentially dangerous attribute available for mass assignment: :user_id</td>
+  </tr>
+
+  <tr>
+    <td><span class='weak-confidence'>Weak</span></td>
+    <td>Message</td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/mass_assignment/">Mass Assignment</a></td>
+    <td>Potentially dangerous attribute available for mass assignment: :creator_id</td>
+  </tr>
+
+  <tr>
+    <td><span class='weak-confidence'>Weak</span></td>
+    <td>Message</td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/mass_assignment/">Mass Assignment</a></td>
+    <td>Potentially dangerous attribute available for mass assignment: :receiver_id</td>
+  </tr>
+
+  <tr>
+    <td><span class='weak-confidence'>Weak</span></td>
+    <td>User</td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/mass_assignment/">Mass Assignment</a></td>
+    <td>Potentially dangerous attribute available for mass assignment: :user_id</td>
+  </tr>
+
+</table><p>View Warnings</p>
+<table>
+  <tr>
+    <th>Confidence</th>
+    <th>Template</th>
+    <th>Warning Type</th>
+    <th>Message</th>
+  </tr>
+
+  <tr>
+    <td><span class='high-confidence'>High</span></td>
+    <td>
+      
+        layouts/application (AdminController#dashboard)
+      
+    </td>
+    <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/cross_site_scripting/">Cross Site Scripting</a></td>
+    <td><div class='warning_message' onClick="toggle('context13');toggle('message13');toggle('full_message13')" >Unescaped cookie value near line 12: cookies[:font]<table id='context13' class='context' style='display:none'><caption>app/views/layouts/application.html.erb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>7</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>  &lt;%= csrf_meta_tags %&gt; &lt;!-- &lt;~ What is this for? I hear it helps w/ JS and Sea-surfing.....whatevz --&gt;</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>8</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  &lt;!-- bootstrap css --&gt;</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>9</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>&lt;%</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>10</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>if cookies[:font]</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>11</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>%&gt;</pre>
+            </td>
+          </tr>
+          <tr class='context alt error'>
+            <td class='context_line'>
+              <pre class='context'>12</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>&lt;style&gt;body { font-size:&lt;%= raw cookies[:font] %&gt; !important;}&lt;/style&gt;</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>13</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>&lt;%</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>14</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>end</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>15</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>%&gt;</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>17</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>&lt;/head&gt;</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+
+  <tr>
+    <td><span class='high-confidence'>High</span></td>
+    <td>
+      
+        pay/index (PayController#index)
+      
+    </td>
+    <td><a rel="no-referrer" href="https://groups.google.com/d/msg/rubyonrails-security/zAAU7vGTPvI/1vZDWXqBuXgJ">Cross Site Scripting</a></td>
+    <td><div class='warning_message' onClick="toggle('context14');toggle('message14');toggle('full_message14')" ><span id='message14' style='display:block' >Rails 3.2.11 has a vulnerability in sanitize: upgrade to 3.2.13 or patch near line 188: sanitize(user...</span><span id='full_message14' style='display:none'>Rails 3.2.11 has a vulnerability in sanitize: upgrade to 3.2.13 or patch near line 188: sanitize(user_pay_path(:format =&gt; &quot;json&quot;, :user_id =&gt; (current_user.user_id), :id =&gt; (current_user.user_id)).inspect)</span><table id='context14' class='context' style='display:none'><caption>app/views/pay/index.html.erb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>183</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>  endpoint to retrieve direct deposit entries and finally, provide parseDirectDepositInfo</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>184</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  with the response from the endpoint in order to populate the data table.</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>185</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>*/</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>186</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>function populateTable() {</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>187</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  $(&#39;#data_table&#39;).dataTable().fnClearTable();</pre>
+            </td>
+          </tr>
+          <tr class='context alt error'>
+            <td class='context_line'>
+              <pre class='context'>188</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  $.ajax({</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>189</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      url: &lt;%= sanitize(user_pay_path(:format =&gt; &quot;json&quot;, :user_id =&gt; current_user.user_id, :id =&gt; current_user.user_id).inspect) %&gt;,</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>190</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    type: &quot;GET&quot;,</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>191</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    success: function(response) {</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>192</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    parseDirectDepostInfo(response);</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>193</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    },</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+
+  <tr>
+    <td><span class='high-confidence'>High</span></td>
+    <td>
+      
+        pay/index (PayController#index)
+      
+    </td>
+    <td><a rel="no-referrer" href="https://groups.google.com/d/msg/rubyonrails-security/zAAU7vGTPvI/1vZDWXqBuXgJ">Cross Site Scripting</a></td>
+    <td><div class='warning_message' onClick="toggle('context15');toggle('message15');toggle('full_message15')" ><span id='message15' style='display:block' >Rails 3.2.11 has a vulnerability in sanitize: upgrade to 3.2.13 or patch near line 239: sanitize(decr...</span><span id='full_message15' style='display:none'>Rails 3.2.11 has a vulnerability in sanitize: upgrade to 3.2.13 or patch near line 239: sanitize(decrypted_bank_acct_num_user_pay_index_path(:format =&gt; &quot;json&quot;, :user_id =&gt; (current_user.user_id)).inspect)</span><table id='context15' class='context' style='display:none'><caption>app/views/pay/index.html.erb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>234</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>  then passed to decryptShow();</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>235</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>*/</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>236</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>$(&quot;#decrypt_btn&quot;).click(function(event){</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>237</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  var valuesToSubmit = $(&quot;#decrypt_form&quot;).serialize();</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>238</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  event.preventDefault();</pre>
+            </td>
+          </tr>
+          <tr class='context alt error'>
+            <td class='context_line'>
+              <pre class='context'>239</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>  $.ajax({</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>240</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      url: &lt;%= sanitize(decrypted_bank_acct_num_user_pay_index_path(:format =&gt; &quot;json&quot;, :user_id =&gt; current_user.user_id).inspect) %&gt;,</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>241</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    data: valuesToSubmit,</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>242</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    type: &quot;POST&quot;,</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>243</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    success: function(response) {</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>244</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    $(&#39;#success&#39;).show(500).delay(1500).fadeOut();</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+
+  <tr>
+    <td><span class='high-confidence'>High</span></td>
+    <td>
+      
+        pay/index (PayController#index)
+      
+    </td>
+    <td><a rel="no-referrer" href="https://groups.google.com/d/msg/rubyonrails-security/zAAU7vGTPvI/1vZDWXqBuXgJ">Cross Site Scripting</a></td>
+    <td><div class='warning_message' onClick="toggle('context16');toggle('message16');toggle('full_message16')" ><span id='message16' style='display:block' >Rails 3.2.11 has a vulnerability in sanitize: upgrade to 3.2.13 or patch near line 261: sanitize(upda...</span><span id='full_message16' style='display:none'>Rails 3.2.11 has a vulnerability in sanitize: upgrade to 3.2.13 or patch near line 261: sanitize(update_dd_info_user_pay_index_path(:format =&gt; &quot;json&quot;).inspect)</span><table id='context16' class='context' style='display:none'><caption>app/views/pay/index.html.erb</caption>        <tr class='context first'>
+          <td class='context_line'>
+            <pre class='context'>256</pre>
+          </td>
+          <td class='context'>
+            <pre class='context'>  is called in order to update the dataTable on the page to reflect the latest entry.</pre>
+          </td>
+        </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>257</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>*/</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>258</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>$(&quot;#dd_form_btn&quot;).click(function(event) {</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>259</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>     var valuesToSubmit = $(&quot;#bank_info_form&quot;).serialize();</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>260</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>     event.preventDefault();</pre>
+            </td>
+          </tr>
+          <tr class='context alt error'>
+            <td class='context_line'>
+              <pre class='context'>261</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>     $.ajax({</pre>
+            </td>
+          </tr>
+          <tr class='context near_error'>
+            <td class='context_line'>
+              <pre class='context'>262</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>      url: &lt;%= sanitize(update_dd_info_user_pay_index_path(:format =&gt; &quot;json&quot;).inspect) %&gt;,</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>263</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    data: valuesToSubmit,</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>264</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    type: &quot;POST&quot;,</pre>
+            </td>
+          </tr>
+          <tr class='context alt'>
+            <td class='context_line'>
+              <pre class='context'>265</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    success: function(response) {</pre>
+            </td>
+          </tr>
+          <tr class='context'>
+            <td class='context_line'>
+              <pre class='context'>266</pre>
+            </td>
+            <td class='context'>
+              <pre class='context'>    $(&#39;#success&#39;).show(500).delay(1500).fadeOut();</pre>
+            </td>
+          </tr>
+</table></div></td>
+  </tr>
+
+</table>
+</body></html>

@@ -88,6 +88,7 @@ Railsgoat::Application.routes.draw do
   resources :dashboard do
     collection do
       get "home"
+      get "change_graph"
     end
   end
 
