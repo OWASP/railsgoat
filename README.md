@@ -52,6 +52,22 @@ $ rake training
 
 NOTE: As vulnerabilities are fixed in the application, these specs will not change to `passing`, but to `pending`.
 
+
+## MySQL Environment
+
+By default in development mode Railsgoat runs with a SQLite database. There is an environment defined to use MySQL. For some of the SQL injection vulnerabilities to work you have to run the app with MySQL as the database. The following steps will setup and run Railsgoat to use MySQL. *MySQL must be installed and running before running these steps*
+
+```
+#Create the MySQL database
+RAILS_ENV=mysql rake db:create
+
+#Run the migrations against the database
+RAILS_ENV=mysql rake db:migrate
+
+#Boot Rails using MySQl
+RAILS_ENV=mysql rails s
+```
+
 ## Processing Email
 
 In order for RailsGoat to effectively process email, you will first need to run MailCatcher, an SMTP server that will intercept email messages and display them in a web interface.
