@@ -3,7 +3,7 @@ Railsgoat::Application.routes.draw do
   get "login" => "sessions#new"
   get "signup" => "users#new"
   get "logout" => "sessions#destroy"
-  match "forgot_password" => "password_resets#forgot_password"
+  get "forgot_password" => "password_resets#forgot_password"
   get "password_resets" => "password_resets#confirm_token"
   post "password_resets" => "password_resets#reset_password"
 
@@ -80,7 +80,7 @@ Railsgoat::Application.routes.draw do
     get "dashboard"
     get "get_user"
     post "delete_user"
-    put "update_user"
+    patch "update_user"
     get "get_all_users"
     get "analytics"
   end

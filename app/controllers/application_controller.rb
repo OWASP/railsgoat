@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_filter :authenticated, :has_info, :create_analytic, :mailer_options
+  before_action :authenticated, :has_info, :create_analytic, :mailer_options
   helper_method :current_user, :is_admin?, :sanitize_font
 
   # Our security guy keep talking about sea-surfing, cool story bro.
