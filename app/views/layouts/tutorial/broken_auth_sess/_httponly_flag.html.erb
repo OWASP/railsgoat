@@ -1,0 +1,75 @@
+<div class="widget">
+    <div class="widget-header">
+      <div class="title">
+        <span class="fs1" aria-hidden="true" data-icon="&#xe092;"></span> A2 - Broken Authentication and Session Management - Lack of HttpOnly Flag
+      </div>
+    </div>
+    <div class="widget-body">
+      <div id="accordion1" class="accordion no-margin">
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a href="#collapseHttpOnlyOne" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
+              <i class="icon-info icon-white">
+              </i>
+              Description
+            </a>
+          </div>
+          <div class="accordion-body in collapse" id="collapseHttpOnlyOne" style="height: auto;">
+            <div class="accordion-inner">
+        		INSERT DESC
+            </div>
+          </div>
+        </div>
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a href="#collapseHttpOnlyTwo" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
+              <i class="icon-bug icon-white">
+              </i>
+              Bug
+            </a>
+          </div>
+          <div class="accordion-body collapse" id="collapseHttpOnlyTwo" style="height: 0px;">
+            <div class="accordion-inner">
+				<p class="desc">
+					By default, Ruby on Rails protects it's cookies with the HttpOnly flag. However, it is possible to disable this security protection and is not recommended. You can disable this protection using the flag highlighted below. This is an insecure and unnecessary change.
+				</p>	
+       			<pre class="ruby">
+Railsgoat::Application.config.session_store :cookie_store, key: '_railsgoat_session', <span style="background:yellow">httponly: false</span>
+				</pre>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a href="#collapseHttpOnlyThree" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
+              <i class="icon-lightning icon-white">
+              </i>
+              Solution
+            </a>
+          </div>
+          <div class="accordion-body collapse" id="collapseHttpOnlyThree" style="height: 0px;">
+            <div class="accordion-inner">
+              <p><b>Lack of Password Complexity - SOLUTION</b></p>
+        	  	INSERT SOLUTION
+            </div>
+          </div>
+        </div>
+    <div class="accordion-group">
+          <div class="accordion-heading">
+            <a  style="background-color: rgb(181, 121, 158)" href="#collapseHttpOnlyFour" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
+              <i class="icon-aid icon-white">
+              </i>
+              Hint
+            </a>
+          </div>
+          <div class="accordion-body collapse" id="collapseHttpOnlyFour" style="height: 0px;">
+            <div class="accordion-inner">
+        <p class="desc">
+         INSERT DESC
+        </p>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

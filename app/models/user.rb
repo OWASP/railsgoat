@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
     return auth
   end
 
-=begin
+#=begin
   # More secure version, still lacking a decent hashing routine, this is for timing attack prevention
   def self.authenticate(email, password)
        user = find_by_email(email) || User.new(:password => "")
@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
           raise "Incorrect username or password"
         end
    end
-=end
+#=end
 
   def assign_user_id
     unless @skip_user_id_assign.present? || self.user_id.present?
