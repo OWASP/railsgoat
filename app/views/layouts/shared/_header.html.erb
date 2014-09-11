@@ -26,7 +26,7 @@
     going on with funny chars and jquery, plus it says safe so I'm guessing
     nothing bad will happen
     -->
-    Welcome, <%= current_user.first_name %>
+    Welcome, <%= current_user.first_name.html_safe %>
      </li>
      <li>
     <%= button_to "RailsGoat Tutorials", tutorials_path, {:class => "btn btn-primary", :method => "get"}%>
