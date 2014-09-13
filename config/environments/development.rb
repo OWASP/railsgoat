@@ -9,11 +9,11 @@ Railsgoat::Application.configure do
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
-  # Show full error reports and disable caching
+  # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send
+  # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
   # Print deprecation notices to the Rails logger
@@ -32,7 +32,9 @@ Railsgoat::Application.configure do
   # Do not compress assets
   config.assets.compress = false
 
-  # Expands the lines which load the assets
+  # Debug mode disables concatenation and preprocessing of assets.
+  # This option may cause significant delays in view rendering with a large
+  # number of complex assets.
   config.assets.debug = true
 
   # ActionMailer settings for email support
@@ -48,6 +50,9 @@ Railsgoat::Application.configure do
        :ignore => [ %r{dont/modify\.html$} ]
   )
 
-  # For Rails 4.0+
+  # For Rails 4.0+: Do not eager load code on boot.
   config.eager_load = false
+
+  # For Rails 4.0+: Raise an error on page load if there are pending migrations
+  config.active_record.migration_error = :page_load
 end

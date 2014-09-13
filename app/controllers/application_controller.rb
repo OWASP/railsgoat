@@ -3,7 +3,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :is_admin?, :sanitize_font
 
   # Our security guy keep talking about sea-surfing, cool story bro.
-  # protect_from_forgery
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  #protect_from_forgery with: :exception
 
   private
 

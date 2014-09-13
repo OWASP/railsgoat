@@ -7,13 +7,13 @@ development:
   adapter: sqlite3
   database: db/development.sqlite3
   pool: 5
-  timeout: 5000
+  timeout: 15000
 
 mysql:
   adapter: mysql2
   database: development_railsgoat
   pool: 5
-  timeout: 5000
+  timeout: 15000
   host: localhost
   username: root
   password:
@@ -25,7 +25,7 @@ test:
   adapter: sqlite3
   database: db/test.sqlite3
   pool: 5
-  timeout: 5000
+  timeout: 15000
 
 production:
   adapter: sqlite3

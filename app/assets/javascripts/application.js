@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require turbolinks
 //= require wysiwyg/wysihtml5-0.3.0.js
 //= require jquery.min.js
 //= require jquery.scrollUp.js
@@ -30,6 +31,7 @@
 //= require jquery-fileupload/vendor/tmpl
 //= require jsapi
 //= html5.js
+
 
 function rubyCodeFormat() {
 	
