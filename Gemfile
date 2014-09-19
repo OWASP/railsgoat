@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.10'
 gem 'protected_attributes' # For Rails 4.0+
 
-ruby '2.1.2'
+ruby '2.1.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

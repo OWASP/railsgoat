@@ -16,7 +16,7 @@ feature 'insecure direct object reference' do
     pending(:if => verifying_fixed?) {
       page.status_code.should == 200
       page.response_headers['Content-Disposition'].should include('database.yml')
-      page.response_headers['Content-Length'].should == '713'
+      page.response_headers['Content-Length'].should == '709'
     }
   end
 
