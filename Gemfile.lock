@@ -237,7 +237,7 @@ GEM
       sexp_processor (~> 4.0)
     ruby_parser (3.5.0)
       sexp_processor (~> 4.1)
-    sass (3.4.4)
+    sass (3.4.5)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -282,86 +282,6 @@ GEM
       json
     treetop (1.4.15)
       polyglot
-      polyglot
-      polyglot
-      polyglot
-      polyglot
-      polyglot
-      polyglot
-      polyglot
-      polyglot
-      polyglot
-      polyglot
-      polyglot
-      polyglot
-      polyglot
-      polyglot
-      polyglot
-      polyglot
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
-      polyglot (>= 0.3.1)
       polyglot (>= 0.3.1)
     trollop (2.0)
     tzinfo (0.3.41)
