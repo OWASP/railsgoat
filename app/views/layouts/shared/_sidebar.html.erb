@@ -9,15 +9,27 @@
           <% end %>
         </li>
         <% if is_admin? %>
-        <li id='admin'>
-           <%= link_to admin_dashboard_path(:admin_id => current_user.user_id) do %>
-            <div class="icon">
-              <span class="fs1" aria-hidden="true" data-icon="&#xe1c8;"></span>
-            </div>
-            Admin
-           <% end %>
-        </li>
-    <% end %>
+        	<li class="submenu" id='admin'>
+        	   <a href="#">
+        	    <div class="icon">
+        	      <span class="fs1" aria-hidden="true" data-icon="&#xe1c8;"></span>
+        	    </div>
+        	    Admin
+        	   	</a>
+				<ul>
+            	  <li>
+            	    <%= link_to admin_dashboard_path(:admin_id => "1") do %>
+		        	    Manage Users
+		            <% end %>
+            	  </li>
+            	  <li>
+            	    <%= link_to admin_analytics_path(:admin_id => "1") do %>
+		        	    View Analytics
+		            <% end %>
+            	  </li>
+            	</ul>
+            </li>
+    	<% end %>
         <li id="benefit_forms">
     <%= link_to user_benefit_forms_path(:user_id => current_user.user_id) do %>
             <div class="icon">
