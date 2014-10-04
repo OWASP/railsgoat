@@ -42,6 +42,25 @@ $ rails server
 
 Open your favorite browser, navigate to `http://localhost:3000` and start hacking!
 
+## Vagrant Install
+
+To run Railsgoat with Vagrant you must first have [Vagrant](https://www.vagrantup.com/) and [Virtualbox](https://www.virtualbox.org/) installed. Once those dependencies are installed cd into the Railsgoat directory where you've cloned the code and run.
+
+```
+#~/code/railsgoat
+$ vagrant up
+...
+    railsgoat:   Port: 3000:3000
+    railsgoat:  
+    railsgoat: Container created: 3084633a81675346
+==> railsgoat: Starting container...
+==> railsgoat: Provisioners will not be run since container doesn't support SSH.
+$
+```
+Once you see the preceeding message Railsgoat is running on your localhost on port 3000.
+
+Open your favorite browser, navigate to `http://localhost:3000` and start hacking!
+
 ## Capybara Tests
 
 RailsGoat now includes a set of failing Capybara RSpecs, each one indicating that a separate vulnerability exists in the application. To run them, you first need to install [PhantomJS](https://github.com/jonleighton/poltergeist#installing-phantomjs), which is required by the Poltergeist Capybara driver. Upon installation, simply run the following rake task:
