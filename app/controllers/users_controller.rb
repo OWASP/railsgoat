@@ -31,7 +31,8 @@ class UsersController < ApplicationController
     # Still an Insecure DoR vulnerability
     #user = User.find(:first, :conditions => ["user_id = ?", "#{params[:user][:user_id]}"])
 
-    user = User.find(:first, :conditions => "user_id = '#{params[:user][:user_id]}'")
+    # user = User.find(:first, :conditions => "user_id = '#{params[:user][:user_id]}'")
+    user = User.where("user_id = '#{params[:user][:user_id]}'").first
     if user
       user.skip_user_id_assign = true
       user.skip_hash_password = true
