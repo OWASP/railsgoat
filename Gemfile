@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 #don't upgrade
-gem 'rails', '3.2.19'
+gem 'rails', '3.2.20'
 
 ruby '2.1.3'
 
