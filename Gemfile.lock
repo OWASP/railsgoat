@@ -1,3 +1,11 @@
+GIT
+  remote: git@github.com:oreoshake/rack-livereload.git
+  revision: cb2cd8211b64348b06d085cdd9974af76ae5da8e
+  ref: csp
+  specs:
+    rack-livereload (0.3.15)
+      rack
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -185,8 +193,6 @@ GEM
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
-    rack-livereload (0.3.15)
-      rack
     rack-protection (1.5.3)
       rack
     rack-ssl (1.3.4)
@@ -242,6 +248,7 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    secure_headers (1.3.4)
     sexp_processor (4.4.4)
     simplecov (0.9.1)
       docile (~> 1.1.0)
@@ -324,11 +331,12 @@ DEPENDENCIES
   poltergeist
   powder
   pry
-  rack-livereload
+  rack-livereload!
   rails (= 3.2.20)
   rb-fsevent
   rspec-rails (= 2.14.2)
   sass-rails
+  secure_headers
   simplecov
   sqlite3
   therubyracer

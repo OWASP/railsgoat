@@ -31,7 +31,7 @@ end
 </div>
   <%= render "layouts/shared/footer" %>
 
-<script type="text/javascript">
+<script type="text/javascript" nonce="<%= @content_security_policy_nonce %>">
 
 //Dropdown
 $('.dropdown-toggle').dropdown();

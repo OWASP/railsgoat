@@ -37,7 +37,7 @@
 
 <%= javascript_include_tag "jquery.dataTables.js"%>
 
-<script type="text/javascript">
+<script type="text/javascript" nonce="<%= @content_security_policy_nonce %>">
 function dataTablePagination(){
   $('#data-table').dataTable({
     "sPaginationType": "full_numbers"

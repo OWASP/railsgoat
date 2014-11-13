@@ -5,6 +5,8 @@ gem 'rails', '3.2.20'
 
 ruby '2.1.3'
 
+gem 'secure_headers'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -19,7 +21,7 @@ group :development, :mysql do
   gem 'guard-rspec'
   gem 'guard-shell'
   gem 'pry'
-  gem 'rack-livereload'
+  gem 'rack-livereload', :git => 'git@github.com:oreoshake/rack-livereload.git', :ref => 'csp'
   gem 'rb-fsevent'
   gem 'travis-lint'
   gem 'better_errors'

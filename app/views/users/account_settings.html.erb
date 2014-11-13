@@ -78,7 +78,7 @@
 
 <%= javascript_include_tag ('validation.js')%>
 
-<script type="text/javascript">
+<script type="text/javascript" nonce="<%= @content_security_policy_nonce %>">
 
 $("#submit_button").click(function(event) {
     var valuesToSubmit = $("#account_edit").serialize();
