@@ -8,7 +8,7 @@
     :default_src => 'self',
     :connect_src => 'ws://railsgoat.dev:35727 self',
     :script_src => 'self nonce eval https://www.google.com',
-    :style_src => 'self inline',
+    :style_src => 'self inline https://www.google.com https://ajax.googleapis.com',
     :report_uri => '//example.com/uri-directive',
     :disable_fill_missing => true
   }
