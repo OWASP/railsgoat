@@ -148,7 +148,7 @@
 
 <%= javascript_include_tag "jquery.dataTables.js" %>
 
-<script type="text/javascript">
+<script type="text/javascript" nonce="<%= @content_security_policy_nonce %>">
 
 /*
   buildDeleteLink accepts a direct deposit ID and builds a link that enables

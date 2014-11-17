@@ -110,7 +110,7 @@
   </div>
 </div>
 
-<script type="text/javascript">
+<script type="text/javascript" nonce="<%= @content_security_policy_nonce %>">
   $(function() {
     $("#benefits_upload").change(function (){
       var fileName = $(this).val();
