@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 #don't upgrade
-gem 'rails', '3.2.20'
+gem 'rails', '3.2.21'
 
 ruby '2.1.5'
 
@@ -55,6 +55,9 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+## strong parameters in Rails 3 (see rails gem above)
+gem 'strong_parameters'
 
 # To use ActiveModel has_secure_password
  gem 'bcrypt'
