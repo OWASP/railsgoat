@@ -56,6 +56,9 @@ end
 
 gem 'jquery-rails'
 
+## strong parameters in Rails 3 (see rails gem above)
+gem 'strong_parameters'
+
 # To use ActiveModel has_secure_password
  gem 'bcrypt'
 

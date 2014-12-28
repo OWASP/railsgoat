@@ -1,7 +1,4 @@
 class Pay < ActiveRecord::Base
-  # mass-assignable attributes
-  attr_accessible :bank_account_num, :bank_routing_num, :percent_of_deposit
-
   # Associations
   belongs_to :user
 

@@ -267,6 +267,11 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.10)
+    strong_parameters (0.2.3)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
+      activesupport (~> 3.0)
+      railties (~> 3.0)
     temple (0.6.10)
     terminal-table (1.4.5)
     therubyracer (0.12.1)
@@ -335,6 +340,7 @@ DEPENDENCIES
   sass-rails
   simplecov
   sqlite3
+  strong_parameters
   therubyracer
   travis-lint
   uglifier
