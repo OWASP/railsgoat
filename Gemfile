@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 #don't upgrade
-gem 'rails', '4.0.10'
+gem 'rails', '4.0.12'
 
 ruby '2.1.5'
 
