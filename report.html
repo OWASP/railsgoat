@@ -807,7 +807,7 @@ p {
     <td>Benefits</td>
     <td>Benefits.make_backup</td>
     <td><a rel="no-referrer" href="http://brakemanscanner.org/docs/warning_types/command_injection/">Command Injection</a></td>
-    <td><div class='warning_message' onClick="toggle('context3');toggle('message3');toggle('full_message3')" ><span id='message3' style='display:block' >Possible command injection near line 15: system(&quot;cp #{<span class="user_input">(local full_file_name)</span>} #{(local data_path)}/ba...</span><span id='full_message3' style='display:none'>Possible command injection near line 15: system(&quot;cp #{<span class="user_input">(local full_file_name)</span>} #{(local data_path)}/bak#{Time.now.to_i}_#{(local file).original_filename}&quot;)</span><table id='context3' class='context' style='display:none'><caption>app/models/benefits.rb</caption>        <tr class='context first'>
+    <td><div class='warning_message' onClick="toggle('context3');toggle('message3');toggle('full_message3')" ><span id='message3' style='display:block' >Possible command injection near line 15: system(&quot;cp #{<span class="user_input">(local full_file_name)</span>} #{(local data_path)}/ba...</span><span id='full_message3' style='display:none'>Possible command injection near line 15: system(&quot;cp #{<span class="user_input">(local full_file_name)</span>} #{(local data_path)}/bak#{Time.zone.now.to_i}_#{(local file).original_filename}&quot;)</span><table id='context3' class='context' style='display:none'><caption>app/models/benefits.rb</caption>        <tr class='context first'>
           <td class='context_line'>
             <pre class='context'>10</pre>
           </td>
@@ -844,7 +844,7 @@ p {
               <pre class='context'>15</pre>
             </td>
             <td class='context'>
-              <pre class='context'>      silence_streams(STDERR) { system(&quot;cp #{full_file_name} #{data_path}/bak#{Time.now.to_i}_#{file.original_filename}&quot;) }</pre>
+              <pre class='context'>      silence_streams(STDERR) { system(&quot;cp #{full_file_name} #{data_path}/bak#{Time.zone.now.to_i}_#{file.original_filename}&quot;) }</pre>
             </td>
           </tr>
           <tr class='context alt near_error'>

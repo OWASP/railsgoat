@@ -9,3 +9,4 @@
 *.png
 coverage
 .tags
+/.vagrant

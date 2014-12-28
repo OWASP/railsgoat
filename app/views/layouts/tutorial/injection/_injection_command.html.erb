@@ -67,7 +67,7 @@
          end
 
          def self.make_backup(file, data_path, full_file_name)
-           system("cp #{full_file_name} #{data_path}/bak#{Time.now.to_i}_#{<span style="background:yellow">file.original_filename</span>}")
+           system("cp #{full_file_name} #{data_path}/bak#{Time.zone.now.to_i}_#{<span style="background:yellow">file.original_filename</span>}")
          end
 
         end
@@ -131,7 +131,7 @@
          </p>
          <pre class="ruby">
           def self.make_backup(file, data_path, full_file_name)
-             FileUtils.cp "#{full_file_name}", "#{data_path}/bak#{Time.now.to_i}_#{file.original_filename}"
+             FileUtils.cp "#{full_file_name}", "#{data_path}/bak#{Time.zone.now.to_i}_#{file.original_filename}"
            end
          </pre>
             </div>
