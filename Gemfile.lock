@@ -176,8 +176,6 @@ GEM
       websocket-driver (>= 0.2.0)
     powder (0.3.0)
       thor (>= 0.11.5)
-    protected_attributes (1.0.8)
-      activemodel (>= 4.0.1, < 5.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -325,7 +323,6 @@ DEPENDENCIES
   mysql2
   poltergeist
   powder
-  protected_attributes
   pry
   rack-livereload
   rails (= 4.0.10)

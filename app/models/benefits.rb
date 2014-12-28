@@ -1,5 +1,4 @@
 class Benefits < ActiveRecord::Base
-  attr_accessor :backup
 
   def self.save(file, backup=false)
     data_path = Rails.root.join("public", "data")

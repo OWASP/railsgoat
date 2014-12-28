@@ -1,5 +1,4 @@
 class PaidTimeOff < ActiveRecord::Base
-  attr_accessible :pto_earned, :pto_taken, :sick_days_earned, :sick_days_taken
   belongs_to :user
   has_many :schedule, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
 
