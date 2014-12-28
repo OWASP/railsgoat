@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  before_filter :administrative, :if => :admin_param, :except => [:get_user]
+  before_action :administrative, :if => :admin_param, :except => [:get_user]
   skip_before_filter :has_info
 
   def dashboard

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 #don't upgrade
-gem 'rails', '3.2.21'
+gem 'rails', '4.0.10'
 
 ruby '2.1.5'
 
@@ -44,15 +44,14 @@ end
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'jquery-fileupload-rails'
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'jquery-fileupload-rails'
+gem 'uglifier'
+gem 'turbolinks' # New for Rails 4.0
 
-  gem 'uglifier'
-end
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+# gem 'therubyracer', :platforms => :ruby
 
 gem 'jquery-rails'
 
@@ -84,3 +83,9 @@ gem 'therubyracer'
 
 # Add SMTP server support using MailCatcher
 gem 'mailcatcher'
+
+#For Rails 4.0
+#group :doc do
+#  # bundle exec rake doc:rails generates the API under doc/api.
+#  gem 'sdoc', require: false
+#end
