@@ -5,11 +5,11 @@ class UserFixture
   end
 
   def self.normal_user
-    password = 'aoeuaoeu'
+    password = 'thi$ 1s cOmplExEr'
     user = User.new(:first_name => 'Joe', :last_name => 'Schmoe',
                     :email => 'joe@schmoe.com', :password => password, :password_confirmation => password)
     def user.clear_password
-      'aoeuaoeu'
+      'thi$ 1s cOmplExEr'
     end
     user.build_benefits_data
     user.save!
