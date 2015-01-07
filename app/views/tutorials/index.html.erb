@@ -58,9 +58,13 @@ function makeActive(){
 
 $('#breaker').click(function(event){
   event.preventDefault();
-  $("#main").empty()
+  $("#main").fadeOut(500, function() {
+     $(this).empty().show();
+  });
+  
   $("#info").empty()
-  $("#info").load(<%= sanitize  breaker_tutorials_path.inspect %>)
+  $("#info").load(<%= sanitize  breaker_tutorials_path.inspect %>).hide().fadeIn(4000)
+
 });
 
 $(document).ready(makeActive);
