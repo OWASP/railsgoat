@@ -66,6 +66,8 @@ Railsgoat::Application.routes.draw do
       get "gauntlt"
       get "logic_flaws"
       get "metaprogramming"
+      get "breaker"
+      get "builder"
     end
   end
 

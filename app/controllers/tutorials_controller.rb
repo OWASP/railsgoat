@@ -4,6 +4,13 @@ class TutorialsController < ApplicationController
 
   def index
   end
+  
+  def breaker
+    render :partial => "layouts/tutorial/home/breaker"
+  end
+  
+  def builder
+  end
 
   def credentials
     render :partial => "layouts/tutorial/credentials/creds"
