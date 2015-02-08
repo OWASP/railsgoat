@@ -184,6 +184,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-rails (0.3.3)
+      pry (>= 0.9.10)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -328,6 +330,7 @@ DEPENDENCIES
   poltergeist
   powder
   pry
+  pry-rails
   rack-livereload
   rails (= 3.2.21)
   rb-fsevent
