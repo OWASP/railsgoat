@@ -10,6 +10,7 @@ ruby '2.1.5'
 
 gem 'sqlite3'
 gem 'foreman'
+gem 'crack', '0.3.1'
 
 group :development, :mysql do
   gem 'brakeman'
