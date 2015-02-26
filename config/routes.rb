@@ -6,7 +6,7 @@ Railsgoat::Application.routes.draw do
   get "forgot_password" => "password_resets#forgot_password"
   get "password_resets" => "password_resets#confirm_token"
   post "password_resets" => "password_resets#reset_password"
-
+  get "dashboard/doc" => "dashboard#doc"
 
   resources :sessions do
   end
