@@ -19,6 +19,7 @@ feature 'xss' do
     end
     click_on 'Submit'
 
+    sleep(1)
     visit '/'
 
     pending(:if => verifying_fixed?) { find('form.button_to input.btn.btn-primary').value.should == 'RailsGoat h4x0r3d' }
