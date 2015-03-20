@@ -10,6 +10,10 @@ ruby '2.1.5'
 
 gem 'sqlite3'
 gem 'foreman'
+gem 'crack', '0.3.1'
+
+# Pry for Rails, not in dev group in case running via prod/staging @ a training
+gem 'pry-rails'
 
 group :development, :mysql do
   gem 'brakeman'
