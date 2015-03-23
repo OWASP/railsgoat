@@ -9,11 +9,11 @@ Railsgoat::Application.configure do
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
-  # Show full error reports and disable caching.
+  # Show full error reports and disable caching
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send.
+  # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
 
   # Print deprecation notices to the Rails logger
@@ -21,6 +21,9 @@ Railsgoat::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
+
+  # Raise exception on mass assignment protection for Active Record models
+  config.active_record.mass_assignment_sanitizer = :strict
 
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
@@ -32,27 +35,20 @@ Railsgoat::Application.configure do
   # Do not compress assets
   config.assets.compress = false
 
-  # Debug mode disables concatenation and preprocessing of assets.
-  # This option may cause significant delays in view rendering with a large
-  # number of complex assets.
+  # Expands the lines which load the assets
   config.assets.debug = true
 
   # ActionMailer settings for email support
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  config.action_mailer.smtp_settings = { :address => "127.0.0.1", :port => 1025 }
+  config.action_mailer.default_url_options = { :host => "127.0.0.1:3000" }
 
-  config.middleware.insert_before(
-       Rack::Lock, Rack::LiveReload,
-       :min_delay => 500,
-       :max_delay => 1000,
-       :port => 35727,
-       :host => 'railsgoat.dev',
-       :ignore => [ %r{dont/modify\.html$} ]
-  )
-
-  # For Rails 4.0+: Do not eager load code on boot.
-  config.eager_load = false
-
-  # For Rails 4.0+: Raise an error on page load if there are pending migrations
-  config.active_record.migration_error = :page_load
+ # config.middleware.insert_before(
+ #      Rack::Lock, Rack::LiveReload,
+ #      :min_delay => 500,
+ #      :max_delay => 1000,
+ #      :port => 35727,
+ #      :host => 'railsgoat.dev',
+ #      :ignore => [ %r{dont/modify\.html$} ]
+ # )
 end
