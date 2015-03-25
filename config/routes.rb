@@ -49,25 +49,6 @@ Railsgoat::Application.routes.draw do
   resources :tutorials do
     collection do
       get "credentials"
-      get "injection"
-      get "xss"
-      get "broken_auth"
-      get "insecure_dor"
-      get "csrf"
-      get "misconfig"
-      get "exposure"
-      get "url_access"
-      get "insecure_components"
-      get "access_control"
-      get "ssl_tls"
-      get "redirects"
-      get "guard"
-      get "mass_assignment"
-      get "gauntlt"
-      get "logic_flaws"
-      get "metaprogramming"
-      get "breaker"
-      get "builder"
     end
   end
 
