@@ -69,6 +69,12 @@ RailsGoat now includes a set of failing Capybara RSpecs, each one indicating tha
 $ rake training
 ```
 
+To run just one spec:
+
+```
+$ rake training SPEC=spec/vulnerabilities/sql_injection_spec.rb
+```
+
 NOTE: As vulnerabilities are fixed in the application, these specs will not change to `passing`, but to `pending`.
 
 
