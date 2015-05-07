@@ -183,7 +183,7 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
-    rack (1.5.2)
+    rack (1.5.3)
     rack-livereload (0.3.15)
       rack
     rack-protection (1.5.3)
@@ -254,7 +254,7 @@ GEM
     slop (3.6.0)
     sprockets (3.0.3)
       rack (~> 1.0)
-    sprockets-rails (2.2.4)
+    sprockets-rails (2.3.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
