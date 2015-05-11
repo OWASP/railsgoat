@@ -252,7 +252,7 @@ GEM
       eventmachine (~> 1.0.0)
       thin (~> 1.5.0)
     slop (3.6.0)
-    sprockets (3.0.3)
+    sprockets (3.1.0)
       rack (~> 1.0)
     sprockets-rails (2.3.0)
       actionpack (>= 3.0)
