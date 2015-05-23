@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - "2.1.5"
+  - "2.1.6"
 before_script: rake db:setup
 before_script: bundle exec rake db:setup
 env: RAILSGOAT_MAINTAINER=true

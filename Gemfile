@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 #don't upgrade
 gem 'rails', '4.0.13'
 
-ruby '2.1.5'
+ruby '2.1.6'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
