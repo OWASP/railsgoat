@@ -237,7 +237,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (~> 1.1)
-    sexp_processor (4.5.1)
+    sexp_processor (4.6.0)
     shellany (0.0.1)
     simplecov (0.10.0)
       docile (~> 1.1.0)
