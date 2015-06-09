@@ -31,7 +31,12 @@
       </ul>
       <ul class="mini-nav">
         <li>
-          <%= button_to "Visit Tutorial", "https://github.com/OWASP/railsgoat/wiki/tutorials", {:class => "btn", :method => "get"} %>
+          <%= button_to "Visit Tutorial", nil, 
+          {
+           :class => "btn", 
+           :method => "get", 
+           :onclick => "window.open('https://github.com/OWASP/railsgoat/wiki/tutorials', '_blank')" 
+           }  %>
         </li>
       </ul>
   </header>
@@ -55,7 +60,12 @@
       </ul>
       <ul class="mini-nav">
         <li>
-          <%= button_to "Visit Tutorial", "https://github.com/OWASP/railsgoat/wiki/tutorials", {:class => "btn", :method => "get"} %>
+            <%= button_to "Visit Tutorial", nil, 
+            {
+             :class => "btn", 
+             :method => "get", 
+             :onclick => "window.open('https://github.com/OWASP/railsgoat/wiki/tutorials', '_blank')" 
+             }  %>
         </li>
       </ul>
   </header>
