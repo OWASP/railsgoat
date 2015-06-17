@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 #don't upgrade
 gem 'rails', '4.0.13'
 
-ruby '2.1.6'
+ruby '2.2.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -40,6 +40,7 @@ group :development, :test, :mysql do
   gem 'database_cleaner'
   gem 'poltergeist'
   gem 'rspec-rails', '2.14.2'
+  gem 'test-unit'
 end
 
 group :mysql do
