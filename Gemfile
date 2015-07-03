@@ -58,8 +58,6 @@ gem 'turbolinks' # New for Rails 4.0
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', :platforms => :ruby
 
-gem 'libv8', '3.16.14.8' # 3.16.14.9 was yanked - temp. fix.
-
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
