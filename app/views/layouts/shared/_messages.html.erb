@@ -1,4 +1,5 @@
 <% flash.each do |name, msg| %>
+  <% name = name.to_sym %>
   <% if name == :error %>
     <div class="alert alert-error">
       <a class="close" data-dismiss="alert" href="#">×</a>
