@@ -102,7 +102,7 @@ GEM
       trollop
     gherkin (2.12.2)
       multi_json (~> 1.3)
-    guard (2.12.7)
+    guard (2.12.8)
       formatador (>= 0.2.4)
       listen (>= 2.7, <= 4.0)
       lumberjack (~> 1.0)
