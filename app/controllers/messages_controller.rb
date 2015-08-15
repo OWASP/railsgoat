@@ -33,4 +33,10 @@ class MessagesController < ApplicationController
       end
     end
   end
+
+  private
+
+  def message_params
+    params.require(:message).permit(:creator_id, :message, :read, :receiver_id)
+  end
 end
