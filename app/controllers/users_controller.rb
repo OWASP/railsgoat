@@ -55,7 +55,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :admin, :first_name, :last_name, :user_id, :password, :password_confirmation)
+    params.require(:user).permit!
   end
 
   # unpermitted attributes are ignored in production
