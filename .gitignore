@@ -10,3 +10,4 @@
 coverage
 .tags
 /.vagrant
+/vendor/ruby

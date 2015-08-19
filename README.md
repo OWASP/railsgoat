@@ -1,42 +1,49 @@
 # RailsGoat [![Build Status](https://api.travis-ci.org/OWASP/railsgoat.png?branch=master)](https://travis-ci.org/OWASP/railsgoat) [![Code Climate](https://codeclimate.com/github/OWASP/railsgoat.png)](https://codeclimate.com/github/OWASP/railsgoat)
 
-RailsGoat is a vulnerable version of the Ruby on Rails Framework. It includes vulnerabilities from the OWASP Top 10, as well as some "extras" that the initial project contributors felt worthwhile to share. This project is designed to educate both developers, as well as security professionals.
+RailsGoat is a vulnerable version of the Ruby on Rails Framework both versions 3 and 4. It includes vulnerabilities from the OWASP Top 10, as well as some "extras" that the initial project contributors felt worthwhile to share. This project is designed to educate both developers, as well as security professionals.
 
 ## Getting Started
 
 To begin, install the Ruby Version Manager (RVM):
 
-```
+```bash
 $ curl -L https://get.rvm.io | bash -s stable --autolibs=3 --ruby=2.1.2
 ```
 
 After installing the package, clone this repo:
 
-```
+```bash
 $ git clone git@github.com:OWASP/railsgoat.git
 ```
 
-Navigate into the directory and install the dependencies:
+**NOTE: NOT NECESSARY IF YOU WANT TO WORK WITH RAILS 4.** Otherwise, if you wish to use the Rails 3 version, you'll need to switch branches 
 
+```bash
+$ cd railsgoat
+$ git checkout rails_3_2
 ```
+
+Navigate into the directory (already there if you followed the previous step) and install the dependencies:
+
+```bash
 $ bundle install
 ```
 
 If you receive an error, make sure you have `bundler` installed:
 
-```
+```bash
 $ gem install bundler
 ```
 
 Initialize the database:
 
-```
+```bash
 $ rake db:setup
 ```
 
 Start the Thin web server:
 
-```
+```bash
 $ rails server
 ```
 

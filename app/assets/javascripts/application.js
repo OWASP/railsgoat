@@ -12,9 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require turbolinks
 //= require wysiwyg/wysihtml5-0.3.0.js
 //= require jquery.min.js
 //= require jquery.scrollUp.js
+//= require bootstrap.js
 //= require wysiwyg/bootstrap-wysihtml5.js
 //= require bootstrap-colorpicker.js
 //= require date-picker/date.js

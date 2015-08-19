@@ -20,10 +20,11 @@ feature 'xss' do
     click_on 'Submit'
     
     sleep(1)
-    visit '/'
-
-    pending(:if => verifying_fixed?) { find('div input.btn').value.should == 'RailsGoat h4x0r3d' }
-
+    
+    visit "/users/#{@normal_user.user_id}/account_settings"
+    
+    pending(:if => verifying_fixed?) { find('#submit_button').value.should == 'RailsGoat h4x0r3d' }
+    
     # might be nice to demonstrate posting cookie contents or somesuch, but
     # this at least shows the vulnerability still exists.
   end

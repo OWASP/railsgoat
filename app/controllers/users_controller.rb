@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(params[:user])
+    user = User.new(user_params)
     user.build_benefits_data
     if user.save
       session[:user_id] = user.user_id
@@ -31,11 +31,12 @@ class UsersController < ApplicationController
     # Still an Insecure DoR vulnerability
     #user = User.find(:first, :conditions => ["user_id = ?", "#{params[:user][:user_id]}"])
 
-    user = User.find(:first, :conditions => "user_id = '#{params[:user][:user_id]}'")
+    # user = User.find(:first, :conditions => "user_id = '#{params[:user][:user_id]}'")
+    user = User.where("user_id = '#{params[:user][:user_id]}'").first
     if user
       user.skip_user_id_assign = true
       user.skip_hash_password = true
-      user.update_attributes(params[:user].reject { |k| %w(password password_confirmation user_id).include? k })
+      user.update_attributes(user_params_without_password)
       if !(params[:user][:password].empty?) && (params[:user][:password] == params[:user][:password_confirmation])
         user.skip_hash_password = false
         user.password = params[:user][:password]
@@ -49,5 +50,16 @@ class UsersController < ApplicationController
       flash[:error] = "Could not update user!"
       redirect_to user_account_settings_path(:user_id => current_user.user_id)
     end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit!
+  end
+
+  # unpermitted attributes are ignored in production
+  def user_params_without_password
+    params.require(:user).permit(:email, :admin, :first_name, :last_name)
   end
 end
