@@ -18,13 +18,13 @@ feature 'xss' do
       fill_in 'user_password_confirmation', :with => @normal_user.clear_password
     end
     click_on 'Submit'
-    
+
     sleep(1)
-    
+
     visit "/users/#{@normal_user.user_id}/account_settings"
-    
+
     pending(:if => verifying_fixed?) { find('#submit_button').value.should == 'RailsGoat h4x0r3d' }
-    
+
     # might be nice to demonstrate posting cookie contents or somesuch, but
     # this at least shows the vulnerability still exists.
   end
