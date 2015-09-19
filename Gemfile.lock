@@ -140,7 +140,7 @@ GEM
       guard-compat (~> 1.0)
     haml (4.0.7)
       tilt
-    highline (1.7.5)
+    highline (1.7.6)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
     jquery-fileupload-rails (0.4.5)
