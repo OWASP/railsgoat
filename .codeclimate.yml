@@ -6,8 +6,6 @@ engines:
     enabled: true
   eslint:
     enabled: true
-  csslint:
-    enabled: true
   brakeman:
     enabled: true
 ratings:
