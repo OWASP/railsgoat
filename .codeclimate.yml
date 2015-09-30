@@ -8,7 +8,7 @@ engines:
     enabled: true
 ratings:
   paths:
-  - app/**
+  - app/**/*
   - "**.rb"
   - "**.coffee"
   - "**.js"
