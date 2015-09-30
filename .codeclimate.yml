@@ -4,8 +4,6 @@ engines:
     enabled: true
   coffeelint:
     enabled: true
-  eslint:
-    enabled: true
   brakeman:
     enabled: true
 ratings:
