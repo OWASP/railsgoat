@@ -5,9 +5,10 @@ engines:
   coffeelint:
     enabled: true
   brakeman:
-    enabled: false
+    enabled: true
 ratings:
   paths:
+  - app/**
   - "**.rb"
   - "**.coffee"
   - "**.js"
