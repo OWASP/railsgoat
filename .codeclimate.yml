@@ -1,0 +1,26 @@
+---
+engines:
+  rubocop:
+    enabled: true
+  coffeelint:
+    enabled: true
+  eslint:
+    enabled: true
+  csslint:
+    enabled: true
+  brakeman:
+    enabled: true
+ratings:
+  paths:
+  - "**.rb"
+  - "**.coffee"
+  - "**.js"
+  - "**.jsx"
+  - "**.css"
+exclude_paths:
+- config/**/*
+- db/**/*
+- script/**/*
+- spec/**/*
+- test/**/*
+- vendor/**/*
