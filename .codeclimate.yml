@@ -5,7 +5,7 @@ engines:
   coffeelint:
     enabled: true
   brakeman:
-    enabled: true
+    enabled: false
 ratings:
   paths:
   - "**.rb"
