@@ -112,7 +112,7 @@ GEM
       cucumber
       nokogiri
       trollop
-    gherkin3 (3.1.1)
+    gherkin3 (3.1.2)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     guard (2.13.0)
@@ -282,7 +282,7 @@ GEM
       temple (~> 0.7.3)
       tilt (>= 1.3.3, < 2.1)
     slop (3.6.0)
-    sprockets (3.3.5)
+    sprockets (3.4.0)
       rack (> 1, < 3)
     sprockets-rails (2.3.3)
       actionpack (>= 3.0)
