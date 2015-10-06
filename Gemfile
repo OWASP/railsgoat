@@ -6,7 +6,7 @@ gem 'rails', '4.2.4'
 ruby '2.2.3'
 
 # Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# gem 'rails', github: 'rails/rails'
 
 gem 'sqlite3'
 gem 'foreman'
