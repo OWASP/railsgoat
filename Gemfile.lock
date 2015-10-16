@@ -108,6 +108,7 @@ GEM
       thor (~> 0.19.1)
     formatador (0.2.5)
     gauntlt (0.1.4)
+      aruba
       cucumber
       nokogiri
       trollop
@@ -154,7 +155,7 @@ GEM
     kgio (2.10.0)
     launchy (2.4.3)
       addressable (~> 2.3)
-    libv8 (3.16.14.11)
+    libv8 (3.16.14.13)
     listen (3.0.3)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
