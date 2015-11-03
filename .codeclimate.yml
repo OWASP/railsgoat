@@ -2,8 +2,6 @@
 engines:
   rubocop:
     enabled: true
-  coffeelint:
-    enabled: true
   brakeman:
     enabled: true
 ratings:
@@ -17,6 +15,7 @@ ratings:
 exclude_paths:
 - config/**/*
 - db/**/*
+- controllers/**/*
 - script/**/*
 - spec/**/*
 - test/**/*
