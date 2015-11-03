@@ -15,7 +15,6 @@ ratings:
 exclude_paths:
 - config/**/*
 - db/**/*
-- controllers/**/*
 - script/**/*
 - spec/**/*
 - test/**/*
