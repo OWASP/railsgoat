@@ -81,7 +81,7 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.1.1)
+    coffee-script-source (1.10.0)
     crack (0.3.1)
     cucumber (2.1.0)
       builder (>= 2.1.2)
