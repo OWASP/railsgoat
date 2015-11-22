@@ -12,7 +12,9 @@ feature 'broken_auth' do
       fill_in 'email', :with => @normal_user.email + 'not'
       fill_in 'password', :with => @normal_user.clear_password
     end
-    click_on 'Login'
+    within('.actions') do
+      click_on 'Login'
+    end
     pending(:if => verifying_fixed?) { find('div#flash_notice').text.should == "#{@normal_user.email}not doesn't exist!" }
   end
 
@@ -22,7 +24,9 @@ feature 'broken_auth' do
       fill_in 'email', :with => @normal_user.email
       fill_in 'password', :with => @normal_user.clear_password + 'not'
     end
-    click_on 'Login'
+    within('.actions') do
+      click_on 'Login'
+    end
     pending(:if => verifying_fixed?) { find('div#flash_notice').text.should == 'Incorrect Password!' }
   end
 end

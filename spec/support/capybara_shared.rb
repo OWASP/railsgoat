@@ -40,7 +40,9 @@ def login(user)
     fill_in 'email', :with => user.email
     fill_in 'password', :with => user.clear_password
   end
-  click_on 'Login'
+  within('.actions') do
+    click_on 'Login'
+  end
 end
 
 ##Hack to fix PhantomJS errors on Mavericks - https://gist.github.com/ericboehs/7125105
