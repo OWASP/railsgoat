@@ -1,5 +1,6 @@
 Railsgoat::Application.routes.draw do
 
+  devise_for :users
   get "login" => "sessions#new"
   get "signup" => "users#new"
   get "logout" => "sessions#destroy"
