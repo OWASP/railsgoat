@@ -5,6 +5,9 @@ gem 'rails', '4.2.5'
 
 ruby '2.2.4'
 
+# Authentication gem
+gem 'devise'
+
 # Bundle edge Rails instead:
 # gem 'rails', github: 'rails/rails'
 
