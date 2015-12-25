@@ -1,5 +1,5 @@
 class Api::V1::MobileController < ApplicationController
-  skip_before_filter :authenticated
+  skip_before_filter :authenticate_user
   before_filter :mobile_request?
 
   respond_to :json

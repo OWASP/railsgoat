@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  skip_before_filter :authenticated
+  skip_before_filter :authenticate_user
   before_filter :valid_api_token
   before_filter :extrapolate_user
 

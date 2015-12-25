@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticated, :has_info, :create_analytic, :mailer_options
+  before_action :authenticate_user, :has_info, :create_analytic, :mailer_options
   helper_method :current_user, :is_admin?, :sanitize_font
 
   # Our security guy keep talking about sea-surfing, cool story bro.
@@ -19,11 +19,6 @@ class ApplicationController < ActionController::Base
       User.find_by_auth_token(cookies[:auth_token].to_s) ||
       User.find_by_user_id(session[:user_id].to_s)
     )
-  end
-
-  def authenticated
-     path = request.fullpath.present? ? root_url(:url =>  request.fullpath) : root_url
-     redirect_to path and reset_session if not current_user
   end
 
   def is_admin?
