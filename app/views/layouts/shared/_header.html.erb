@@ -12,10 +12,10 @@
         <span class="caret"></span>
         <ul class="dropdown-menu pull-right">
           <li>
-           <%= link_to "Account settings", user_account_settings_path(:user_id => current_user.user_id) %>
+           <%#= link_to "Account settings", user_account_settings_path(:user_id => current_user.user_id) %>
           </li>
           <li>
-            <%= link_to "Logout", logout_path %>
+            <%#= link_to "Logout", logout_path %>
           </li>
         </ul>
       </div>
@@ -26,7 +26,7 @@
           going on with funny chars and jquery, plus it says safe so I'm guessing
           nothing bad will happen
           -->
-          Welcome, <%= current_user.first_name.html_safe %>
+          Welcome, <%#= current_user.first_name.html_safe %>
        </li>
       </ul>
       <ul class="mini-nav">
@@ -45,12 +45,12 @@
   <header>
       <ul class="mini-nav">
            <li>
-             <%= button_to "Signup", signup_path, {:class => "btn btn-primary", :method => "get"} %>
+             <%#= button_to "Signup", signup_path, {:class => "btn btn-primary", :method => "get"} %>
            </li>
          </ul>
       <ul class="mini-nav">
            <li>
-             <%= button_to "login", login_path, {:class => "btn", :method => "get"} %>
+             <%#= button_to "login", login_path, {:class => "btn", :method => "get"} %>
            </li>
          </ul>
       <ul class="mini-nav">
