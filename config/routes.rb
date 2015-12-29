@@ -1,10 +1,11 @@
 Railsgoat::Application.routes.draw do
 
-  devise_for :users
+  devise_scope :user do
+      get '/users/sign_out' => 'devise/sessions#destroy'
+  end
  
   get "dashboard/doc" => "dashboard#doc"
 
-  resources :users do
     get "account_settings"
 
     resources :retirement do
@@ -33,8 +34,6 @@ Railsgoat::Application.routes.draw do
         post "decrypted_bank_acct_num"
       end
     end
-
-  end
 
   get "download" => "benefit_forms#download"
   post "upload" => "benefit_forms#upload"
