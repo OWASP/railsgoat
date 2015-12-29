@@ -10,19 +10,13 @@ class User < ActiveRecord::Base
                        :length => {:within => 6..40},
                        :on => :create,
                        :if => :password
-=begin
-  validates :password, :presence => true,
-                        :confirmation => true,
-                        :if => :password,
-                        :format => {:with => /\A.*(?=.{10,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\@\#\$\%\^\&\+\=]).*\z/}
-=end
+
   validates_presence_of :email
   validates_uniqueness_of :email
   validates_format_of :email, :with => /.+@.+\..+/i
   attr_accessor :skip_user_id_assign
   attr_accessor :skip_hash_password
   before_save :assign_user_id, :on => :create
-  before_save :hash_password
   has_one :retirement, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
   has_one :paid_time_off, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
   has_one :work_info, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
@@ -53,30 +47,6 @@ class User < ActiveRecord::Base
 
   private
 
-  def self.authenticate(email, password)
-    auth = nil
-    user = find_by_email(email)
-    raise "#{email} doesn't exist!" if !(user)
-    if user.password == Digest::MD5.hexdigest(password)
-      auth = user
-    else
-      raise "Incorrect Password!"
-    end
-    return auth
-  end
-
-=begin
-  # More secure version, still lacking a decent hashing routine, this is for timing attack prevention
-  def self.authenticate(email, password)
-       user = find_by_email(email) || User.new(:password => "")
-        if Rack::Utils.secure_compare(user.password, Digest::MD5.hexdigest(password))
-          return user
-        else
-          raise "Incorrect username or password"
-        end
-   end
-=end
-
   def assign_user_id
     unless @skip_user_id_assign.present? || self.user_id.present?
       user = User.order("user_id").last
@@ -86,14 +56,6 @@ class User < ActiveRecord::Base
               1
             end
       self.user_id = uid.to_s if uid
-    end
-  end
-
-  def hash_password
-    unless @skip_hash_password == true
-      if password.present?
-        self.password = Digest::MD5.hexdigest(password)
-      end
     end
   end
 
