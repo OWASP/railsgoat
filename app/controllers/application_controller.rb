@@ -14,13 +14,6 @@ class ApplicationController < ActionController::Base
     ActionMailer::Base.default_url_options[:host]     = request.host_with_port
   end
 
-  def current_user
-    @current_user ||= (
-      User.find_by_auth_token(cookies[:auth_token].to_s) ||
-      User.find_by_user_id(session[:user_id].to_s)
-    )
-  end
-
   def is_admin?
     current_user.admin if current_user
   end
