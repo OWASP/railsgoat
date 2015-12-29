@@ -265,45 +265,38 @@ paid_time_off = [
 
 
 users.each do |user_info|
-  user = User.new(user_info.reject {|k| k == :user_id })
-  user.user_id = user_info[:user_id]
+  user = User.new(user_info)
   user.save
 end
 
 retirements.each do |r|
- ret = Retirement.new(r.reject {|k| k == :user_id})
- ret.user_id = r[:user_id]
+ ret = Retirement.new(r)
  ret.save
 end  
 
 paid_time_off.each do |pto|
-  ptoff = PaidTimeOff.new(pto.reject {|k| k == :user_id})
-  ptoff.user_id = pto[:user_id]
+  ptoff = PaidTimeOff.new(pto)
   ptoff.save
   
 end
 
 schedule.each do |event|
-  sched = Schedule.new(event.reject {|k| k == :user_id})
-  sched.user_id = event[:user_id]
+  sched = Schedule.new(event)
   sched.save
 end
 
 performance.each do |perf|
-  p = Performance.new(perf.reject {|k| k == :user_id})
-  p.user_id = perf[:user_id]
+  p = Performance.new(perf)
   p.save
 end
 
 messages.each do |message|
-  m = Message.new(message.reject {|k| k == :creator_id})
-  m.creator_id = message[:creator_id]
+  m = Message.new(message)
   m.save
 end
 
 work_info.each do |wi|
-  info = WorkInfo.new(wi.reject {|k| k == :user_id } )
-  info.user_id = wi[:user_id]
+  info = WorkInfo.new(wi)
   info.save
 end
 
