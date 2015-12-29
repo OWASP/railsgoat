@@ -1,12 +1,7 @@
 Railsgoat::Application.routes.draw do
 
   devise_for :users
-  get "login" => "sessions#new"
-  get "signup" => "users#new"
-  get "logout" => "sessions#destroy"
-  get "forgot_password" => "password_resets#forgot_password"
-  get "password_resets" => "password_resets#confirm_token"
-  post "password_resets" => "password_resets#reset_password"
+ 
   get "dashboard/doc" => "dashboard#doc"
 
   resources :sessions do
@@ -84,6 +79,6 @@ Railsgoat::Application.routes.draw do
    end
 
 
-  root :to => "sessions#new"
+  root :to => "dashboard#home"
 
 end
