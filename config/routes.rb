@@ -4,9 +4,6 @@ Railsgoat::Application.routes.draw do
  
   get "dashboard/doc" => "dashboard#doc"
 
-  resources :sessions do
-  end
-
   resources :users do
     get "account_settings"
 
