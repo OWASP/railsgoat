@@ -51,6 +51,11 @@ class UsersController < ApplicationController
       redirect_to user_account_settings_path(:user_id => current_user.user_id)
     end
   end
+  
+  def show
+    session.destroy
+    redirect_to root_path
+  end
 
   private
 
