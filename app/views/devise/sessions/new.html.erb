@@ -23,34 +23,26 @@
       <div class="span4 offset4">
         
 <div class="signup">
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => "signup-wrapper"}) do |f| %>
+  <div class="content">
+    <%= f.email_field :email, autofocus: true, :class => "input input-block-level", :placeholder => "Email" %>
+    <%= f.password_field :password, autocomplete: "off", :class => "input input-block-level", :placeholder => "Password" %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
+    <span class="checkbox-wrapper">
+      <%= f.check_box :remember_me, {:id => "form-terms", :class => "checkbox", :type => "checkbox"}  %>
+      <label class="checkbox-label" for="form-terms"></label> <span class="label-text"><%= f.label :remember_me %></span>
+    </span>
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-  
-  <div class="actions">
-    <%= render "devise/shared/links" %>
+    <%= f.submit "Log in", :class => "btn btn-info btn-large pull-left" %>
+    
   </div>
   
   <div class="clearfix"></div>
-  
+  <%= render "devise/shared/links" %>
 <% end %>
 </div>
 
