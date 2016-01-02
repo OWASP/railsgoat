@@ -3,20 +3,20 @@ function validation(){
 	    rules: {
 	        "user[password]": {
 	            required: false,
-	            minlength: 5
+	            minlength: 8
 	        },
 	        "user[password_confirmation]": {
 	            required: false,
-	            minlength: 5,
+	            minlength: 8,
 	            equalTo: "#user_password"
 	        }
 	    },
 	    messages: {
 	        "user[password]": {
-	            minlength: "Your password must be at least 6 characters long"
+	            minlength: "Your password must be at least 8 characters long"
 	        },
 	        "user[password_confirmation]": {
-	            minlength: "Your password must be at least 6 characters long",
+	            minlength: "Your password must be at least 8 characters long",
 	            equalTo: "Please enter the same password as above"
 	        }
 	    },
