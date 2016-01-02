@@ -1,16 +1,31 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<div class="row-fluid">
+  <h2 align="center">MetaCorp</h2>
+  <h3 align="center">A GoatGroup Company</h3>
+  <div class="span12">
+    <div class="row-fluid">
+      <div class="span4 offset4">
+        <div class="signup">
+          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, :class => "signup-wrapper" }) do |f| %>
+              
+            <div class="header">
+              <h2>Forgot your password?</h2>
+              <p>Fill out the form below to reset your password.</p>
+            </div>
+            
+            <%= devise_error_messages! %>
+          
+            <div class="content">
+              <%= f.email_field :email, autofocus: true, :class => "input input-block-level", :placeholder => "Email" %>
+            </div>
+          
+            <div class="actions">
+              <%= f.submit "Send me reset password instructions", :class => "btn btn-info btn-large" %>
+            </div>
+            <div class="clearfix"></div>
+             <%= render "devise/shared/links" %>
+          <% end %>
+          </div>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
