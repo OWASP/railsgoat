@@ -47,4 +47,5 @@ class ApplicationController < ActionController::Base
     css
     # css if css.match(/\A[0-9]+([\%]|pt)\z/)
   end
+  
 end
