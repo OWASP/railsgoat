@@ -45,16 +45,6 @@
   <header>
       <ul class="mini-nav">
            <li>
-             <%#= button_to "Signup", signup_path, {:class => "btn btn-primary", :method => "get"} %>
-           </li>
-         </ul>
-      <ul class="mini-nav">
-           <li>
-             <%#= button_to "login", login_path, {:class => "btn", :method => "get"} %>
-           </li>
-         </ul>
-      <ul class="mini-nav">
-           <li>
              <%= button_to "Tutorial Credentials", "#myModalLabel1", {:id => "show_creds_btn", :class => "btn btn-danger", :method => "get"} %>
            </li>
       </ul>
@@ -64,7 +54,7 @@
             {
              :class => "btn",
              :method => "get",
-             :onclick => "window.open('https://github.com/OWASP/railsgoat/wiki/tutorials', '_blank')"
+             :onclick => "window.open('https://github.com/OWASP/railsgoat/wiki', '_blank')"
              }  %>
         </li>
       </ul>
