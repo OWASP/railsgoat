@@ -7,25 +7,25 @@ feature 'broken_auth' do
   end
 
   scenario 'one' do
-    visit '/'
+    visit '/users/sign_in'
     within('.signup') do
-      fill_in 'email', :with => @normal_user.email + 'not'
-      fill_in 'password', :with => @normal_user.clear_password
+      fill_in 'user_email', :with => @normal_user.email + 'not'
+      fill_in 'user_password', :with => @normal_user.clear_password
     end
     within('.actions') do
-      click_on 'Login'
+      click_on 'Log in'
     end
     pending(:if => verifying_fixed?) { find('div#flash_notice').text.should == "#{@normal_user.email}not doesn't exist!" }
   end
 
   scenario 'two' do
-    visit '/'
+    visit '/users/sign_in'
     within('.signup') do
-      fill_in 'email', :with => @normal_user.email
-      fill_in 'password', :with => @normal_user.clear_password + 'not'
+      fill_in 'user_email', :with => @normal_user.email
+      fill_in 'user_password', :with => @normal_user.clear_password + 'not'
     end
     within('.actions') do
-      click_on 'Login'
+      click_on 'Log in'
     end
     pending(:if => verifying_fixed?) { find('div#flash_notice').text.should == 'Incorrect Password!' }
   end
