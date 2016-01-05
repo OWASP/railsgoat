@@ -1,24 +1,6 @@
 class UsersController < ApplicationController
   skip_before_filter :has_info
-  skip_before_filter :authenticate_user!, :only => [:new, :create]
-
-  def new
-    @user = User.new
-  end
-
-  def create
-    user = User.new(user_params)
-    user.build_benefits_data
-    if user.save
-      session[:user_id] = user.user_id
-      redirect_to home_dashboard_index_path
-    else
-      @user = user
-      flash[:error] = user.errors.full_messages.to_sentence
-      redirect_to :signup
-    end
-  end
-
+  
   def account_settings
     @user = current_user
   end
