@@ -35,13 +35,13 @@ def verifying_fixed?
 end
 
 def login(user)
-  visit '/'
+  visit '/users/sign_in'
   within('.signup') do
-    fill_in 'email', :with => user.email
-    fill_in 'password', :with => user.clear_password
+    fill_in 'user_email', :with => user.email
+    fill_in 'user_password', :with => user.clear_password
   end
   within('.actions') do
-    click_on 'Login'
+    click_on 'Log in'
   end
 end
 
