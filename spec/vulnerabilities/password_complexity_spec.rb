@@ -7,7 +7,7 @@ feature 'password complexity' do
   end
 
   scenario 'one' do
-    visit '/signup'
+    visit '/users/sign_up'
     within('.signup') do
       fill_in 'user_email', :with => @normal_user.email + 'not'
       fill_in 'user_first_name', :with => @normal_user.first_name
@@ -15,7 +15,7 @@ feature 'password complexity' do
       fill_in 'user_password', :with => 'password'
       fill_in 'user_password_confirmation', :with => 'password'
     end
-    click_on 'Submit'
-    pending(:if => verifying_fixed?) {current_path.should == '/dashboard/home'}
+    click_on 'submit_button'
+    pending(:if => verifying_fixed?) {current_path.should == '/'}
   end
 end
