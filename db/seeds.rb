@@ -9,7 +9,7 @@ users = [
        :password => "admin1234", 
        :password_confirmation => "admin1234", 
        :first_name => "Admin", 
-       :last_name => "", 
+       :last_name => "Admin", 
        :user_id =>1 
       },
      {
