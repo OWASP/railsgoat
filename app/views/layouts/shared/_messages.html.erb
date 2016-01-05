@@ -1,6 +1,6 @@
 <% flash.each do |name, msg| %>
   <% name = name.to_sym %>
-  <% if name == :error %>
+  <% if [:error, :alert].include? name  %>
     <div class="alert alert-error">
       <a class="close" data-dismiss="alert" href="#">×</a>
           <%= content_tag :div, msg, :id => "flash_notice" %>
