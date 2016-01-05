@@ -8,7 +8,9 @@
             <div class="header">
               <h2>Sign up</h2>
             </div>
-            <%= devise_error_messages! %>
+            <div style="color:#f2f2f2">
+              <%= devise_error_messages! %>
+            </div>
           
             <div class="content">
               <%= f.email_field :email, autofocus: true, :class => "input input-block-level", :placeholder => "Email" %>
