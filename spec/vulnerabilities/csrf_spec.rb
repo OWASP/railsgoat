@@ -8,11 +8,12 @@ feature 'csrf' do
   end
 
   scenario 'attack', :js => true do
+    
+    login @normal_user
+    
     visit '/'
     # TODO: is there a way to get this without visiting root first?
     base_url = current_url
-
-    login @normal_user
 
     Dir.mktmpdir do |dir|
       hackety_file = File.join(dir, 'form.on.bad.guy.site.html')
