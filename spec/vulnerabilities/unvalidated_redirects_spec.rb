@@ -7,10 +7,10 @@ feature 'unvalidated redirect' do
   end
 
   scenario 'attack', :js => true do
-    visit '/?url=http://example.com/do/evil/things'
+    visit '/users/sign_in?url=http://example.com/do/evil/things'
     within('.signup') do
-      fill_in 'email', :with => @normal_user.email
-      fill_in 'password', :with => @normal_user.clear_password
+      fill_in 'user_email', :with => @normal_user.email
+      fill_in 'user_password', :with => @normal_user.clear_password
     end
     within('.actions') do
       click_on 'Login'
