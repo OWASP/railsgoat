@@ -38,11 +38,6 @@
 <%= javascript_include_tag "jquery.dataTables.js"%>
 
 <script type="text/javascript">
-function dataTablePagination(){
-  $('#data-table').dataTable({
-    "sPaginationType": "full_numbers"
-  });
-};
 
 function makeActive(){
   $('li[id="admin"]').addClass('active');
@@ -54,7 +49,6 @@ function loadTable(){
 
 $(document).ready(
   makeActive,
-  dataTablePagination(),
   loadTable()
 );
 </script>
