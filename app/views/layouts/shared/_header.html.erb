@@ -1,10 +1,12 @@
 <% if current_user %>
   <header>
+      
       <span style="color:#eee;margin-left:10px;">
         Font Size:
-        <a href="<%= home_dashboard_index_path %>?font=8pt" style="font-size:10pt;color:#eee;">A</a>
-        <a href="<%= home_dashboard_index_path %>?font=200%25" style="font-size:18pt;color:#eee;">A</a>
+        <a data-no-turbolink='true' href="/dashboard/home?font=8pt" style="font-size:10pt;color:#eee;">A</a>
+        <a data-no-turbolink='true' href="/dashboard/home?font=200%25" style="font-size:18pt;color:#eee;">A</a>
       </span>
+      
       <div class="user-profile">
         <a data-toggle="dropdown" class="dropdown-toggle">
           <img src=" <%= image_path('profile_color.jpg')%>"  alt="profile">
