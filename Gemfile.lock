@@ -113,6 +113,7 @@ GEM
       thor (~> 0.19.1)
     formatador (0.2.5)
     gauntlt (0.1.4)
+      aruba
       cucumber
       nokogiri
       trollop
@@ -132,7 +133,7 @@ GEM
       brakeman (>= 2.1.1)
       guard (>= 2.0.0)
     guard-compat (1.2.1)
-    guard-livereload (2.5.1)
+    guard-livereload (2.5.2)
       em-websocket (~> 0.5)
       guard (~> 2.8)
       guard-compat (~> 1.0)
@@ -169,10 +170,11 @@ GEM
     lumberjack (1.0.10)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mailcatcher (0.6.3)
-      activesupport (>= 4.0.0, < 5)
+    mailcatcher (0.6.4)
+      activesupport (~> 4.0)
       eventmachine (= 1.0.9.1)
       mail (~> 2.3)
+      rack (~> 1.5)
       sinatra (~> 1.2)
       skinny (~> 0.2.3)
       sqlite3 (~> 1.3)
@@ -184,7 +186,7 @@ GEM
     multi_json (1.11.2)
     multi_test (0.1.2)
     mysql2 (0.4.2)
-    nenv (0.2.0)
+    nenv (0.3.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     notiffany (0.0.8)
@@ -238,7 +240,7 @@ GEM
     raindrops (0.15.0)
     rake (10.5.0)
     rb-fsevent (0.9.7)
-    rb-inotify (0.9.5)
+    rb-inotify (0.9.6)
       ffi (>= 0.5.0)
     ref (2.0.0)
     rspec (2.14.1)
