@@ -2,6 +2,10 @@
 
 RailsGoat is a vulnerable version of the Ruby on Rails Framework both versions 3 and 4. It includes vulnerabilities from the OWASP Top 10, as well as some "extras" that the initial project contributors felt worthwhile to share. This project is designed to educate both developers, as well as security professionals.
 
+## Support
+
+If you are looking for support or troubleshooting assistance, please visit our [OWASP Slack Channel](https://owasp.slack.com/messages/project-railsgoat/). 
+
 ## Getting Started
 
 To begin, install the Ruby Version Manager (RVM):
