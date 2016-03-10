@@ -23,7 +23,4 @@ class DashboardController < ApplicationController
      render :partial => "layouts/dashboard/dashboard_stats"
   end
 
-  def doc
-    render "../../doc/" + params[:doc]
-  end
 end
