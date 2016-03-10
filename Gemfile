@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 #don't upgrade
 gem 'rails', '4.2.6'
+gem 'rake', '10.5.0' # LOCKED DOWN
 
 ruby '2.3.0'
 
