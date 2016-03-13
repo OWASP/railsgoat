@@ -235,7 +235,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     raindrops (0.16.0)
-    rake (10.5.0)
+    rake (11.1.0)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
@@ -361,7 +361,6 @@ DEPENDENCIES
   pry-rails
   rack-livereload
   rails (= 4.2.6)
-  rake (= 10.5.0)
   rb-fsevent
   rspec-rails (= 2.14.2)
   sass-rails
