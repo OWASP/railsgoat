@@ -1,9 +1,13 @@
 source 'https://rubygems.org'
 
+gem 'gemdiff'
+
 #don't upgrade
 gem 'rails', '4.2.6'
 
 ruby '2.3.0'
+
+gem 'rake', '10.5.0' # LOCKED DOWN UNTIL MOVE TO RSPEC beta2.
 
 # Bundle edge Rails instead:
 # gem 'rails', github: 'rails/rails'
@@ -39,7 +43,7 @@ group :development, :test, :mysql do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'poltergeist'
-  gem 'rspec-rails', '2.14.2'
+  gem 'rspec-rails', '2.99.0' # LOCKED DOWN
   gem 'test-unit'
 end
 
@@ -72,7 +76,7 @@ gem 'jquery-rails'
 # Pow related gem
 gem 'powder'
 
-gem 'aruba'
+gem 'aruba', '0.9.0.pre' # LOCKED DOWN
 #gem 'minitest', '~> 4.0', :require=> "minitest/autorun"
 
 #gem 'minitest'

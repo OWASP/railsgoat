@@ -11,20 +11,20 @@ describe User do
   end
 
   it "can be instantiated" do
-    User.new.should be_an_instance_of(User)
+    expect(User.new).to be_an_instance_of(User)
   end
 
   it "should require a email" do
-    User.new(:email => "").should_not be_valid
+    expect(User.new(:email => "")).not_to be_valid
   end
 
   it "should require valid email" do
-    User.new(:email => "@gmail.com").should_not be_valid
+    expect(User.new(:email => "@gmail.com")).not_to be_valid
   end
 
   it "should require unique email" do
     user = User.all.first
-    User.new(:email => user.email).should_not be_valid
+    expect(User.new(:email => user.email)).not_to be_valid
   end
 
   it "name can be updated" do
@@ -32,6 +32,6 @@ describe User do
     user = User.all.first
     user.first_name = new_name
     user.save!
-    User.all.first.first_name.should == new_name
+    expect(User.all.first.first_name).to eq(new_name)
   end
 end

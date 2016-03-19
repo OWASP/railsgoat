@@ -8,7 +8,7 @@ feature 'sql injection' do
   end
 
   scenario 'attack' do
-    @admin_user.admin.should be_true
+    @admin_user.admin.should be_truthy
 
     login(@normal_user)
 
