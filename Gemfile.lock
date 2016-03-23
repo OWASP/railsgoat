@@ -324,9 +324,8 @@ GEM
       coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (2.7.2)
-      execjs (>= 0.3.0)
-      json (>= 1.8.0)
+    uglifier (3.0.0)
+      execjs (>= 0.3.0, < 3)
     unicorn (5.0.1)
       kgio (~> 2.6)
       rack
