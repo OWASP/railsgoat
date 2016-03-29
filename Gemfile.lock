@@ -114,7 +114,6 @@ GEM
       thor (~> 0.19.1)
     formatador (0.2.5)
     gauntlt (0.1.4)
-      aruba
       cucumber
       nokogiri
       trollop
