@@ -114,6 +114,7 @@ GEM
       thor (~> 0.19.1)
     formatador (0.2.5)
     gauntlt (0.1.4)
+      aruba
       cucumber
       nokogiri
       trollop
@@ -271,7 +272,7 @@ GEM
     ruby_parser (3.8.1)
       sexp_processor (~> 4.1)
     safe_yaml (1.0.4)
-    sass (3.4.21)
+    sass (3.4.22)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
