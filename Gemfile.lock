@@ -114,6 +114,7 @@ GEM
       thor (~> 0.19.1)
     formatador (0.2.5)
     gauntlt (0.1.4)
+      aruba
       cucumber
       nokogiri
       trollop
@@ -327,9 +328,8 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
-    unicorn (5.0.1)
+    unicorn (5.1.0)
       kgio (~> 2.6)
-      rack
       raindrops (~> 0.7)
     websocket-driver (0.6.3)
       websocket-extensions (>= 0.1.0)
