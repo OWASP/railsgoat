@@ -11,7 +11,7 @@ describe User do
   end
 
   it "can be instantiated" do
-    Benefits.new.should be_an_instance_of(Benefits)
+    expect(Benefits.new).to be_an_instance_of(Benefits)
   end
 
   it "name can be updated" do
@@ -19,6 +19,6 @@ describe User do
     user = User.all.first
     user.first_name = new_name
     user.save!
-    User.all.first.first_name.should == new_name
+    expect(User.all.first.first_name).to eq(new_name)
   end
 end
