@@ -23,6 +23,7 @@ feature 'command injection' do
       end
       click_on 'Start Upload'
     end
-    pending(:if => verifying_fixed?) { File.exists?(legit_file).should be_falsey }
+    pending if verifying_fixed?
+    expect(File.exists?(legit_file)).to be_falsey
   end
 end

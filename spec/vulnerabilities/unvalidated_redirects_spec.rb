@@ -15,6 +15,7 @@ feature 'unvalidated redirect' do
     within('.actions') do
       click_on 'Login'
     end
-    pending(:if => verifying_fixed?) { current_url.should == 'http://example.com/do/evil/things' }
+    pending if verifying_fixed?
+    expect(current_url).to eq('http://example.com/do/evil/things')
   end
 end

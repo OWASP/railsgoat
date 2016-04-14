@@ -15,7 +15,8 @@ feature 'broken_auth' do
     within('.actions') do
       click_on 'Login'
     end
-    pending(:if => verifying_fixed?) { find('div#flash_notice').text.should == "#{@normal_user.email}not doesn't exist!" }
+    pending if verifying_fixed?
+    expect(find('div#flash_notice').text).to eq("#{@normal_user.email}not doesn't exist!")
   end
 
   scenario 'two' do
@@ -27,6 +28,7 @@ feature 'broken_auth' do
     within('.actions') do
       click_on 'Login'
     end
-    pending(:if => verifying_fixed?) { find('div#flash_notice').text.should == 'Incorrect Password!' }
+    pending if verifying_fixed?
+    expect(find('div#flash_notice').text).to eq('Incorrect Password!')
   end
 end

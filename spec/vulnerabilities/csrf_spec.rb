@@ -39,6 +39,7 @@ feature 'csrf' do
       end
     end
 
-    pending(:if => verifying_fixed?) { @normal_user.reload.paid_time_off.schedule.last.event_name.should == 'Bad Guy' }
+    pending if verifying_fixed?
+    expect(@normal_user.reload.paid_time_off.schedule.last.event_name).to eq('Bad Guy')
   end
 end

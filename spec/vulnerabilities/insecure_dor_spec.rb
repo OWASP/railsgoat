@@ -13,19 +13,19 @@ feature 'insecure direct object reference' do
     download_url = first('.widget-body a')[:href]
     visit download_url.sub(/name=(.*?)&/, 'name=config/database.yml&')
 
-    pending(:if => verifying_fixed?) {
-      page.status_code.should == 200
-      page.response_headers['Content-Disposition'].should include('database.yml')
-      page.response_headers['Content-Length'].should == '709'
-    }
+    pending if verifying_fixed?
+    expect(page.status_code).to eq(200)
+    expect(page.response_headers['Content-Disposition']).to include('database.yml')
+    expect(page.response_headers['Content-Length']).to eq('709')
   end
 
   scenario 'attack two' do
     login(@normal_user)
 
-    @normal_user.user_id.should_not == 2
+    expect(@normal_user.user_id).not_to eq(2)
     visit '/users/2/work_info'
 
-    pending(:if => verifying_fixed?) { first('td').text.should == 'Jack Mannino' }
+    pending if verifying_fixed?
+    expect(first('td').text).to eq('Jack Mannino')
   end
 end

@@ -11,7 +11,8 @@ feature 'improper password hashing' do
     @normal_user.password = new_pass
     @normal_user.password_confirmation = new_pass
     @normal_user.save
-    pending(:if => verifying_fixed?) {Digest::MD5.hexdigest(new_pass).should == @normal_user.password}
+    pending if verifying_fixed?
+    expect(Digest::MD5.hexdigest(new_pass)).to eq(@normal_user.password)
   end
 
 =begin
@@ -21,7 +22,8 @@ feature 'improper password hashing' do
     @normal_user.password = new_pass
     @normal_user.password_confirmation = new_pass
     @normal_user.save
-    pending(:if => verifying_fixed?) {Digest::MD5.hexdigest(@normal_user.salt + new_pass).should == @normal_user.password}
+    pending if verifying_fixed?
+    expec(Digest::MD5.hexdigest(@normal_user.salt + new_pass))to. eq(@normal_user.password)
   end
 =end
 
