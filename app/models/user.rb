@@ -6,12 +6,7 @@ class User < ActiveRecord::Base
                        :length => {:within => 6..40},
                        :on => :create,
                        :if => :password
-=begin
-  validates :password, :presence => true,
-                        :confirmation => true,
-                        :if => :password,
-                        :format => {:with => /\A.*(?=.{10,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\@\#\$\%\^\&\+\=]).*\z/}
-=end
+
   validates_presence_of :email
   validates_uniqueness_of :email
   validates_format_of :email, :with => /.+@.+\..+/i
@@ -60,18 +55,6 @@ class User < ActiveRecord::Base
     end
     return auth
   end
-
-=begin
-  # More secure version, still lacking a decent hashing routine, this is for timing attack prevention
-  def self.authenticate(email, password)
-       user = find_by_email(email) || User.new(:password => "")
-        if Rack::Utils.secure_compare(user.password, Digest::MD5.hexdigest(password))
-          return user
-        else
-          raise "Incorrect username or password"
-        end
-   end
-=end
 
   def assign_user_id
     unless @skip_user_id_assign.present? || self.user_id.present?
