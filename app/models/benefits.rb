@@ -15,12 +15,6 @@ class Benefits < ActiveRecord::Base
     end
   end
 
-=begin
-  def self.make_backup(file, data_path, full_file_name)
-    FileUtils.cp "#{full_file_name}", "#{data_path}/bak#{Time.zone.now.to_i}_#{file.original_filename}"
-  end
-=end
-
   def self.silence_streams(*streams)
     on_hold = streams.collect { |stream| stream.dup }
     streams.each do |stream|

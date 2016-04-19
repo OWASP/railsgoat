@@ -3,7 +3,6 @@ class MessagesController < ApplicationController
   def index
     @messages = current_user.messages
     @message = Message.new
-    # Blocking code can cause DOS
     sleep(3)
   end
 
