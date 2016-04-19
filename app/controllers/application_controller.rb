@@ -32,7 +32,6 @@ class ApplicationController < ActionController::Base
 
   def administrative
     if not is_admin?
-     #reset_session
      redirect_to root_url
    end
   end
@@ -57,6 +56,5 @@ class ApplicationController < ActionController::Base
 
   def sanitize_font(css)
     css
-    # css if css.match(/\A[0-9]+([\%]|pt)\z/)
   end
 end

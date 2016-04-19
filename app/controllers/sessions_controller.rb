@@ -12,7 +12,6 @@ class SessionsController < ApplicationController
     begin
       # Normalize the email address, why not
       user = User.authenticate(params[:email].to_s.downcase, params[:password])
-      # @url = params[:url]
       rescue Exception => e
     end
 
@@ -24,8 +23,6 @@ class SessionsController < ApplicationController
       end
       redirect_to path
     else
-      # Removed this code, just doesn't seem specific enough!
-      # flash[:error] = "Either your username and password is incorrect"
       flash[:error] = e.message
       render "new"
     end

@@ -10,8 +10,6 @@ class AdminController < ApplicationController
       fields = "*"
     else
       fields = params[:field].map {|k,v| k }.join(",")
-      # This seems to be a bit safer
-      #fields = params[:field].map {|k,v| Analytics.parse_field(k) }.join(",")
     end
 
     if params[:ip]
