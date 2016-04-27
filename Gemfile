@@ -41,7 +41,7 @@ group :development, :test, :mysql do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'poltergeist'
-  gem 'rspec-rails', '2.99.0' # LOCKED DOWN
+  gem 'rspec-rails'
   gem 'test-unit'
 end
 

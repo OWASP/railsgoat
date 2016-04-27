@@ -16,6 +16,7 @@ feature 'password complexity' do
       fill_in 'user_password_confirmation', :with => 'password'
     end
     click_on 'Submit'
-    pending(:if => verifying_fixed?) {current_path.should == '/dashboard/home'}
+    pending if verifying_fixed?
+    expect(current_path).to eq('/dashboard/home')
   end
 end

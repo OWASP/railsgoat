@@ -13,6 +13,7 @@ feature 'sensitive data exposure' do
     login @normal_user
 
     visit "/users/#{@normal_user.user_id}/work_info"
-    pending(:if => verifying_fixed?) { page.source.should include '999-99-9999' }
+    pending if verifying_fixed?
+    expect(page.source).to include '999-99-9999'
   end
 end

@@ -7,7 +7,7 @@ feature 'mass assignment' do
   end
 
   scenario 'attack one' do
-    @normal_user.admin.should be_falsey
+    expect(@normal_user.admin).to be_falsey
 
     login(@normal_user)
 
@@ -17,7 +17,8 @@ feature 'mass assignment' do
                         :password_confirmation => @normal_user.clear_password}}
     page.driver.put "/users/#{@normal_user.user_id}.json", params
 
-    pending(:if => verifying_fixed?) { @normal_user.reload.admin.should be_truthy }
+    pending if verifying_fixed?
+    expect(@normal_user.reload.admin).to be_truthy
   end
 
   scenario 'attack two' do
@@ -29,9 +30,8 @@ feature 'mass assignment' do
                         :password_confirmation => 'foobarewe'}}
     page.driver.post '/users', params
 
-    pending(:if => verifying_fixed?) {
-      User.last.email.should == 'hackety@h4x0rs.c0m'
-      User.last.admin.should be_truthy
-    }
+    pending if verifying_fixed?
+    expect(User.last.email).to eq('hackety@h4x0rs.c0m')
+    expect(User.last.admin).to be_truthy
   end
 end

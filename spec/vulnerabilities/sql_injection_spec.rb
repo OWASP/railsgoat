@@ -8,7 +8,7 @@ feature 'sql injection' do
   end
 
   scenario 'attack' do
-    @admin_user.admin.should be_truthy
+    expect(@admin_user.admin).to be_truthy
 
     login(@normal_user)
 
@@ -23,10 +23,9 @@ feature 'sql injection' do
     end
     click_on 'Submit'
 
-    pending(:if => verifying_fixed?) {
-      @admin_user = User.where("admin='t'").first
-      @admin_user.email.should == 'joe.admin@schmoe.com'
-      @admin_user.admin.should == true
-    }
+    pending if verifying_fixed?
+    @admin_user = User.where("admin='t'").first
+    expect(@admin_user.email).to eq('joe.admin@schmoe.com')
+    expect(@admin_user.admin).to eq(true)
   end
 end

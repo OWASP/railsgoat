@@ -10,6 +10,7 @@ feature 'url access' do
     login @normal_user
 
     visit '/admin/1/dashboard'
-    pending(:if => verifying_fixed?) { current_path.should == '/admin/1/dashboard' }
+    pending if verifying_fixed?
+    expect(current_path).to eq('/admin/1/dashboard')
   end
 end
