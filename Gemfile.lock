@@ -164,9 +164,10 @@ GEM
     launchy (2.4.3)
       addressable (~> 2.3)
     libv8 (3.16.14.15)
-    listen (3.1.1)
+    listen (3.1.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9.7)
+      ruby_dep (~> 1.1)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.10)
@@ -247,7 +248,7 @@ GEM
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     ref (2.0.0)
-    responders (2.1.2)
+    responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
@@ -273,6 +274,7 @@ GEM
     ruby2ruby (2.3.0)
       ruby_parser (~> 3.1)
       sexp_processor (~> 4.0)
+    ruby_dep (1.1.0)
     ruby_parser (3.8.1)
       sexp_processor (~> 4.1)
     safe_yaml (1.0.4)
@@ -387,5 +389,8 @@ DEPENDENCIES
   uglifier
   unicorn
 
+RUBY VERSION
+   ruby 2.3.1p112
+
 BUNDLED WITH
-   1.11.2
+   1.12.0
