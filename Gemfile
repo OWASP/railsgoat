@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 #don't upgrade
 gem 'rails', '4.2.6'
 
-ruby '2.3.0'
+ruby '2.3.1'
 
 gem 'rake', '10.5.0' # LOCKED DOWN UNTIL MOVE TO RSPEC beta2.
 
