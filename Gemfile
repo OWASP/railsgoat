@@ -32,8 +32,6 @@ group :development, :mysql do
   gem 'binding_of_caller'
 end
 
-gem 'gauntlt'
-
 gem 'simplecov', :require => false, :group => :test
 
 group :development, :test, :mysql do
