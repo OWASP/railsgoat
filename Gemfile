@@ -5,7 +5,7 @@ gem 'rails', '4.2.6'
 
 ruby '2.3.1'
 
-gem 'rake', '10.5.0' # LOCKED DOWN UNTIL MOVE TO RSPEC beta2.
+gem 'rake'
 
 # Bundle edge Rails instead:
 # gem 'rails', github: 'rails/rails'
@@ -72,7 +72,7 @@ gem 'jquery-rails'
 # Pow related gem
 gem 'powder'
 
-gem 'aruba', '0.9.0.pre' # LOCKED DOWN
+gem 'aruba'
 #gem 'minitest', '~> 4.0', :require=> "minitest/autorun"
 
 #gem 'minitest'
