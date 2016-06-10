@@ -6,7 +6,7 @@ feature 'password complexity' do
     @normal_user = UserFixture.normal_user
   end
 
-  scenario 'one' do
+  scenario "one\nTutorial: https://github.com/OWASP/railsgoat/wiki/A2-Lack-of-Password-Complexity" do
     visit '/signup'
     within('.signup') do
       fill_in 'user_email', :with => @normal_user.email + 'not'

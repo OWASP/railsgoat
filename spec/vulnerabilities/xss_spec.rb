@@ -6,7 +6,7 @@ feature 'xss' do
     @normal_user = UserFixture.normal_user
   end
 
-  scenario 'attack', :js => true do
+  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A3-Cross-Site-Scripting", :js => true do
     login @normal_user
 
     visit "/users/#{@normal_user.user_id}/account_settings"

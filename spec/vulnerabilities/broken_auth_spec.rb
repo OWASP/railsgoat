@@ -6,7 +6,7 @@ feature 'broken_auth' do
     @normal_user = UserFixture.normal_user
   end
 
-  scenario 'one' do
+  scenario "one\nTutorial: https://github.com/OWASP/railsgoat/wiki/A2-Credential-Enumeration" do
     visit '/'
     within('.signup') do
       fill_in 'email', :with => @normal_user.email + 'not'
@@ -19,7 +19,7 @@ feature 'broken_auth' do
     expect(find('div#flash_notice').text).to eq("#{@normal_user.email}not doesn't exist!")
   end
 
-  scenario 'two' do
+  scenario "two\nTutorial: https://github.com/OWASP/railsgoat/wiki/A2-Credential-Enumeration" do
     visit '/'
     within('.signup') do
       fill_in 'email', :with => @normal_user.email
