@@ -6,7 +6,7 @@ feature 'url access' do
     @normal_user = UserFixture.normal_user
   end
 
-  scenario 'attack', :js => true do
+  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A7-Missing-Function-Level-Access-Control--(Admin-Controller)", :js => true do
     login @normal_user
 
     visit '/admin/1/dashboard'

@@ -19,7 +19,7 @@ feature 'insecure direct object reference' do
     expect(page.response_headers['Content-Length']).to eq('709')
   end
 
-  scenario 'attack two' do
+  scenario "attack two\nTutorial: https://github.com/OWASP/railsgoat/wiki/A4-Insecure-Direct-Object-Reference" do
     login(@normal_user)
 
     expect(@normal_user.user_id).not_to eq(2)

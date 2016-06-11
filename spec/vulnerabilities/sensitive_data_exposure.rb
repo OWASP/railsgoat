@@ -9,7 +9,7 @@ feature 'sensitive data exposure' do
 
   # this won't work with javascript_driver, as it'll apply the javascript
   # function to mask this value and the source will be overwritten.
-  scenario 'attack' do
+  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A6-Sensitive-Data-Exposure-Cleartext-Storage-SSNs" do
     login @normal_user
 
     visit "/users/#{@normal_user.user_id}/work_info"

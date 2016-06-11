@@ -7,7 +7,7 @@ feature 'command injection' do
     @normal_user = UserFixture.normal_user
   end
 
-  scenario 'attack', :js => true do
+  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A1-Command-Injection", :js => true do
     login @normal_user
 
     legit_file = File.join(Rails.root, 'public', 'data', 'legit.txt')
