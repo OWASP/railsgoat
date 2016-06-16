@@ -1,5 +1,5 @@
 FROM rails:onbuild
-MAINTAINER mccabe615
+MAINTAINER owasp
 
 ADD script/start /start
 
