@@ -1,12 +1,9 @@
-FROM rails:onbuild
-MAINTAINER owasp
+FROM ruby:2.3.1
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
+RUN mkdir /myapp
+WORKDIR /myapp
+ADD Gemfile /myapp/Gemfile
+ADD Gemfile.lock /myapp/Gemfile.lock
+RUN bundle install
+ADD . /myapp
 
-ADD script/start /start
-
-RUN chmod a+x /start
-
-user root
-
-ENV RAILS_ENV development
-
-CMD /start
