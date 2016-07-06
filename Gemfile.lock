@@ -100,7 +100,7 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.9.1)
     execjs (2.7.0)
-    ffi (1.9.11)
+    ffi (1.9.12)
     foreman (0.82.0)
       thor (~> 0.19.1)
     formatador (0.2.5)
