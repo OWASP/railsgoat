@@ -73,7 +73,7 @@ Once you see the preceeding message Railsgoat is running on your localhost on po
 Open your favorite browser, navigate to `http://localhost:3000` and start hacking!
 
 ## Docker Install
-To run Railsgoat with Docker you must first have [Docker](https://docs.docker.com/engine/installation/) and [Docker Compose](https://docs.docker.com/compose/install/) installed. Once those dependencies are installed, cd into the Railsgoat directory where you've cloned the code and run.
+To run Railsgoat with Docker you must first have [Docker](https://docs.docker.com/engine/installation/) and [Docker Compose](https://docs.docker.com/compose/install/) installed. Once those dependencies are installed, cd into the Railsgoat directory where you've cloned the code and run. Rails requires Compose **1.6.0** or above and require a Docker Engine of version **1.10.0** or above.
 
 ```
 #~/code/railsgoat
