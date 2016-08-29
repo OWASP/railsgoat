@@ -87,7 +87,7 @@ $
 ```
 Once you see the preceeding message Railsgoat is running on your localhost on port 3000.
 
-Open your favorite browser, navigate to `http://localhost:3000` and start hacking!
+Open your favorite browser, navigate to `http://<dockerIP>:3000` and start hacking! The Docker IP is usually `192.168.99.100`. Run `docker-machine env` to verify.
 
 Note: if your container exits with an error, it may be because a server is already running:
 ```
