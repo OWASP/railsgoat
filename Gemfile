@@ -8,7 +8,7 @@ ruby '2.3.1'
 gem 'rake'
 
 # Bundle edge Rails instead:
-# gem 'rails', github: 'rails/rails'
+# gem 'rails', git: 'https://github.com/rails/rails'
 
 gem 'sqlite3'
 gem 'foreman'
