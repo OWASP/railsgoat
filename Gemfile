@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
 
 #don't upgrade
-gem 'rails', '4.2.7'
+gem 'rails', '4.2.7.1'
 
 ruby '2.3.1'
 
 gem 'rake'
 
 # Bundle edge Rails instead:
-# gem 'rails', github: 'rails/rails'
+# gem 'rails', git: 'https://github.com/rails/rails'
 
 gem 'sqlite3'
 gem 'foreman'
