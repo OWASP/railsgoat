@@ -172,7 +172,7 @@ GEM
     minitest (5.9.1)
     multi_json (1.12.1)
     multi_test (0.1.2)
-    mysql2 (0.4.4)
+    mysql2 (0.4.5)
     nenv (0.3.0)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
@@ -225,7 +225,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.17.0)
     rake (11.3.0)
-    rb-fsevent (0.9.7)
+    rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     ref (2.0.0)
@@ -361,4 +361,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.13.5
+   1.13.6
