@@ -193,7 +193,7 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
-    public_suffix (2.0.3)
+    public_suffix (2.0.4)
     rack (1.6.4)
     rack-livereload (0.3.16)
       rack
