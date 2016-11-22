@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - "2.3.2"
+  - "2.3.3"
 before_script: rake db:setup
 before_script: bundle exec rake db:setup
 cache: bundler
