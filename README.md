@@ -4,14 +4,14 @@ RailsGoat is a vulnerable version of the Ruby on Rails Framework both versions 3
 
 ## Support
 
-If you are looking for support or troubleshooting assistance, please visit our [OWASP Slack Channel](https://owasp.slack.com/messages/project-railsgoat/). 
+If you are looking for support or troubleshooting assistance, please visit our [OWASP Slack Channel](https://owasp.slack.com/messages/project-railsgoat/).
 
 ## Getting Started
 
 To begin, install the Ruby Version Manager (RVM):
 
 ```bash
-$ curl -L https://get.rvm.io | bash -s stable --autolibs=3 --ruby=2.3.1
+$ curl -L https://get.rvm.io | bash -s stable --autolibs=3 --ruby=2.3.3
 ```
 
 After installing the package, clone this repo:
@@ -20,7 +20,7 @@ After installing the package, clone this repo:
 $ git clone git@github.com:OWASP/railsgoat.git
 ```
 
-**NOTE: NOT NECESSARY IF YOU WANT TO WORK WITH RAILS 4.** Otherwise, if you wish to use the Rails 3 version, you'll need to switch branches 
+**NOTE: NOT NECESSARY IF YOU WANT TO WORK WITH RAILS 4.** Otherwise, if you wish to use the Rails 3 version, you'll need to switch branches
 
 ```bash
 $ cd railsgoat
@@ -62,7 +62,7 @@ To run Railsgoat with Vagrant you must first have [Vagrant](https://www.vagrantu
 $ vagrant up
 ...
     railsgoat:   Port: 3000:3000
-    railsgoat:  
+    railsgoat:
     railsgoat: Container created: 3084633a81675346
 ==> railsgoat: Starting container...
 ==> railsgoat: Provisioners will not be run since container doesn't support SSH.
@@ -103,7 +103,7 @@ In this case, remove that server.pid file and try again. Note also that this fil
 
 ## Capybara Tests
 
-RailsGoat now includes a set of failing Capybara RSpecs, each one indicating that a separate vulnerability exists in the application. To run them, you first need to install [PhantomJS](https://github.com/jonleighton/poltergeist#installing-phantomjs), which is required by the Poltergeist Capybara driver. Upon installation, simply run the following rake task:
+RailsGoat now includes a set of failing Capybara RSpecs, each one indicating that a separate vulnerability exists in the application. To run them, you first need to install [PhantomJS](https://github.com/jonleighton/poltergeist#installing-phantomjs) (version 2.1.1 has been tested in Dev and on Travis CI), which is required by the Poltergeist Capybara driver. Upon installation, simply run the following rake task:
 
 ```
 $ rake training
