@@ -1,4 +1,4 @@
-class Benefits < ActiveRecord::Base
+class Benefits < ApplicationRecord
 
   def self.save(file, backup=false)
     data_path = Rails.root.join("public", "data")

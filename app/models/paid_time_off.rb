@@ -1,4 +1,4 @@
-class PaidTimeOff < ActiveRecord::Base
+class PaidTimeOff < ApplicationRecord
   belongs_to :user
   has_many :schedule, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
 
