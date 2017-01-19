@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
-  skip_before_filter :authenticated
-  before_filter :valid_api_token
-  before_filter :extrapolate_user
+  skip_before_action :authenticated
+  before_action :valid_api_token
+  before_action :extrapolate_user
 
   respond_to :json
 
@@ -22,6 +22,8 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  # TODO I don't believe returning from this method is a valid method
+  # of halting execution anymore.
   def identify_user(token="")
     # We've had issues with URL encoding, etc. causing issues so just to be safe
     # we will go ahead and unescape the user's token
