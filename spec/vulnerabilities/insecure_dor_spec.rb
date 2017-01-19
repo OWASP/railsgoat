@@ -14,9 +14,10 @@ feature 'insecure direct object reference' do
     visit download_url.sub(/name=(.*?)&/, 'name=config/database.yml&')
 
     pending if verifying_fixed?
+
     expect(page.status_code).to eq(200)
     expect(page.response_headers['Content-Disposition']).to include('database.yml')
-    expect(page.response_headers['Content-Length']).to eq('709')
+    expect(page.response_headers['Content-Length']).to eq('710')
   end
 
   scenario "attack two\nTutorial: https://github.com/OWASP/railsgoat/wiki/A4-Insecure-Direct-Object-Reference" do
