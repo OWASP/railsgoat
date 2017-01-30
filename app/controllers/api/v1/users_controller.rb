@@ -18,12 +18,12 @@ class Api::V1::UsersController < ApplicationController
   def valid_api_token
     authenticate_or_request_with_http_token do |token, options|
       # TODO :add some functionality to check if the HTTP Header is valid
-      identify_user(token)
+      if !identify_user(token)
+        redirect_to root_url
+      end
     end
   end
 
-  # TODO I don't believe returning from this method is a valid method
-  # of halting execution anymore.
   def identify_user(token="")
     # We've had issues with URL encoding, etc. causing issues so just to be safe
     # we will go ahead and unescape the user's token
@@ -31,8 +31,8 @@ class Api::V1::UsersController < ApplicationController
     @clean_token =~ /(.*?)-(.*)/
     id = $1
     hash = $2
-    (id && hash) ? true : false
-    check_hash(id, hash) ? true : false
+
+    check_hash(id, hash)
   end
 
   def check_hash(id, hash)
