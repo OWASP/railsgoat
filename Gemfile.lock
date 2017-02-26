@@ -76,7 +76,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.4)
-    contracts (0.14.0)
+    contracts (0.15.0)
     crack (0.3.1)
     cucumber (2.4.0)
       builder (>= 2.1.2)
