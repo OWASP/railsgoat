@@ -174,7 +174,7 @@ GEM
     multi_test (0.1.2)
     mysql2 (0.4.5)
     nenv (0.3.0)
-    nokogiri (1.7.0.1)
+    nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
