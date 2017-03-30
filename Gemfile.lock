@@ -35,7 +35,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    addressable (2.5.0)
+    addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     arel (6.0.4)
     aruba (0.14.2)
@@ -359,7 +359,7 @@ DEPENDENCIES
   unicorn
 
 RUBY VERSION
-   ruby 2.3.3p222
+   ruby 2.3.4p301
 
 BUNDLED WITH
    1.14.6
