@@ -1,0 +1,21 @@
+---
+engines:
+  rubocop:
+    enabled: true
+  brakeman:
+    enabled: true
+ratings:
+  paths:
+  - app/**/*
+  - "**.rb"
+  - "**.coffee"
+  - "**.js"
+  - "**.jsx"
+  - "**.css"
+exclude_paths:
+- config/**/*
+- db/**/*
+- script/**/*
+- spec/**/*
+- test/**/*
+- vendor/**/*

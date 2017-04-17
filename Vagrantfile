@@ -9,5 +9,4 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       d.vagrant_vagrantfile = "./Vagrantfile.proxy"
     end
   end
-
 end
