@@ -11,7 +11,7 @@ If you are looking for support or troubleshooting assistance, please visit our [
 To begin, install the Ruby Version Manager (RVM):
 
 ```bash
-$ curl -L https://get.rvm.io | bash -s stable --autolibs=3 --ruby=2.3.3
+$ curl -L https://get.rvm.io | bash -s stable --autolibs=3 --ruby=2.3.4
 ```
 
 After installing the package, clone this repo:

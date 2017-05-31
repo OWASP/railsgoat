@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
 #don't upgrade
-gem 'rails', '4.2.7.1'
+gem 'rails', '4.2.8'
 
-ruby '2.3.3'
+ruby '2.3.4'
 
 gem 'rake'
 
