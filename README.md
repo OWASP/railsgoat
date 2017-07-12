@@ -1,6 +1,6 @@
 # RailsGoat [![Build Status](https://api.travis-ci.org/OWASP/railsgoat.png?branch=master)](https://travis-ci.org/OWASP/railsgoat) [![Code Climate](https://codeclimate.com/github/OWASP/railsgoat.png)](https://codeclimate.com/github/OWASP/railsgoat)
 
-RailsGoat is a vulnerable version of the Ruby on Rails Framework both versions 3 and 4. It includes vulnerabilities from the OWASP Top 10, as well as some "extras" that the initial project contributors felt worthwhile to share. This project is designed to educate both developers, as well as security professionals.
+RailsGoat is a vulnerable version of the Ruby on Rails Framework from versions 3 to 5. It includes vulnerabilities from the OWASP Top 10, as well as some "extras" that the initial project contributors felt worthwhile to share. This project is designed to educate both developers, as well as security professionals.
 
 ## Support
 
@@ -20,11 +20,12 @@ After installing the package, clone this repo:
 $ git clone git@github.com:OWASP/railsgoat.git
 ```
 
-**NOTE: NOT NECESSARY IF YOU WANT TO WORK WITH RAILS 4.** Otherwise, if you wish to use the Rails 3 version, you'll need to switch branches
+**NOTE: NOT NECESSARY IF YOU WANT TO WORK WITH RAILS 5.** Otherwise, if you wish to use the Rails 3 or 4 versions, you'll need to switch branches:
 
 ```bash
 $ cd railsgoat
 $ git checkout rails_3_2
+$ git checkout rails_4_2
 ```
 
 Navigate into the directory (already there if you followed the previous step) and install the dependencies:
@@ -42,7 +43,7 @@ $ gem install bundler
 Initialize the database:
 
 ```bash
-$ rake db:setup
+$ rails db:setup
 ```
 
 Start the Thin web server:
@@ -78,7 +79,7 @@ To run Railsgoat with Docker you must first have [Docker](https://docs.docker.co
 ```
 #~/code/railsgoat
 $ docker-compose build
-$ docker-compose run web rake db:setup
+$ docker-compose run web rails db:setup
 $ docker-compose up
 ...
   Creating railsgoat_web_1
@@ -93,7 +94,7 @@ Note: if your container exits with an error, it may be because a server is alrea
 ```
 A server is already running. Check /myapp/tmp/pids/server.pid.
 => Booting Thin
-=> Rails 4.2.6 application starting in development on
+=> Rails 5.0.1 application starting in development on
 http://0.0.0.0:3000
 => Run `rails server -h` for more startup options
 => Ctrl-C to shutdown server
@@ -103,16 +104,16 @@ In this case, remove that server.pid file and try again. Note also that this fil
 
 ## Capybara Tests
 
-RailsGoat now includes a set of failing Capybara RSpecs, each one indicating that a separate vulnerability exists in the application. To run them, you first need to install [PhantomJS](https://github.com/jonleighton/poltergeist#installing-phantomjs) (version 2.1.1 has been tested in Dev and on Travis CI), which is required by the Poltergeist Capybara driver. Upon installation, simply run the following rake task:
+RailsGoat now includes a set of failing Capybara RSpecs, each one indicating that a separate vulnerability exists in the application. To run them, you first need to install [PhantomJS](https://github.com/jonleighton/poltergeist#installing-phantomjs) (version 2.1.1 has been tested in Dev and on Travis CI), which is required by the Poltergeist Capybara driver. Upon installation, simply run the following task:
 
 ```
-$ rake training
+$ rails training
 ```
 
 To run just one spec:
 
 ```
-$ rake training SPEC=spec/vulnerabilities/sql_injection_spec.rb
+$ rails training SPEC=spec/vulnerabilities/sql_injection_spec.rb
 ```
 
 NOTE: As vulnerabilities are fixed in the application, these specs will not change to `passing`, but to `pending`.
@@ -124,10 +125,10 @@ By default in development mode Railsgoat runs with a SQLite database. There is a
 
 ```
 #Create the MySQL database
-RAILS_ENV=mysql rake db:create
+RAILS_ENV=mysql rails db:create
 
 #Run the migrations against the database
-RAILS_ENV=mysql rake db:migrate
+RAILS_ENV=mysql rails db:migrate
 
 #Boot Rails using MySQl
 RAILS_ENV=mysql rails s
@@ -137,9 +138,10 @@ RAILS_ENV=mysql rails s
 
 In order for RailsGoat to effectively process email, you will first need to run MailCatcher, an SMTP server that will intercept email messages and display them in a web interface.
 
-To start an instance of MailCatcher, simply run:
+Mailcatcher is not installed by default. To install MailCatcher and start an instance of it, simply run:
 
 ```
+$ gem install mailcatcher
 $ mailcatcher
 ```
 

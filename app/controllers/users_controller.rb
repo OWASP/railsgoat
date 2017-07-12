@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  skip_before_filter :has_info
-  skip_before_filter :authenticated, :only => [:new, :create]
+  skip_before_action :has_info
+  skip_before_action :authenticated, :only => [:new, :create]
 
   def new
     @user = User.new
@@ -25,8 +25,9 @@ class UsersController < ApplicationController
 
   def update
     message = false
-  
-    user = User.where("user_id = '#{params[:user][:user_id]}'").first
+
+    user = User.where("user_id = '#{params[:user][:user_id]}'")[0]
+
     if user
       user.skip_user_id_assign = true
       user.skip_hash_password = true

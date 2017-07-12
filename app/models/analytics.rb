@@ -1,4 +1,4 @@
-class Analytics < ActiveRecord::Base
+class Analytics < ApplicationRecord
   scope :hits_by_ip, ->(ip,col="*") { select("#{col}").where(:ip_address => ip).order("id DESC")}
 
   def self.count_by_col(col)

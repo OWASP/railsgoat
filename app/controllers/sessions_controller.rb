@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-  skip_before_filter :has_info
-  skip_before_filter :authenticated, :only => [:new, :create]
+  skip_before_action :has_info
+  skip_before_action :authenticated, :only => [:new, :create]
 
   def new
     @url = params[:url]
