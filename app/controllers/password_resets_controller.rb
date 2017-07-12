@@ -1,5 +1,5 @@
 class PasswordResetsController < ApplicationController
-  skip_before_filter :authenticated
+  skip_before_action :authenticated
 
   def reset_password
     user = Marshal.load(Base64.decode64(params[:user])) unless params[:user].nil?
