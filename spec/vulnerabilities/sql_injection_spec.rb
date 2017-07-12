@@ -7,7 +7,7 @@ feature 'sql injection' do
     @admin_user = User.where("admin='t'").first
   end
 
-  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/R4-A1-SQL-Injection-Concatentation" do
+  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/R5-A1-SQL-Injection-Concatentation" do
     expect(@admin_user.admin).to be_truthy
 
     login(@normal_user)

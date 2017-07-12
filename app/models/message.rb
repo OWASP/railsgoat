@@ -1,4 +1,4 @@
-class Message < ActiveRecord::Base
+class Message < ApplicationRecord
   belongs_to :user
   validates_presence_of :creator_id, :receiver_id, :message
 
