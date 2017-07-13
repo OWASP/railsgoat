@@ -1,6 +1,6 @@
 require 'encryption'
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   validates :password, :presence => true,
                        :confirmation => true,
                        :length => {:within => 6..40},

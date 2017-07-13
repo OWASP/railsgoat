@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
-  skip_before_filter :authenticated
-  before_filter :valid_api_token
-  before_filter :extrapolate_user
+  skip_before_action :authenticated
+  before_action :valid_api_token
+  before_action :extrapolate_user
 
   respond_to :json
 
@@ -18,7 +18,9 @@ class Api::V1::UsersController < ApplicationController
   def valid_api_token
     authenticate_or_request_with_http_token do |token, options|
       # TODO :add some functionality to check if the HTTP Header is valid
-      identify_user(token)
+      if !identify_user(token)
+        redirect_to root_url
+      end
     end
   end
 
@@ -29,8 +31,8 @@ class Api::V1::UsersController < ApplicationController
     @clean_token =~ /(.*?)-(.*)/
     id = $1
     hash = $2
-    (id && hash) ? true : false
-    check_hash(id, hash) ? true : false
+
+    check_hash(id, hash)
   end
 
   def check_hash(id, hash)

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 #don't upgrade
-gem 'rails', '4.2.9'
+gem 'rails', '5.0.1'
 
 ruby '2.3.4'
 
@@ -53,7 +53,7 @@ gem 'sass-rails'
 gem 'coffee-rails'
 gem 'jquery-fileupload-rails'
 gem 'uglifier'
-gem 'turbolinks' # New for Rails 4.0
+gem 'turbolinks'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', :platforms => :ruby
@@ -87,11 +87,12 @@ gem 'execjs'
 gem 'therubyracer'
 
 # Add SMTP server support using MailCatcher
-gem 'mailcatcher'
+# NOTE: https://github.com/sj26/mailcatcher#bundler
+# gem 'mailcatcher'
 
 #For Rails 4.0
 #group :doc do
-#  # bundle exec rake doc:rails generates the API under doc/api.
+#  # bundle exec rails doc:rails generates the API under doc/api.
 #  gem 'sdoc', require: false
 #end
 

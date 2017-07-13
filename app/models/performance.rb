@@ -1,4 +1,4 @@
-class Performance < ActiveRecord::Base
+class Performance < ApplicationRecord
   belongs_to :user
 
   def reviewer_name

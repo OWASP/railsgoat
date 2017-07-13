@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  skip_before_filter :has_info
+  skip_before_action :has_info
 
   def home
     @user = current_user

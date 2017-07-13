@@ -21,7 +21,7 @@ feature 'mass assignment' do
     expect(@normal_user.reload.admin).to be_truthy
   end
 
-  scenario 'attack two, Tutorial: https://github.com/OWASP/railsgoat/wiki/R4-Extras-Mass-Assignment-Admin-Role' do
+  scenario 'attack two, Tutorial: https://github.com/OWASP/railsgoat/wiki/R5-Extras-Mass-Assignment-Admin-Role' do
     params = {:user => {:admin => 't',
                         :email => 'hackety@h4x0rs.c0m',
                         :first_name => 'hackety',
