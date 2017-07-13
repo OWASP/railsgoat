@@ -1,3 +1,3 @@
-class Retirement < ActiveRecord::Base
+class Retirement < ApplicationRecord
   belongs_to :user
 end

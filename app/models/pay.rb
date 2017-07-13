@@ -1,4 +1,4 @@
-class Pay < ActiveRecord::Base
+class Pay < ApplicationRecord
   # Associations
   belongs_to :user
 

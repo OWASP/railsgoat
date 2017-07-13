@@ -33,12 +33,18 @@ Railsgoat::Application.configure do
   config.action_mailer.smtp_settings = { :address => "127.0.0.1", :port => 1025 }
   config.action_mailer.default_url_options = { :host => "127.0.0.1:3000" }
 
-  config.middleware.insert_before(
-       Rack::Lock, Rack::LiveReload,
-       :min_delay => 500,
-       :max_delay => 1000,
-       :port => 35727,
-       :host => 'railsgoat.dev',
-       :ignore => [ %r{dont/modify\.html$} ]
-  )
+ # config.middleware.insert_before(
+ #      Rack::Lock, Rack::LiveReload,
+ #      :min_delay => 500,
+ #      :max_delay => 1000,
+ #      :port => 35727,
+ #      :host => 'railsgoat.dev',
+ #      :ignore => [ %r{dont/modify\.html$} ]
+ # )
+
+  # For Rails 4.0+
+  # Do not eager load code on boot. This avoids loading your whole application
+  # just for the purpose of running a single test. If you are using a tool that
+  # preloads Rails for running tests, you may have to set it to true.
+  config.eager_load = false
 end
