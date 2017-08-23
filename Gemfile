@@ -7,6 +7,9 @@ ruby '2.3.4'
 
 gem 'rake'
 
+gem 'rails-perftest'
+gem 'ruby-prof', '0.15.9'
+
 # Bundle edge Rails instead:
 # gem 'rails', git: 'https://github.com/rails/rails'
 
