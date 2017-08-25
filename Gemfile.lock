@@ -38,8 +38,8 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.5.1)
-      public_suffix (~> 2.0, >= 2.0.2)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
     aruba (0.14.2)
       childprocess (~> 0.5.6)
@@ -164,7 +164,7 @@ GEM
     mime-types-data (3.2016.0521)
     mini_mime (0.1.4)
     mini_portile2 (2.2.0)
-    minitest (5.10.3)
+    minitest (5.10.1)
     multi_json (1.12.1)
     multi_test (0.1.2)
     mysql2 (0.4.9)
@@ -188,7 +188,7 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.6)
       pry (>= 0.10.4)
-    public_suffix (2.0.5)
+    public_suffix (3.0.0)
     rack (2.0.3)
     rack-livereload (0.3.16)
       rack
@@ -211,6 +211,7 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-perftest (0.0.7)
     railties (5.1.4.rc1)
       actionpack (= 5.1.4.rc1)
       activesupport (= 5.1.4.rc1)
@@ -247,6 +248,7 @@ GEM
       rspec-mocks (~> 3.6.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
+    ruby-prof (0.15.9)
     ruby_dep (1.5.0)
     sass (3.5.1)
       sass-listen (~> 4.0.0)
@@ -323,6 +325,7 @@ DEPENDENCIES
   jquery-fileupload-rails
   jquery-rails
   launchy
+  minitest (= 5.10.1)
   mysql2
   poltergeist
   powder
@@ -330,10 +333,12 @@ DEPENDENCIES
   pry-rails
   rack-livereload
   rails (= 5.1.4.rc1)
+  rails-perftest
   rake
   rb-fsevent
   responders
   rspec-rails
+  ruby-prof (= 0.15.9)
   sass-rails
   simplecov
   sqlite3

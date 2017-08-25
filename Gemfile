@@ -6,6 +6,8 @@ gem 'rails', '5.1.4.rc1'
 ruby '2.3.4'
 
 gem 'rake'
+gem 'rails-perftest'
+gem 'ruby-prof', '0.15.9'
 
 # Bundle edge Rails instead:
 # gem 'rails', git: 'https://github.com/rails/rails'
@@ -73,9 +75,7 @@ gem 'jquery-rails'
 gem 'powder'
 
 gem 'aruba'
-#gem 'minitest', '~> 4.0', :require=> "minitest/autorun"
 
-#gem 'minitest'
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -98,3 +98,6 @@ gem 'therubyracer'
 
 #For Rails 4.2
 gem 'responders'
+
+# Locked at 5.10.1, see https://github.com/seattlerb/minitest/issues/689
+gem "minitest", "5.10.1"
