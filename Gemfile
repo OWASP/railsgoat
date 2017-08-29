@@ -99,5 +99,4 @@ gem 'therubyracer'
 #For Rails 4.2
 gem 'responders'
 
-# Locked at 5.10.1, see https://github.com/seattlerb/minitest/issues/689
-gem "minitest", "5.10.1"
+gem "minitest"
