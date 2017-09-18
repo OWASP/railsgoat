@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
     redirect = false
     if current_user
       begin
-      if !(current_user.retirement || current_user.paid_time_off.schedule || current_user.paid_time_off || current_user.work_info || current_user.performance)
+      if !(current_user.retirement || current_user.paid_time_off || current_user.paid_time_off.schedule || current_user.work_info || current_user.performance)
         redirect = true
       end
       rescue
