@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
 #don't upgrade
-gem 'rails', '5.0.1'
+gem 'rails', '5.1.4'
 
-ruby '2.3.4'
+ruby '2.3.5'
 
 gem 'rake'
 gem 'rails-perftest'
-gem 'ruby-prof', '0.15.9'
+gem 'ruby-prof'
 
 # Bundle edge Rails instead:
 # gem 'rails', git: 'https://github.com/rails/rails'
@@ -99,5 +99,4 @@ gem 'therubyracer'
 #For Rails 4.2
 gem 'responders'
 
-# Locked at 5.10.1, see https://github.com/seattlerb/minitest/issues/689
-gem "minitest", "5.10.1"
+gem "minitest"
