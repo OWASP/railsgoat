@@ -7,7 +7,7 @@ feature 'sql injection' do
     @admin_user = User.where("admin='t'").first
   end
 
-  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/R5-A1-SQL-Injection-Concatentation" do
+  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/R4-A1-SQL-Injection-Concatentation" do
     expect(@admin_user.admin).to be_truthy
 
     login(@normal_user)
@@ -15,8 +15,8 @@ feature 'sql injection' do
     visit "/users/#{@normal_user.user_id}/account_settings"
     within('#account_edit') do
       fill_in 'Email', :with => 'joe.admin@schmoe.com'
-      fill_in 'user_password', :with => 'hacketyhack'
-      fill_in 'user_password_confirmation', :with => 'hacketyhack'
+      fill_in 'user_password', :with => 'H4cketyhack'
+      fill_in 'user_password_confirmation', :with => 'H4cketyhack'
 
       # this is a hidden field, so cannot use fill_in to access it.
       find(:xpath, "//input[@id='user_user_id']", :visible => false).set "8' OR admin='t') --"
