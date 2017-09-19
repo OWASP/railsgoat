@@ -9,7 +9,7 @@ class AdminController < ApplicationController
     if params[:field].nil?
       fields = "*"
     else
-      fields = params[:field].map {|k,v| k }.join(",")
+      fields = custom_fields.join(",")
     end
 
     if params[:ip]
@@ -60,6 +60,11 @@ class AdminController < ApplicationController
   end
 
   private
+
+  def custom_fields
+    params.require(:field).keys
+  end
+  helper_method :custom_fields
 
   def admin_param
     params[:admin_id] != '1'

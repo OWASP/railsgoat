@@ -10,7 +10,7 @@
       <thead>
         <tr>
           <%
-          count = (params[:field] ? (params[:field].count+1) : 6)
+          count = (params[:field] ? (custom_fields.count+1) : 6)
           count.times do %>
           <th>&nbsp;</th>
           <% end %>
