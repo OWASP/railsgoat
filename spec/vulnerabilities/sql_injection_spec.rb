@@ -6,6 +6,7 @@ feature 'sql injection' do
     @normal_user = UserFixture.normal_user
     @admin_user = User.where("admin='t'").first
   end
+  before(:each) { pending unless verifying_fixed? }
 
   scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/R5-A1-SQL-Injection-Concatentation" do
     expect(@admin_user.admin).to be_truthy
@@ -23,9 +24,7 @@ feature 'sql injection' do
     end
     click_on 'Submit'
 
-    pending if verifying_fixed?
-    @admin_user = User.where("admin='t'").first
-    expect(@admin_user.email).to eq('joe.admin@schmoe.com')
-    expect(@admin_user.admin).to eq(true)
+    @admin_user = User.where(admin: true).first
+    expect(@admin_user.email).not_to eq('joe.admin@schmoe.com')
   end
 end
