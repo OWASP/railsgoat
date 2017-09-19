@@ -11,7 +11,6 @@ class UserFixture
     def user.clear_password
       'thi$ 1s cOmplExEr'
     end
-    user.build_benefits_data
     user.save!
     user
   end
