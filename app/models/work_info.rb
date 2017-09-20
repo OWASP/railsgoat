@@ -26,12 +26,12 @@ class WorkInfo < ApplicationRecord
   end
 
   def key
-    raise "Key Missing" if !(KEY)
+    raise "Key Missing" unless KEY.present?
     KEY
   end
 
   def iv
-    raise "No IV for this User" if !(self.key_management.iv)
+    raise "No IV for this User" unless self.key_management.try(:iv).present?
     self.key_management.iv
   end
 
