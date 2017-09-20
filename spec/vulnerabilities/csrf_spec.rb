@@ -3,9 +3,11 @@ require "spec_helper"
 require "tmpdir"
 
 feature "csrf" do
-  before do
+  let(:normal_user) { UserFixture.normal_user }
+
+  before(:each) do
     UserFixture.reset_all_users
-    @normal_user = UserFixture.normal_user
+    pending unless verifying_fixed?
   end
 
   scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/R5-A8-CSRF", js: true do
@@ -13,7 +15,7 @@ feature "csrf" do
     # TODO: is there a way to get this without visiting root first?
     base_url = current_url
 
-    login @normal_user
+    login(normal_user)
 
     Dir.mktmpdir do |dir|
       hackety_file = File.join(dir, "form.on.bad.guy.site.html")
@@ -40,7 +42,6 @@ feature "csrf" do
       end
     end
 
-    pending if verifying_fixed?
-    expect(@normal_user.reload.paid_time_off.schedule.last.event_name).to eq("Bad Guy")
+    expect(normal_user.reload.paid_time_off.schedule.last.event_name).not_to eq("Bad Guy")
   end
 end
