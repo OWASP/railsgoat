@@ -116,9 +116,6 @@ To run just one spec:
 $ rails training SPEC=spec/vulnerabilities/sql_injection_spec.rb
 ```
 
-NOTE: As vulnerabilities are fixed in the application, these specs will not change to `passing`, but to `pending`.
-
-
 ## MySQL Environment
 
 By default in development mode Railsgoat runs with a SQLite database. There is an environment defined to use MySQL. For some of the SQL injection vulnerabilities to work you have to run the app with MySQL as the database. The following steps will setup and run Railsgoat to use MySQL. *MySQL must be installed and running before running these steps*
@@ -158,7 +155,7 @@ Alternatively, you can run MailCatcher in the foreground by running `mailcatcher
 
 ## Contributing
 
-As changes are made to the application, the Capybara RSpecs can be used to verify that the vulnerabilities in the application are still intact. To use them in this way, and have them `pass` instead of `fail`, set the `RAILSGOAT_MAINTAINER` environment variable.
+As changes are made to the application, the Capybara RSpecs can be used to verify that the vulnerabilities in the application are still intact. To use them in this way, and have them change to `pending` instead of `fail`, set the `RAILSGOAT_MAINTAINER` environment variable.
 
 Conversion to the OWASP Top Ten 2013 completed in November, 2013.
 
