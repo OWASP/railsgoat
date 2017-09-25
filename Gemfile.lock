@@ -55,7 +55,7 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    brakeman (3.7.2)
+    brakeman (4.0.1)
     builder (3.2.3)
     bundler-audit (0.6.0)
       bundler (~> 1.2)
@@ -81,6 +81,7 @@ GEM
     concurrent-ruby (1.0.5)
     contracts (0.16.0)
     crack (0.3.1)
+    crass (1.0.2)
     cucumber (2.4.0)
       builder (>= 2.1.2)
       cucumber-core (~> 1.5.0)
@@ -153,7 +154,8 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
-    loofah (2.0.3)
+    loofah (2.1.1)
+      crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.12)
     mail (2.6.6)
@@ -348,7 +350,7 @@ DEPENDENCIES
   unicorn
 
 RUBY VERSION
-   ruby 2.3.5p376
+   ruby 2.4.2p198
 
 BUNDLED WITH
-   1.16.0.pre.2
+   1.15.4
