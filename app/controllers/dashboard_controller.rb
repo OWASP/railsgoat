@@ -15,12 +15,12 @@ class DashboardController < ApplicationController
   end
 
   def bar_graph
-    render :partial => "layouts/dashboard/bar_graph"
+    render :bar_graph, layout: false
   end
 
   def pie_charts
      @user = current_user
-     render :partial => "layouts/dashboard/dashboard_stats"
+     render :dashboard_stats, layout: false
   end
 
 end
