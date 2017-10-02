@@ -11,7 +11,6 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
   validates_format_of :email, :with => /.+@.+\..+/i
   attr_accessor :skip_user_id_assign
-  attr_accessor :skip_hash_password
   before_save :assign_user_id, :on => :create
   before_save :hash_password
   has_one :retirement, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
@@ -21,7 +20,7 @@ class User < ApplicationRecord
   has_many :messages, :foreign_key => :receiver_id, :primary_key => :user_id, :dependent => :destroy
   has_many :pay, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
   before_create { generate_token(:auth_token) }
-	before_create :build_benefits_data
+  before_create :build_benefits_data
 
   def build_benefits_data
     build_retirement(POPULATE_RETIREMENTS.shuffle.first)
@@ -70,10 +69,8 @@ class User < ApplicationRecord
   end
 
   def hash_password
-    unless @skip_hash_password == true
-      if password.present?
-        self.password = Digest::MD5.hexdigest(password)
-      end
+    if password.present? && password_changed?
+      self.password = Digest::MD5.hexdigest(password)
     end
   end
 
