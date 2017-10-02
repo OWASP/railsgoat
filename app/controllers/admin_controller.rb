@@ -17,19 +17,18 @@ class AdminController < ApplicationController
     else
       @analytics = Analytics.all
     end
-    render "layouts/admin/_analytics"
   end
 
   def get_all_users
     @users = User.all
-    render :partial => "layouts/admin/get_all_users"
+    render layout: false
   end
 
   def get_user
     @user = User.find_by_id(params[:admin_id].to_s)
     arr = ["true", "false"]
     @admin_select = @user.admin ? arr : arr.reverse
-    render :partial => "layouts/admin/get_user"
+    render layout: false
   end
 
   def update_user
