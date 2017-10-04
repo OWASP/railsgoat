@@ -249,80 +249,68 @@ paid_time_off = [
     {
       :receiver_id => 2,
       :creator_id => 5,
-      :message => 'Your benefits have been updated.',
+      :message => "Your benefits have been updated.",
       :read => false
     },
     {
       :receiver_id => 3,
       :creator_id => 4,
-      :message => 'Please update your profile.',
+      :message => "Please update your profile.",
       :read => false
     },
     {
       :receiver_id => 4,
       :creator_id => 3,
-      :message => 'Welcome to Railsgoat.',
+      :message => "Welcome to Railsgoat.",
       :read => false
     },
     {
       :receiver_id => 5,
       :creator_id => 2,
-      :message => 'Hello friend.',
+      :message => "Hello friend.",
       :read => false
     }
   ]
 
 
 users.each do |user_info|
-  user = User.new(user_info.reject {|k| k == :user_id })
+  user = User.new(user_info.reject { |k| k == :user_id })
   user.user_id = user_info[:user_id]
   user.save!
 end
 
 retirements.each do |r|
- ret = Retirement.new(r.reject {|k| k == :user_id})
+ ret = Retirement.new(r.reject { |k| k == :user_id})
  ret.user_id = r[:user_id]
  ret.save!
 end
 
 paid_time_off.each do |pto|
-  ptoff = PaidTimeOff.new(pto.reject {|k| k == :user_id})
+  ptoff = PaidTimeOff.new(pto.reject { |k| k == :user_id})
   ptoff.user_id = pto[:user_id]
   ptoff.save!
 end
 
 schedule.each do |event|
-  sched = Schedule.new(event.reject {|k| k == :user_id})
+  sched = Schedule.new(event.reject { |k| k == :user_id})
   sched.user_id = event[:user_id]
   sched.save!
 end
 
 performance.each do |perf|
-  p = Performance.new(perf.reject {|k| k == :user_id})
+  p = Performance.new(perf.reject { |k| k == :user_id})
   p.user_id = perf[:user_id]
   p.save!
 end
 
 messages.each do |message|
-  m = Message.new(message.reject {|k| k == :creator_id})
+  m = Message.new(message.reject { |k| k == :creator_id})
   m.creator_id = message[:creator_id]
   m.save!
 end
 
 work_info.each do |wi|
-  info = WorkInfo.new(wi.reject {|k| k == :user_id } )
+  info = WorkInfo.new(wi.reject { |k| k == :user_id })
   info.user_id = wi[:user_id]
   info.save!
 end
-
-
-=begin
-work_info.each do |wi|
-  list = [:user_id, :SSN]
-  info = WorkInfo.new(wi.reject {|k| list.include?(k)})
-  info.user_id = wi[:user_id]
-  info.build_key_management({:user_id => wi[:user_id], :iv => SecureRandom.hex(32) })
-  info.SSN = wi[:SSN]
-  info.save
-end
-=end
