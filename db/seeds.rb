@@ -13,12 +13,12 @@ users = [
        :user_id =>1
       },
      {
-       :email => "jack@metacorp.com",
+       :email => "jmmastey@metacorp.com",
        :admin => false,
-       :password => "yankeessuck",
-       :password_confirmation => "yankeessuck",
-       :first_name => "Jack",
-       :last_name => "Mannino",
+       :password => "railsgoat!",
+       :password_confirmation => "railsgoat!",
+       :first_name => "Joseph",
+       :last_name => "Mastey",
        :user_id => 2
      },
      {
@@ -47,6 +47,15 @@ users = [
        :first_name => "Ken",
        :last_name => "Johnson",
        :user_id =>5
+     },
+     {
+       :email => "admin2@metacorp.com",
+       :admin => false,
+       :password => "adminadmin",
+       :password_confirmation => "adminadmin",
+       :first_name => "Admin2",
+       :last_name => "",
+       :user_id =>6
       }
 ]
 
