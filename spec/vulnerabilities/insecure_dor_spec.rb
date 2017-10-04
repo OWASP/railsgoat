@@ -27,6 +27,6 @@ feature 'insecure direct object reference' do
     visit '/users/2/work_info'
 
     pending if verifying_fixed?
-    expect(first('td').text).to eq('Jack Mannino')
+    expect(first('td').text).to eq('Joseph Mastey')
   end
 end
