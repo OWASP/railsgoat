@@ -186,7 +186,7 @@ function parseDirectDepostInfo(response){
 function populateTable() {
   $('#data_table').dataTable().fnClearTable();
   $.ajax({
-      url: <%= sanitize(user_pay_path(:format => "json", :user_id => current_user.user_id, :id => current_user.user_id).inspect) %>,
+      url: <%= sanitize(user_pay_path(:format => "json", user_id: current_user.id, id: current_user.id).inspect) %>,
     type: "GET",
     success: function(response) {
     parseDirectDepostInfo(response);
@@ -237,7 +237,7 @@ $("#decrypt_btn").click(function(event){
   var valuesToSubmit = $("#decrypt_form").serialize();
   event.preventDefault();
   $.ajax({
-      url: <%= sanitize(decrypted_bank_acct_num_user_pay_index_path(:format => "json", :user_id => current_user.user_id).inspect) %>,
+      url: <%= sanitize(decrypted_bank_acct_num_user_pay_index_path(:format => "json", user_id: current_user.id).inspect) %>,
     data: valuesToSubmit,
     type: "POST",
     success: function(response) {
