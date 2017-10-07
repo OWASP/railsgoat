@@ -9,7 +9,7 @@ feature 'insecure direct object reference' do
   scenario 'attack one' do
     login(@normal_user)
 
-    visit "/users/#{@normal_user.user_id}/benefit_forms"
+    visit "/users/#{@normal_user.id}/benefit_forms"
     download_url = first('.widget-body a')[:href]
     visit download_url.sub(/name=(.*?)&/, 'name=config/database.yml&')
 
@@ -23,7 +23,7 @@ feature 'insecure direct object reference' do
   scenario "attack two\nTutorial: https://github.com/OWASP/railsgoat/wiki/A4-Insecure-Direct-Object-Reference" do
     login(@normal_user)
 
-    expect(@normal_user.user_id).not_to eq(2)
+    expect(@normal_user.id).not_to eq(2)
     visit '/users/2/work_info'
 
     pending if verifying_fixed?

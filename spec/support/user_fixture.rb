@@ -6,12 +6,15 @@ class UserFixture
 
   def self.normal_user
     password = 'thi$ 1s cOmplExEr'
-    user = User.new(:first_name => 'Joe', :last_name => 'Schmoe',
-                    :email => 'joe@schmoe.com', :password => password, :password_confirmation => password)
-    def user.clear_password
-      'thi$ 1s cOmplExEr'
+    User.create!(first_name: 'Joe', last_name: 'Schmoe', email: 'joe@schmoe.com',
+                 password: password, password_confirmation: password).tap do |user|
+      def user.clear_password
+        'thi$ 1s cOmplExEr'
+      end
     end
-    user.save!
-    user
+  end
+
+  def self.admin_user
+    User.where(admin: true).first
   end
 end

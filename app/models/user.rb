@@ -10,16 +10,16 @@ class User < ApplicationRecord
   validates_presence_of :email
   validates_uniqueness_of :email
   validates_format_of :email, :with => /.+@.+\..+/i
-  attr_accessor :skip_user_id_assign
-  before_save :assign_user_id, :on => :create
+
+  has_one :retirement, dependent: :destroy
+  has_one :paid_time_off, dependent: :destroy
+  has_one :work_info, dependent: :destroy
+  has_many :performance, dependent: :destroy
+  has_many :pay, dependent: :destroy
+  has_many :messages, foreign_key: :receiver_id, dependent: :destroy
+
   before_save :hash_password
-  has_one :retirement, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
-  has_one :paid_time_off, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
-  has_one :work_info, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
-  has_many :performance, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
-  has_many :messages, :foreign_key => :receiver_id, :primary_key => :user_id, :dependent => :destroy
-  has_many :pay, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
-  before_create { generate_token(:auth_token) }
+  after_create { generate_token(:auth_token) }
   before_create :build_benefits_data
 
   def build_benefits_data
@@ -35,13 +35,6 @@ class User < ApplicationRecord
     "#{self.first_name} #{self.last_name}"
   end
 
-=begin
-  # Instead of the entire user object being returned, we can use this to filter.
-  def as_json
-    super(only: [:user_id, :email, :first_name, :last_name])
-  end
-=end
-
   private
 
   def self.authenticate(email, password)
@@ -56,27 +49,16 @@ class User < ApplicationRecord
     return auth
   end
 
-  def assign_user_id
-    unless @skip_user_id_assign.present? || self.user_id.present?
-      user = User.order("user_id").last
-      uid = if user && user.user_id && !(User.exists?(:user_id => "#{user.user_id.to_i + 1}"))
-              user.user_id.to_i + 1
-            else
-              1
-            end
-      self.user_id = uid.to_s if uid
-    end
-  end
-
   def hash_password
-    if password.present? && password_changed?
-      self.password = Digest::MD5.hexdigest(password)
+    if will_save_change_to_password?
+      self.password = Digest::MD5.hexdigest(self.password)
     end
   end
 
   def generate_token(column)
     begin
-      self[column] = Encryption.encrypt_sensitive_value(self.user_id)
+      self[column] = Encryption.encrypt_sensitive_value(self.id)
     end while User.exists?(column => self[column])
+    self.save!
   end
 end

@@ -12,7 +12,7 @@ feature 'sensitive data exposure' do
   scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A6-Sensitive-Data-Exposure-Cleartext-Storage-SSNs" do
     login @normal_user
 
-    visit "/users/#{@normal_user.user_id}/work_info"
+    visit "/users/#{@normal_user.id}/work_info"
     pending if verifying_fixed?
     expect(page.source).to include '999-99-9999'
   end
