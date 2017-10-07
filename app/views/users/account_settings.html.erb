@@ -37,7 +37,7 @@
             </div>
             <div class="widget-body">
            <%= form_for @user, :html => {:id => "account_edit"} do |f|%>
-               <%= f.hidden_field :user_id%>
+               <%= f.hidden_field :id %>
           <div class="control-group">
                   <%= f.label :email, nil, {:class => "control-label"}%>
             <%= f.text_field :email, {:class => "span12"}%>
@@ -84,7 +84,7 @@ $("#submit_button").click(function(event) {
     var valuesToSubmit = $("#account_edit").serialize();
     event.preventDefault();
     $.ajax({
-      url: <%= "/users/#{current_user.user_id}.json".inspect.html_safe %>,
+      url: <%= "/users/#{current_user.id}.json".inspect.html_safe %>,
     data: valuesToSubmit,
     type: "POST",
     success: function(response) {
