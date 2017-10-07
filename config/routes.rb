@@ -8,31 +8,17 @@ Railsgoat::Application.routes.draw do
   post "password_resets" => "password_resets#reset_password"
   get "dashboard/doc" => "dashboard#doc"
 
-  resources :sessions do
-  end
+  resources :sessions
 
   resources :users do
     get "account_settings"
 
-    resources :retirement do
-    end
-
-    resources :paid_time_off do
-    end
-
-    resources :work_info do
-    end
-
-    resources :performance do
-
-    end
-
-    resources :benefit_forms do
-
-    end
-
-    resources :messages do
-    end
+    resources :retirement
+    resources :paid_time_off
+    resources :work_info
+    resources :performance
+    resources :benefit_forms
+    resources :messages
 
     resources :pay do
       collection do
@@ -56,7 +42,6 @@ Railsgoat::Application.routes.draw do
     collection do
       get "get_pto_schedule"
     end
-
   end
 
   resources :admin do
@@ -77,12 +62,10 @@ Railsgoat::Application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
-        resources :users
-        resources :mobile
+      resources :users
+      resources :mobile
     end
-   end
-
+  end
 
   root :to => "sessions#new"
-
 end
