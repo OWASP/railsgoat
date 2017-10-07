@@ -7,7 +7,7 @@ class ScheduleController < ApplicationController
       if params[:schedule][:event_type] == "pto"
         sched = Schedule.new(schedule_params)
         sched.date_begin, sched.date_end = format_schedule_date(params[:date_range1])
-        sched.user_id = current_user.user_id
+        sched.user_id = current_user.id
         a = sched.date_end
         if sched.save
           message = true

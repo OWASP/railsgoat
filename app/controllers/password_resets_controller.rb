@@ -50,10 +50,10 @@ class PasswordResetsController < ApplicationController
   end
 
   def is_valid?(token)
-    if token =~ /(?<user_id>\d+)-(?<email_hash>[A-Z0-9]{32})/i
+    if token =~ /(?<user>\d+)-(?<email_hash>[A-Z0-9]{32})/i
 
       # Fetch the user by their id, and hash their email address
-      @user = User.find_by_id($~[:user_id])
+      @user = User.find_by(id: $~[:user])
       email = Digest::MD5.hexdigest(@user.email)
 
       # Compare and validate our hashes

@@ -62,7 +62,7 @@ $('#submit_button').click(function() {
   $("#editAcct").modal('hide');
 
   $.ajax({
-      url: "/admin/" +  <%= @user.user_id %> + "/update_user.json",
+      url: "/admin/" +  <%= @user.id %> + "/update_user.json",
     data: valuesToSubmit,
     type: "POST",
     success: function(response) {
