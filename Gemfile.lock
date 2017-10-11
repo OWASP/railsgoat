@@ -106,7 +106,7 @@ GEM
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
-    erubi (1.6.1)
+    erubi (1.7.0)
     eventmachine (1.2.5)
     execjs (2.7.0)
     ffi (1.9.18)
