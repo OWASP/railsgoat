@@ -42,6 +42,7 @@ group :development, :test, :mysql do
   gem 'database_cleaner'
   gem 'poltergeist'
   gem 'rspec-rails'
+  gem 'puma'
   gem 'test-unit'
 end
 
