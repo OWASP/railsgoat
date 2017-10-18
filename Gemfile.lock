@@ -197,7 +197,6 @@ GEM
     pry-rails (0.3.6)
       pry (>= 0.10.4)
     public_suffix (3.0.0)
-    puma (3.10.0)
     rack (2.0.3)
     rack-livereload (0.3.16)
       rack
@@ -248,7 +247,7 @@ GEM
     rspec-mocks (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.7.0)
-    rspec-rails (3.7.0)
+    rspec-rails (3.7.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
@@ -339,7 +338,6 @@ DEPENDENCIES
   powder
   pry
   pry-rails
-  puma
   rack-livereload
   rails (= 5.1.4)
   rails-perftest
