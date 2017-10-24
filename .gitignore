@@ -6,6 +6,7 @@
 .elasticbeanstalk/
 .DS_Store
 /public/data
+/public/assets
 *.png
 coverage
 .tags
