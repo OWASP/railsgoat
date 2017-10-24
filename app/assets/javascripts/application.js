@@ -21,9 +21,8 @@
 //= require date-picker/daterangepicker.js
 //= require bootstrap-timepicker.js
 //= require jquery.bootstrap.wizard.js
-//= require jquery.sparkline.js
 //= require tiny-scrollbar.js
-//= require jquery.validate.js
+//= require jquery.validate.min.js
 //= require jquery.snippet.js
 //= require jquery.easy-pie-chart.js
 //= require jquery-fileupload/basic
