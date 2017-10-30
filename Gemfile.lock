@@ -99,7 +99,7 @@ GEM
     cucumber-expressions (4.0.4)
     cucumber-tag_expressions (1.0.1)
     cucumber-wire (0.0.1)
-    database_cleaner (1.6.1)
+    database_cleaner (1.6.2)
     debug_inspector (0.0.3)
     diff-lcs (1.3)
     docile (1.1.5)
