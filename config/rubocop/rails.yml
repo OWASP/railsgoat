@@ -1,0 +1,118 @@
+Rails:
+  Enabled: true
+
+Rails/FindEach:
+  Enabled: false
+
+Rails/OutputSafety:
+  Enabled: true
+
+Rails/PluralizationGrammar:
+  Enabled: true
+
+Rails/RequestReferer:
+  Enabled: true
+  EnforcedStyle: referrer
+
+Rails/ScopeArgs:
+  Enabled: true
+
+Rails/UniqBeforePluck:
+  Enabled: true
+
+GitHub/RailsApplicationRecord:
+  Enabled: true
+
+GitHub/RailsControllerRenderActionSymbol:
+  Enabled: true
+  Include:
+    - 'app/controllers/**/*.rb'
+
+GitHub/RailsControllerRenderLiteral:
+  Enabled: true
+  StyleGuide: https://github.com/github/rubocop-github/blob/master/guides/rails-render-literal.md
+  Include:
+    - 'app/controllers/**/*.rb'
+
+GitHub/RailsControllerRenderPathsExist:
+  Enabled: true
+  ViewPath:
+    - 'app/views'
+  Include:
+    - 'app/controllers/**/*.rb'
+
+GitHub/RailsControllerRenderShorthand:
+  Enabled: true
+  StyleGuide: https://github.com/github/rubocop-github/blob/master/guides/rails-controller-render-shorthand.md
+  Include:
+    - 'app/controllers/**/*.rb'
+
+GitHub/RailsRenderInline:
+  Enabled: true
+  StyleGuide: https://github.com/github/rubocop-github/blob/master/guides/rails-controller-render-inline.md
+  Include:
+    - 'app/controllers/**/*.rb'
+    - 'app/helpers/**/*.rb'
+    - 'app/view_models/**/*.rb'
+    - 'app/views/**/*.erb'
+
+GitHub/RailsRenderObjectCollection:
+  Enabled: false
+
+GitHub/RailsViewRenderLiteral:
+  Enabled: true
+  StyleGuide: https://github.com/github/rubocop-github/blob/master/guides/rails-render-literal.md
+  Include:
+    - 'app/helpers/**/*.rb'
+    - 'app/view_models/**/*.rb'
+    - 'app/views/**/*.erb'
+
+GitHub/RailsViewRenderPathsExist:
+  Enabled: true
+  ViewPath:
+    - 'app/views'
+  Include:
+    - 'app/helpers/**/*.rb'
+    - 'app/view_models/**/*.rb'
+    - 'app/views/**/*.erb'
+
+GitHub/RailsViewRenderShorthand:
+  Enabled: true
+  Include:
+    - 'app/helpers/**/*.rb'
+    - 'app/view_models/**/*.rb'
+    - 'app/views/**/*.erb'
+
+# Exclude Rails ERB files from incompatible cops
+
+Lint/BlockAlignment:
+  Exclude:
+    - 'app/views/**/*.erb'
+
+Style/For:
+  Exclude:
+    - 'app/views/**/*.erb'
+
+Style/OneLineConditional:
+  Exclude:
+    - 'app/views/**/*.erb'
+
+Style/Semicolon:
+  Exclude:
+    - 'app/views/**/*.erb'
+
+Layout/SpaceInsideParens:
+  Exclude:
+    - 'app/views/**/*.erb'
+
+Style/StringLiterals:
+  Exclude:
+    - 'app/views/**/*.erb'
+
+Layout/TrailingBlankLines:
+  Exclude:
+    - 'app/views/**/*.erb'
+
+Layout/TrailingWhitespace:
+  Exclude:
+    - 'app/views/**/*.erb'
