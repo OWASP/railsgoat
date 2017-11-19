@@ -118,7 +118,8 @@
   </div>
 </div>
 
-<%= javascript_include_tag "fullcalendar.js" %>
+<%= javascript_include_tag "moment.min.js" %>
+<%= javascript_include_tag "fullcalendar.min.js" %>
 
 <script type="text/javascript">
 
@@ -129,8 +130,10 @@ function makeActive(){
 };
 
 
-$('#calendar').fullCalendar({
-      events: <%= get_pto_schedule_schedule_index_path(:format => "json").inspect.html_safe %>,
+$(document).ready(function() {
+  $('#calendar').fullCalendar({
+        events: <%= get_pto_schedule_schedule_index_path(:format => "json").inspect.html_safe %>,
+  });
 });
 
 
