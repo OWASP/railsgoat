@@ -97,7 +97,7 @@ GEM
       backports (>= 3.8.0)
       cucumber-tag_expressions (~> 1.1.0)
       gherkin (>= 5.0.0)
-    cucumber-expressions (5.0.5)
+    cucumber-expressions (5.0.7)
     cucumber-tag_expressions (1.1.0)
     cucumber-wire (0.0.1)
     database_cleaner (1.6.2)
