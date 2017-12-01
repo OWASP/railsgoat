@@ -43,7 +43,7 @@ $ gem install bundler
 Initialize the database:
 
 ```bash
-$ rails db:setup
+$ rake db:setup
 ```
 
 Start the Thin web server:
