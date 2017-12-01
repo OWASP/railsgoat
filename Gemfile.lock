@@ -82,7 +82,8 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     contracts (0.16.0)
-    crack (0.3.2)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
     crass (1.0.3)
     cucumber (3.1.0)
       builder (>= 2.1.2)
@@ -270,6 +271,7 @@ GEM
     ruby-prof (0.16.2)
     ruby-progressbar (1.9.0)
     ruby_dep (1.5.0)
+    safe_yaml (1.0.4)
     sass (3.5.3)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -334,7 +336,7 @@ DEPENDENCIES
   bundler-audit
   capybara
   coffee-rails
-  crack (= 0.3.2)
+  crack (= 0.4.3)
   database_cleaner
   execjs
   foreman
