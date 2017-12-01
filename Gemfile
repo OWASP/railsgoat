@@ -14,7 +14,7 @@ gem 'ruby-prof'
 
 gem 'sqlite3'
 gem 'foreman'
-gem 'crack', '0.3.1'
+gem 'crack', '0.3.2'
 
 # Pry for Rails, not in dev group in case running via prod/staging @ a training
 gem 'pry-rails'
