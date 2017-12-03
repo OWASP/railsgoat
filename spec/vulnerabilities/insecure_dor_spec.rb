@@ -23,11 +23,12 @@ feature "insecure direct object reference" do
 
   scenario "attack two\nTutorial: https://github.com/OWASP/railsgoat/wiki/A4-Insecure-Direct-Object-Reference" do
     login(@normal_user)
-
     expect(@normal_user.id).not_to eq(2)
-    visit '/users/2/work_info'
+    another_user = User.find(2)
+
+    visit "/users/#{another_user.id}/work_info"
 
     pending if verifying_fixed?
-    expect(first("td").text).to eq("Joseph Mastey")
+    expect(first('td').text).to eq(another_user.full_name)
   end
 end
