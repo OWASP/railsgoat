@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ScheduleController < ApplicationController
 
   def create
@@ -14,7 +15,7 @@ class ScheduleController < ApplicationController
       end
 
     respond_to do |format|
-      format.json {render :json => {:msg => message ? "success" : "failure" }}
+      format.json {render json: {msg: message ? "success" : "failure" }}
     end
   end
 
@@ -33,11 +34,9 @@ class ScheduleController < ApplicationController
     rescue
     end
      respond_to do |format|
-       format.json do
-          render :json => jfs.to_json
-       end
-     end
-   end
+       format.json { render json: jfs.to_json }
+    end
+  end
 
   private
 
@@ -47,8 +46,8 @@ class ScheduleController < ApplicationController
    begin
      vals = []
      return vals if date_array.empty?
-     date_array.split('-').each do |s|
-       date = Date.strptime(s.strip, '%m/%d/%Y')
+     date_array.split("-").each do |s|
+       date = Date.strptime(s.strip, "%m/%d/%Y")
        vals <<(date)
      end
    rescue ArgumentError

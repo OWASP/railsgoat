@@ -1,6 +1,7 @@
-require File.expand_path('../boot', __FILE__)
+# frozen_string_literal: true
+require File.expand_path("../boot", __FILE__)
 
-require 'rails/all'
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -46,12 +47,12 @@ module Railsgoat
 
     # Enable the asset pipeline
     config.assets.enabled = true
-    
+
     # add app/assets/fonts to the asset path
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
+    config.assets.version = "1.0"
 
     I18n.config.enforce_available_locales = false
   end
