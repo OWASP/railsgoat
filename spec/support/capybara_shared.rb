@@ -71,15 +71,30 @@ module Capybara::Poltergeist
 end
 
 class WarningSuppressor
-  class << self
-    def write(message)
-      (message =~ /QFont::setPixelSize: Pixel size <= 0/ || message =~/CoreText performance note:/ || message =~/Method userSpaceScaleFactor in class NSView/) ? 0 : puts(message); 1
+  IGNORE_PATTERNS = [
+    /QFont::setPixelSize: Pixel size <= 0/,
+    /CoreText performance note:/,
+    /WARNING: Method userSpaceScaleFactor/
+  ]
+
+  def write(message)
+    if ignore?(message)
+      0
+    else
+      puts(message)
+      1
     end
+  end
+
+  private
+
+  def ignore?(message)
+    IGNORE_PATTERNS.any? {|regexp| message =~ regexp }
   end
 end
 
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, phantomjs_logger: WarningSuppressor, timeout: 60)
+  Capybara::Poltergeist::Driver.new(app, phantomjs_logger: WarningSuppressor.new, timeout: 60)
 end
 
 Capybara.javascript_driver = :poltergeist

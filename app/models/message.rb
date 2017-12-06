@@ -7,7 +7,7 @@ class Message < ApplicationRecord
     if creator = User.where(user_id: self.creator_id).first
       creator.full_name
     else
-      "<b>Name unavailable</b>".html_safe
+      "Name unavailable"
     end
   end
 end

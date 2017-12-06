@@ -2,6 +2,7 @@
 class AdminController < ApplicationController
   before_action :administrative, if: :admin_param, except: [:get_user]
   skip_before_action :has_info
+  layout false, only: [:get_all_users, :get_user]
 
   def dashboard
   end
@@ -22,14 +23,12 @@ class AdminController < ApplicationController
 
   def get_all_users
     @users = User.all
-    render layout: false
   end
 
   def get_user
     @user = User.find_by_id(params[:admin_id].to_s)
     arr = ["true", "false"]
     @admin_select = @user.admin ? arr : arr.reverse
-    render layout: false
   end
 
   def update_user

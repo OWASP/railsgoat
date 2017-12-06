@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 class DashboardController < ApplicationController
   skip_before_action :has_info
+  layout false, only: [:change_graph]
 
   def home
     @user = current_user
@@ -13,15 +14,12 @@ class DashboardController < ApplicationController
 
   def change_graph
     self.try(params[:graph])
-  end
 
-  def bar_graph
-    render :bar_graph, layout: false
+    if params[:graph] == "bar_graph"
+      render "dashboard/bar_graph"
+    else
+      @user = current_user
+      render "dashboard/pie_charts"
+    end
   end
-
-  def pie_charts
-     @user = current_user
-     render :dashboard_stats, layout: false
-  end
-
 end
