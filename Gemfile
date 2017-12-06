@@ -32,7 +32,7 @@ group :development, :mysql do
   gem 'travis-lint'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'rubocop'
+  gem "rubocop-github"
 end
 
 gem 'simplecov', :require => false, :group => :test
