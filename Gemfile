@@ -13,9 +13,8 @@ gem "ruby-prof"
 # Bundle edge Rails instead:
 # gem 'rails', git: 'https://github.com/rails/rails'
 
-gem "crack", "0.3.2"
-gem "foreman"
-gem "sqlite3"
+gem 'sqlite3'
+gem 'foreman'
 
 # Pry for Rails, not in dev group in case running via prod/staging @ a training
 gem "pry-rails"
@@ -68,7 +67,7 @@ gem "jquery-rails"
  gem "bcrypt"
 
 # Use unicorn as the app server
- gem "unicorn"
+gem "unicorn"
 
 # Pow related gem
 gem "powder"
