@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 class AdminController < ApplicationController
-  before_action :administrative, :if => :admin_param, :except => [:get_user]
+  before_action :administrative, if: :admin_param, except: [:get_user]
   skip_before_action :has_info
 
   def dashboard
@@ -41,7 +42,7 @@ class AdminController < ApplicationController
       message = true
     end
     respond_to do |format|
-      format.json { render :json => { :msg => message ? "success" : "failure"} }
+      format.json { render json: { msg: message ? "success" : "failure"} }
     end
   end
 
@@ -54,7 +55,7 @@ class AdminController < ApplicationController
       message = true
     end
     respond_to do |format|
-      format.json { render :json => { :msg => message ? "success" : "failure"} }
+      format.json { render json: { msg: message ? "success" : "failure"} }
     end
   end
 
@@ -66,6 +67,6 @@ class AdminController < ApplicationController
   helper_method :custom_fields
 
   def admin_param
-    params[:admin_id] != '1'
+    params[:admin_id] != "1"
   end
 end

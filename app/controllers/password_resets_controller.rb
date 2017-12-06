@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class PasswordResetsController < ApplicationController
   skip_before_action :authenticated
 
@@ -18,7 +19,7 @@ class PasswordResetsController < ApplicationController
   def confirm_token
     if !params[:token].nil? && is_valid?(params[:token])
       flash[:success] = "Password reset token confirmed! Please create a new password."
-      render :reset_password
+      render "reset_password"
     else
       flash[:error] = "Invalid password reset token. Please try again."
       redirect_to :login

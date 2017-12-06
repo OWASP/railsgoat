@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class PayController < ApplicationController
 
   def index
@@ -6,20 +7,20 @@ class PayController < ApplicationController
   def update_dd_info
     msg = false
     pay = Pay.new(
-    :bank_account_num => params[:bank_account_num],
-    :bank_routing_num => params[:bank_routing_num],
-    :percent_of_deposit => params[:dd_percent]
+    bank_account_num: params[:bank_account_num],
+    bank_routing_num: params[:bank_routing_num],
+    percent_of_deposit: params[:dd_percent]
     )
     pay.user_id = current_user.user_id
     msg = true if pay.save!
     respond_to do |format|
-      format.json {render :json => {:msg => msg } }
+      format.json {render json: {msg: msg } }
     end
   end
 
   def show
    respond_to do |format|
-     format.json { render :json => {:user => current_user.pay.as_json} }
+     format.json { render json: {user: current_user.pay.as_json} }
    end
   end
 
@@ -36,7 +37,7 @@ class PayController < ApplicationController
   def decrypted_bank_acct_num
     decrypted = Encryption.decrypt_sensitive_value(params[:value_to_decrypt])
     respond_to do |format|
-      format.json {render :json => {:account_num => decrypted || "No Data" }}
+      format.json {render json: {account_num: decrypted || "No Data" }}
     end
   end
 end

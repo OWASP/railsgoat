@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class DashboardController < ApplicationController
   skip_before_action :has_info
 

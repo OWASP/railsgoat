@@ -1,46 +1,45 @@
-require 'encryption'
+# frozen_string_literal: true
+require "encryption"
 
 class User < ApplicationRecord
-  validates :password, :presence => true,
-                       :confirmation => true,
-                       :length => {:within => 6..40},
-                       :on => :create,
-                       :if => :password
+  validates :password, presence: true,
+                       confirmation: true,
+                       length: {within: 6..40},
+                       on: :create,
+                       if: :password
 
   validates_presence_of :email
   validates_uniqueness_of :email
-  validates_format_of :email, :with => /.+@.+\..+/i
+  validates_format_of :email, with: /.+@.+\..+/i
   attr_accessor :skip_user_id_assign
-  before_save :assign_user_id, :on => :create
+  before_save :assign_user_id, on: :create
   before_save :hash_password
-  has_one :retirement, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
-  has_one :paid_time_off, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
-  has_one :work_info, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
-  has_many :performance, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
-  has_many :messages, :foreign_key => :receiver_id, :primary_key => :user_id, :dependent => :destroy
-  has_many :pay, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
+  has_one :retirement, foreign_key: :user_id, primary_key: :user_id, dependent: :destroy
+  has_one :paid_time_off, foreign_key: :user_id, primary_key: :user_id, dependent: :destroy
+  has_one :work_info, foreign_key: :user_id, primary_key: :user_id, dependent: :destroy
+  has_many :performance, foreign_key: :user_id, primary_key: :user_id, dependent: :destroy
+  has_many :messages, foreign_key: :receiver_id, primary_key: :user_id, dependent: :destroy
+  has_many :pay, foreign_key: :user_id, primary_key: :user_id, dependent: :destroy
   before_create { generate_token(:auth_token) }
   before_create :build_benefits_data
 
   def build_benefits_data
-    build_retirement(POPULATE_RETIREMENTS.shuffle.first)
-    build_paid_time_off(POPULATE_PAID_TIME_OFF.shuffle.first).schedule.build(POPULATE_SCHEDULE.shuffle.first)
-    build_work_info(POPULATE_WORK_INFO.shuffle.first)
+    build_retirement(POPULATE_RETIREMENTS.sample)
+    build_paid_time_off(POPULATE_PAID_TIME_OFF.sample).schedule.build(POPULATE_SCHEDULE.sample)
+    build_work_info(POPULATE_WORK_INFO.sample)
     # Uncomment below line to use encrypted SSN(s)
     #work_info.build_key_management(:iv => SecureRandom.hex(32))
-    performance.build(POPULATE_PERFORMANCE.shuffle.first)
+    performance.build(POPULATE_PERFORMANCE.sample)
   end
 
   def full_name
     "#{self.first_name} #{self.last_name}"
   end
 
-=begin
-  # Instead of the entire user object being returned, we can use this to filter.
-  def as_json
-    super(only: [:user_id, :email, :first_name, :last_name])
-  end
-=end
+#   # Instead of the entire user object being returned, we can use this to filter.
+#   def as_json
+#     super(only: [:user_id, :email, :first_name, :last_name])
+#   end
 
   private
 
@@ -59,7 +58,7 @@ class User < ApplicationRecord
   def assign_user_id
     unless @skip_user_id_assign.present? || self.user_id.present?
       user = User.order("user_id").last
-      uid = if user && user.user_id && !(User.exists?(:user_id => "#{user.user_id.to_i + 1}"))
+      uid = if user && user.user_id && !(User.exists?(user_id: "#{user.user_id.to_i + 1}"))
               user.user_id.to_i + 1
             else
               1

@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 class SessionsController < ApplicationController
   skip_before_action :has_info
-  skip_before_action :authenticated, :only => [:new, :create]
+  skip_before_action :authenticated, only: [:new, :create]
 
   def new
     @url = params[:url]
@@ -17,9 +18,9 @@ class SessionsController < ApplicationController
 
     if user
       if params[:remember_me]
-        cookies.permanent[:auth_token] = user.auth_token if User.where(:user_id => user.user_id).exists?
+        cookies.permanent[:auth_token] = user.auth_token if User.where(user_id: user.user_id).exists?
       else
-        session[:user_id] = user.user_id if User.where(:user_id => user.user_id).exists?
+        session[:user_id] = user.user_id if User.where(user_id: user.user_id).exists?
       end
       redirect_to path
     else
