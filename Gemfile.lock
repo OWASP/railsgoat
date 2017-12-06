@@ -82,7 +82,6 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     contracts (0.16.0)
-    crack (0.3.2)
     crass (1.0.3)
     cucumber (3.1.0)
       builder (>= 2.1.2)
@@ -336,7 +335,6 @@ DEPENDENCIES
   bundler-audit
   capybara
   coffee-rails
-  crack (= 0.3.2)
   database_cleaner
   execjs
   foreman
