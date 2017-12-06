@@ -74,8 +74,7 @@ class User < ApplicationRecord
   end
 
   def generate_token(column)
-    begin
-      self[column] = Encryption.encrypt_sensitive_value(self.user_id)
-    end while User.exists?(column => self[column])
+    self[column] = Encryption.encrypt_sensitive_value(self.user_id)
+    generate_token(column) if User.exists?(column => self[column])
   end
 end

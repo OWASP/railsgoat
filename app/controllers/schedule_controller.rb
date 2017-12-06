@@ -33,7 +33,7 @@ class ScheduleController < ApplicationController
        end
     rescue
     end
-     respond_to do |format|
+    respond_to do |format|
        format.json { render json: jfs.to_json }
     end
   end
