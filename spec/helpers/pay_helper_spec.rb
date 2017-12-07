@@ -1,5 +1,6 @@
-=begin require 'spec_helper'
-
+# frozen_string_literal: true
+# require 'spec_helper'
+#
 # Specs in this file have access to a helper object that includes
 # the PayHelper. For example:
 #
@@ -10,7 +11,6 @@
 #     end
 #   end
 # end
-describe PayHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
-end
-=end
+# describe PayHelper do
+#   pending "add some examples to (or delete) #{__FILE__}"
+# end

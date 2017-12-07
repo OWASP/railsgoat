@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Api::V1::UsersController < ApplicationController
   skip_before_action :authenticated
   before_action :valid_api_token
@@ -24,7 +25,7 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  def identify_user(token="")
+  def identify_user(token = "")
     # We've had issues with URL encoding, etc. causing issues so just to be safe
     # we will go ahead and unescape the user's token
     unescape_token(token)
@@ -42,7 +43,7 @@ class Api::V1::UsersController < ApplicationController
 
   # We had some issues with the token and url encoding...
   # this is an attempt to normalize the data.
-  def unescape_token(token="")
+  def unescape_token(token = "")
     @clean_token = CGI::unescape(token)
   end
 

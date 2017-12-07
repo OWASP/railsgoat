@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class WorkInfoController < ApplicationController
   def index
     @user = User.find_by_user_id(params[:user_id])
