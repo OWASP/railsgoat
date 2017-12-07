@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 class UsersController < ApplicationController
   skip_before_action :has_info
-  skip_before_action :authenticated, :only => [:new, :create]
+  skip_before_action :authenticated, only: [:new, :create]
 
   def new
     @user = User.new
@@ -35,12 +36,12 @@ class UsersController < ApplicationController
       end
       message = true if user.save!
       respond_to do |format|
-        format.html { redirect_to user_account_settings_path(:user_id => current_user.user_id) }
-        format.json { render :json => {:msg => message ? "success" : "false "} }
+        format.html { redirect_to user_account_settings_path(user_id: current_user.user_id) }
+        format.json { render json: {msg: message ? "success" : "false "} }
       end
     else
       flash[:error] = "Could not update user!"
-      redirect_to user_account_settings_path(:user_id => current_user.user_id)
+      redirect_to user_account_settings_path(user_id: current_user.user_id)
     end
   end
 

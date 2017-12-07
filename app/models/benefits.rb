@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 class Benefits < ApplicationRecord
 
-  def self.save(file, backup=false)
+  def self.save(file, backup = false)
     data_path = Rails.root.join("public", "data")
     full_file_name = "#{data_path}/#{file.original_filename}"
     f = File.open(full_file_name, "wb+")
@@ -10,7 +11,7 @@ class Benefits < ApplicationRecord
   end
 
   def self.make_backup(file, data_path, full_file_name)
-    if File.exists?(full_file_name)
+    if File.exist?(full_file_name)
       silence_streams(STDERR) { system("cp #{full_file_name} #{data_path}/bak#{Time.zone.now.to_i}_#{file.original_filename}") }
     end
   end
@@ -18,7 +19,7 @@ class Benefits < ApplicationRecord
   def self.silence_streams(*streams)
     on_hold = streams.collect { |stream| stream.dup }
     streams.each do |stream|
-      stream.reopen(RUBY_PLATFORM =~ /mswin/ ? 'NUL:' : '/dev/null')
+      stream.reopen(RUBY_PLATFORM =~ /mswin/ ? "NUL:" : "/dev/null")
       stream.sync = true
     end
     yield

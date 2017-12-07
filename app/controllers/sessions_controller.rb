@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 class SessionsController < ApplicationController
   skip_before_action :has_info
-  skip_before_action :authenticated, :only => [:new, :create]
+  skip_before_action :authenticated, only: [:new, :create]
 
   def new
     @url = params[:url]
@@ -12,19 +13,20 @@ class SessionsController < ApplicationController
     begin
       # Normalize the email address, why not
       user = User.authenticate(params[:email].to_s.downcase, params[:password])
-      rescue Exception => e
+    rescue RuntimeError => e
+      # don't do ANYTHING
     end
 
     if user
       if params[:remember_me]
-        cookies.permanent[:auth_token] = user.auth_token if User.where(:user_id => user.user_id).exists?
+        cookies.permanent[:auth_token] = user.auth_token if User.where(user_id: user.user_id).exists?
       else
-        session[:user_id] = user.user_id if User.where(:user_id => user.user_id).exists?
+        session[:user_id] = user.user_id if User.where(user_id: user.user_id).exists?
       end
       redirect_to path
     else
       flash[:error] = e.message
-      render "new"
+      render "sessions/new"
     end
   end
 

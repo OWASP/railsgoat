@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Pay < ApplicationRecord
   # Associations
   belongs_to :user
