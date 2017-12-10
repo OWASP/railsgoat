@@ -82,7 +82,6 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     contracts (0.16.0)
-    crack (0.3.2)
     crass (1.0.3)
     cucumber (3.1.0)
       builder (>= 2.1.2)
@@ -267,6 +266,8 @@ GEM
       rainbow (>= 2.2.2, < 3.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
+    rubocop-github (0.6.0)
+      rubocop (~> 0.51)
     ruby-prof (0.16.2)
     ruby-progressbar (1.9.0)
     ruby_dep (1.5.0)
@@ -334,7 +335,6 @@ DEPENDENCIES
   bundler-audit
   capybara
   coffee-rails
-  crack (= 0.3.2)
   database_cleaner
   execjs
   foreman
@@ -358,7 +358,7 @@ DEPENDENCIES
   rb-fsevent
   responders
   rspec-rails
-  rubocop
+  rubocop-github
   ruby-prof
   sass-rails
   simplecov

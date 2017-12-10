@@ -1,5 +1,5 @@
-
-inherit_from:
-  - ./config/rubocop/default.yml
-  - ./config/rubocop/rails.yml
+inherit_gem:
+  rubocop-github:
+    - config/default.yml
+    - config/rails.yml
 
