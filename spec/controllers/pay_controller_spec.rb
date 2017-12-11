@@ -1,6 +1,6 @@
-=begin require 'spec_helper'
-
-describe PayController do
-
-end
-=end
+# frozen_string_literal: true
+# require 'spec_helper'
+#
+# describe PayController do
+#
+# end

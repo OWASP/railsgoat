@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CreateKeyManagements < ActiveRecord::Migration
   def change
     create_table :key_managements do |t|
