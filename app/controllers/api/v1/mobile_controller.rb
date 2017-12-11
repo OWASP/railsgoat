@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Api::V1::MobileController < ApplicationController
   skip_before_action :authenticated
   before_action :mobile_request?

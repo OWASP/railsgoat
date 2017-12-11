@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class UserMailer < ActionMailer::Base
   default from: "noreply@railsgoat.dev"
 

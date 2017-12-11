@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # By default this will return true, and thus all of the Capybara specs will
 # fail until a developer using the site for training has patched up all of
 # the vulnerabilities.
@@ -8,7 +9,7 @@
 $displayed_spec_notice = false
 
 def verifying_fixed?
-  maintainer_env_name = 'RAILSGOAT_MAINTAINER'
+  maintainer_env_name = "RAILSGOAT_MAINTAINER"
   result = !ENV[maintainer_env_name]
   if !$displayed_spec_notice && result
     puts <<-NOTICE
@@ -35,13 +36,13 @@ def verifying_fixed?
 end
 
 def login(user)
-  visit '/'
-  within('.signup') do
-    fill_in 'email', :with => user.email
-    fill_in 'password', :with => user.clear_password
+  visit "/"
+  within(".signup") do
+    fill_in "email", with: user.email
+    fill_in "password", with: user.clear_password
   end
-  within('.actions') do
-    click_on 'Login'
+  within(".actions") do
+    click_on "Login"
   end
 end
 
@@ -70,15 +71,30 @@ module Capybara::Poltergeist
 end
 
 class WarningSuppressor
-  class << self
-    def write(message)
-      if message =~ /QFont::setPixelSize: Pixel size <= 0/ || message =~/CoreText performance note:/ || message =~/Method userSpaceScaleFactor in class NSView/ then 0 else puts(message);1;end
+  IGNORE_PATTERNS = [
+    /QFont::setPixelSize: Pixel size <= 0/,
+    /CoreText performance note:/,
+    /WARNING: Method userSpaceScaleFactor/
+  ]
+
+  def write(message)
+    if ignore?(message)
+      0
+    else
+      puts(message)
+      1
     end
+  end
+
+  private
+
+  def ignore?(message)
+    IGNORE_PATTERNS.any? {|regexp| message =~ regexp }
   end
 end
 
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, phantomjs_logger: WarningSuppressor, timeout: 60)
+  Capybara::Poltergeist::Driver.new(app, phantomjs_logger: WarningSuppressor.new, timeout: 60)
 end
 
 Capybara.javascript_driver = :poltergeist

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CreatePaidTimeOffs < ActiveRecord::Migration
   def change
     create_table :paid_time_offs do |t|

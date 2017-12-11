@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 if Rails.env.production?
   # Specify env variable/location/etc. to retrieve key from
 else
