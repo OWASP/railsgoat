@@ -12,7 +12,9 @@ class UserFixture
     def user.clear_password
       "thi$ 1s cOmplExEr"
     end
-    user.save!
-    user
+  end
+
+  def self.admin_user
+    User.where(admin: true).first
   end
 end

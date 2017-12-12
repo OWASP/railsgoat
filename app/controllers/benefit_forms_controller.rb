@@ -11,7 +11,7 @@ class BenefitFormsController < ApplicationController
      file = params[:type].constantize.new(path)
      send_file file, disposition: "attachment"
    rescue
-     redirect_to user_benefit_forms_path(user_id: current_user.user_id)
+     redirect_to user_benefit_forms_path(user_id: current_user.id)
    end
   end
 
@@ -23,7 +23,6 @@ class BenefitFormsController < ApplicationController
     else
       flash[:error] = "Something went wrong"
     end
-    redirect_to user_benefit_forms_path(user_id: current_user.user_id)
+    redirect_to user_benefit_forms_path(user_id: current_user.id)
   end
-
 end

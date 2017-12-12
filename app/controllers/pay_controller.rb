@@ -9,9 +9,10 @@ class PayController < ApplicationController
     pay = Pay.new(
     bank_account_num: params[:bank_account_num],
     bank_routing_num: params[:bank_routing_num],
-    percent_of_deposit: params[:dd_percent]
+    percent_of_deposit: params[:dd_percent],
+    user_id: current_user.id
     )
-    pay.user_id = current_user.user_id
+
     msg = true if pay.save!
     respond_to do |format|
       format.json {render json: {msg: msg } }

@@ -16,6 +16,7 @@ feature "unvalidated redirect" do
     within(".actions") do
       click_on "Login"
     end
+
     pending if verifying_fixed?
     expect(current_url).to eq("http://example.com/do/evil/things")
   end
