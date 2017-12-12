@@ -12,8 +12,8 @@ feature "mass assignment" do
 
     login(@normal_user)
 
-    params = {user: {admin: "t",
-                        user_id: @normal_user.id,
+    params = { user:  { admin: "t",
+                        id: @normal_user.id,
                         password: @normal_user.clear_password,
                         password_confirmation: @normal_user.clear_password}}
     page.driver.put "/users/#{@normal_user.id}.json", params
