@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 #don't upgrade
 gem 'rails', '5.1.4'
 
-ruby '2.3.5'
+ruby '2.4.2'
 
 gem 'rake'
 gem 'rails-perftest'
@@ -14,7 +14,6 @@ gem 'ruby-prof'
 
 gem 'sqlite3'
 gem 'foreman'
-gem 'crack', '0.3.1'
 
 # Pry for Rails, not in dev group in case running via prod/staging @ a training
 gem 'pry-rails'
@@ -32,6 +31,7 @@ group :development, :mysql do
   gem 'travis-lint'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem "rubocop-github"
 end
 
 gem 'simplecov', :require => false, :group => :test
@@ -65,9 +65,6 @@ gem 'jquery-rails'
 # To use ActiveModel has_secure_password
  gem 'bcrypt'
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
 # Use unicorn as the app server
  gem 'unicorn'
 
@@ -75,14 +72,6 @@ gem 'jquery-rails'
 gem 'powder'
 
 gem 'aruba'
-
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
-
 gem 'execjs'
 gem 'therubyracer'
 

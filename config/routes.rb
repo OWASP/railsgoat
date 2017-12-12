@@ -3,9 +3,12 @@ Railsgoat::Application.routes.draw do
   get "login" => "sessions#new"
   get "signup" => "users#new"
   get "logout" => "sessions#destroy"
-  post "forgot_password" => "password_resets#forgot_password"
+
+  get "forgot_password" => "password_resets#forgot_password"
+  post "forgot_password" => "password_resets#send_forgot_password"
   get "password_resets" => "password_resets#confirm_token"
   post "password_resets" => "password_resets#reset_password"
+
   get "dashboard/doc" => "dashboard#doc"
 
   resources :sessions do

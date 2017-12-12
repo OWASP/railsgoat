@@ -9,29 +9,29 @@ class WorkInfo < ApplicationRecord
   end
 
   def encrypt_ssn
-    aes = OpenSSL::Cipher::Cipher.new(cipher_type)
+    aes = OpenSSL::Cipher.new(cipher_type)
     aes.encrypt
-    aes.key = key
+    aes.key = key[0..31]
     aes.iv = iv if iv != nil
     self.encrypted_ssn = aes.update(self.SSN) + aes.final
     self.SSN = nil
   end
 
   def decrypt_ssn
-    aes = OpenSSL::Cipher::Cipher.new(cipher_type)
+    aes = OpenSSL::Cipher.new(cipher_type)
     aes.decrypt
-    aes.key = key
+    aes.key = key[0..31]
     aes.iv = iv if iv != nil
     aes.update(self.encrypted_ssn) + aes.final
   end
 
   def key
-    raise "Key Missing" if !(KEY)
+    raise "Key Missing" unless KEY.present?
     KEY
   end
 
   def iv
-    raise "No IV for this User" if !(self.key_management.iv)
+    raise "No IV for this User" unless self.key_management.try(:iv).present?
     self.key_management.iv
   end
 

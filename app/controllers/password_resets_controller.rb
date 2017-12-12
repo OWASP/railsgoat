@@ -25,7 +25,7 @@ class PasswordResetsController < ApplicationController
     end
   end
 
-  def forgot_password
+  def send_forgot_password
     @user = User.find_by_email(params[:email]) unless params[:email].nil?
 
     if @user && password_reset_mailer(@user)

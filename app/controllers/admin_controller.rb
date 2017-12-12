@@ -9,7 +9,7 @@ class AdminController < ApplicationController
     if params[:field].nil?
       fields = "*"
     else
-      fields = params[:field].map {|k,v| k }.join(",")
+      fields = custom_fields.join(",")
     end
 
     if params[:ip]
@@ -17,19 +17,18 @@ class AdminController < ApplicationController
     else
       @analytics = Analytics.all
     end
-    render "layouts/admin/_analytics"
   end
 
   def get_all_users
     @users = User.all
-    render :partial => "layouts/admin/get_all_users"
+    render layout: false
   end
 
   def get_user
     @user = User.find_by_id(params[:admin_id].to_s)
     arr = ["true", "false"]
     @admin_select = @user.admin ? arr : arr.reverse
-    render :partial => "layouts/admin/get_user"
+    render layout: false
   end
 
   def update_user
@@ -60,6 +59,11 @@ class AdminController < ApplicationController
   end
 
   private
+
+  def custom_fields
+    params.require(:field).keys
+  end
+  helper_method :custom_fields
 
   def admin_param
     params[:admin_id] != '1'

@@ -11,7 +11,7 @@ If you are looking for support or troubleshooting assistance, please visit our [
 To begin, install the Ruby Version Manager (RVM):
 
 ```bash
-$ curl -L https://get.rvm.io | bash -s stable --autolibs=3 --ruby=2.3.5
+$ curl -L https://get.rvm.io | bash -s stable --autolibs=3 --ruby=2.4.2
 ```
 
 After installing the package, clone this repo:
@@ -51,25 +51,6 @@ Start the Thin web server:
 ```bash
 $ rails server
 ```
-
-Open your favorite browser, navigate to `http://localhost:3000` and start hacking!
-
-## Vagrant Install
-
-To run Railsgoat with Vagrant you must first have [Vagrant](https://www.vagrantup.com/) and [Virtualbox](https://www.virtualbox.org/) installed. Once those dependencies are installed cd into the Railsgoat directory where you've cloned the code and run.
-
-```
-#~/code/railsgoat
-$ vagrant up
-...
-    railsgoat:   Port: 3000:3000
-    railsgoat:
-    railsgoat: Container created: 3084633a81675346
-==> railsgoat: Starting container...
-==> railsgoat: Provisioners will not be run since container doesn't support SSH.
-$
-```
-Once you see the preceeding message Railsgoat is running on your localhost on port 3000.
 
 Open your favorite browser, navigate to `http://localhost:3000` and start hacking!
 

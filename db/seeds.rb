@@ -4,49 +4,58 @@
 
 users = [
      {
-       :email => "admin@metacorp.com", 
-       :admin => true, 
-       :password => "admin1234", 
-       :password_confirmation => "admin1234", 
-       :first_name => "Admin", 
-       :last_name => "", 
-       :user_id =>1 
+       :email => "admin@metacorp.com",
+       :admin => true,
+       :password => "admin1234",
+       :password_confirmation => "admin1234",
+       :first_name => "Admin",
+       :last_name => "",
+       :user_id =>1
       },
      {
-       :email => "jack@metacorp.com", 
-       :admin => false, 
-       :password => "yankeessuck", 
-       :password_confirmation => "yankeessuck", 
-       :first_name => "Jack", 
-       :last_name => "Mannino", 
+       :email => "jmmastey@metacorp.com",
+       :admin => false,
+       :password => "railsgoat!",
+       :password_confirmation => "railsgoat!",
+       :first_name => "Joseph",
+       :last_name => "Mastey",
        :user_id => 2
      },
      {
-       :email => "jim@metacorp.com", 
-       :admin => false, 
-       :password => "alohaowasp", 
-       :password_confirmation => "alohaowasp", 
-       :first_name => "Jim", 
-       :last_name => "Manico", 
-       :user_id =>3 
+       :email => "jim@metacorp.com",
+       :admin => false,
+       :password => "alohaowasp",
+       :password_confirmation => "alohaowasp",
+       :first_name => "Jim",
+       :last_name => "Manico",
+       :user_id =>3
      },
      {
-       :email => "mike@metacorp.com", 
-       :admin => false, 
-       :password => "motocross1445", 
-       :password_confirmation => "motocross1445", 
-       :first_name => "Mike", 
-       :last_name => "McCabe", 
-       :user_id =>4 
+       :email => "mike@metacorp.com",
+       :admin => false,
+       :password => "motocross1445",
+       :password_confirmation => "motocross1445",
+       :first_name => "Mike",
+       :last_name => "McCabe",
+       :user_id =>4
       },
      {
-       :email => "ken@metacorp.com", 
-       :admin => false, 
-       :password => "citrusblend", 
-       :password_confirmation => "citrusblend", 
-       :first_name => "Ken", 
-       :last_name => "Johnson", 
-       :user_id =>5 
+       :email => "ken@metacorp.com",
+       :admin => false,
+       :password => "citrusblend",
+       :password_confirmation => "citrusblend",
+       :first_name => "Ken",
+       :last_name => "Johnson",
+       :user_id =>5
+     },
+     {
+       :email => "admin2@metacorp.com",
+       :admin => false,
+       :password => "adminadmin",
+       :password_confirmation => "adminadmin",
+       :first_name => "Admin2",
+       :last_name => "",
+       :user_id =>6
       }
 ]
 
@@ -75,7 +84,7 @@ retirements = [
         :employer_contrib => "6000",
         :total => "12500"
       }
-      
+
 ]
 
 paid_time_off = [
@@ -107,9 +116,9 @@ paid_time_off = [
         :pto_taken => 10,
         :pto_earned => 30
       }
-  
+
   ]
-  
+
   schedule = [
         {
           :user_id => 2,
@@ -117,8 +126,8 @@ paid_time_off = [
           :date_end => Date.new(2014, 8, 2),
           :event_type => "pto",
           :event_desc => "vacation to france",
-          :event_name => "My 2014 Vacation"        
-          
+          :event_name => "My 2014 Vacation"
+
         },
         {
           :user_id => 3,
@@ -127,7 +136,7 @@ paid_time_off = [
           :event_type => "pto",
           :event_desc => "Going Home to see folks",
           :event_name => "Visit Parents"
-          
+
         },
         {
           :user_id => 4,
@@ -136,7 +145,7 @@ paid_time_off = [
           :event_type => "pto",
           :event_desc => "Taking kids to Grand Canyon",
           :event_name => "AZ Trip"
-        
+
         },
         {
           :user_id => 5,
@@ -148,7 +157,7 @@ paid_time_off = [
         }
 
     ]
-    
+
   work_info = [
     {
       :user_id => 2,
@@ -156,7 +165,7 @@ paid_time_off = [
       :bonuses => "$10,000",
       :years_worked => 2,
       :SSN => "555-55-5555",
-      :DoB => "01-01-1980"         
+      :DoB => "01-01-1980"
     },
     {
       :user_id => 3,
@@ -164,7 +173,7 @@ paid_time_off = [
       :bonuses => "$10,000",
       :years_worked => 1,
       :SSN => "333-33-3333",
-      :DoB => "01-01-1979"         
+      :DoB => "01-01-1979"
     },
     {
       :user_id => 4,
@@ -172,7 +181,7 @@ paid_time_off = [
       :bonuses => "$12,000",
       :years_worked => 3,
       :SSN => "444-44-4444",
-      :DoB => "01-01-1981"         
+      :DoB => "01-01-1981"
     },
     {
       :user_id => 5,
@@ -180,57 +189,57 @@ paid_time_off = [
       :bonuses => "7,000",
       :years_worked => 1,
       :SSN => "222-22-2222",
-      :DoB => "01-01-1982"         
-    }   
+      :DoB => "01-01-1982"
+    }
   ]
-  
+
   performance = [
     {
       :user_id => 2,
       :reviewer => 1,
-      :comments => "Great job! You are my hero", 
+      :comments => "Great job! You are my hero",
       :date_submitted => Date.new(2012, 01, 01),
       :score => 5
     },
     {
     :user_id => 2,
     :reviewer => 1,
-    :comments => "Once again, you've done a great job this year. We greatly appreciate your hard work.", 
+    :comments => "Once again, you've done a great job this year. We greatly appreciate your hard work.",
     :date_submitted => Date.new(2013, 01, 01),
     :score => 5
     },
     {
       :user_id => 3,
       :reviewer => 1,
-      :comments => "Great worker, great attitude for this newcomer!", 
+      :comments => "Great worker, great attitude for this newcomer!",
       :date_submitted => Date.new(2013, 01, 01),
       :score => 5
     },
     {
       :user_id => 4,
       :reviewer => 1,
-      :comments => "Wow, right out of the gate we've been very impressed but unfortunately, our system doesn't allow us to give you a full 5.0 because other ppl have gotten 5.0 ratings.", 
+      :comments => "Wow, right out of the gate we've been very impressed but unfortunately, our system doesn't allow us to give you a full 5.0 because other ppl have gotten 5.0 ratings.",
       :date_submitted => Date.new(2011, 01, 01),
       :score => 4
     },
     {
       :user_id => 4,
       :reviewer => 1,
-      :comments => "We highly recommend promotion for this employee! Consistent performer with proven leadership qualities.", 
+      :comments => "We highly recommend promotion for this employee! Consistent performer with proven leadership qualities.",
       :date_submitted => Date.new(2012, 01, 01),
       :score => 5
     },
     {
       :user_id => 4,
       :reviewer => 1,
-      :comments => "Right out of the gate, Mike has made incredible moves as a newly appointed leader. His only improvement would be more cowbell. Not enough of it.", 
+      :comments => "Right out of the gate, Mike has made incredible moves as a newly appointed leader. His only improvement would be more cowbell. Not enough of it.",
       :date_submitted => Date.new(2013, 01, 01),
       :score => 4
     },
     {
        :user_id => 5,
        :reviewer => 1,
-       :comments => "Ehh, you are okay, we will let you stay..... barely", 
+       :comments => "Ehh, you are okay, we will let you stay..... barely",
        :date_submitted => Date.new(2013, 01, 01),
        :score => 2
      }
@@ -240,81 +249,68 @@ paid_time_off = [
     {
       :receiver_id => 2,
       :creator_id => 5,
-      :message => 'Your benefits have been updated.',
+      :message => "Your benefits have been updated.",
       :read => false
     },
     {
       :receiver_id => 3,
       :creator_id => 4,
-      :message => 'Please update your profile.',
+      :message => "Please update your profile.",
       :read => false
     },
     {
       :receiver_id => 4,
       :creator_id => 3,
-      :message => 'Welcome to Railsgoat.',
+      :message => "Welcome to Railsgoat.",
       :read => false
     },
     {
       :receiver_id => 5,
       :creator_id => 2,
-      :message => 'Hello friend.',
+      :message => "Hello friend.",
       :read => false
     }
   ]
 
 
 users.each do |user_info|
-  user = User.new(user_info.reject {|k| k == :user_id })
+  user = User.new(user_info.reject { |k| k == :user_id })
   user.user_id = user_info[:user_id]
-  user.save
+  user.save!
 end
 
 retirements.each do |r|
- ret = Retirement.new(r.reject {|k| k == :user_id})
+ ret = Retirement.new(r.reject { |k| k == :user_id})
  ret.user_id = r[:user_id]
- ret.save
-end  
+ ret.save!
+end
 
 paid_time_off.each do |pto|
-  ptoff = PaidTimeOff.new(pto.reject {|k| k == :user_id})
+  ptoff = PaidTimeOff.new(pto.reject { |k| k == :user_id})
   ptoff.user_id = pto[:user_id]
-  ptoff.save
-  
+  ptoff.save!
 end
 
 schedule.each do |event|
-  sched = Schedule.new(event.reject {|k| k == :user_id})
+  sched = Schedule.new(event.reject { |k| k == :user_id})
   sched.user_id = event[:user_id]
-  sched.save
+  sched.save!
 end
 
 performance.each do |perf|
-  p = Performance.new(perf.reject {|k| k == :user_id})
+  p = Performance.new(perf.reject { |k| k == :user_id})
   p.user_id = perf[:user_id]
-  p.save
+  p.save!
 end
 
 messages.each do |message|
-  m = Message.new(message.reject {|k| k == :creator_id})
+  m = Message.new(message.reject { |k| k == :creator_id})
   m.creator_id = message[:creator_id]
-  m.save
+  m.save!
 end
 
 work_info.each do |wi|
-  info = WorkInfo.new(wi.reject {|k| k == :user_id } )
+  info = WorkInfo.new(wi.reject { |k| k == :user_id })
   info.user_id = wi[:user_id]
-  info.save
+  info.save!
 end
-
-
-=begin
-work_info.each do |wi|
-  list = [:user_id, :SSN]
-  info = WorkInfo.new(wi.reject {|k| list.include?(k)})
-  info.user_id = wi[:user_id]
-  info.build_key_management({:user_id => wi[:user_id], :iv => SecureRandom.hex(32) })
-  info.SSN = wi[:SSN]
-  info.save
-end
-=end
