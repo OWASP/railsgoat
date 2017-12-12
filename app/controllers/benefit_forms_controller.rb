@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class BenefitFormsController < ApplicationController
 
   def index
@@ -8,7 +9,7 @@ class BenefitFormsController < ApplicationController
    begin
      path = params[:name]
      file = params[:type].constantize.new(path)
-     send_file file, :disposition => 'attachment'
+     send_file file, disposition: "attachment"
    rescue
      redirect_to user_benefit_forms_path(user_id: current_user.id)
    end
@@ -24,5 +25,4 @@ class BenefitFormsController < ApplicationController
     end
     redirect_to user_benefit_forms_path(user_id: current_user.id)
   end
-
 end

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
 class AdminController < ApplicationController
-  before_action :administrative, :if => :admin_param, :except => [:get_user]
+  before_action :administrative, if: :admin_param, except: [:get_user]
   skip_before_action :has_info
+  layout false, only: [:get_all_users, :get_user]
 
   def dashboard
   end
@@ -21,14 +23,12 @@ class AdminController < ApplicationController
 
   def get_all_users
     @users = User.all
-    render layout: false
   end
 
   def get_user
     @user = User.find_by_id(params[:admin_id].to_s)
     arr = ["true", "false"]
     @admin_select = @user.admin ? arr : arr.reverse
-    render layout: false
   end
 
   def update_user
@@ -41,7 +41,7 @@ class AdminController < ApplicationController
       message = true
     end
     respond_to do |format|
-      format.json { render :json => { :msg => message ? "success" : "failure"} }
+      format.json { render json: { msg: message ? "success" : "failure"} }
     end
   end
 
@@ -54,7 +54,7 @@ class AdminController < ApplicationController
       message = true
     end
     respond_to do |format|
-      format.json { render :json => { :msg => message ? "success" : "failure"} }
+      format.json { render json: { msg: message ? "success" : "failure"} }
     end
   end
 
@@ -66,6 +66,6 @@ class AdminController < ApplicationController
   helper_method :custom_fields
 
   def admin_param
-    params[:admin_id] != '1'
+    params[:admin_id] != "1"
   end
 end

@@ -1,6 +1,7 @@
-require 'spec_helper'
+# frozen_string_literal: true
+require "spec_helper"
 
-feature 'sql injection' do
+feature "sql injection" do
   before(:each) do
     UserFixture.reset_all_users
 
@@ -14,20 +15,19 @@ feature 'sql injection' do
     login(@normal_user)
 
     visit "/users/#{@normal_user.id}/account_settings"
-
-    within('#account_edit') do
-      fill_in 'Email', :with => 'joe.admin@schmoe.com'
-      fill_in 'user_password', :with => 'H4cketyhack'
-      fill_in 'user_password_confirmation', :with => 'H4cketyhack'
+    within("#account_edit") do
+      fill_in "Email", with: "joe.admin@schmoe.com"
+      fill_in "user_password", with: "H4cketyhack"
+      fill_in "user_password_confirmation", with: "H4cketyhack"
 
       # this is a hidden field, so cannot use fill_in to access it.
-      find(:xpath, "//input[@id='user_id']", :visible => false).set "8' OR admin='t') --"
+      find(:xpath, "//input[@id='user_id']", visible: false).set "8' OR admin='t') --"
     end
-    click_on 'Submit'
+    click_on "Submit"
 
     pending if verifying_fixed?
     @admin_user = User.where("admin='t'").first
-    expect(@admin_user.email).to eq('joe.admin@schmoe.com')
+    expect(@admin_user.email).to eq("joe.admin@schmoe.com")
     expect(@admin_user.admin).to eq(true)
   end
 
@@ -37,8 +37,8 @@ feature 'sql injection' do
 
     visit "/admin/1/analytics"
 
-    within('#analytics_search') do
-      fill_in 'ip', :with => '::1'
+    within("#analytics_search") do
+      fill_in "ip", with: "::1"
       check "field_user_agent"
       payload = "(select group_concat(password) from users where admin='t')"
 

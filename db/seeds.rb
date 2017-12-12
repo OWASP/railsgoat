@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed (or created alongside the db with db:setup).
 #
@@ -13,12 +14,12 @@ users = [
   },
 
   {
-    :email => "jmmastey@metacorp.com",
-    :admin => false,
-    :password => "railsgoat!",
-    :password_confirmation => "railsgoat!",
-    :first_name => "Joseph",
-    :last_name => "Mastey",
+    email: "jmmastey@metacorp.com",
+    admin: false,
+    password: "railsgoat!",
+    password_confirmation: "railsgoat!",
+    first_name: "Joseph",
+    last_name: "Mastey",
   },
 
   {
@@ -251,25 +252,25 @@ messages = [
   {
     creator: "ken@metacorp.com",
     receiver: "jack@metacorp.com",
-    message: 'Your benefits have been updated.',
+    message: "Your benefits have been updated.",
     read: false
   },
   {
     creator: "mike@metacorp.com",
     receiver: "jim@metacorp.com",
-    message: 'Please update your profile.',
+    message: "Please update your profile.",
     read: false
   },
   {
     creator: "jim@metacorp.com",
     receiver: "mike@metacorp.com",
-    message: 'Welcome to Railsgoat.',
+    message: "Welcome to Railsgoat.",
     read: false
   },
   {
     creator: "jack@metacorp.com",
     receiver: "ken@metacorp.com",
-    message: 'Hello friend.',
+    message: "Hello friend.",
     read: false
   }
 ]

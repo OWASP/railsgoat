@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class MessagesController < ApplicationController
 
   def index
@@ -7,11 +8,11 @@ class MessagesController < ApplicationController
   end
 
   def show
-    @message = Message.where(:id => params[:id]).first
+    @message = Message.where(id: params[:id]).first
   end
 
   def destroy
-    message = Message.where(:id => params[:id]).first
+    message = Message.where(id: params[:id]).first
 
     if message.destroy
       flash[:success] = "Your message has been deleted."
@@ -25,12 +26,12 @@ class MessagesController < ApplicationController
     if Message.create(message_params)
       respond_to do |format|
         format.html { redirect_to user_messages_path(user_id: current_user.id) }
-        format.json { render :json => {:msg => "success"} }
+        format.json { render json: {msg: "success"} }
       end
     else
       respond_to do |format|
         format.html { redirect_to user_messages_path }
-        format.json { render :json => {:msg => "failure"} }
+        format.json { render json: {msg: "failure"} }
       end
     end
   end

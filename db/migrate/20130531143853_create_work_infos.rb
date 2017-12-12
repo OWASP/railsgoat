@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CreateWorkInfos < ActiveRecord::Migration
   def change
     create_table :work_infos do |t|

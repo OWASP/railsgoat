@@ -1,23 +1,24 @@
-require 'spec_helper'
-require 'tmpdir'
+# frozen_string_literal: true
+require "spec_helper"
+require "tmpdir"
 
-feature 'csrf' do
+feature "csrf" do
   before do
     UserFixture.reset_all_users
     @normal_user = UserFixture.normal_user
   end
 
-  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/R5-A8-CSRF", :js => true do
-    visit '/'
+  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/R5-A8-CSRF", js: true do
+    visit "/"
     # TODO: is there a way to get this without visiting root first?
     base_url = current_url
 
     login @normal_user
 
     Dir.mktmpdir do |dir|
-      hackety_file = File.join(dir, 'form.on.bad.guy.site.html')
+      hackety_file = File.join(dir, "form.on.bad.guy.site.html")
       post_url = "#{base_url}schedule.json"
-      File.open(hackety_file, 'w') do |f|
+      File.open(hackety_file, "w") do |f|
         f.print <<-HTML
         <html>
           <body>
@@ -34,12 +35,12 @@ feature 'csrf' do
       end
 
       page.driver.visit "file://#{hackety_file}"
-      within('#submit_me') do
-        click_on 'Submit request'
+      within("#submit_me") do
+        click_on "Submit request"
       end
     end
 
     pending if verifying_fixed?
-    expect(@normal_user.reload.paid_time_off.schedule.last.event_name).to eq('Bad Guy')
+    expect(@normal_user.reload.paid_time_off.schedule.last.event_name).to eq("Bad Guy")
   end
 end

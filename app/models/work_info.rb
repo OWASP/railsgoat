@@ -1,11 +1,12 @@
+# frozen_string_literal: true
 class WorkInfo < ApplicationRecord
   belongs_to :user
-  has_one :key_management, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
+  has_one :key_management, foreign_key: :user_id, primary_key: :user_id, dependent: :destroy
   #before_save :encrypt_ssn
 
   # We should probably use this
   def last_four
-    "***-**-" << self.decrypt_ssn[-4,4]
+    "***-**-" << self.decrypt_ssn[-4, 4]
   end
 
   def encrypt_ssn
@@ -36,6 +37,6 @@ class WorkInfo < ApplicationRecord
   end
 
   def cipher_type
-    'aes-256-cbc'
+    "aes-256-cbc"
   end
 end

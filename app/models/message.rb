@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Message < ApplicationRecord
   belongs_to :user
   validates_presence_of :creator_id, :receiver_id, :message
@@ -6,7 +7,7 @@ class Message < ApplicationRecord
     if creator = User.where(id: self.creator_id).first
       creator.full_name
     else
-      "<b>Name unavailable</b>".html_safe
+      "Name unavailable"
     end
   end
 end

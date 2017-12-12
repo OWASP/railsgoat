@@ -1,11 +1,12 @@
-require 'encryption'
+# frozen_string_literal: true
+require "encryption"
 
 class User < ApplicationRecord
-  validates :password, :presence => true,
-                       :confirmation => true,
-                       :length => {:within => 6..40},
-                       :on => :create,
-                       :if => :password
+  validates :password, presence: true,
+                       confirmation: true,
+                       length: {within: 6..40},
+                       on: :create,
+                       if: :password
 
   validates_presence_of :email
   validates_uniqueness_of :email
@@ -23,12 +24,12 @@ class User < ApplicationRecord
   before_create :build_benefits_data
 
   def build_benefits_data
-    build_retirement(POPULATE_RETIREMENTS.shuffle.first)
-    build_paid_time_off(POPULATE_PAID_TIME_OFF.shuffle.first).schedule.build(POPULATE_SCHEDULE.shuffle.first)
-    build_work_info(POPULATE_WORK_INFO.shuffle.first)
+    build_retirement(POPULATE_RETIREMENTS.sample)
+    build_paid_time_off(POPULATE_PAID_TIME_OFF.sample).schedule.build(POPULATE_SCHEDULE.sample)
+    build_work_info(POPULATE_WORK_INFO.sample)
     # Uncomment below line to use encrypted SSN(s)
     #work_info.build_key_management(:iv => SecureRandom.hex(32))
-    performance.build(POPULATE_PERFORMANCE.shuffle.first)
+    performance.build(POPULATE_PERFORMANCE.sample)
   end
 
   def full_name
@@ -56,9 +57,7 @@ class User < ApplicationRecord
   end
 
   def generate_token(column)
-    begin
-      self[column] = Encryption.encrypt_sensitive_value(self.id)
-    end while User.exists?(column => self[column])
-    self.save!
+    self[column] = Encryption.encrypt_sensitive_value(self.id)
+    generate_token(column) if User.exists?(column => self[column])
   end
 end
