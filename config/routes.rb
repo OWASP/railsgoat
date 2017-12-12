@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Railsgoat::Application.routes.draw do
 
   get "login" => "sessions#new"
@@ -78,14 +79,14 @@ Railsgoat::Application.routes.draw do
     end
   end
 
-  namespace :api, defaults: {format: 'json'} do
+  namespace :api, defaults: {format: "json"} do
     namespace :v1 do
         resources :users
         resources :mobile
     end
-   end
+  end
 
 
-  root :to => "sessions#new"
+  root to: "sessions#new"
 
 end

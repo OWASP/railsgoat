@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class PerformanceController < ApplicationController
 
   def index

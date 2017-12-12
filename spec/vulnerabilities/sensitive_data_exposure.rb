@@ -1,10 +1,11 @@
-require 'spec_helper'
+# frozen_string_literal: true
+require "spec_helper"
 
-feature 'sensitive data exposure' do
+feature "sensitive data exposure" do
   let(:normal_user) { UserFixture.normal_user }
   let(:user_ssn) { '999-99-9999' }
 
-  before(:each) do
+  before do
     UserFixture.reset_all_users
     normal_user.work_info.update_attribute(:SSN, user_ssn)
 

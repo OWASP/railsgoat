@@ -1,10 +1,11 @@
-require 'spec_helper'
+# frozen_string_literal: true
+require "spec_helper"
 
-feature 'sql injection' do
+feature "sql injection" do
   let(:normal_user) { UserFixture.normal_user }
   let(:admin_user) { User.where(admin: true).first }
 
-  before(:each) do
+  before do
     UserFixture.reset_all_users
     pending unless verifying_fixed?
   end
@@ -15,18 +16,18 @@ feature 'sql injection' do
     login(normal_user)
 
     visit "/users/#{normal_user.user_id}/account_settings"
-    within('#account_edit') do
-      fill_in 'Email', with: 'joe.admin@schmoe.com'
-      fill_in 'user_password', with: 'H4cketyhack'
-      fill_in 'user_password_confirmation', with: 'H4cketyhack'
+    within("#account_edit") do
+      fill_in "Email", with: "joe.admin@schmoe.com"
+      fill_in "user_password", with: "H4cketyhack"
+      fill_in "user_password_confirmation", with: "H4cketyhack"
 
       # this is a hidden field, so cannot use fill_in to access it.
       find(:xpath, "//input[@id='user_user_id']", visible: false).set "8' OR admin='t') --"
     end
-    click_on 'Submit'
+    click_on "Submit"
 
     admin_user = User.where(admin: true).first
-    expect(admin_user.email).not_to eq('joe.admin@schmoe.com')
+    expect(admin_user.email).not_to eq("joe.admin@schmoe.com")
   end
 
   scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A1-SQL-Injection-Interpolation", js: true do
@@ -35,8 +36,8 @@ feature 'sql injection' do
 
     visit "/admin/1/analytics"
 
-    within('#analytics_search') do
-      fill_in 'ip', :with => '::1'
+    within("#analytics_search") do
+      fill_in "ip", with: "::1"
       check "field_user_agent"
       payload = "(select group_concat(password) from users where admin='t')"
 

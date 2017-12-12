@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class PaidTimeOffController < ApplicationController
 
   def index

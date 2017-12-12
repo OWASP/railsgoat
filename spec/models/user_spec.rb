@@ -1,4 +1,5 @@
-require 'spec_helper.rb'
+# frozen_string_literal: true
+require "spec_helper.rb"
 
 describe User do
   before(:all) do
@@ -15,16 +16,16 @@ describe User do
   end
 
   it "should require a email" do
-    expect(User.new(:email => "")).not_to be_valid
+    expect(User.new(email: "")).not_to be_valid
   end
 
   it "should require valid email" do
-    expect(User.new(:email => "@gmail.com")).not_to be_valid
+    expect(User.new(email: "@gmail.com")).not_to be_valid
   end
 
   it "should require unique email" do
     user = User.all.first
-    expect(User.new(:email => user.email)).not_to be_valid
+    expect(User.new(email: user.email)).not_to be_valid
   end
 
   it "name can be updated" do

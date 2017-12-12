@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Railsgoat::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -31,7 +32,7 @@ Railsgoat::Application.configure do
   config.assets.digest = true
 
   # For Rails 4.0+: Version of your assets, change this if you want to expire all your assets.
-  config.assets.version = '1.0'
+  config.assets.version = "1.0"
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
