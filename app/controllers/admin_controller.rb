@@ -46,9 +46,9 @@ class AdminController < ApplicationController
   end
 
   def delete_user
-    user = User.find_by_user_id(params[:admin_id])
-    if user && !(current_user.user_id == user.user_id)
-      # Call destroy here so that all association records w/ user_id are destroyed as well
+    user = User.find_by(id: params[:admin_id])
+    if user && !(current_user.id == user.id)
+      # Call destroy here so that all association records w/ id are destroyed as well
       # Example user.retirement records would be destroyed
       user.destroy
       message = true
