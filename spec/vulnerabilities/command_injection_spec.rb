@@ -14,7 +14,7 @@ feature "command injection" do
     legit_file = File.join(Rails.root, "public", "data", "legit.txt")
     File.open(legit_file, "w") { |f| f.puts "totes legit" }
 
-    visit "/users/#{@normal_user.user_id}/benefit_forms"
+    visit "/users/#{@normal_user.id}/benefit_forms"
     Dir.mktmpdir do |dir|
       hackety_file = File.join(dir, "test; cd public && cd data && rm -f * ;")
       File.open(hackety_file, "w") { |f| f.print "mwahaha" }

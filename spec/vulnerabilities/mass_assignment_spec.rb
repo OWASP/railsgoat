@@ -12,11 +12,11 @@ feature "mass assignment" do
 
     login(@normal_user)
 
-    params = {user: {admin: "t",
-                        user_id: @normal_user.user_id,
+    params = { user:  { admin: "t",
+                        id: @normal_user.id,
                         password: @normal_user.clear_password,
                         password_confirmation: @normal_user.clear_password}}
-    page.driver.put "/users/#{@normal_user.user_id}.json", params
+    page.driver.put "/users/#{@normal_user.id}.json", params
 
     pending if verifying_fixed?
     expect(@normal_user.reload.admin).to be_truthy

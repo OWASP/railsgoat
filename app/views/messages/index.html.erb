@@ -111,7 +111,7 @@ $("#submit_button").click(function(event) {
     var valuesToSubmit = $("#send_message").serialize();
     event.preventDefault();
     $.ajax({
-      url: <%= "/users/#{current_user.user_id}/messages.json".inspect.html_safe %>,
+      url: <%= "/users/#{current_user.id}/messages.json".inspect.html_safe %>,
     data: valuesToSubmit,
     type: "POST",
     success: function(response) {
