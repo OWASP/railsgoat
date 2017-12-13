@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       message = true if user.save!
       respond_to do |format|
         format.html { redirect_to user_account_settings_path(user_id: current_user.id) }
-        format.json { render :json => {:msg => message ? "success" : "false "} }
+        format.json { render json: {msg: message ? "success" : "false "} }
       end
     else
       flash[:error] = "Could not update user!"

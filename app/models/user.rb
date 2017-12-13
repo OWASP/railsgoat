@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   validates_presence_of :email
   validates_uniqueness_of :email
-  validates_format_of :email, :with => /.+@.+\..+/i
+  validates_format_of :email, with: /.+@.+\..+/i
 
   has_one :retirement, dependent: :destroy
   has_one :paid_time_off, dependent: :destroy
@@ -57,9 +57,10 @@ class User < ApplicationRecord
   end
 
   def generate_token(column)
-    begin
+    loop do
       self[column] = Encryption.encrypt_sensitive_value(self.id)
-    end while User.exists?(column => self[column])
+      break unless User.exists?(column => self[column])
+    end
 
     self.save!
   end

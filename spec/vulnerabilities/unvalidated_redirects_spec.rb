@@ -7,12 +7,12 @@ feature "unvalidated redirect" do
     @normal_user = UserFixture.normal_user
   end
 
-  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A10-Unvalidated-Redirects-and-Forwards-(redirect_to)", :js => true do
-    visit '/?url=http://example.com/do/evil/things'
+  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A10-Unvalidated-Redirects-and-Forwards-(redirect_to)", js: true do
+    visit "/?url=http://example.com/do/evil/things"
 
-    within('.signup') do
-      fill_in 'email', with: @normal_user.email
-      fill_in 'password', with: @normal_user.clear_password
+    within(".signup") do
+      fill_in "email", with: @normal_user.email
+      fill_in "password", with: @normal_user.clear_password
     end
     within(".actions") do
       click_on "Login"
