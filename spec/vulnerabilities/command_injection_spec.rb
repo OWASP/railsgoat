@@ -22,11 +22,11 @@ feature "command injection" do
       File.open(hackety_file, "w") { |f| f.print "mwahaha" }
       within(".new_benefits") do
         attach_file "benefits_upload", hackety_file
-        find(:xpath, "//input[@id='benefits_backup']", visible: false).set 'true'
+        find(:xpath, "//input[@id='benefits_backup']", visible: false).set "true"
       end
       click_on "Start Upload"
     end
 
-    expect(File.exists?(legit_file)).to be_truthy
+    expect(File.exist?(legit_file)).to be_truthy
   end
 end
