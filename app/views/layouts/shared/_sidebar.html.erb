@@ -32,7 +32,7 @@
             </li>
     	<% end %>
         <li id="benefit_forms">
-    <%= link_to user_benefit_forms_path(:user_id => current_user.user_id) do %>
+    <%= link_to user_benefit_forms_path(user_id: current_user.id) do %>
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe05c;"></span>
             </div>
@@ -40,7 +40,7 @@
           <% end %>
         </li>
         <li id="retirement">
-           <%= link_to user_retirement_index_path(:user_id => current_user.user_id) do %>
+           <%= link_to user_retirement_index_path(user_id: current_user.id) do %>
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe096;"></span>
             </div>
@@ -48,7 +48,7 @@
           <% end %>
         </li>
         <li id="pto">
-          <%= link_to user_paid_time_off_index_path(:user_id => current_user.user_id) do %>
+          <%= link_to user_paid_time_off_index_path(user_id: current_user.id) do %>
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe0d2;"></span>
             </div>
@@ -56,7 +56,7 @@
          <% end %>
         </li>
         <li id="employee_info">
-           <%= link_to user_work_info_index_path(:user_id => current_user.user_id) do %>
+           <%= link_to user_work_info_index_path(user_id: current_user.id) do %>
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe0a9;"></span>
             </div>
@@ -64,7 +64,7 @@
           <% end %>
         </li>
         <li id="performance">
-          <%= link_to user_performance_index_path(:user_id => current_user.user_id) do %>
+          <%= link_to user_performance_index_path(user_id: current_user.id) do %>
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe14a;"></span>
             </div>
@@ -72,7 +72,7 @@
           <% end %>
         </li>
         <li id="messages">
-          <%= link_to user_messages_path(:user_id => current_user.user_id) do %>
+          <%= link_to user_messages_path(user_id: current_user.id) do %>
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe040;"></span>
             </div>
@@ -80,7 +80,7 @@
           <% end %>
         </li>
     <li id="pay">
-      <%= link_to user_pay_index_path(:user_id => current_user.user_id) do %>
+      <%= link_to user_pay_index_path(user_id: current_user.id) do %>
             <div class="icon">
               <span class="fs1" aria-hidden="true" data-icon="&#xe038;"></span>
             </div>

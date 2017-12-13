@@ -16,7 +16,7 @@ class MessagesController < ApplicationController
 
     if message.destroy
       flash[:success] = "Your message has been deleted."
-      redirect_to user_messages_path(user_id: current_user.user_id)
+      redirect_to user_messages_path(user_id: current_user.id)
     else
       flash[:error] = "Could not delete message."
     end
@@ -25,7 +25,7 @@ class MessagesController < ApplicationController
   def create
     if Message.create(message_params)
       respond_to do |format|
-        format.html { redirect_to user_messages_path(user_id: current_user.user_id) }
+        format.html { redirect_to user_messages_path(user_id: current_user.id) }
         format.json { render json: {msg: "success"} }
       end
     else
