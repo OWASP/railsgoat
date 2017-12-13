@@ -11,8 +11,8 @@ feature "insecure direct object reference" do
     login(@normal_user)
 
     visit "/users/#{@normal_user.id}/benefit_forms"
-    download_url = first('.widget-body a')[:href]
-    visit download_url.sub(/name=(.*?)&/, 'name=config/database.yml&')
+    download_url = first(".widget-body a")[:href]
+    visit download_url.sub(/name=(.*?)&/, "name=config/database.yml&")
 
     pending if verifying_fixed?
 
@@ -29,6 +29,6 @@ feature "insecure direct object reference" do
     visit "/users/#{another_user.id}/work_info"
 
     pending if verifying_fixed?
-    expect(first('td').text).to eq(another_user.full_name)
+    expect(first("td").text).to eq(another_user.full_name)
   end
 end

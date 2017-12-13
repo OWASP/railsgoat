@@ -11,8 +11,8 @@ feature "xss" do
     login @normal_user
 
     visit "/users/#{@normal_user.id}/account_settings"
-    within('#account_edit') do
-      fill_in 'First name', :with => "<script>$(function() { $('div input.btn').val('RailsGoat h4x0r3d') } )</script>"
+    within("#account_edit") do
+      fill_in "First name", with: "<script>$(function() { $('div input.btn').val('RailsGoat h4x0r3d') } )</script>"
 
       # password gets screwed up if you don't re-submit - need to fix
       fill_in "user_password", with: @normal_user.clear_password
