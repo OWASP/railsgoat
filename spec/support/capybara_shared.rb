@@ -26,7 +26,7 @@ def verifying_fixed?
 
     **NOTE: The RSpec pending feature is used to toggle the outcome of these specs
     between Training mode and RailsGoat Maintainer mode. When the vulnerabilities
-    are removed, the specs will not "pass," but rather go into a "pending" state.
+    are removed, the specs will pass instead. Try to get a fully passing suite.
     ******************************************************************************
 
     NOTICE

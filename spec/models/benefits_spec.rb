@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require "spec_helper.rb"
 
-describe User do
+describe Benefits do
   before(:all) do
     UserFixture.reset_all_users
     DatabaseCleaner.strategy = :transaction
