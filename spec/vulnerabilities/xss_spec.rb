@@ -13,7 +13,7 @@ feature "xss" do
   scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A3-Cross-Site-Scripting", js: true do
     login(normal_user)
 
-    visit "/users/#{normal_user.user_id}/account_settings"
+    visit "/users/#{normal_user.id}/account_settings"
     within("#account_edit") do
       fill_in "First name", with: "<script>$(function() { $('div input.btn').val('RailsGoat h4x0r3d') } )</script>"
 
@@ -25,7 +25,7 @@ feature "xss" do
 
     sleep(1)
 
-    visit "/users/#{normal_user.user_id}/account_settings"
+    visit "/users/#{normal_user.id}/account_settings"
 
 
     expect(find("#submit_button").value).not_to include("RailsGoat h4x0r3d")
