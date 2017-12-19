@@ -15,7 +15,7 @@ feature "sql injection" do
 
     login(normal_user)
 
-    visit "/users/#{normal_user.user_id}/account_settings"
+    visit "/users/#{normal_user.id}/account_settings"
     within("#account_edit") do
       fill_in "Email", with: "joe.admin@schmoe.com"
       fill_in "user_password", with: "hacketyhack"
