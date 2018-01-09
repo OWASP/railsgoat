@@ -7,10 +7,9 @@ feature "insecure direct object reference" do
 
   before do
     UserFixture.reset_all_users
-    pending unless verifying_fixed?
   end
 
-  scenario "attack one" do
+  scenario "attack one", :skip => not(verifying_fixed?) do
     login(normal_user)
 
     visit "/users/#{normal_user.id}/benefit_forms"
@@ -21,7 +20,7 @@ feature "insecure direct object reference" do
     expect(page.response_headers["Content-Disposition"]).not_to include("database.yml")
   end
 
-  scenario "attack two\nTutorial: https://github.com/OWASP/railsgoat/wiki/A4-Insecure-Direct-Object-Reference" do
+  scenario "attack two\nTutorial: https://github.com/OWASP/railsgoat/wiki/A4-Insecure-Direct-Object-Reference", :skip => not(verifying_fixed?) do
     expect(normal_user.id).not_to eq(another_user.id)
 
     visit "/users/#{another_user.id}/work_info"

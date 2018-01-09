@@ -6,11 +6,9 @@ feature "unvalidated redirect" do
 
   before do
     UserFixture.reset_all_users
-
-    pending unless verifying_fixed?
   end
 
-  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A10-Unvalidated-Redirects-and-Forwards-(redirect_to)", js: true do
+  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A10-Unvalidated-Redirects-and-Forwards-(redirect_to)", js: true, :skip => not(verifying_fixed?) do
     visit "/?url=http://example.com/do/evil/things"
     within(".signup") do
       fill_in "email", with: normal_user.email

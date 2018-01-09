@@ -6,10 +6,9 @@ feature "improper password hashing" do
 
   before do
     UserFixture.reset_all_users
-    pending unless verifying_fixed?
   end
 
-  scenario "with just md5\nTutorial: https://github.com/OWASP/railsgoat/wiki/A6-Sensitive-Data-Exposure-Insecure-Password-Storage" do
+  scenario "with just md5\nTutorial: https://github.com/OWASP/railsgoat/wiki/A6-Sensitive-Data-Exposure-Insecure-Password-Storage", :skip => not(verifying_fixed?) do
     new_pass = "testPassw0rd!"
     normal_user.password = new_pass
     normal_user.password_confirmation = new_pass

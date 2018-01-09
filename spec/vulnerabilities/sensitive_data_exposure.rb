@@ -8,13 +8,11 @@ feature "sensitive data exposure" do
   before do
     UserFixture.reset_all_users
     normal_user.work_info.update_attribute(:SSN, user_ssn)
-
-    pending unless verifying_fixed?
   end
 
   # this won't work with javascript_driver, as it'll apply the javascript
   # function to mask this value and the source will be overwritten.
-  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A6-Sensitive-Data-Exposure-Cleartext-Storage-SSNs" do
+  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A6-Sensitive-Data-Exposure-Cleartext-Storage-SSNs", :skip => not(verifying_fixed?) do
     login(normal_user)
 
     visit "/users/#{normal_user.id}/work_info"

@@ -6,11 +6,9 @@ feature "xss" do
 
   before(:each) do
     UserFixture.reset_all_users
-
-    pending unless verifying_fixed?
   end
 
-  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A3-Cross-Site-Scripting", js: true do
+  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A3-Cross-Site-Scripting", js: true, :skip => not(verifying_fixed?) do
     login(normal_user)
 
     visit "/users/#{normal_user.id}/account_settings"

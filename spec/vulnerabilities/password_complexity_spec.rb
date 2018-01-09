@@ -6,10 +6,9 @@ feature "password complexity" do
 
   before do
     UserFixture.reset_all_users
-    pending unless verifying_fixed?
   end
 
-  scenario "one\nTutorial: https://github.com/OWASP/railsgoat/wiki/A2-Lack-of-Password-Complexity" do
+  scenario "one\nTutorial: https://github.com/OWASP/railsgoat/wiki/A2-Lack-of-Password-Complexity", :skip => not(verifying_fixed?) do
     new_user_email = normal_user.email + "two"
 
     visit "/signup"
