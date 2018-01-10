@@ -6,10 +6,9 @@ feature "mass assignment" do
 
   before do
     UserFixture.reset_all_users
-    pending unless verifying_fixed?
   end
 
-  scenario "attack one" do
+  scenario "attack one", :skip => not(verifying_fixed?) do
     expect(normal_user.admin).to be_falsey
     login(normal_user)
 
@@ -23,7 +22,7 @@ feature "mass assignment" do
     expect(normal_user.reload.admin).to be_falsy
   end
 
-  scenario "attack two, Tutorial: https://github.com/OWASP/railsgoat/wiki/R5-Extras-Mass-Assignment-Admin-Role" do
+  scenario "attack two, Tutorial: https://github.com/OWASP/railsgoat/wiki/R5-Extras-Mass-Assignment-Admin-Role", :skip => not(verifying_fixed?) do
     params = { user: {  admin: "t",
                         email: "hackety@h4x0rs.c0m",
                         first_name: "hackety",

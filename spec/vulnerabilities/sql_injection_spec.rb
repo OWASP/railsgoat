@@ -7,10 +7,9 @@ feature "sql injection" do
 
   before do
     UserFixture.reset_all_users
-    pending unless verifying_fixed?
   end
 
-  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/R5-A1-SQL-Injection-Concatentation" do
+  scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/R5-A1-SQL-Injection-Concatentation", :skip => not(verifying_fixed?) do
     expect(admin_user.admin).to be_truthy
 
     login(normal_user)

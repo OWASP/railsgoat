@@ -24,7 +24,7 @@ def verifying_fixed?
 
     These same specs will pass if you set the #{maintainer_env_name} ENV variable.
 
-    **NOTE: The RSpec pending feature is used to toggle the outcome of these specs
+    **NOTE: The RSpec skip feature is used to toggle the outcome of these specs
     between Training mode and RailsGoat Maintainer mode. When the vulnerabilities
     are removed, the specs will pass instead. Try to get a fully passing suite.
     ******************************************************************************
