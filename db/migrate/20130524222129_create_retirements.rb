@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class CreateRetirements < ActiveRecord::Migration
+class CreateRetirements < ActiveRecord::Migration[4.2]
   def change
     create_table :retirements do |t|
       t.string :total
