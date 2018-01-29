@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class CreatePerformances < ActiveRecord::Migration
+class CreatePerformances < ActiveRecord::Migration[4.2]
   def change
     create_table :performances do |t|
       t.integer :user_id

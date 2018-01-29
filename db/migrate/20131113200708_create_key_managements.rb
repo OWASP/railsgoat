@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class CreateKeyManagements < ActiveRecord::Migration
+class CreateKeyManagements < ActiveRecord::Migration[4.2]
   def change
     create_table :key_managements do |t|
       t.string :iv
