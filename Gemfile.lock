@@ -198,7 +198,7 @@ GEM
     pry-rails (0.3.6)
       pry (>= 0.10.4)
     public_suffix (3.0.1)
-    rack (2.0.3)
+    rack (2.0.4)
     rack-livereload (0.3.16)
       rack
     rack-test (0.8.2)
