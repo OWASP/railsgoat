@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class CreateMessages < ActiveRecord::Migration
+class CreateMessages < ActiveRecord::Migration[4.2]
   def change
     create_table :messages do |t|
       t.integer :creator_id

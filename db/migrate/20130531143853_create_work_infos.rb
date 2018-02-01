@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class CreateWorkInfos < ActiveRecord::Migration
+class CreateWorkInfos < ActiveRecord::Migration[4.2]
   def change
     create_table :work_infos do |t|
       t.integer :user_id

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class CreatePays < ActiveRecord::Migration
+class CreatePays < ActiveRecord::Migration[4.2]
   def change
     create_table :pays do |t|
       t.integer :user_id
