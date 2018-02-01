@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class CreateAnalytics < ActiveRecord::Migration
+class CreateAnalytics < ActiveRecord::Migration[4.2]
   def change
     create_table :analytics do |t|
       t.string		:ip_address
