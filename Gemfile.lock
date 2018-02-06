@@ -109,7 +109,7 @@ GEM
     erubi (1.7.0)
     eventmachine (1.2.5)
     execjs (2.7.0)
-    ffi (1.9.18)
+    ffi (1.9.21)
     foreman (0.84.0)
       thor (~> 0.19.1)
     formatador (0.2.5)
