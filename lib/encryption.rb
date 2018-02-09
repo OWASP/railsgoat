@@ -22,7 +22,7 @@ module Encryption
 
   # Should be able to just re-use the same key we already have!
   def self.key
-    raise "Key Missing" if !(KEY)
+    raise "Key Missing. Add one in initializers/key.rb" if !(KEY)
     KEY
   end
 
