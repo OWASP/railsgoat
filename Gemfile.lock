@@ -142,7 +142,7 @@ GEM
       guard (>= 2.0.0)
       guard-compat (~> 1.0)
     http_parser.rb (0.6.0)
-    i18n (0.9.4)
+    i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     jquery-fileupload-rails (0.4.7)
       actionpack (>= 3.1)
