@@ -27,7 +27,7 @@ feature "insecure direct object reference" do
 
     visit "/users/#{another_user.id}/work_info"
 
-    expect(first("td").text).not_to include(another_user.name)
-    expect(first("td").text).to include(normal_user.name)
+    expect(first("td").text).not_to include(another_user.full_name)
+    expect(first("td").text).to include(normal_user.full_name)
   end
 end
