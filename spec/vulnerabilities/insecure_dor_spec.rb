@@ -23,6 +23,7 @@ feature "insecure direct object reference" do
 
   scenario "attack two\nTutorial: https://github.com/OWASP/railsgoat/wiki/A4-Insecure-Direct-Object-Reference" do
     expect(normal_user.id).not_to eq(another_user.id)
+    login(normal_user)
 
     visit "/users/#{another_user.id}/work_info"
 
