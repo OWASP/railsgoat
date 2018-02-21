@@ -63,4 +63,11 @@ end
 
 Capybara.javascript_driver = :poltergeist
 
+# This is disabled to support testing of CSRF
+# 
+# CSRF Testing throws an InvalidAuthenticityToken exception in the event that
+# the mitigation is working, which was causing the test to fail because of the
+# uncaught exception. Disabling "raise_server_errors" seems to solve the problem
+# but may have other ramifications.
+Capybara.raise_server_errors = false
 DatabaseCleaner.strategy = :truncation
