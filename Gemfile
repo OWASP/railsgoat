@@ -4,7 +4,7 @@ source "https://rubygems.org"
 #don't upgrade
 gem "rails", "5.1.5"
 
-ruby "2.4.3"
+ruby "2.5.0"
 
 gem "aruba"
 gem "bcrypt"
