@@ -24,9 +24,6 @@ Please go through the project wiki, documentation and source code first,
 or try to ask your question in our
 [Slack Channel](https://owasp.slack.com/messages/C04THC44W).
 
-If you find a security bug, do not report it through GitHub.
-Please send an e-mail to railsgoat@gmail.com instead.
-
 ## Sending Pull Requests
 
 Before sending a new Pull Request, take a look on existing Pull Requests
