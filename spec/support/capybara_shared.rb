@@ -89,7 +89,7 @@ class WarningSuppressor
   private
 
   def ignore?(message)
-    IGNORE_PATTERNS.any? {|regexp| message =~ regexp }
+    IGNORE_PATTERNS.any? { |regexp| message =~ regexp }
   end
 end
 
