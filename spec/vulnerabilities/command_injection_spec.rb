@@ -14,7 +14,7 @@ feature "command injection" do
     login(normal_user)
 
     legit_file = File.join(Rails.root, "public", "data", "legit.txt")
-    File.open(legit_file, "w") { |f| f.puts "totes legit" }
+    #File.open(legit_file, "w") { |f| f.puts "totes legit" }
 
     visit "/users/#{normal_user.id}/benefit_forms"
     Dir.mktmpdir do |dir|
