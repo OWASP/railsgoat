@@ -15,7 +15,7 @@ class ScheduleController < ApplicationController
       end
 
     respond_to do |format|
-      format.json {render json: {msg: message ? "success" : "failure" }}
+      format.json { render json: {msg: message ? "success" : "failure" } }
     end
   end
 

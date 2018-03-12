@@ -10,7 +10,7 @@ guard "brakeman", run_on_start: true do
 end
 
 guard :shell do
-  watch(%r{^Gemfile|Gemfile.lock$}) { system("bundle-audit")}
+  watch(%r{^Gemfile|Gemfile.lock$}) { system("bundle-audit") }
 end
 
 guard "livereload", host: "railsgoat.dev", port: "35727" do
@@ -23,7 +23,7 @@ guard "livereload", host: "railsgoat.dev", port: "35727" do
 end
 
 
-guard :rspec, cmd: 'bundle exec rspec' do
+guard :rspec, cmd: "bundle exec rspec" do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch("spec/spec_helper.rb")  { "spec" }

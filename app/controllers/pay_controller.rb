@@ -15,7 +15,7 @@ class PayController < ApplicationController
 
     msg = true if pay.save!
     respond_to do |format|
-      format.json {render json: {msg: msg } }
+      format.json { render json: {msg: msg } }
     end
   end
 
@@ -38,7 +38,7 @@ class PayController < ApplicationController
   def decrypted_bank_acct_num
     decrypted = Encryption.decrypt_sensitive_value(params[:value_to_decrypt])
     respond_to do |format|
-      format.json {render json: {account_num: decrypted || "No Data" }}
+      format.json { render json: {account_num: decrypted || "No Data" } }
     end
   end
 end
