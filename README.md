@@ -46,6 +46,11 @@ Initialize the database:
 $ rails db:setup
 ```
 
+In case of any errors:
+```bash
+$ rake db:setup
+```
+
 Start the Thin web server:
 
 ```bash
@@ -90,11 +95,22 @@ RailsGoat now includes a set of failing Capybara RSpecs, each one indicating tha
 ```
 $ rails training
 ```
+In case of any errors:
+
+```
+$ rake training
+```
 
 To run just one spec:
 
 ```
 $ rails training SPEC=spec/vulnerabilities/sql_injection_spec.rb
+```
+
+In case of any errors:
+
+```
+$ rake training SPEC=spec/vulnerabilities/sql_injection_spec.rb
 ```
 
 ## MySQL Environment
