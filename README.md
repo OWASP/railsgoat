@@ -8,13 +8,11 @@ If you are looking for support or troubleshooting assistance, please visit our [
 
 ## Getting Started
 
-To begin, install the Ruby Version Manager (RVM):
+To begin, if you do not have Ruby, Git, Rails, MySQL, and Postgres, we suggest
+using this [site](https://gorails.com/setup) to install the software.
+Pick the appropriate operating system and follow the instructions.
 
-```bash
-$ curl -L https://get.rvm.io | bash -s stable --autolibs=3 --ruby=2.5.0
-```
-
-After installing the package, clone this repo:
+After installing the above software, clone this repo:
 
 ```bash
 $ git clone git@github.com:OWASP/railsgoat.git
