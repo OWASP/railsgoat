@@ -43,6 +43,11 @@ $ gem install bundler
 Initialize the database:
 
 ```bash
+$ rails db:setup
+```
+
+In case of any issues:
+```bash
 $ rake db:setup
 ```
 
