@@ -46,7 +46,7 @@ Initialize the database:
 $ rails db:setup
 ```
 
-In case of any issues:
+In case of any errors:
 ```bash
 $ rake db:setup
 ```
@@ -93,10 +93,21 @@ In this case, remove that server.pid file and try again. Note also that this fil
 RailsGoat now includes a set of failing Capybara RSpecs, each one indicating that a separate vulnerability exists in the application. To run them, you first need to install [PhantomJS](https://github.com/jonleighton/poltergeist#installing-phantomjs) (version 2.1.1 has been tested in Dev and on Travis CI), which is required by the Poltergeist Capybara driver. Upon installation, simply run the following task:
 
 ```
+$ rails training
+```
+In case of any errors:
+
+```
 $ rake training
 ```
 
 To run just one spec:
+
+```
+$ rails training SPEC=spec/vulnerabilities/sql_injection_spec.rb
+```
+
+In case of any errors:
 
 ```
 $ rake training SPEC=spec/vulnerabilities/sql_injection_spec.rb
