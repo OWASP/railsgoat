@@ -60,4 +60,3 @@ end
 group :mysql do
   gem "mysql2"
 end
-gem 'poltergeist'
