@@ -199,7 +199,7 @@ GEM
       pry (>= 0.10.4)
     public_suffix (3.0.2)
     rack (2.0.4)
-    rack-livereload (0.3.16)
+    rack-livereload (0.3.17)
       rack
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
