@@ -82,7 +82,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     contracts (0.16.0)
-    crass (1.0.3)
+    crass (1.0.4)
     cucumber (3.1.0)
       builder (>= 2.1.2)
       cucumber-core (~> 3.1.0)
