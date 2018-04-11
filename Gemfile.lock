@@ -173,7 +173,7 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     multi_test (0.1.2)
-    mysql2 (0.5.0)
+    mysql2 (0.5.1)
     nenv (0.3.0)
     nio4r (2.3.0)
     nokogiri (1.8.2)
@@ -305,7 +305,7 @@ GEM
     tilt (2.0.8)
     travis-lint (2.0.0)
       json
-    turbolinks (5.1.0)
+    turbolinks (5.1.1)
       turbolinks-source (~> 5.1)
     turbolinks-source (5.1.0)
     tzinfo (1.2.5)
