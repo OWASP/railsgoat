@@ -107,7 +107,7 @@ GEM
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
     erubi (1.7.1)
-    eventmachine (1.2.6)
+    eventmachine (1.2.7)
     execjs (2.7.0)
     ffi (1.9.23)
     foreman (0.84.0)
