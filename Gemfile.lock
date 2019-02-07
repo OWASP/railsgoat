@@ -370,7 +370,7 @@ DEPENDENCIES
   ruby-prof
   sass-rails
   simplecov
-  sqlite3
+  sqlite3 (= 1.3.13)
   test-unit
   therubyracer
   travis-lint
