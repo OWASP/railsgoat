@@ -23,7 +23,7 @@ gem "responders" #For Rails 4.2 # LOCKED DOWN
 gem "ruby-prof"
 gem "sass-rails"
 gem "simplecov", require: false, group: :test
-gem "sqlite3"
+gem "sqlite3", "1.3.13" # 2/7/2019: LOCKED DOWN
 gem "therubyracer"
 gem "turbolinks"
 gem "uglifier"
