@@ -184,7 +184,7 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     parallel (1.14.0)
-    parser (2.6.0.0)
+    parser (2.6.2.0)
       ast (~> 2.4.0)
     poltergeist (1.18.1)
       capybara (>= 2.1, < 4)
