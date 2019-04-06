@@ -57,7 +57,6 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
-    brakeman (4.5.0)
     builder (3.2.3)
     bundler-audit (0.6.1)
       bundler (>= 1.2.0, < 3)
@@ -126,9 +125,6 @@ GEM
       pry (>= 0.9.12)
       shellany (~> 0.0)
       thor (>= 0.18.1)
-    guard-brakeman (0.8.3)
-      brakeman (>= 2.1.1)
-      guard (>= 2.0.0)
     guard-compat (1.2.1)
     guard-livereload (2.5.2)
       em-websocket (~> 0.5)
@@ -338,14 +334,12 @@ DEPENDENCIES
   bcrypt
   better_errors
   binding_of_caller
-  brakeman
   bundler-audit
   capybara
   coffee-rails
   database_cleaner
   execjs
   foreman
-  guard-brakeman
   guard-livereload
   guard-rspec
   guard-shell
