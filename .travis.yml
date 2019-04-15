@@ -13,5 +13,4 @@ before_install:
 
 before_script: bundle exec rails db:test:prepare
 cache: bundler
-sudo: false
 env: RAILSGOAT_MAINTAINER=true
