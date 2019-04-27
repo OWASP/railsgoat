@@ -52,7 +52,7 @@ group :development, :test, :mysql do
   gem "database_cleaner"
   gem "launchy"
   gem "poltergeist"
-  gem "rspec-rails"
+  gem "rspec-rails", '4.0.0.beta2' # 4/26/2019: LOCKED DOWN
   gem "test-unit"
 end
 
