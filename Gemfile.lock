@@ -232,7 +232,7 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     ref (2.0.0)
-    regexp_parser (1.5.0)
+    regexp_parser (1.5.1)
     responders (2.4.1)
       actionpack (>= 4.2.0, < 6.0)
       railties (>= 4.2.0, < 6.0)
