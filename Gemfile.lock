@@ -272,20 +272,15 @@ GEM
     ruby-prof (0.18.0)
     ruby-progressbar (1.10.1)
     ruby_dep (1.5.0)
-    sass (3.7.4)
-      sass-listen (~> 4.0.0)
-    sass-listen (4.0.0)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
-    sass-rails (5.0.7)
-      railties (>= 4.0.0, < 6)
-      sass (~> 3.1)
-      sprockets (>= 2.8, < 4.0)
-      sprockets-rails (>= 2.0, < 4.0)
-      tilt (>= 1.1, < 3)
     sassc (2.0.1)
       ffi (~> 1.9)
       rake
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
     shellany (0.0.1)
     simplecov (0.16.1)
       docile (~> 1.1)
@@ -363,7 +358,7 @@ DEPENDENCIES
   rspec-rails (= 4.0.0.beta2)
   rubocop-github
   ruby-prof
-  sass-rails
+  sassc-rails
   simplecov
   sqlite3
   test-unit

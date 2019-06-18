@@ -21,7 +21,7 @@ gem "rails-perftest"
 gem "rake"
 gem "responders" #For Rails 4.2 # LOCKED DOWN
 gem "ruby-prof"
-gem "sass-rails"
+gem "sassc-rails"
 gem "simplecov", require: false, group: :test
 gem "sqlite3"
 gem "therubyracer"
