@@ -1,6 +1,5 @@
 language: ruby
 rvm:
-  - "2.6.4"
   - "2.7.0-preview1"
 
 before_install:
