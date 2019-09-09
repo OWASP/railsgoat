@@ -34,7 +34,7 @@ class AdminController < ApplicationController
   def update_user
     user = User.find_by_id(params[:admin_id])
     if user
-      user.update_attributes(params[:user].reject { |k| k == ("password" || "password_confirmation") })
+      user.update(params[:user].reject { |k| k == ("password" || "password_confirmation") })
       pass = params[:user][:password]
       user.password = pass if !(pass.blank?)
       user.save!

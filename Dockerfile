@@ -1,4 +1,4 @@
-FROM ruby:2.6.2
+FROM ruby:2.7.0-preview1
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
 RUN mkdir /myapp
 WORKDIR /myapp
