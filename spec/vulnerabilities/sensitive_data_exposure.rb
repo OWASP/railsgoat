@@ -7,7 +7,7 @@ feature "sensitive data exposure" do
 
   before do
     UserFixture.reset_all_users
-    normal_user.work_info.update_attribute(:SSN, user_ssn)
+    normal_user.work_info.update(:SSN, user_ssn)
 
     pending unless verifying_fixed?
   end
