@@ -4,7 +4,7 @@ source "https://rubygems.org"
 #don't upgrade
 gem "rails", "5.1.7"
 
-ruby "2.6.2"
+ruby "2.6.4"
 
 gem "aruba"
 gem "bcrypt"
@@ -21,9 +21,9 @@ gem "rails-perftest"
 gem "rake"
 gem "responders" #For Rails 4.2 # LOCKED DOWN
 gem "ruby-prof"
-gem "sass-rails"
+gem "sassc-rails"
 gem "simplecov", require: false, group: :test
-gem "sqlite3", "1.3.13" # 2/7/2019: LOCKED DOWN
+gem "sqlite3"
 gem "therubyracer"
 gem "turbolinks"
 gem "uglifier"
@@ -52,7 +52,7 @@ group :development, :test, :mysql do
   gem "database_cleaner"
   gem "launchy"
   gem "poltergeist"
-  gem "rspec-rails"
+  gem "rspec-rails", '4.0.0.beta2' # 4/26/2019: LOCKED DOWN
   gem "test-unit"
 end
 
