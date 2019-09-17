@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     user = User.where("id = '#{params[:user][:id]}'")[0]
 
     if user
-      user.update_attributes(user_params_without_password)
+      user.update(user_params_without_password)
       if params[:user][:password].present? && (params[:user][:password] == params[:user][:password_confirmation])
         user.password = params[:user][:password]
       end

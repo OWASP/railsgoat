@@ -55,5 +55,7 @@ module Railsgoat
     config.assets.version = "1.0"
 
     I18n.config.enforce_available_locales = false
+
+    config.action_dispatch.return_only_media_type_on_content_type = false
   end
 end
