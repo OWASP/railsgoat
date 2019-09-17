@@ -1,6 +1,6 @@
 # RailsGoat [![Build Status](https://api.travis-ci.org/OWASP/railsgoat.png?branch=master)](https://travis-ci.org/OWASP/railsgoat) [![Code Climate](https://codeclimate.com/github/OWASP/railsgoat.png)](https://codeclimate.com/github/OWASP/railsgoat)
 
-RailsGoat is a vulnerable version of the Ruby on Rails Framework from versions 3 to 5. It includes vulnerabilities from the OWASP Top 10, as well as some "extras" that the initial project contributors felt worthwhile to share. This project is designed to educate both developers, as well as security professionals.
+RailsGoat is a vulnerable version of the Ruby on Rails Framework from versions 3 to 6. It includes vulnerabilities from the OWASP Top 10, as well as some "extras" that the initial project contributors felt worthwhile to share. This project is designed to educate both developers, as well as security professionals.
 
 ## Support
 
@@ -18,7 +18,7 @@ After installing the above software, clone this repo:
 $ git clone git@github.com:OWASP/railsgoat.git
 ```
 
-**NOTE: NOT NECESSARY IF YOU WANT TO WORK WITH RAILS 5.** Otherwise, if you wish to use the Rails 3 or 4 versions, you'll need to switch branches:
+**NOTE: NOT NECESSARY IF YOU WANT TO WORK WITH RAILS 6.** Otherwise, if you wish to use the Rails 3 or 4 versions, you'll need to switch branches:
 
 ```bash
 $ cd railsgoat
@@ -73,7 +73,7 @@ Note: if your container exits with an error, it may be because a server is alrea
 ```
 A server is already running. Check /myapp/tmp/pids/server.pid.
 => Booting Thin
-=> Rails 5.0.1 application starting in development on
+=> Rails 6.0.0 application starting in development on
 http://0.0.0.0:3000
 => Run `rails server -h` for more startup options
 => Ctrl-C to shutdown server

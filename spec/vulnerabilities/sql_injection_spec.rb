@@ -22,7 +22,7 @@ feature "sql injection" do
       fill_in "user_password_confirmation", with: "hacketyhack"
 
       # this is a hidden field, so cannot use fill_in to access it.
-      find(:xpath, "//input[@id='user_id']", visible: false).set "8' OR admin='t') --"
+      find(:xpath, "//input[@id='user_id']", visible: false).set "8' OR 1 == 1) --"
     end
     click_on "Submit"
 
