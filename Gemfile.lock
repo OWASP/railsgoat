@@ -186,7 +186,7 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.12.2)
-    multi_json (1.14.0)
+    multi_json (1.14.1)
     multi_test (0.1.2)
     mysql2 (0.5.2)
     nenv (0.3.0)
@@ -278,7 +278,7 @@ GEM
       rspec-mocks (~> 3.8)
       rspec-support (~> 3.8)
     rspec-support (3.9.0)
-    rubocop (0.75.0)
+    rubocop (0.75.1)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.6)
@@ -392,4 +392,4 @@ RUBY VERSION
    ruby 2.7.0p-1
 
 BUNDLED WITH
-   2.1.0.pre.1
+   2.1.0.pre.2
