@@ -4,7 +4,7 @@ source "https://rubygems.org"
 #don't upgrade
 gem "rails", "6.0.0"
 
-ruby "2.7.0"
+ruby "2.6.5"
 
 gem "aruba"
 gem "bcrypt"
@@ -52,7 +52,7 @@ group :development, :test, :mysql do
   gem "database_cleaner"
   gem "launchy"
   gem "poltergeist"
-  gem "rspec-rails", '4.0.0.beta2' # 4/26/2019: LOCKED DOWN
+  gem "rspec-rails", '4.0.0.beta3' # 4/26/2019: LOCKED DOWN
   gem "test-unit"
 end
 
