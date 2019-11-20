@@ -15,6 +15,6 @@ feature "url access" do
 
     visit "/admin/1/dashboard"
 
-    expect(current_path).to eq("/")
+    expect(current_path).to eq("/dashboard/home")
   end
 end
