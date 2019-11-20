@@ -33,6 +33,6 @@ feature "mass assignment" do
 
     page.driver.post "/users", params
 
-    expect(User.find_by(email: "hackety@h4x0rs.c0m")).to be_nil
+    expect(User.find_by(email: "hackety@h4x0rs.c0m").admin).to be_falsy
   end
 end
