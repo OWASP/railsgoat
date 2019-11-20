@@ -20,6 +20,6 @@ feature "unvalidated redirect" do
       click_on "Login"
     end
 
-    expect(current_url).to eq("/dashboard/home")
+    expect(current_path).to eq("/dashboard/home")
   end
 end
