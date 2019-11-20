@@ -18,7 +18,7 @@ feature "insecure direct object reference" do
     visit download_url.sub(/name=(.*?)&/, "name=config/database.yml&")
 
     expect(page.status_code).not_to eq(200)
-    expect(page.response_headers["Content-Disposition"]).not_to include("database.yml")
+    expect(page.response_headers["Content-Disposition"].to_a).not_to include("database.yml")
   end
 
   scenario "attack two\nTutorial: https://github.com/OWASP/railsgoat/wiki/A4-Insecure-Direct-Object-Reference" do
