@@ -56,6 +56,6 @@ group :development, :test, :mysql do
   gem "test-unit"
 end
 
-group :mysql do
-  gem "mysql2"
-end
+# group :mysql do
+#   gem "mysql2"
+# end
