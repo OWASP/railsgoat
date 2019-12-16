@@ -287,7 +287,7 @@ GEM
       unicode-display_width (>= 1.4.0, < 1.7)
     rubocop-github (0.14.0)
       rubocop (~> 0.59)
-    ruby-prof (1.0.0)
+    ruby-prof (1.1.0)
     ruby-progressbar (1.10.1)
     sassc (2.2.1)
       ffi (~> 1.9)
@@ -389,4 +389,4 @@ RUBY VERSION
    ruby 2.6.5p114
 
 BUNDLED WITH
-   1.17.3
+   2.1.0
