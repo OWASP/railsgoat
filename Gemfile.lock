@@ -329,7 +329,7 @@ GEM
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.6.0)
-    unicorn (5.5.1)
+    unicorn (5.5.2)
       kgio (~> 2.6)
       raindrops (~> 0.7)
     websocket-driver (0.7.1)
@@ -389,4 +389,4 @@ RUBY VERSION
    ruby 2.6.5p114
 
 BUNDLED WITH
-   2.1.0
+   2.1.2
