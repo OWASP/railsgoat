@@ -126,7 +126,7 @@ GEM
     eventmachine (1.2.7)
     execjs (2.7.0)
     ffi (1.11.3)
-    foreman (0.86.0)
+    foreman (0.87.0)
     formatador (0.2.5)
     gherkin (5.1.0)
     globalid (0.4.2)
