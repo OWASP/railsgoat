@@ -176,7 +176,7 @@ GEM
     loofah (2.4.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    lumberjack (1.1.0)
+    lumberjack (1.1.1)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (0.3.3)
@@ -311,7 +311,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
-    test-unit (3.3.4)
+    test-unit (3.3.5)
       power_assert
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
