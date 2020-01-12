@@ -185,7 +185,7 @@ GEM
     mimemagic (0.3.3)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
-    minitest (5.13.0)
+    minitest (5.14.0)
     multi_json (1.14.1)
     multi_test (0.1.2)
     mysql2 (0.5.3)
