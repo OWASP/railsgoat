@@ -125,7 +125,7 @@ GEM
     erubi (1.9.0)
     eventmachine (1.2.7)
     execjs (2.7.0)
-    ffi (1.12.1)
+    ffi (1.12.2)
     foreman (0.87.0)
     formatador (0.2.5)
     gherkin (5.1.0)
