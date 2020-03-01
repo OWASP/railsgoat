@@ -103,7 +103,7 @@ You can also set the password for the database admin by appending the previous c
 
 To deploy Railsgoat alongside the postgres database, you will need to run:
 ```bash
-$ oc new-app https://github.com/relotnek/railsgoat.git --name=railsgoat -e POSTGRESQL_USER=username -e POSTGRESQL_PASSWORD=password -e POSTGRESQL_DATABASE=db_name -e DATABASE_SERVICE_NAME=postgresql -e RAILS_ENV=openshift
+$ oc new-app https://github.com/OWASP/railsgoat.git --name=railsgoat -e POSTGRESQL_USER=username -e POSTGRESQL_PASSWORD=password -e POSTGRESQL_DATABASE=db_name -e DATABASE_SERVICE_NAME=postgresql -e RAILS_ENV=openshift
 ```
 
 If you changed the database environment variables, make sure they match up.
