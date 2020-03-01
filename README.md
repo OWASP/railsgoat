@@ -121,7 +121,7 @@ Enter the deployments of your new Railsgoat project and locate the railsgoat dep
               protocol: TCP
 ```
 
-From the openshift console run the following where `<RAILSGOAT POD ID>` is the active pod:
+From the openshift console run the following where `<RAILSGOAT POD ID>` is the active pod (for example, `railsgoat-2-dkalf`):
 
 ```bash
 $ oc rsh <RAILSGOAT POD ID>
@@ -133,8 +133,20 @@ From the terminal:
 $ rails db:migrate
 ```
 
+Create the railsgoat service using the template in the openshift-configs folder by either creating it in the openshift terminal window or pulling it directly from git.
 
-Once the railgoat deployment is running
+```bash
+$ oc create -f https://raw.githubusercontent.com/relotnek/railsgoat/master/openshift-configs/railsgoatservice.yaml
+```
+
+Expose the service
+
+```bash
+$ oc expose service railsgoat
+```
+
+Once the railgoat deployment is running navigate to the indicated route
+
 ## Capybara Tests
 
 RailsGoat now includes a set of failing Capybara RSpecs, each one indicating that a separate vulnerability exists in the application. To run them, you first need to install [PhantomJS](https://github.com/jonleighton/poltergeist#installing-phantomjs) (version 2.1.1 has been tested in Dev and on Travis CI), which is required by the Poltergeist Capybara driver. Upon installation, simply run the following task:
