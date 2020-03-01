@@ -199,6 +199,7 @@ GEM
     parallel (1.18.0)
     parser (2.6.5.0)
       ast (~> 2.4.0)
+    pg (1.2.2)
     poltergeist (1.18.1)
       capybara (>= 2.1, < 4)
       cliver (~> 0.3.1)
@@ -364,6 +365,7 @@ DEPENDENCIES
   launchy
   minitest
   mysql2
+  pg
   poltergeist
   powder
   pry
