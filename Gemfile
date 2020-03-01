@@ -60,7 +60,3 @@ end
 group :mysql do
   gem "mysql2"
 end
-
-group :openshift do
-  gem "pg"
-end
