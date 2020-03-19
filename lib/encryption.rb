@@ -15,7 +15,7 @@ module Encryption
      aes = OpenSSL::Cipher.new(cipher_type)
      aes.decrypt
      aes.key = key[0..31]
-     aes.iv = iv[0.15] if iv != nil
+     aes.iv = iv[0..15] if iv != nil
      decoded = Base64.strict_decode64("#{val}")
      aes.update("#{decoded}") + aes.final
   end
