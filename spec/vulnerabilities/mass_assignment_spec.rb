@@ -23,7 +23,7 @@ feature "mass assignment" do
     expect(normal_user.reload.admin).to be_falsy
   end
 
-  scenario "attack two, Tutorial: https://github.com/OWASP/railsgoat/wiki/R5-Extras-Mass-Assignment-Admin-Role" do
+  scenario "attack two, Tutorial: https://github.com/OWASP/railsgoat/wiki/R4-Extras-Mass-Assignment-Admin-Role" do
     params = { user: {  admin: "t",
                         email: "hackety@h4x0rs.c0m",
                         first_name: "hackety",
@@ -33,6 +33,6 @@ feature "mass assignment" do
 
     page.driver.post "/users", params
 
-    expect(User.find_by(email: "hackety@h4x0rs.c0m")).to be_nil
+    expect(User.find_by(email: "hackety@h4x0rs.c0m").admin).to be_falsy
   end
 end
