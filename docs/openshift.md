@@ -4,6 +4,21 @@ To deploy Railsgoat with Openshift you must first have a working [Openshift Clus
 ```bash
 $ oc new-project railsgoat --description="Railsgoat Openshift Deployment" --display-name="Railsgoat"
 ```
+
+## Edit the Build Strategy
+Since Railsgoat supports both normal Docker deployment and openshift deployment, the Openshift deployment is located in the `openshift-configs` directory. Find the railsgoat build in your openshift deployment and edit the dockerStrategy so that it reads something like:
+
+```
+ strategy:
+    dockerStrategy:
+      dockerfilePath: openshift-configs/Dockerfile
+      from:
+        kind: ImageStreamTag
+        name: 'ruby:2.6.5'
+        namespace: railsgoat
+    type: Docker
+```
+
 ### Creating a Database Service
 
 Although Railsgoat in Openshift can be used with the development SQL Lite database, it also takes advantage of the PostgreSQL database image in Openshift for more creative demonstrations and an expansion of SQL attacks. To create the database service you will use the `oc new-app` command and will need to pass some environment variables. You can change these to anything you want.
