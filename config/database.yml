@@ -3,6 +3,10 @@
 #
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
+<% user = ENV.key?("POSTGRESQL_ADMIN_PASSWORD") ? "root" : ENV["POSTGRESQL_USER"] %>
+<% password = ENV.key?("POSTGRESQL_ADMIN_PASSWORD") ? ENV["POSTGRESQL_ADMIN_PASSWORD"] : ENV["POSTGRESQL_PASSWORD"] %>
+<% db_service = ENV.fetch("DATABASE_SERVICE_NAME","").upcase %>
+
 development:
   adapter: sqlite3
   database: db/development.sqlite3
@@ -32,3 +36,15 @@ production:
   database: db/production.sqlite3
   pool: 5
   timeout: 5000
+
+openshift:
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV["POSTGRESQL_MAX_CONNECTIONS"] || 5 %>
+  username: <%= user %>
+  password: <%= password %>
+  host: <%= ENV["#{db_service}_SERVICE_HOST"] %>
+  port: <%= ENV["#{db_service}_SERVICE_PORT"] %>
+  database: <%= ENV["POSTGRESQL_DATABASE"] %>
