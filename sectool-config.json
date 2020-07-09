@@ -1,0 +1,124 @@
+
+{
+	"auth": {
+		"ACCESS_KEY": "123456",
+		"SECRET_KEY": "234567"
+	},
+	"tests": [{
+			"category": "stored_secret",
+			"policy": {
+				"action": "alert",
+				"options": {
+					"entropy_checks": "off",
+					"basic_auth" : "on",
+					"keyword" : "on",
+					"mailchimp" : "on",
+					"private_key" : "on",
+					"stripe" : "on",
+					"aws" : "on",
+					"twilio" : "on",
+					"slack" : "on",
+					"jwt": "on",
+					"artifactory": "on",
+					"ibm": "on",
+					"raw_options": ""
+				}
+			},
+			"name": "detect_secrets"
+		},
+		{
+			"category": "sca",
+			"policy": {
+				"action": "alert",
+				"options": {
+					"fail_on_cvss_level": 11,
+					"raw_options": ""
+				}
+			},
+			"name": "dependency_check"
+		},
+		{
+			"category": "static analysis",
+			"policy": {
+				"action": "alert",
+				"options": {
+					"xmlparsing": "on",
+					"cryptomining": "on",
+					"weak_ssl": "on",
+					"deserialization": "on",
+					"dynamic_execution": "on",
+					"legacy_hash": "on",
+					"rng": "on",
+					"raw_options": ""
+				}
+			},
+			"name": "appinspector"
+		},
+		{
+			"category": "cloud_misconfiguration",
+			"policy": {
+				"action": "alert",
+				"options": {
+					"sensitive_data" : "on",
+					"aws": "on",
+					"azure": "on",
+					"gcp": "on"
+				}
+			},
+			"name": "tfsec"
+		},
+		{
+			"category": "static analysis",
+			"policy": {
+				"action": "alert",
+				"options": {
+					"unsafe_regexp": "on",
+					"non-literal-regexp": "on",
+					"unsafe_buffer": "on",
+					"buffer-noassert": "on",
+					"unsafe_require": "on",
+					"unsafe_filename": "on",
+					"unsafe_eval": "on",
+					"child_process": "on",
+					"mustache_escape": "on",
+					"csrf": "on",
+					"timing_attack": "on",
+					"random_bytes": "on",
+					"html_injection": "on",
+					"sql_injection": "on",
+					"unsafe_cross_origin": "on",
+					"unsafe_properties_access": "on"
+				}
+			},
+			"name": "ts-security-lint"
+		},{
+			"category": "static analysis",
+			"policy": {
+				"action": "alert",
+				"options": {
+					"non-literal-regexp": "off",
+					"unsafe_buffer": "on",
+					"unsafe_require": "off",
+					"unsafe_eval": "on",
+					"child_process": "on",
+					"html_injection": "on",
+					"sql_injection": "on",
+					"timing_attack": "on",
+					"insecure_randomness": "on",
+					"property_name_session": "on",
+					"crlf": "on",
+					"open_redirect": "on",
+					"helmet_nocache": "on",
+					"nosql_injection": "on",
+					"mysql_multistatements": "on",
+					"reject_unauth": "on",
+					"unsafe_deserialization": "on",
+					"vm_context": "on",
+					"misconfigured_cookie": "on",
+					"disable_ssl": "on"
+				}
+			},
+			"name": "es-security-lint"
+		}
+	]
+}
