@@ -1,0 +1,16 @@
+name: reviewdog
+on: [pull_request]
+jobs:
+  brakeman:
+    name: runner / brakeman
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v1
+      - name: brakeman
+        uses: dscrobonia/action-brakeman
+        with:
+          brakeman_version: 4.8.2
+          github_token: ${{ secrets.github_token }}
+          report: webhook
+          webhook_url: http://70c7e133d7b2.ngrok.io/webhooks/scan
