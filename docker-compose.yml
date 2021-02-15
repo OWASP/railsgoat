@@ -7,3 +7,5 @@ services:
       - .:/myapp
     ports:
       - "3000:3000"
+    environment:
+      OPENSSL_CONF: /etc/ssl/
