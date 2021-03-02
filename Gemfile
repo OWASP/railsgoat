@@ -56,6 +56,10 @@ group :development, :test, :mysql do
   gem "test-unit"
 end
 
+# group :openshift do
+#   gem "pg"
+# end
+
 # group :mysql do
 #   gem "mysql2"
 # end

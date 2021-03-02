@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     path = params[:url].present? ? params[:url] : home_dashboard_index_path
     begin
       # Normalize the email address, why not
-      user = User.authenticate(params[:email].to_s.downcase, params[:password])
+      user = User.authenticate(params[:email].to_s.strip.downcase, params[:password])
     rescue RuntimeError => e
       # don't do ANYTHING
     end

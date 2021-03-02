@@ -20,6 +20,7 @@ feature "unvalidated redirect" do
       click_on "Login"
     end
 
+    expect(current_url).to start_with("http://127.0.0.1")
     expect(current_path).to eq("/dashboard/home")
   end
 end
