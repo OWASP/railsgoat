@@ -172,7 +172,7 @@ GEM
     minitest (5.10.2)
     multi_json (1.12.1)
     multi_test (0.1.2)
-    mysql2 (0.4.6)
+    mysql2 (0.4.10)
     nenv (0.3.0)
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
