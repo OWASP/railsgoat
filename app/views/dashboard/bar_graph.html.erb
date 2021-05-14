@@ -1,0 +1,54 @@
+ <div id="column_chart"></div>
+ <!-- Google Visualization JS -->
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<script type="text/javascript">
+   // google.load("visualization", "1", {packages:["corechart"]});
+  
+ 
+
+	function drawChart3() {
+     var data = google.visualization.arrayToDataTable([
+       ['Year', 'Visitors', 'Orders', 'Income', 'Expenses'],
+       ['2007', 300, 800, 900, 300],
+       ['2008', 1170, 860, 1220, 564],
+       ['2009', 260, 1120, 2870, 2340],
+       ['2010', 1030, 540, 3430, 1200],
+       ['2011', 200, 700, 1700, 770],
+       ['2012', 1170, 2160, 3920, 800], ]);
+
+     var options = {
+       width: 'auto',
+       height: '160',
+       backgroundColor: 'transparent',
+       colors: ['#b5799e', '#579da9', '#e26666', '#1e825e', '#dba26b'],
+       tooltip: {
+         textStyle: {
+           color: '#666666',
+           fontSize: 11
+         },
+         showColorCode: true
+       },
+       legend: {
+         textStyle: {
+           color: 'black',
+           fontSize: 12
+         }
+       },
+       chartArea: {
+         left: 60,
+         top: 10,
+         height: '80%'
+       },
+     };
+
+     var chart = new google.visualization.ColumnChart(document.getElementById('column_chart'));
+     chart.draw(data, options);
+   }
+
+
+$(document).ready(
+  drawChart3()
+);
+
+</script>

@@ -1,0 +1,47 @@
+<form action="" id="analytics_search">
+  Search by IP: <input type="text" id="ip" name="ip"><br />
+  <input type="checkbox" value="" id="field_ip_address" name="field[ip_address]"> IP Address<br />
+  <input type="checkbox" value="" id="field_referrer" name="field[referrer]"> Referrer<br />
+  <input type="checkbox" value="" id="field_user_agent" name="field[user_agent]"> User Agent
+</form>
+
+<div id="dt_example" class="example_alt_pagination">
+    <table class="table table-striped table-hover table-bordered pull-left <%= "custom" if params[:field] %>" id="data-table">
+      <thead>
+        <tr>
+          <%
+          count = (params[:field] ? (custom_fields.count+1) : 6)
+          count.times do %>
+          <th>&nbsp;</th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+       <% @analytics.each do |a|%>
+      <tr>
+        <% a.attributes.each do |k,v| %>
+        <td><%= v %></td>
+        <% end %>
+        </tr>
+     <% end %>
+      </tbody>
+    </table>
+  <div id="editAcct" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+  </div>
+    <div class="clearfix">
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag "jquery.dataTables.min.js"%>
+
+<script type="text/javascript">
+
+function dataTablePagination(){
+  $('#data-table').dataTable({
+      "sPaginationType": "full_numbers"
+    });
+};
+
+$(document).ready(dataTablePagination());
+</script>

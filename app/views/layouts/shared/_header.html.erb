@@ -1,0 +1,88 @@
+<% if current_user %>
+  <header>
+      
+      <span style="color:#eee;margin-left:10px;">
+        Font Size:
+        <a data-no-turbolink='true' href="/dashboard/home?font=8pt" style="font-size:10pt;color:#eee;">A</a>
+        <a data-no-turbolink='true' href="/dashboard/home?font=200%25" style="font-size:18pt;color:#eee;">A</a>
+      </span>
+      
+      <div class="user-profile">
+        <a data-toggle="dropdown" class="dropdown-toggle">
+          <img src=" <%= image_path('profile_color.jpg')%>"  alt="profile">
+        </a>
+        <span class="caret"></span>
+        <ul class="dropdown-menu pull-right">
+          <li>
+           <%= link_to "Account settings", user_account_settings_path(user_id: current_user.id) %>
+          </li>
+          <li>
+            <%= link_to "Logout", logout_path %>
+          </li>
+        </ul>
+      </div>
+      <ul class="mini-nav">
+       <li style="color: #FFFFFF">
+          <!--
+          I'm going to use HTML safe because we had some weird stuff
+          going on with funny chars and jquery, plus it says safe so I'm guessing
+          nothing bad will happen
+          -->
+          Welcome, <%= current_user.first_name.html_safe %>
+       </li>
+      </ul>
+      <ul class="mini-nav">
+        <li>
+          <%= button_to "Visit Tutorial", nil,
+          {
+           :class => "btn",
+           :method => "get",
+           :onclick => "window.open('https://github.com/OWASP/railsgoat/wiki', '_blank')"
+           }  %>
+        </li>
+      </ul>
+  </header>
+<% else %>
+  <!-- Want to use this template whether auth'd or not so I've got some code to determine how to render below -->
+  <header>
+      <ul class="mini-nav">
+           <li>
+             <%= button_to "Signup", signup_path, {:class => "btn btn-primary", :method => "get"} %>
+           </li>
+         </ul>
+      <ul class="mini-nav">
+           <li>
+             <%= button_to "login", login_path, {:class => "btn", :method => "get"} %>
+           </li>
+         </ul>
+      <ul class="mini-nav">
+           <li>
+             <%= button_to "Tutorial Credentials", "#myModalLabel1", {:id => "show_creds_btn", :class => "btn btn-danger", :method => "get"} %>
+           </li>
+      </ul>
+      <ul class="mini-nav">
+        <li>
+            <%= button_to "Visit Tutorial", nil,
+            {
+             :class => "btn",
+             :method => "get",
+             :onclick => "window.open('https://github.com/OWASP/railsgoat/wiki', '_blank')"
+             }  %>
+        </li>
+      </ul>
+  </header>
+
+  <div id="modal_div" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myAlert" aria-hidden="true">
+  </div>
+
+<script type="text/javascript">
+
+$('#show_creds_btn').click(function(event) {
+  event.preventDefault();
+  $("#modal_div").load(<%= credentials_tutorials_path.inspect.html_safe %>);
+  $("#modal_div").modal("show");
+});
+</script>
+
+<% end %>
+

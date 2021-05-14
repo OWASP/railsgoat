@@ -1,0 +1,46 @@
+<div class="dashboard-wrapper">
+  <div class="main-container">
+    <div class="row-fluid">
+        <div class="span12">
+          <div class="widget">
+            <div class="widget-header">
+              <div class="title">
+                <span class="fs1" aria-hidden="true" data-icon="&#xe088;"></span> Messages for <%= current_user.full_name %>
+              </div>
+            </div>
+            <div class="widget-body">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th style="width:7%">From:</th>
+                    <th style="width:6%">Date</th>
+                    <th style="width:30%">Message</th>
+                    <th style="width:6%">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td><%= @message.creator_name %></td>
+                    <td><%= @message.created_at.to_date %></td>
+                    <td><%= @message.message %></td>
+                    <td><%= link_to "Delete", user_message_path, {:id => "@message.id", :method => 'delete', :class => "btn btn-danger pull-left"}%></td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+function makeActive(){
+  $('li[id="messages"]').addClass('active');
+};
+
+$(document).ready(function () {
+  makeActive()
+});
+
+</script>
+

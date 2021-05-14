@@ -1,0 +1,36 @@
+<div class="row-fluid">
+  <div class="span12">
+
+        <div class="row-fluid">
+          <div class="span4 offset4">
+            <div class="signup">
+      <%= form_for @user, :html => {:id => "account_edit", :class=> "signup-wrapper"} do |f| %>
+          <div class="header">
+            <h2>Sign Up</h2>
+            <p>Fill out the form below to login</p>
+           </div>
+          <div class="content">
+            <%= f.text_field :email, {:class => "input input-block-level", :placeholder => "Email"} %>
+            <%= f.text_field :first_name, {:class => "input input-block-level", :placeholder => "First Name"} %>
+            <%= f.text_field :last_name, {:class => "input input-block-level", :placeholder => "Last Name"} %>
+            <div class="control-group">
+              <%= f.password_field :password, {:class => "input input-block-level", :placeholder => "Password (at least six characters)"}%>
+            </div>
+            <div class="control-group">
+                <%= f.password_field :password_confirmation, {:class => "input input-block-level", :placeholder => "Confirm Password"}%>
+            </div>
+          </div>
+          <div class="actions">
+            <%= f.submit "Submit", {:id => 'submit_button', :class => "btn btn-info btn-large pull-right"} %>
+          </div>
+          <div class="clearfix"></div>
+      <% end %>
+
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>
+
+<%= javascript_include_tag "validation.js"%>

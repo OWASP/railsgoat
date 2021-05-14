@@ -1,0 +1,55 @@
+<div align="right">
+  <!-- support for multiple languages coming soon! -->
+  <script>
+    //document.write("<select style=\"width: 100px;\">");
+    //document.write("<OPTION value=1>English</OPTION>");
+    //document.write("<OPTION value=2>Spanish</OPTION>");
+    try {
+      var hashParam = location.hash.split("#")[1];
+      var paramName = hashParam.split('=')[0];
+      var paramValue = decodeURIComponent(hashParam.split('=')[1]);
+      document.write("<OPTION value=3>" + paramValue + "</OPTION>");
+    } catch(err) {
+    }
+    //document.write("</select>");
+  </script>
+</div>
+<div class="row-fluid">
+  <div class="span12">
+    <div class="row-fluid">
+      <div class="span4 offset4">
+        <h2 align="center">MetaCorp</h2>
+        <h3 align="center">A GoatGroup Company</h3>
+
+        <div class="signup">
+          <%= form_tag "sessions", :class=> "signup-wrapper" do %>
+
+          <div class="header">
+            <h2>Login</h2>
+            <p>Fill out the form below to login to your control panel.</p>
+          </div>
+
+          <div class="content">
+            <%= hidden_field_tag :url, @url %>
+            <%= text_field_tag :email, params[:email], {:class => "input input-block-level", :placeholder=>"Email"} %>
+            <%= password_field_tag :password, nil, {:class => "input input-block-level", :placeholder=>"Password"}%>
+          </div>
+
+          <div class="actions">
+
+              <%= link_to "Forgot Password", forgot_password_path, {:class=>"pull-left"}%><br/>
+        <%= submit_tag "Login", {:class => "btn btn-info btn-large pull-right"} %>
+      <span class="checkbox-wrapper">
+          <%= check_box_tag :remember_me, 1, params[:remember_me], {:id => "form-terms", :class => "checkbox", :type => "checkbox"} %>
+          <label class="checkbox-label" for="form-terms"></label> <span class="label-text">Remember</span>
+
+      </span>
+
+          <div class="clearfix"></div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

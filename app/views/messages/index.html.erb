@@ -1,0 +1,138 @@
+<div class="dashboard-wrapper">
+  <div class="main-container">
+  <!-- Begin Row -->
+    <div class="row-fluid">
+    <!-- Begin Span12 -->
+        <div class="span12">
+          <div class="widget">
+            <div class="widget-header">
+              <div class="title">
+                <span class="fs1" aria-hidden="true" data-icon="&#xe022;"></span> Messages for <%= current_user.full_name %>
+                  <!--<span class="fs1" aria-hidden="true" data-icon="&#xe006;"><%#= link_to "Send Message", new_user_message_path %></span>-->
+              </div>
+            </div>
+            <div class="widget-body">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th style="width:7%">From:</th>
+                    <th style="width:6%">Date</th>
+                    <th style="width:16%">Message</th>
+                    <th style="width:6%">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <% if @messages.empty? %>
+                    <td><%= "No messages!" %></td><td></td><td></td><td></td>
+                    <% end %>
+                <% @messages.each do |message| %>
+                    <td><%= message.creator_name %></td>
+                    <td><%= message.created_at.to_date %></td>
+                    <td><%= message.message %></td>
+                    <td><%= link_to "Details", user_message_path(:id => message.id), {:class => "btn btn-info pull-left"}%>
+                    <%= link_to "Delete", user_message_path(:id => message.id), {:method => 'delete', :class => "btn btn-danger pull-left"}%></td>
+                    </tr>
+                </tbody>
+                <% end %>
+              </table>
+            </div>
+          </div>
+        </div>
+    <!-- End Span12 -->
+    </div>
+    <!-- End Row -->
+  <!-- Begin Row -->
+    <div class="row-fluid">
+    <!-- Begin Span12 -->
+        <div class="span12">
+          <div class="widget">
+            <div class="widget-header">
+              <div class="title">
+                  <span class="fs1" aria-hidden="true" data-icon="&#xe006;"></span> Send Message
+              </div>
+            </div>
+            <div class="widget-body">
+        <div id="success" style="display: none;" class="alert alert-block alert-success fade in">
+                <h4 class="alert-heading">
+                  Success!
+                </h4>
+                <p>
+                  Message successfully sent.
+                </p>
+           </div>
+        <div id="failure" style="display: none;" class="alert alert-block alert-error fade in">
+                    <h4 class="alert-heading">
+                      Error!
+                    </h4>
+                    <p>
+                      Failed to send message.
+                    </p>
+               </div>
+        <div class="row-fluid">
+          <div class="span8">
+          <!-- Begin Message Draft Content-->
+          <%= form_for @message, :url => user_messages_path, :method => :post, :html => {:id => "send_message"} do |f|%>
+            <%= f.hidden_field :creator_id, :value => current_user.id %>
+            <%= f.hidden_field :read, :value => '0' %>
+             <div class="control-group">
+               <%= f.label "To:", nil, {:class => "control-label"}%>
+               <%= f.select(:receiver_id, options_from_collection_for_select(User.all, :id, :full_name)) %>
+             </div>
+
+             <div class="control-group">
+               <%= f.label :message, nil, {:class => "control-label"}%>
+               <%= f.text_area :message, {:class => "span12"} %>
+             </div>
+
+             <div class="form-actions no-margin">
+               <%= f.submit "Submit", {:id => 'submit_button', :class => "btn btn-info pull-right"} %>
+             </div>
+
+             <div class="clearfix"></div>
+          <% end %>
+          <!-- End Message Draft Content-->
+          </div>
+          </div>
+            </div>
+          </div>
+        </div>
+    <!-- End Span12 -->
+    </div>
+    <!-- End Row -->
+  </div>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+$("#submit_button").click(function(event) {
+    var valuesToSubmit = $("#send_message").serialize();
+    event.preventDefault();
+    $.ajax({
+      url: <%= "/users/#{current_user.id}/messages.json".inspect.html_safe %>,
+    data: valuesToSubmit,
+    type: "POST",
+    success: function(response) {
+    if (response.msg == "failure") {
+      $('#failure').show(500).delay(1500).fadeOut();
+    } else {
+      $('#success').show(500).delay(1500).fadeOut();
+    }
+    },
+    error: function(event) {
+    $('#failure').show(500).delay(1500).fadeOut();
+    }
+  });
+});
+
+function makeActive(){
+  $('li[id="messages"]').addClass('active');
+};
+
+$(document).ready(function () {
+  makeActive()
+});
+
+</script>

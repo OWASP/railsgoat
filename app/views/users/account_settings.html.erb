@@ -1,0 +1,97 @@
+<div class="dashboard-wrapper">
+  <div class="main-container">
+    <div class="row-fluid">
+      <div id="success" style="display: none;" class="alert alert-block alert-success fade in">
+        <h4 class="alert-heading">
+          Success!
+        </h4>
+        <p>
+        Information successfully updated.
+        </p>
+      </div>
+    </div>
+    <div id="failure" style="display: none;" class="alert alert-block alert-error fade in">
+      <h4 class="alert-heading">
+        Error!
+      </h4>
+      <p>
+      Failed to update.
+      </p>
+    </div>
+    <div class="row-fluid">
+        <div class="span6">
+          <div class="widget">
+            <div class="widget-header">
+              <div class="title">
+                <span class="fs1" aria-hidden="true" data-icon="&#xe090;"></span> Profile Settings
+                <span class="mini-title">
+                  Edit your account details
+                </span>
+              </div>
+            </div>
+            <div class="widget-body">
+           <%= form_for @user, :html => {:id => "account_edit"} do |f|%>
+               <%= f.hidden_field :id %>
+          <div class="control-group">
+                  <%= f.label :email, nil, {:class => "control-label"}%>
+            <%= f.text_field :email, {:class => "span12"}%>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :first_name, nil, {:class => "control-label"}%>
+            <%= f.text_field :first_name, {:class => "span12"} %>
+          </div>
+
+          <div>
+            <%= f.label :last_name, nil, {:class => "control-label"}%>
+            <%= f.text_field :last_name, {:class => "span12"} %>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :password, nil, {:class => "control-label"}%>
+            <%= f.password_field :password, {:class => "span12", :placeholder => "Enter Password"}%>
+          </div>
+
+          <div class="control-group">
+              <%= f.label :password_confirmation, nil, {:class => "control-label"}%>
+              <%= f.password_field :password_confirmation, {:class => "span12", :placeholder => "Enter Password"} %>
+            </div>
+
+          <div class="form-actions no-margin">
+            <%= f.submit "Submit", {:id => 'submit_button', :class => "btn btn-info pull-right"} %>
+          </div>
+
+          <div class="clearfix">
+                </div>
+           <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag ('validation.js')%>
+
+<script type="text/javascript">
+
+$("#submit_button").click(function(event) {
+    var valuesToSubmit = $("#account_edit").serialize();
+    event.preventDefault();
+    $.ajax({
+      url: <%= "/users/#{current_user.id}.json".inspect.html_safe %>,
+    data: valuesToSubmit,
+    type: "POST",
+    success: function(response) {
+    if (response.msg == "failure") {
+      $('#failure').show(500).delay(1500).fadeOut();
+    } else {
+      $('#success').show(500).delay(1500).fadeOut();
+    }
+    },
+    error: function(event) {
+    $('#failure').show(500).delay(1500).fadeOut();
+    }
+  });
+});
+
+</script>

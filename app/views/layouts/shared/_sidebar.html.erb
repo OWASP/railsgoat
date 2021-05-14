@@ -1,0 +1,142 @@
+<% if current_user %>
+    <div id="mainnav" class="hidden-phone hidden-tablet">
+      <ul style="display: block;">
+        <li id="home">
+          <%= link_to home_dashboard_index_path do %>
+            <div class="icon">
+              <span class="fs1" aria-hidden="true" data-icon="&#xe0a0;"></span>
+            </div>
+            Dashboard
+          <% end %>
+        </li>
+        <% if is_admin? %>
+        	<li class="submenu" id='admin'>
+        	   <a href="#">
+        	    <div class="icon">
+        	      <span class="fs1" aria-hidden="true" data-icon="&#xe1c8;"></span>
+        	    </div>
+        	    Admin
+        	   	</a>
+				<ul>
+            	  <li>
+            	    <%= link_to admin_dashboard_path(:admin_id => "1") do %>
+		        	    Manage Users
+		            <% end %>
+            	  </li>
+            	  <li>
+            	    <%= link_to admin_analytics_path(:admin_id => "1") do %>
+		        	    View Analytics
+		            <% end %>
+            	  </li>
+            	</ul>
+            </li>
+    	<% end %>
+        <li id="benefit_forms">
+    <%= link_to user_benefit_forms_path(user_id: current_user.id) do %>
+            <div class="icon">
+              <span class="fs1" aria-hidden="true" data-icon="&#xe05c;"></span>
+            </div>
+            Benefit Forms
+          <% end %>
+        </li>
+        <li id="retirement">
+           <%= link_to user_retirement_index_path(user_id: current_user.id) do %>
+            <div class="icon">
+              <span class="fs1" aria-hidden="true" data-icon="&#xe096;"></span>
+            </div>
+            401k Info
+          <% end %>
+        </li>
+        <li id="pto">
+          <%= link_to user_paid_time_off_index_path(user_id: current_user.id) do %>
+            <div class="icon">
+              <span class="fs1" aria-hidden="true" data-icon="&#xe0d2;"></span>
+            </div>
+            PTO
+         <% end %>
+        </li>
+        <li id="employee_info">
+           <%= link_to user_work_info_index_path(user_id: current_user.id) do %>
+            <div class="icon">
+              <span class="fs1" aria-hidden="true" data-icon="&#xe0a9;"></span>
+            </div>
+            Work Info
+          <% end %>
+        </li>
+        <li id="performance">
+          <%= link_to user_performance_index_path(user_id: current_user.id) do %>
+            <div class="icon">
+              <span class="fs1" aria-hidden="true" data-icon="&#xe14a;"></span>
+            </div>
+            Performance
+          <% end %>
+        </li>
+        <li id="messages">
+          <%= link_to user_messages_path(user_id: current_user.id) do %>
+            <div class="icon">
+              <span class="fs1" aria-hidden="true" data-icon="&#xe040;"></span>
+            </div>
+            Messages
+          <% end %>
+        </li>
+    <li id="pay">
+      <%= link_to user_pay_index_path(user_id: current_user.id) do %>
+            <div class="icon">
+              <span class="fs1" aria-hidden="true" data-icon="&#xe038;"></span>
+            </div>
+            Pay
+          <% end %>
+        </li>
+      </ul>
+    </div>
+
+  <script type="text/javascript">
+  //Main menu navigation
+
+  $('.submenu > a').click(function(e){
+    e.preventDefault();
+    var submenu = $(this).siblings('ul');
+    var li = $(this).parents('li');
+    var submenus = $('#mainnav li.submenu ul');
+    var submenus_parents = $('#mainnav li.submenu');
+    if(li.hasClass('open'))
+    {
+      if(($(window).width() > 768) || ($(window).width() < 479)) {
+        submenu.slideUp();
+      } else {
+        submenu.fadeOut(250);
+      }
+      li.removeClass('open');
+    } else
+    {
+      if(($(window).width() > 768) || ($(window).width() < 479)) {
+        submenus.slideUp();
+        submenu.slideDown();
+      } else {
+        submenus.fadeOut(250);
+        submenu.fadeIn(250);
+      }
+      submenus_parents.removeClass('open');
+      li.addClass('open');
+    }
+  });
+
+  var ul = $('#mainnav > ul');
+
+  $('#mainnav > a').click(function(e)
+  {
+    e.preventDefault();
+    var mainnav = $('#mainnav');
+    if(mainnav.hasClass('open'))
+    {
+      mainnav.removeClass('open');
+      ul.slideUp(250);
+    } else
+    {
+      mainnav.addClass('open');
+      ul.slideDown(250);
+    }
+  });
+
+  </script>
+<% end %>

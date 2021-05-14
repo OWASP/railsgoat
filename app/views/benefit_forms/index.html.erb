@@ -1,0 +1,126 @@
+<div class="dashboard-wrapper">
+  <div class="main-container">
+
+    <div class="row-fluid">
+
+        <div class="span4">
+          <div class="widget">
+            <div class="widget-header">
+              <div class="title">
+                <span class="fs1" aria-hidden="true" data-icon="&#xe023;"></span> Health Insurance
+              </div>
+            </div>
+            <!-- Begin Widget Body -->
+            <div class="widget-body">
+          Click on PDF to download<br/><br/>
+               <%= link_to download_path(:type => "File", :name => "public/docs/Health_n_Stuff.pdf") do  %>
+          <div class="doc-icons-container">
+                <div class="icon light-blue hidden-tablet">
+                  <span class="fs1 doc-icon" aria-hidden="true" data-icon="&#xe1b2;"></span>
+                  <span class="doc-type">
+                    PDF
+                  </span>
+                </div>
+
+              </div>
+          <% end %>
+            </div>
+          <!-- End Widget Body -->
+       </div>
+        </div>
+
+      <div class="span4">
+          <div class="widget">
+            <div class="widget-header">
+              <div class="title">
+                <span class="fs1" aria-hidden="true" data-icon="&#xe023;"></span> Dental Insurance
+              </div>
+            </div>
+            <!-- Begin Widget Body -->
+            <div class="widget-body">
+        Click on PDF to download<br/><br/>
+         <%= link_to download_path(:type => "File", :name => "public/docs/Dental_n_Stuff.pdf") do  %>
+              <div class="doc-icons-container">
+                <div class="icon light-blue hidden-tablet">
+                  <span class="fs1 doc-icon" aria-hidden="true" data-icon="&#xe1b2;"></span>
+                  <span class="doc-type">
+                    PDF
+                  </span>
+                </div>
+
+              </div>
+          <% end %>
+            </div>
+            <!-- End Widget Body -->
+      </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+          <div class="widget">
+            <div class="widget-header">
+              <div class="title">
+                <span class="fs1" aria-hidden="true" data-icon="&#xe023;"></span> Health Insurance
+              </div>
+            </div>
+            <!-- Begin Widget Body -->
+            <div class="widget-body">
+          <div>
+            <h2>Upload file</h2>
+            <%= form_for @benefits, :url => upload_path, :html => { :action => "upload", :multipart => true, :id => "fi"  } do |f| %>
+              <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+              <div>
+                <div>
+              <%= hidden_field "benefits", "backup", :value => false %>
+                  <!-- The fileinput-button span is used to style the file input field as button -->
+                  <span class="btn btn-success fileinput-button">
+                    <i class="icon-plus icon-white"></i>
+                    <span>Add file</span>
+                    <%= f.file_field :upload  %>
+                  </span>
+                  <button id="start_upload" type="submit" class="btn btn-primary start">
+                    <i class="icon-upload icon-white"></i>
+                    <span><%= t('fileupload.start_upload') %></span>
+                  </button>
+              <br/><br/><span class="filename">Nothing selected</span>
+                </div>
+                <div class="span5">
+                  <!-- The global progress bar -->
+                  <div class="progress progress-success progress-striped active fade">
+                    <div class="bar" style="width:0%;"></div>
+                  </div>
+                </div>
+              </div>
+              <!-- The loading indicator is shown during image processing -->
+              <div class="fileupload-loading"></div>
+              <br>
+              <!-- The table listing the files available for upload/download -->
+              <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
+              </table>
+            <% end %>
+          <div id="progress">
+              <div class="bar" style="width: 0%;"></div>
+          </div>
+
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    $("#benefits_upload").change(function (){
+      var fileName = $(this).val();
+      $(".filename").html(fileName);
+    });
+  });
+
+  function makeActive(){
+    $('li[id="benefit_forms"]').addClass('active');
+  };
+
+  $(document).ready(makeActive);
+</script>

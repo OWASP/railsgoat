@@ -1,0 +1,9 @@
+inherit_gem:
+  rubocop-github:
+    - config/default.yml
+    - config/rails.yml
+
+
+Rails/OutputSafety:
+  Exclude:
+    - 'app/controllers/password_resets_controller.rb'

@@ -1,0 +1,60 @@
+<div id="dt_example" class="example_alt_pagination">
+    <table class="table table-striped table-hover table-bordered pull-left" id="data-table">
+      <thead>
+        <tr>
+          <th>
+            Name
+          </th>
+          <th>
+            Email
+          </th>
+          <th>
+            Admin User
+          </th>
+          <th>
+            Action
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+       <% @users.each do |u|%>
+      <tr>
+            <td style="word-wrap:break-word;">
+              <%= "#{u.first_name} #{u.last_name}"%>
+            </td>
+            <td>
+              <%= u.email%>
+            </td>
+            <td>
+              <%= u.admin ? %{<span class="fs1" aria-hidden="true" data-icon="&#xe0fe;"}.html_safe : nil %>
+            </td>
+            <td>
+              <%= link_to "Edit", "#", {:onClick => "javascript:openEditModal(#{u.id});", :role => "button", :style => "width:70px", :class => "btn btn-inverse", "data-toggle" => "modal"}%>
+            </td>
+          </tr>
+     <% end %>
+      </tbody>
+    </table>
+  <div id="editAcct" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+  </div>
+    <div class="clearfix">
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+function openEditModal(id){
+ var link = '/admin/'+ id +'/get_user';
+ $("#editAcct").load(link);
+ $("#editAcct").modal('show');
+};
+
+function dataTablePagination(){
+  $('#data-table').dataTable({
+      "sPaginationType": "full_numbers"
+    });
+};
+
+$(document).ready(dataTablePagination());
+</script>

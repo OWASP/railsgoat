@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RailsGoat</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%#= csrf_meta_tags %> <!-- <~ What is this for? I hear it helps w/ JS and Sea-surfing.....whatevz -->
+  <!-- bootstrap css -->
+<%
+if cookies[:font]
+%>
+<style>body { font-size:<%= raw cookies[:font] %> !important;}</style>
+<%
+end
+%>
+
+</head>
+<body>
+  <%= render "layouts/shared/header" %>
+  <%= render "layouts/shared/sidebar" %>
+<div class="container-fluid">
+  <% if current_user %>
+    <div class="dashboard-wrapper">
+      <%= render "layouts/shared/messages" %>
+      <%= yield %>
+    </div>
+  <% else %>
+  <div class="login-wrapper">
+    <%= render "layouts/shared/messages" %>
+    <%= yield %> 
+  </div>  
+  <% end %>
+</div>
+  <%= render "layouts/shared/footer" %>
+
+<script type="text/javascript">
+
+//Dropdown
+$('.dropdown-toggle').dropdown();
+</script>
+
+</body>
+</html>

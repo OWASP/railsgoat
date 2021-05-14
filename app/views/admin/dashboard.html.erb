@@ -1,0 +1,54 @@
+<div class="dashboard-wrapper">
+  <div class="main-container">
+    <div class="row-fluid">
+      <div class="span12">
+        <div id="success" style="display: none;" class="alert alert-block alert-success fade in">
+          <h4 class="alert-heading">Success!</h4>
+          <p>User information successfully updated.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span12">
+        <div id="failure" style="display: none;" class="alert alert-block alert-error fade in">
+          <h4 class="alert-heading">Error!</h4>
+          <p>Something went wrong.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget">
+          <div class="widget-header">
+            <div class="title">
+              <span class="fs1" aria-hidden="true" data-icon="&#xe071;"></span>Manage Users
+            </div>
+          </div>
+
+          <div id="userDataTable" class="widget-body">
+          </div> <!-- End widget-body-->
+        </div> <!-- End widget header-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag "jquery.dataTables.min.js"%>
+
+<script type="text/javascript">
+
+function makeActive(){
+  $('li[id="admin"]').addClass('active');
+};
+
+function loadTable(){
+  $("#userDataTable").load("/admin/"+ <%= params[:admin_id] %> + "/get_all_users")
+};
+
+$(document).ready(
+  makeActive,
+  loadTable()
+);
+</script>

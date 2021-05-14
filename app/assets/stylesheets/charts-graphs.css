@@ -1,0 +1,12 @@
+/*  Easy Pie Chart  CSS  */
+
+.easyPieChart {
+    position: relative;
+    text-align: center;
+}
+
+.easyPieChart canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

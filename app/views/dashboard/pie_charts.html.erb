@@ -1,0 +1,199 @@
+<% if @user.paid_time_off %>
+<!-- Begin easy pie charts container -->
+ <div class="easy-pie-charts-container">
+   <div class="pie-chart">
+     <div class="chart1" data-percent="100">
+       <%= @user.paid_time_off.pto_days_remaining %>
+     </div>
+     <h5 class="name">
+       Available PTO
+     </h5>
+   </div>
+   <div class="pie-chart">
+     <div class="chart2" data-percent="<%= @user.paid_time_off.sick_days_taken_percentage %>">
+       <%= @user.paid_time_off.sick_days_taken %>
+     </div>
+     <h5 class="name">
+       Sick Days Taken
+     </h5>
+   </div>
+   <div class="pie-chart">
+     <div class="chart3" data-percent="100">
+       <%= @user.work_info.income %>
+     </div>
+     <h5 class="name">
+       Income
+     </h5>
+   </div>
+   <div class="pie-chart">
+     <div class="chart4" data-percent="100">
+       <%= @user.performance.last.score %>
+     </div>
+     <h5 class="name">
+       Performance Score
+     </h5>
+   </div>
+   <div class="pie-chart">
+     <div class="chart5" data-percent="91">
+        <%= @user.retirement.total %>
+     </div>
+     <h5 class="name">
+       401k
+     </h5>
+   </div>
+   <div class="clearfix">
+   </div>
+ </div>
+ <!-- End easy pie charts container -->
+<% end %>
+<script type="text/javascript">
+
+function pieChartHome() {
+  $(function () {
+    //create instance
+    $('.chart1').easyPieChart({
+      animate: 2000,
+      barColor: '#e26666',
+      trackColor: '#dddddd',
+      scaleColor: '#e26666',
+      size: 160,
+      lineWidth: 7,
+    });
+    //update instance after 5 sec
+    setTimeout(function () {
+      $('.chart1').data('easyPieChart').update(50);
+    }, 5000);
+    setTimeout(function () {
+      $('.chart1').data('easyPieChart').update(70);
+    }, 10000);
+    setTimeout(function () {
+      $('.chart1').data('easyPieChart').update(30);
+    }, 15000);
+    setTimeout(function () {
+      $('.chart1').data('easyPieChart').update(90);
+    }, 19000);
+    setTimeout(function () {
+      $('.chart1').data('easyPieChart').update(40);
+    }, 32000);
+  });
+
+  $(function () {
+    //create instance
+    $('.chart2').easyPieChart({
+      animate: 2000,
+      barColor: '#b5799e',
+      trackColor: '#dddddd',
+      scaleColor: '#b5799e',
+      size: 160,
+      lineWidth: 7,
+    });
+    //update instance after 5 sec
+    setTimeout(function () {
+      $('.chart2').data('easyPieChart').update(90);
+    }, 10000);
+    setTimeout(function () {
+      $('.chart2').data('easyPieChart').update(40);
+    }, 18000);
+    setTimeout(function () {
+      $('.chart2').data('easyPieChart').update(70);
+    }, 28000);
+    setTimeout(function () {
+      $('.chart2').data('easyPieChart').update(50);
+    }, 32000);
+    setTimeout(function () {
+      $('.chart2').data('easyPieChart').update(80);
+    }, 40000);
+  });
+
+  $(function () {
+    //create instance
+    $('.chart3').easyPieChart({
+      animate: 2000,
+      barColor: '#579da9',
+      trackColor: '#dddddd',
+      scaleColor: '#579da9',
+      size: 160,
+      lineWidth: 7,
+    });
+    //update instance after 5 sec
+    setTimeout(function () {
+      $('.chart3').data('easyPieChart').update(20);
+    }, 9000);
+    setTimeout(function () {
+      $('.chart3').data('easyPieChart').update(59);
+    }, 20000);
+    setTimeout(function () {
+      $('.chart3').data('easyPieChart').update(38);
+    }, 35000);
+    setTimeout(function () {
+      $('.chart3').data('easyPieChart').update(79);
+    }, 49000);
+    setTimeout(function () {
+      $('.chart3').data('easyPieChart').update(96);
+    }, 52000);
+  });
+
+  $(function () {
+    //create instance
+    $('.chart4').easyPieChart({
+      animate: 2000,
+      barColor: '#dba26b',
+      trackColor: '#dddddd',
+      scaleColor: '#dba26b',
+      size: 160,
+      lineWidth: 7,
+    });
+    //update instance after 5 sec
+    setTimeout(function () {
+      $('.chart4').data('easyPieChart').update(40);
+    }, 6000);
+    setTimeout(function () {
+      $('.chart4').data('easyPieChart').update(67);
+    }, 14000);
+    setTimeout(function () {
+      $('.chart4').data('easyPieChart').update(43);
+    }, 23000);
+    setTimeout(function () {
+      $('.chart4').data('easyPieChart').update(80);
+    }, 36000);
+    setTimeout(function () {
+      $('.chart4').data('easyPieChart').update(66);
+    }, 41000);
+  });
+
+  $(function () {
+    //create instance
+    $('.chart5').easyPieChart({
+      animate: 3000,
+      barColor: '#1e825e',
+      trackColor: '#dddddd',
+      scaleColor: '#1e825e',
+      size: 160,
+      lineWidth: 7,
+    });
+    //update instance after 5 sec
+    setTimeout(function () {
+      $('.chart5').data('easyPieChart').update(30);
+    }, 9000);
+    setTimeout(function () {
+      $('.chart5').data('easyPieChart').update(87);
+    }, 19000);
+    setTimeout(function () {
+      $('.chart5').data('easyPieChart').update(28);
+    }, 27000);
+    setTimeout(function () {
+      $('.chart5').data('easyPieChart').update(69);
+    }, 39000);
+    setTimeout(function () {
+      $('.chart5').data('easyPieChart').update(99);
+    }, 47000);
+  });
+
+}
+
+$(document).ready(
+  pieChartHome()
+);
+</script>
+
+
