@@ -745,14 +745,14 @@
                 case 'modal':
                     template = '<div class="bootstrap-timepicker modal hide fade in" style="top: 30%; margin-top: 0; width: 200px; margin-left: -100px;" data-backdrop="'+ (this.modalBackdrop ? 'true' : 'false') +'">'+
                                    '<div class="modal-header">'+
-                                       '<a href="#" class="close" data-dismiss="modal">×</a>'+
+                                       '<a href="#" class="close" aria-label="dismiss" data-dismiss="modal">×</a>'+
                                        '<h4>Pick a Time</h4>'+
                                    '</div>'+
                                    '<div class="modal-content">'+
                                         templateContent +
                                    '</div>'+
                                    '<div class="modal-footer">'+
-                                       '<a href="#" class="btn btn-primary" data-dismiss="modal">Ok</a>'+
+                                       '<a href="#" class="btn btn-primary" aria-label=dismiss" data-dismiss="modal">Ok</a>'+
                                    '</div>'+
                                '</div>';
 

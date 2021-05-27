@@ -2,17 +2,17 @@
   <% name = name.to_sym %>
   <% if name == :error %>
     <div class="alert alert-error">
-      <a class="close" data-dismiss="alert" href="#">×</a>
+      <a class="close" aria-label="dismiss" data-dismiss="alert" href="#">×</a>
           <%= content_tag :div, msg, :id => "flash_notice" %>
     </div>
   <% elsif name == :success %>
     <div class="alert alert-success">
-      <a class="close" data-dismiss="alert" href="#">×</a>
+      <a class="close" aria-label="dismiss" data-dismiss="alert" href="#">×</a>
           <%= content_tag :div, msg, :id => "flash_notice" %>
     </div>
   <% elsif name == :info %>
     <div class="alert alert-info">
-      <a class="close" data-dismiss="alert" href="#">×</a>
+      <a class="close" aria-label="dismiss" data-dismiss="alert" href="#">×</a>
         <%= content_tag :div, msg, :id => "flash_notice" %>
     </div>
   <% end %>

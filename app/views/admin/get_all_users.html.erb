@@ -26,7 +26,7 @@
               <%= u.email%>
             </td>
             <td>
-              <%= u.admin ? %{<span class="fs1" aria-hidden="true" data-icon="&#xe0fe;"}.html_safe : nil %>
+              <%= u.admin ? %{<span class="fs1" aria-label="check" data-icon="&#xe0fe;"}.html_safe : nil %>
             </td>
             <td>
               <%= link_to "Edit", "#", {:onClick => "javascript:openEditModal(#{u.id});", :role => "button", :style => "width:70px", :class => "btn btn-inverse", "data-toggle" => "modal"}%>
