@@ -21,6 +21,8 @@ class Api::V1::UsersController < ApplicationController
       # TODO :add some functionality to check if the HTTP Header is valid
       if !identify_user(token)
         redirect_to root_url
+      else
+        true
       end
     end
   end
