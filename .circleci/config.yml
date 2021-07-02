@@ -1,9 +1,8 @@
-version: '2.1'
+version: 2.1
 orbs:
   boost-security-scanner: boost/security-scanner@2
 workflows:
   version: 2
   build:
     jobs:
-      - scan:
-          context: boost-security
+      - boost-security-scanner/scan
