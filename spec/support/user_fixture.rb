@@ -6,7 +6,7 @@ class UserFixture
   end
 
   def self.normal_user
-    password = @password
+    password = "thi$ 1s cOmplExEr"
     User.create!(first_name: "Joe", last_name: "Schmoe", email: "joe@schmoe.com",
                  password: password, password_confirmation: password).tap do |user|
       def user.clear_password
