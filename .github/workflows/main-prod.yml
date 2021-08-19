@@ -1,0 +1,52 @@
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - synchronize
+jobs:
+  scan_job:
+    name: Boost Security Scanner
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: BoostSecurity Scanner
+      uses: peaudecastor/boost-security-scanner-github@v2
+      with:
+          action: scan
+          additional_args: --partial
+          api_token: ${{ secrets.BOOST_API_TOKEN }}
+      env:
+        BOOST_CLI_URL: https://assets.boostsecurity.io
+  brakeman_job:
+    name: Brakeman Scanner
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Brakeman Scanner
+        uses: peaudecastor/boost-security-scanner-github@master-v2
+        with:
+          action: exec
+          additional_args: --partial --require-full-repo
+          api_token: ${{ secrets.BOOST_API_TOKEN }}
+          exec_command: "docker run -v %CWD%:/code presidentbeef/brakeman --format sarif --force" # an example of using docker to run a SARIF command
+  complete_scan:
+    name: Complete Scan
+    needs: [scan_job, brakeman_job]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Complete Scan
+        uses: peaudecastor/boost-security-scanner-github@master-v2
+        with:
+          action: complete
+          api_token: ${{ secrets.BOOST_API_TOKEN }}
