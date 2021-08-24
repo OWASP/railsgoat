@@ -1,0 +1,42 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "27033d08c8870bed7adc52075447f220c78d5e3b2c42ad05dc2c36625a0f5774",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/analytics.rb",
+      "line": 3,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "select(\"#{col}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Analytics",
+        "method": "hits_by_ip"
+      },
+      "user_input": "col",
+      "confidence": "Medium",
+      "note": "stupid"
+    },
+    {
+      "warning_type": "Cross-Site Request Forgery",
+      "warning_code": 116,
+      "fingerprint": "c8697fda60549ca065789e2ea74c94effecef88b2b5483bae17ddd62ece47194",
+      "check_name": "CSRFTokenForgeryCVE",
+      "message": "Rails 6.0.0 has a vulnerability that may allow CSRF token forgery. Upgrade to Rails 6.0.3.1 or patch",
+      "file": "Gemfile.lock",
+      "line": 225,
+      "link": "https://groups.google.com/g/rubyonrails-security/c/NOjKiGeXUgw",
+      "code": null,
+      "render_path": null,
+      "location": null,
+      "user_input": null,
+      "confidence": "Medium",
+      "note": ""
+    }
+  ],
+  "updated": "2021-08-19 14:55:57 +0000",
+  "brakeman_version": "5.1.1"
+}
