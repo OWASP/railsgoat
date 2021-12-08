@@ -1,4 +1,4 @@
-name: Whitesource Unified Agent Scan - Android
+name: Whitesource Unified Agent Scan
 
 on:
   push:
