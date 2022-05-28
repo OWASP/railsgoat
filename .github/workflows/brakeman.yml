@@ -1,0 +1,12 @@
+name: Brakeman
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Brakeman
+        uses: polydice/brakeman-linter-action@fix-non-stop-2
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_LATEST_SHA: ${{ github.event.pull_request.head.sha }}
