@@ -48,79 +48,77 @@
     </div>
   </div>
 </div>
-
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 
- google.load("visualization", "1", {
-  packages: ["corechart"]
-});
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
 
-function drawChart2() {
-  var data = google.visualization.arrayToDataTable([
-    ['Year', 'Score'],
-    <% @perf.each do |p| %>
-    // Let's just hope this data isn't suspectible during later releases ;-)
-    [ <%= "#{p.date_submitted}".inspect.html_safe %>, <%= p.score %> ],
-    <% end %>
-    ]);
+  function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+	  ['Year', 'Score'],
+	      <% @perf.each do |p| %>
+	      // Let's just hope this data isn't suspectible during later releases ;-)
+	  [ <%= "#{p.date_submitted}".inspect.html_safe %>, <%= p.score %> ],
+	      <% end %>
+      ]);
 
-  var options = {
-    min: 1,
-    max: 5,
-    width: 'auto',
-    height: '160',
-    backgroundColor: 'transparent',
-    colors: ['#e26666', '#579da9', '#1e825e', '#b5799e', '#dba26b'],
-    tooltip: {
-      textStyle: {
-        color: '#666666',
-        fontSize: 11
-      },
-      showColorCode: true
-    },
-    legend: {
-      textStyle: {
-        color: 'black',
-        fontSize: 12
-      }
-    },
-    chartArea: {
-      left: 100,
-      top: 10
-    },
-    focusTarget: 'category',
-    hAxis: {
-      textStyle: {
-        color: 'black',
-        fontSize: 12
-      }
-    },
-    vAxis: {
-      textStyle: {
-        color: 'black',
-        fontSize: 12
-      }
-    },
-    pointSize: 8,
-    chartArea: {
-      left: 60,
-      top: 10,
-      height: '80%'
-    },
-    lineWidth: 2,
+      var options = {
+	  min: 1,
+	  max: 5,
+	  width: 'auto',
+	  height: '160',
+	  backgroundColor: 'transparent',
+	  colors: ['#e26666', '#579da9', '#1e825e', '#b5799e', '#dba26b'],
+	  tooltip: {
+	      textStyle: {
+		  color: '#666666',
+		  fontSize: 11
+	      },
+	      showColorCode: true
+	  },
+	  legend: {
+	      textStyle: {
+		  color: 'black',
+		  fontSize: 12
+	      }
+	  },
+	  chartArea: {
+	      left: 100,
+	      top: 10
+	  },
+	  focusTarget: 'category',
+	  hAxis: {
+	      textStyle: {
+		  color: 'black',
+		  fontSize: 12
+	      }
+	  },
+	  vAxis: {
+	      textStyle: {
+		  color: 'black',
+		  fontSize: 12
+	      }
+	  },
+	  pointSize: 8,
+	  chartArea: {
+	      left: 60,
+	      top: 10,
+	      height: '80%'
+	  },
+	  lineWidth: 2,
+      };
+
+      var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
+      chart.draw(data, options);
+  }
+
+  function makeActive(){
+      $('li[id="performance"]').addClass('active');
   };
 
-  var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
-  chart.draw(data, options);
-}
-
-function makeActive(){
-  $('li[id="performance"]').addClass('active');
-};
-
-$(document).ready(function () {
-  drawChart2(),
-  makeActive()
-});
+  $(document).ready(function () {
+      makeActive()
+  });
 
 </script>
