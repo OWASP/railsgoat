@@ -120,132 +120,123 @@
 
 <%= javascript_include_tag "moment.min.js" %>
 <%= javascript_include_tag "fullcalendar.min.js" %>
-
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
+  function makeActive(){
+      $('li[id="pto"]').addClass('active');
+  };
 
-
-
-function makeActive(){
-  $('li[id="pto"]').addClass('active');
-};
-
-
-$(document).ready(function() {
-  $('#calendar').fullCalendar({
-        events: <%= get_pto_schedule_schedule_index_path(:format => "json").inspect.html_safe %>,
-  });
-});
-
-
-
-//Date picker
-$('.date_picker').daterangepicker({
-  opens: 'right'
-});
-
- $(document).ready(function () {
-   drawChart1(),
-   drawChart2(),
-   resizeTopWidgets(),
-   makeActive()
+  $(document).ready(function() {
+      $('#calendar').fullCalendar({
+          events: <%= get_pto_schedule_schedule_index_path(:format => "json").inspect.html_safe %>,
+      });
   });
 
-   google.load("visualization", "1", {
-      packages: ["corechart"]
-    });
+  //Date picker
+  $('.date_picker').daterangepicker({
+      opens: 'right'
+  });
 
-function drawChart1() {
-    var data = google.visualization.arrayToDataTable([
-      ['Current Date', 'Days Earned', 'Days Taken', 'Days Remaining'],
-      [ <%= "As of today: #{Date.today}".inspect.html_safe %>, <%= @pto.sick_days_earned %>,  <%= @pto.sick_days_taken %>, <%= @pto.sick_days_remaining %> ], ]);
+  $(document).ready(function () {
+      resizeTopWidgets(),
+      makeActive()
+  });
 
-    var options = {
-      width: 'auto',
-      height: '160',
-      backgroundColor: 'transparent',
-      colors: ['#579da9', '#e26666', '#1e825e'],
-      tooltip: {
-        textStyle: {
-          color: '#666666',
-          fontSize: 11
-        },
-        showColorCode: true
-      },
-      legend: {
-        textStyle: {
-          color: 'black',
-          fontSize: 12
-        }
-      },
-      chartArea: {
-        left: 60,
-        top: 10,
-        height: '80%'
-      },
-    };
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart1);
+  google.charts.setOnLoadCallback(drawChart2);
 
-    var chart = new google.visualization.ColumnChart(document.getElementById('column_chart_1'));
-    chart.draw(data, options);
+  function drawChart1() {
+      var data = google.visualization.arrayToDataTable([
+	  ['Current Date', 'Days Earned', 'Days Taken', 'Days Remaining'],
+	  [ <%= "As of today: #{Date.today}".inspect.html_safe %>, <%= @pto.sick_days_earned %>,  <%= @pto.sick_days_taken %>, <%= @pto.sick_days_remaining %> ], ]);
+
+      var options = {
+	  width: 'auto',
+	  height: '160',
+	  backgroundColor: 'transparent',
+	  colors: ['#579da9', '#e26666', '#1e825e'],
+	  tooltip: {
+              textStyle: {
+		  color: '#666666',
+		  fontSize: 11
+              },
+              showColorCode: true
+	  },
+	  legend: {
+              textStyle: {
+		  color: 'black',
+		  fontSize: 12
+              }
+	  },
+	  chartArea: {
+              left: 60,
+              top: 10,
+              height: '80%'
+	  },
+      };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById('column_chart_1'));
+      chart.draw(data, options);
   }
 
-function drawChart2() {
-    var data = google.visualization.arrayToDataTable([
-      ['Current Date', 'Days Earned', 'Days Taken', 'Days Remaining'],
-      [ <%= "As of today: #{Date.today}".inspect.html_safe %>, <%= @pto.pto_earned %>,  <%= @pto.pto_taken %>, <%= @pto.pto_days_remaining %> ], ]);
+  function drawChart2() {
+      var data = google.visualization.arrayToDataTable([
+	  ['Current Date', 'Days Earned', 'Days Taken', 'Days Remaining'],
+	  [ <%= "As of today: #{Date.today}".inspect.html_safe %>, <%= @pto.pto_earned %>,  <%= @pto.pto_taken %>, <%= @pto.pto_days_remaining %> ], ]);
 
-    var options = {
-      width: 'auto',
-      height: '160',
-      backgroundColor: 'transparent',
-      colors: ['#579da9', '#e26666', '#1e825e'],
-      tooltip: {
-        textStyle: {
-          color: '#666666',
-          fontSize: 11
-        },
-        showColorCode: true
-      },
-      legend: {
-        textStyle: {
-          color: 'black',
-          fontSize: 12
-        }
-      },
-      chartArea: {
-        left: 60,
-        top: 10,
-        height: '80%'
-      },
-    };
+      var options = {
+	  width: 'auto',
+	  height: '160',
+	  backgroundColor: 'transparent',
+	  colors: ['#579da9', '#e26666', '#1e825e'],
+	  tooltip: {
+              textStyle: {
+		  color: '#666666',
+		  fontSize: 11
+              },
+              showColorCode: true
+	  },
+	  legend: {
+              textStyle: {
+		  color: 'black',
+		  fontSize: 12
+              }
+	  },
+	  chartArea: {
+              left: 60,
+              top: 10,
+              height: '80%'
+	  },
+      };
 
-    var chart = new google.visualization.ColumnChart(document.getElementById('column_chart_2'));
-    chart.draw(data, options);
+      var chart = new google.visualization.ColumnChart(document.getElementById('column_chart_2'));
+      chart.draw(data, options);
   }
 
-function resizeTopWidgets(){
-  var calHeight = $("#calendarDiv").height();
-    $("#scheduleDiv").css({'height':calHeight});
-};
+  function resizeTopWidgets(){
+      var calHeight = $("#calendarDiv").height();
+      $("#scheduleDiv").css({'height':calHeight});
+  };
 
-$("#cal_update_submit").click(function(event) {
-    var valuesToSubmit = $("#cal_update").serialize();
-    event.preventDefault();
-    $.ajax({
-      url: "/schedule.json",
-    data: valuesToSubmit,
-    type: "POST",
-    success: function(response) {
-    if (response.msg == "failure") {
-      $('#failure').show(500).delay(1500).fadeOut();
-    } else {
-      $('#success').show(500).delay(1500).fadeOut();
-      $('#calendar').fullCalendar('refetchEvents')
-    }
-    },
-    error: function(event) {
-    $('#failure').show(500).delay(1500).fadeOut();
-    }
+  $("#cal_update_submit").click(function(event) {
+      var valuesToSubmit = $("#cal_update").serialize();
+      event.preventDefault();
+      $.ajax({
+	  url: "/schedule.json",
+	  data: valuesToSubmit,
+	  type: "POST",
+	  success: function(response) {
+	      if (response.msg == "failure") {
+		  $('#failure').show(500).delay(1500).fadeOut();
+	      } else {
+		  $('#success').show(500).delay(1500).fadeOut();
+		  $('#calendar').fullCalendar('refetchEvents')
+	      }
+	  },
+	  error: function(event) {
+	      $('#failure').show(500).delay(1500).fadeOut();
+	  }
+      });
   });
-});
-
 </script>
