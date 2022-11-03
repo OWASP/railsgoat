@@ -19,10 +19,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Semgrep with Node.JS
+      - name: Semgrep with Ruby & JavaScript & JWT
         uses: boostsecurityio/boostsec-scanner-github@v4
         env:
-          SEMGREP_RULES: p/nodejsscan p/typescript
+          SEMGREP_RULES: p/ruby p/javascript p/jwt
         with:
           api_token: ${{ secrets.BOOST_API_TOKEN }}
           registry_module: boostsecurityio/semgrep
