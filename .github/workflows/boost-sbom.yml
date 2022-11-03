@@ -1,4 +1,4 @@
-name: BoostSecurity
+name: BoostSecurity SBOM
 on:
   workflow_dispatch:
   push:
