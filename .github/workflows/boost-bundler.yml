@@ -1,0 +1,28 @@
+name: BoostSecurity Bundler Audit
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+    types:
+      - opened
+      - synchronize
+jobs:
+  scanner:
+    name: Bundler Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Bundler Audit
+        uses: boostsecurityio/boostsec-scanner-github@v4
+        env:
+          GEMFILE_LOCK: 
+        with:
+          api_token: ${{ secrets.BOOST_API_TOKEN }}
+          registry_module: boostsecurityio/bundler-audit
