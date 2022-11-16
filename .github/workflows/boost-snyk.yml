@@ -1,6 +1,6 @@
 name: BoostSecurity Snyk
 env:
-  SNYK_TOKEN: bf5c9d88-dbff-4b95-b7c7-617cdd457a2d
+  SNYK_TOKEN: 130a3a8d-cf45-429d-9070-7fa14f3cc8ef
 on:
   workflow_dispatch:
   push:
