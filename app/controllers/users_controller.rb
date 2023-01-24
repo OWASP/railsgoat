@@ -27,7 +27,8 @@ class UsersController < ApplicationController
     message = false
 
     user = User.where("id = '#{params[:user][:id]}'")[0]
-
+#    user = User.where("id = ?", params[:user][:user_id]).first
+    
     if user
       user.update(user_params_without_password)
       if params[:user][:password].present? && (params[:user][:password] == params[:user][:password_confirmation])
