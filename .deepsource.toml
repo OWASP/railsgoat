@@ -1,0 +1,13 @@
+version = 1
+
+[[analyzers]]
+name = "shell"
+
+[[analyzers]]
+name = "javascript"
+
+  [analyzers.meta]
+  environment = ["jquery"]
+
+[[analyzers]]
+name = "ruby"
