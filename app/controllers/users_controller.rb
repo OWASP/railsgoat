@@ -3,6 +3,11 @@ class UsersController < ApplicationController
   skip_before_action :has_info
   skip_before_action :authenticated, only: [:new, :create]
 
+  def index
+    keyword = params[:keyword]
+    @users = User.search(keyword)
+  end
+
   def new
     @user = User.new
   end

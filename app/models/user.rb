@@ -36,6 +36,10 @@ class User < ApplicationRecord
     "#{self.first_name} #{self.last_name}"
   end
 
+  def self.search(keyword)
+    User.where("username like %#{keyword}%")
+  end
+
   private
 
   def self.authenticate(email, password)
