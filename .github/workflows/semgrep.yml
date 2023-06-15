@@ -1,0 +1,40 @@
+name: semgrep
+
+on:
+  pull_request
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  semgrep:
+    name: semgrep
+    runs-on: ubuntu-latest
+    # Skip any PR created by dependabot to avoid permission issues
+    if: (github.actor != 'dependabot[bot]')
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: reviewdog/action-setup@v1
+      - id: changed-files
+        uses: tj-actions/changed-files@v35.9.2
+      - id: run-semgrep
+        name: Run semgrep
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          docker run \
+            -v $(pwd):/workdir \
+            --workdir /workdir \
+            returntocorp/semgrep:0.107.0@sha256:6dbe20d888ea60efeadaa29aded8b9cfc0571488f851d3ff05958b55a8ed90a1 \
+            semgrep scan --config auto --severity WARNING --json ${{ steps.changed-files.outputs.all_changed_files }} \
+          | jq -r '.results[] | "\(.path):\(.start.line):\(.start.col): \(.extra.message)"' \
+          | sed 's#^/workdir/##' \
+          | reviewdog \
+            -efm="%f:%l:%c: %m" \
+            -diff="git diff FETCH_HEAD" \
+            -level=warning \
+            -reporter=github-pr-review
