@@ -1,0 +1,33 @@
+version: 2.1
+jobs:
+  semgrep-scan:
+    parameters: 
+      default_branch:
+        type: string
+        default: main
+    environment:
+      SEMGREP_REPO_URL: << pipeline.project.git_url >>
+      SEMGREP_BRANCH: << pipeline.git.branch >>
+    docker:
+      - image: returntocorp/semgrep
+    steps:
+      - checkout
+      - run:
+          name: export baseline ref if PR
+          command: |
+            if [[ -n "$CIRCLE_PULL_REQUEST" ]]; then
+              echo "This is a PR scan"
+              echo 'export SEMGREP_BASELINE_REF="<< parameters.default_branch>>"'
+              echo 'export SEMGREP_BASELINE_REF="<< parameters.default_branch>>"' >> "$BASH_ENV"
+            else
+              echo "This is not a PR scan"
+            fi
+      - run:
+          name: "Semgrep scan"
+          command: semgrep ci         
+workflows:
+  Semgrep:
+    jobs:
+      - semgrep-scan:
+          context:
+            - dev
