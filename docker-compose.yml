@@ -1,6 +1,7 @@
 version: '2'
 services:
   mysql:
+    platform: linux/amd64
     image: mysql:5.7
     restart: always
     environment:
@@ -12,6 +13,11 @@ services:
       - '3306'
 #    extra_hosts:
 #      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u root"]
+      interval: 5s
+      timeout: 10s
+      retries: 3
 
   web:
     build: .
@@ -25,7 +31,8 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     links:
       - mysql
 
