@@ -32,8 +32,6 @@ class PasswordResetsController < ApplicationController
     if @user && password_reset_mailer(@user)
       flash[:success] = "Password reset email sent to #{params[:email]}"
       redirect_to :login
-    else
-      flash[:error] = "There was an issue sending password reset email to #{params[:email]}".html_safe unless params[:email].nil?
     end
   end
 
