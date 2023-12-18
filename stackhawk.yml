@@ -1,8 +1,20 @@
 version: 2
 
+hawk:
+  spider:
+    base: true
+    maxDurationMinutes: 5
+  startupTimeoutMinutes: 5
+  scan:
+    concurrentRequests: '20'
+    throttlePassiveBacklog: '50'
+
+app:
+  host: https://your-application-url.com
+  applicationId: your-application-id
+  env: development
+
 tests:
   - name: All Endpoints
     endpoint: /v1/all-endpoints
     method: GET
-
-# Add more tests and configurations as needed
