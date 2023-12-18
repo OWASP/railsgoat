@@ -1,0 +1,8 @@
+version: 2
+
+tests:
+  - name: All Endpoints
+    endpoint: /v1/all-endpoints
+    method: GET
+
+# Add more tests and configurations as needed
