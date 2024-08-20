@@ -1,0 +1,571 @@
+{
+  "scan_info": {
+    "app_path": "/Users/x/src/tmp/railsgoat",
+    "rails_version": "6.0.0",
+    "security_warnings": 22,
+    "start_time": "2024-08-20 19:44:40 -0400",
+    "end_time": "2024-08-20 19:44:40 -0400",
+    "duration": 0.639539,
+    "checks_performed": [
+      "BasicAuth",
+      "BasicAuthTimingAttack",
+      "CSRFTokenForgeryCVE",
+      "ContentTag",
+      "CookieSerialization",
+      "CreateWith",
+      "CrossSiteScripting",
+      "DefaultRoutes",
+      "Deserialize",
+      "DetailedExceptions",
+      "DigestDoS",
+      "DynamicFinders",
+      "EOLRails",
+      "EOLRuby",
+      "EscapeFunction",
+      "Evaluation",
+      "Execute",
+      "FileAccess",
+      "FileDisclosure",
+      "FilterSkipping",
+      "ForgerySetting",
+      "HeaderDoS",
+      "I18nXSS",
+      "JRubyXML",
+      "JSONEncoding",
+      "JSONEntityEscape",
+      "JSONParsing",
+      "LinkTo",
+      "LinkToHref",
+      "MailTo",
+      "MassAssignment",
+      "MimeTypeDoS",
+      "ModelAttrAccessible",
+      "ModelAttributes",
+      "ModelSerialize",
+      "NestedAttributes",
+      "NestedAttributesBypass",
+      "NumberToCurrency",
+      "PageCachingCVE",
+      "Pathname",
+      "PermitAttributes",
+      "QuoteTableName",
+      "Ransack",
+      "Redirect",
+      "RegexDoS",
+      "Render",
+      "RenderDoS",
+      "RenderInline",
+      "ResponseSplitting",
+      "RouteDoS",
+      "SQL",
+      "SQLCVEs",
+      "SSLVerify",
+      "SafeBufferManipulation",
+      "SanitizeConfigCve",
+      "SanitizeMethods",
+      "SelectTag",
+      "SelectVulnerability",
+      "Send",
+      "SendFile",
+      "SessionManipulation",
+      "SessionSettings",
+      "SimpleFormat",
+      "SingleQuotes",
+      "SkipBeforeFilter",
+      "SprocketsPathTraversal",
+      "StripTags",
+      "SymbolDoSCVE",
+      "TemplateInjection",
+      "TranslateBug",
+      "UnsafeReflection",
+      "UnsafeReflectionMethods",
+      "ValidationRegex",
+      "VerbConfusion",
+      "WeakRSAKey",
+      "WithoutProtection",
+      "XMLDoS",
+      "YAMLParsing"
+    ],
+    "number_of_controllers": 17,
+    "number_of_models": 12,
+    "number_of_templates": 27,
+    "ruby_version": "3.1.6",
+    "brakeman_version": "6.1.2"
+  },
+  "warnings": [
+    {
+      "warning_type": "Remote Code Execution",
+      "warning_code": 25,
+      "fingerprint": "07f5143982fb589796b35ec8252bef03d1696639ba57242317926977ae7e0d49",
+      "check_name": "Deserialize",
+      "message": "`Marshal.load` called with parameter value",
+      "file": "app/controllers/password_resets_controller.rb",
+      "line": 6,
+      "link": "https://brakemanscanner.org/docs/warning_types/unsafe_deserialization",
+      "code": "Marshal.load(Base64.decode64(params[:user]))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "PasswordResetsController",
+        "method": "reset_password"
+      },
+      "user_input": "params[:user]",
+      "confidence": "Medium",
+      "cwe_id": [
+        502
+      ]
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "2170a24c46533a0afaa85151bbce151f84aac05a3cd348b29b76cf35a98caff4",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/sessions_controller.rb",
+      "line": 26,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to((params[:url] or home_dashboard_index_path))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "SessionsController",
+        "method": "create"
+      },
+      "user_input": "params[:url]",
+      "confidence": "High",
+      "cwe_id": [
+        601
+      ]
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "27033d08c8870bed7adc52075447f220c78d5e3b2c42ad05dc2c36625a0f5774",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/analytics.rb",
+      "line": 3,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "select(\"#{col}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Analytics",
+        "method": "hits_by_ip"
+      },
+      "user_input": "col",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ]
+    },
+    {
+      "warning_type": "Dangerous Send",
+      "warning_code": 23,
+      "fingerprint": "46e6c67ae633f6424618e3efff2f8325e1babfd6fa09da557147c2cad905d052",
+      "check_name": "Send",
+      "message": "User controlled method execution",
+      "file": "app/controllers/dashboard_controller.rb",
+      "line": 16,
+      "link": "https://brakemanscanner.org/docs/warning_types/dangerous_send/",
+      "code": "self.try(params[:graph])",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "DashboardController",
+        "method": "change_graph"
+      },
+      "user_input": "params[:graph]",
+      "confidence": "High",
+      "cwe_id": [
+        77
+      ]
+    },
+    {
+      "warning_type": "Session Setting",
+      "warning_code": 26,
+      "fingerprint": "686c3e9fd57abd6d1e64ec2fbadcc4a786a986c4657af270d73c661a55f2a1ab",
+      "check_name": "SessionSettings",
+      "message": "Session cookies should be set to HTTP only",
+      "file": "config/initializers/session_store.rb",
+      "line": 4,
+      "link": "https://brakemanscanner.org/docs/warning_types/session_setting/",
+      "code": null,
+      "render_path": null,
+      "location": null,
+      "user_input": null,
+      "confidence": "High",
+      "cwe_id": [
+        1004
+      ]
+    },
+    {
+      "warning_type": "Cross-Site Request Forgery",
+      "warning_code": 7,
+      "fingerprint": "6f5239fb87c64764d0c209014deb5cf504c2c10ee424bd33590f0a4f22e01d8f",
+      "check_name": "ForgerySetting",
+      "message": "`protect_from_forgery` should be called in `ApplicationController`",
+      "file": "app/controllers/application_controller.rb",
+      "line": 2,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross-site_request_forgery/",
+      "code": null,
+      "render_path": null,
+      "location": {
+        "type": "controller",
+        "controller": "ApplicationController"
+      },
+      "user_input": null,
+      "confidence": "High",
+      "cwe_id": [
+        352
+      ]
+    },
+    {
+      "warning_type": "Session Setting",
+      "warning_code": 29,
+      "fingerprint": "715ad9c0d76f57a6a657192574d528b620176a80fec969e2f63c88eacab0b984",
+      "check_name": "SessionSettings",
+      "message": "Session secret should not be included in version control",
+      "file": "config/initializers/secret_token.rb",
+      "line": 8,
+      "link": "https://brakemanscanner.org/docs/warning_types/session_setting/",
+      "code": null,
+      "render_path": null,
+      "location": null,
+      "user_input": null,
+      "confidence": "High",
+      "cwe_id": [
+        798
+      ]
+    },
+    {
+      "warning_type": "Remote Code Execution",
+      "warning_code": 24,
+      "fingerprint": "71abb51a4f55c73468d91ccb62ff3719fe1d66f20032c8873d274f5c699d92fe",
+      "check_name": "UnsafeReflection",
+      "message": "Unsafe reflection method `constantize` called on parameter value",
+      "file": "app/controllers/api/v1/mobile_controller.rb",
+      "line": 17,
+      "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
+      "code": "params[:class].classify.constantize",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Api::V1::MobileController",
+        "method": "index"
+      },
+      "user_input": "params[:class].classify",
+      "confidence": "High",
+      "cwe_id": [
+        470
+      ]
+    },
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 105,
+      "fingerprint": "753fe10585146c8cd9f3734a7143946da237745ff2b6162b7f5cb333675b080f",
+      "check_name": "PermitAttributes",
+      "message": "Potentially dangerous key allowed for mass assignment",
+      "file": "app/controllers/users_controller.rb",
+      "line": 55,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.require(:user).permit(:email, :admin, :first_name, :last_name)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "UsersController",
+        "method": "user_params_without_password"
+      },
+      "user_input": ":admin",
+      "confidence": "High",
+      "cwe_id": [
+        915
+      ]
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "7fe869279cad8ef1a72c671c1dc746b25b5d310aadd645c8555dae1ff1ba0349",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/users_controller.rb",
+      "line": 29,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "User.where(\"id = '#{params[:user][:id]}'\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "UsersController",
+        "method": "update"
+      },
+      "user_input": "params[:user][:id]",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ]
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 114,
+      "fingerprint": "8275f584e7cced41c26890e574cdbf6804bddff54374058834a562294c99d6f6",
+      "check_name": "JSONEntityEscape",
+      "message": "HTML entities in JSON are not escaped by default",
+      "file": "config/environments/production.rb",
+      "line": 2,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross-site_scripting/",
+      "code": "ActiveSupport::JSON::Encoding.escape_html_entities_in_json = false",
+      "render_path": null,
+      "location": null,
+      "user_input": null,
+      "confidence": "Medium",
+      "cwe_id": [
+        79
+      ]
+    },
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 70,
+      "fingerprint": "9f34c0a29e2cde79abdccddc790291d548128f0e47f75ed53f499da9249b66b8",
+      "check_name": "MassAssignment",
+      "message": "Specify exact keys allowed for mass assignment instead of using `permit!` which allows any keys",
+      "file": "app/controllers/users_controller.rb",
+      "line": 50,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.require(:user).permit!",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "UsersController",
+        "method": "user_params"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "cwe_id": [
+        915
+      ]
+    },
+    {
+      "warning_type": "Format Validation",
+      "warning_code": 30,
+      "fingerprint": "a21418b38aa77ef73946105fb1c9e3623b7be67a2419b960793871587200cbcc",
+      "check_name": "ValidationRegex",
+      "message": "Insufficient validation for `email` using `/.+@.+\\..+/i`. Use `\\A` and `\\z` as anchors",
+      "file": "app/models/user.rb",
+      "line": 13,
+      "link": "https://brakemanscanner.org/docs/warning_types/format_validation/",
+      "code": null,
+      "render_path": null,
+      "location": {
+        "type": "model",
+        "model": "User"
+      },
+      "user_input": null,
+      "confidence": "High",
+      "cwe_id": [
+        777
+      ]
+    },
+    {
+      "warning_type": "Command Injection",
+      "warning_code": 14,
+      "fingerprint": "b07b623a859b5fda9cd1dbd80aa3d19171cc257c1bce4c6e9204a45e563a85b3",
+      "check_name": "Execute",
+      "message": "Possible command injection",
+      "file": "app/models/benefits.rb",
+      "line": 15,
+      "link": "https://brakemanscanner.org/docs/warning_types/command_injection/",
+      "code": "system(\"cp #{full_file_name} #{data_path}/bak#{Time.zone.now.to_i}_#{file.original_filename}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Benefits",
+        "method": "Benefits.make_backup"
+      },
+      "user_input": "full_file_name",
+      "confidence": "Medium",
+      "cwe_id": [
+        77
+      ]
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 124,
+      "fingerprint": "b2b8818e646bf1c277a27eae9a0e98766968d4d38e3b2e1e59b0fe1fa37218dc",
+      "check_name": "SanitizeConfigCve",
+      "message": "rails-html-sanitizer 1.3.0 is vulnerable to cross-site scripting when `select` and `style` tags are allowed (CVE-2022-32209). Upgrade to 1.4.3 or newer",
+      "file": "Gemfile.lock",
+      "line": 243,
+      "link": "https://groups.google.com/g/rubyonrails-security/c/ce9PhUANQ6s/m/S0fJfnkmBAAJ",
+      "code": null,
+      "render_path": null,
+      "location": null,
+      "user_input": null,
+      "confidence": "Weak",
+      "cwe_id": [
+        79
+      ]
+    },
+    {
+      "warning_type": "Remote Code Execution",
+      "warning_code": 24,
+      "fingerprint": "ba6443b7682abc8ba6c4ee8fdf13bbc6cfcd3aa7b7bdfcf812ec99f4e5b7a641",
+      "check_name": "UnsafeReflection",
+      "message": "Unsafe reflection method `constantize` called on parameter value",
+      "file": "app/controllers/api/v1/mobile_controller.rb",
+      "line": 10,
+      "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
+      "code": "params[:class].classify.constantize",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Api::V1::MobileController",
+        "method": "show"
+      },
+      "user_input": "params[:class].classify",
+      "confidence": "High",
+      "cwe_id": [
+        470
+      ]
+    },
+    {
+      "warning_type": "Cross-Site Request Forgery",
+      "warning_code": 116,
+      "fingerprint": "c8697fda60549ca065789e2ea74c94effecef88b2b5483bae17ddd62ece47194",
+      "check_name": "CSRFTokenForgeryCVE",
+      "message": "Rails 6.0.0 has a vulnerability that may allow CSRF token forgery. Upgrade to Rails 6.0.3.1 or patch",
+      "file": "Gemfile.lock",
+      "line": 225,
+      "link": "https://groups.google.com/g/rubyonrails-security/c/NOjKiGeXUgw",
+      "code": null,
+      "render_path": null,
+      "location": null,
+      "user_input": null,
+      "confidence": "Medium",
+      "cwe_id": [
+        352
+      ]
+    },
+    {
+      "warning_type": "Unmaintained Dependency",
+      "warning_code": 120,
+      "fingerprint": "d84924377155b41e094acae7404ec2e521629d86f97b0ff628e3d1b263f8101c",
+      "check_name": "EOLRails",
+      "message": "Support for Rails 6.0.0 ended on 2023-06-01",
+      "file": "Gemfile.lock",
+      "line": 225,
+      "link": "https://brakemanscanner.org/docs/warning_types/unmaintained_dependency/",
+      "code": null,
+      "render_path": null,
+      "location": null,
+      "user_input": null,
+      "confidence": "High",
+      "cwe_id": [
+        1104
+      ]
+    },
+    {
+      "warning_type": "Unmaintained Dependency",
+      "warning_code": 121,
+      "fingerprint": "edf687f759ec9765bd5db185dbc615c80af77d6e7e19386fc42934e7a80307af",
+      "check_name": "EOLRuby",
+      "message": "Support for Ruby 2.6.5 ended on 2022-03-31",
+      "file": ".ruby-version",
+      "line": 1,
+      "link": "https://brakemanscanner.org/docs/warning_types/unmaintained_dependency/",
+      "code": null,
+      "render_path": null,
+      "location": null,
+      "user_input": null,
+      "confidence": "High",
+      "cwe_id": [
+        1104
+      ]
+    },
+    {
+      "warning_type": "File Access",
+      "warning_code": 16,
+      "fingerprint": "f63861a0e7ecd271e9f4211fbf6fe843bde57b48d3a11b475a80b27a9abf3759",
+      "check_name": "SendFile",
+      "message": "Parameter value used in file name",
+      "file": "app/controllers/benefit_forms_controller.rb",
+      "line": 12,
+      "link": "https://brakemanscanner.org/docs/warning_types/file_access/",
+      "code": "send_file(params[:type].constantize.new(params[:name]), :disposition => \"attachment\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "BenefitFormsController",
+        "method": "download"
+      },
+      "user_input": "params[:type].constantize.new(params[:name])",
+      "confidence": "High",
+      "cwe_id": [
+        22
+      ]
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "febb21e45b226bb6bcdc23031091394a3ed80c76357f66b1f348844a7626f4df",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped cookie value",
+      "file": "app/views/layouts/application.html.erb",
+      "line": 12,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross-site_scripting/",
+      "code": "cookies[:font]",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "AdminController",
+          "method": "dashboard",
+          "line": 8,
+          "file": "app/controllers/admin_controller.rb",
+          "rendered": {
+            "name": "layouts/application",
+            "file": "app/views/layouts/application.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "layouts/application"
+      },
+      "user_input": null,
+      "confidence": "High",
+      "cwe_id": [
+        79
+      ]
+    },
+    {
+      "warning_type": "Remote Code Execution",
+      "warning_code": 24,
+      "fingerprint": "ff21c7fa4c5ef7f975a711304bcbd91447abe9723c54c59cb8e75a675ef7bf21",
+      "check_name": "UnsafeReflection",
+      "message": "Unsafe reflection method `constantize` called on parameter value",
+      "file": "app/controllers/benefit_forms_controller.rb",
+      "line": 11,
+      "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
+      "code": "params[:type].constantize",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "BenefitFormsController",
+        "method": "download"
+      },
+      "user_input": "params[:type]",
+      "confidence": "High",
+      "cwe_id": [
+        470
+      ]
+    }
+  ],
+  "ignored_warnings": [
+
+  ],
+  "errors": [
+
+  ],
+  "obsolete": [
+
+  ]
+}

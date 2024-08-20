@@ -12,3 +12,4 @@ coverage
 .tags
 /.vagrant
 /vendor/ruby
+.mise.toml
