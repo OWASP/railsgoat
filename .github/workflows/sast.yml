@@ -1,0 +1,19 @@
+name: 'brakeman sast scan'
+on:
+  workflow_dispatch:
+  pull_request:
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1' # latest brakeman wants ruby >= 3.0.0
+      - run: gem install brakeman
+      - run: brakeman --color -o /dev/stdout -o output.json
+      - name: save artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: brakeman-report
+          path: output.json
