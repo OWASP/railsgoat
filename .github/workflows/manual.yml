@@ -37,7 +37,7 @@ jobs:
     - name: Show Semgrep version running Docker container
       # run: docker run --rm --entrypoint "" hub.softswiss.net/security-pub/pipeguard:1.2.3 semgrep --version
       run: |
-          docker run --rm -it -v ${{ github.workspace }}:/project \
+          docker run --rm -v ${{ github.workspace }}:/project \
           --platform linux/amd64 \
           -e CI_BUILDS_DIR='none' \
           -e CI_JOB_ID='none' \
