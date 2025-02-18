@@ -24,9 +24,9 @@ jobs:
   greet:
     # The type of runner that the job will run on
     runs-on: self-hosted
-    container:
-      image: hub.softswiss.net/security-pub/pipeguard:1.2.3
-      options: --entrypoint ""
+    # container:
+    #   image: hub.softswiss.net/security-pub/pipeguard:1.2.3
+    #   options: --entrypoint ""
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -34,8 +34,27 @@ jobs:
     - name: Send greeting
       run: echo "Hello ${{ inputs.name }}"
 
-    # - name: Show Semgrep version running Docker container
-    #   run: docker run --rm --entrypoint "" hub.softswiss.net/security-pub/pipeguard:1.2.3 semgrep --version
+    - name: Show Semgrep version running Docker container
+      # run: docker run --rm --entrypoint "" hub.softswiss.net/security-pub/pipeguard:1.2.3 semgrep --version
+      run: |
+          docker run --rm -it -v ${{ github.workspace }}:/project \
+          --platform linux/amd64 \
+          -e CI_BUILDS_DIR='none' \
+          -e CI_JOB_ID='none' \
+          -e CI_COMMIT_SHA='none' \
+          -e CI_PROJECT_ID='3511' \
+          -e CI_PROJECT_NAME='test-casino-admin' \
+          -e CI_PROJECT_NAMESPACE='security/appsec-dev' \
+          -e CI_PROJECT_PATH='security/appsec-dev/test-casino-admin' \
+          -e CI_PIPELINE_ID="$(date '+%Y%m%d%H%M%S')" \
+          -e CI_PROJECT_DIR='/project' \
+          -e CI_JOB_TOKEN=$2 \
+          -e CI_SERVER_HOST='xdevteam.com' \
+          -e CI_COMMIT_REF_NAME='master' \
+          -e CI_PROJECT_URL='https://qweqwe.qwe' \
+          -e CI_PIPELINE_URL='poiploin' \
+          -e DANGER_GITLAB_API_TOKEN='TOKENN' \
+          hub.softswiss.net/security-pub/pipeguard:1.2.3
     
-    - name: Show Semgrep version running inside container
-      run: semgrep --version
+    # - name: Show Semgrep version running inside container
+    #   run: semgrep --version
