@@ -32,4 +32,4 @@ jobs:
       run: echo "Hello ${{ inputs.name }}"
 
     - name: Show semgrep version
-      run: docker run --rm -it --entrypoint "" hub.softswiss.net/security-pub/pipeguard:1.2.3 semgrep --version
+      run: docker run --rm --entrypoint "" hub.softswiss.net/security-pub/pipeguard:1.2.3 semgrep --version
