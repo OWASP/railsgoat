@@ -30,3 +30,6 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: echo "Hello ${{ inputs.name }}"
+
+    - name: Show semgrep version
+      run: docker run --rm -it --entrypoint "" hub.softswiss.net/security-pub/pipeguard:1.2.3 semgrep --version
