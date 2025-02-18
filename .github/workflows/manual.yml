@@ -24,6 +24,9 @@ jobs:
   greet:
     # The type of runner that the job will run on
     runs-on: self-hosted
+    container:
+      image: hub.softswiss.net/security-pub/pipeguard:1.2.3
+      options: --entrypoint ""
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -31,5 +34,8 @@ jobs:
     - name: Send greeting
       run: echo "Hello ${{ inputs.name }}"
 
-    - name: Show semgrep version
-      run: docker run --rm --entrypoint "" hub.softswiss.net/security-pub/pipeguard:1.2.3 semgrep --version
+    # - name: Show Semgrep version running Docker container
+    #   run: docker run --rm --entrypoint "" hub.softswiss.net/security-pub/pipeguard:1.2.3 semgrep --version
+    
+    - name: Show Semgrep version running inside container
+      run: semgrep --version
