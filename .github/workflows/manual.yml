@@ -8,7 +8,7 @@ on:
         default: 'World'
         required: true
         type: string
-        
+
 jobs:
   code-scan:
     runs-on: self-hosted
@@ -17,6 +17,9 @@ jobs:
     #   options: --entrypoint ""
 
     steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v4 
 
     - name: code-scan
       # run: docker run --rm --entrypoint "" hub.softswiss.net/security-pub/pipeguard:1.2.3 semgrep --version
