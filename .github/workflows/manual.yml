@@ -54,7 +54,7 @@ jobs:
           -e CI_PROJECT_URL='https://qweqwe.qwe' \
           -e CI_PIPELINE_URL='poiploin' \
           -e DANGER_GITLAB_API_TOKEN='TOKENN' \
-          hub.softswiss.net/security-pub/pipeguard:1.2.3
+          hub.softswiss.net/security-pub/pipeguard:feature-nl-appsec-541-github
     
     # - name: Show Semgrep version running inside container
     #   run: semgrep --version
