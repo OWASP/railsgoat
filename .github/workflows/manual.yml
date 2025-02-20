@@ -40,19 +40,19 @@ jobs:
           docker run --rm -v ${{ github.workspace }}:/project \
           --platform linux/amd64 \
           -e CI_BUILDS_DIR='none' \
-          -e CI_JOB_ID='none' \
-          -e CI_COMMIT_SHA='none' \
-          -e CI_PROJECT_ID='3511' \
-          -e CI_PROJECT_NAME='test-casino-admin' \
-          -e CI_PROJECT_NAMESPACE='security/appsec-dev' \
-          -e CI_PROJECT_PATH='security/appsec-dev/test-casino-admin' \
-          -e CI_PIPELINE_ID="$(date '+%Y%m%d%H%M%S')" \
+          -e CI_JOB_ID="${{ github.run_id }}-${{ github.run_number }}" \
+          -e CI_COMMIT_SHA="${{ github.sha }}" \
+          -e CI_PROJECT_ID="${{ github.repository_id }}" \
+          -e CI_PROJECT_NAME="${{ github.event.repository.name }}" \
+          -e CI_PROJECT_NAMESPACE="${{ github.repository_owner }}" \
+          -e CI_PROJECT_PATH="${{ github.repository }}" \
+          -e CI_PIPELINE_ID="${{ github.run_id }}" \
           -e CI_PROJECT_DIR='/project' \
-          -e CI_JOB_TOKEN=$2 \
-          -e CI_SERVER_HOST='xdevteam.com' \
-          -e CI_COMMIT_REF_NAME='master' \
-          -e CI_PROJECT_URL='https://qweqwe.qwe' \
-          -e CI_PIPELINE_URL='poiploin' \
+          -e CI_JOB_TOKEN="${{ secrets.SEC_RULES_TOKEN }}" \
+          -e CI_SERVER_HOST="${{ github.server_url }}" \
+          -e CI_COMMIT_REF_NAME="${{ github.ref_name }}" \
+          -e CI_PROJECT_URL="${{ github.server_url }}${{ github.repository }}" \
+          -e CI_PIPELINE_URL="${{ github.server_url }}${{ github.repository }}/actions/runs/${{ github.run_id }}" \
           -e DANGER_GITLAB_API_TOKEN='TOKENN' \
           hub.softswiss.net/security-pub/pipeguard:feature-nl-appsec-541-github
     
