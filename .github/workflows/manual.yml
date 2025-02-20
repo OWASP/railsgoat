@@ -20,17 +20,14 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "greet"
   greet:
-    # The type of runner that the job will run on
     runs-on: self-hosted
     # container:
     #   image: hub.softswiss.net/security-pub/pipeguard:1.2.3
     #   options: --entrypoint ""
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
+
     - name: Send greeting
       run: echo "Hello ${{ inputs.name }}"
 
@@ -47,12 +44,12 @@ jobs:
           -e CI_PROJECT_NAMESPACE="${{ github.repository_owner }}" \
           -e CI_PROJECT_PATH="${{ github.repository }}" \
           -e CI_PIPELINE_ID="${{ github.run_id }}" \
-          -e CI_PROJECT_DIR='/project' \
+          -e CI_PROJECT_DIR='/sec_temp' \
           -e CI_JOB_TOKEN="${{ secrets.SEC_RULES_TOKEN }}" \
           -e CI_SERVER_HOST="${{ github.server_url }}" \
           -e CI_COMMIT_REF_NAME="${{ github.ref_name }}" \
-          -e CI_PROJECT_URL="${{ github.server_url }}${{ github.repository }}" \
-          -e CI_PIPELINE_URL="${{ github.server_url }}${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+          -e CI_PROJECT_URL="${{ github.server_url }}/${{ github.repository }}" \
+          -e CI_PIPELINE_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
           -e DANGER_GITLAB_API_TOKEN='TOKENN' \
           hub.softswiss.net/security-pub/pipeguard:feature-nl-appsec-541-github
     
