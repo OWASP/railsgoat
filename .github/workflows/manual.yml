@@ -22,7 +22,6 @@ jobs:
       uses: actions/checkout@v4 
 
     - name: code-scan
-      # run: docker run --rm --entrypoint "" hub.softswiss.net/security-pub/pipeguard:1.2.3 semgrep --version
       run: |
           docker run --rm -v ${{ github.workspace }}:/project \
           --platform linux/amd64 \
