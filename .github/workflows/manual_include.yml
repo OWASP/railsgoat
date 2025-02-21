@@ -4,3 +4,4 @@ on:
 jobs:
   code-scan:
     uses: "stirn/security-pipeline/.github/workflows/include.yaml@main"
+    secrets: inherit
