@@ -1,0 +1,6 @@
+name: Call security pipeline
+on:
+  workflow_dispatch:
+jobs:
+  code-scan:
+    uses: "stirn/security-pipeline/.github/workflows/include.yaml

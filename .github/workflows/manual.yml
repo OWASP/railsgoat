@@ -10,7 +10,6 @@ jobs:
     - name: code-scan
       run: |
           docker run --rm -v ${{ github.workspace }}:/project \
-          -e CI_BUILDS_DIR='none' \
           -e CI_JOB_ID="${{ github.run_id }}-${{ github.run_number }}" \
           -e CI_COMMIT_SHA="${{ github.sha }}" \
           -e CI_PROJECT_ID="${{ github.repository_id }}" \
