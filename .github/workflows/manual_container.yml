@@ -24,7 +24,7 @@ jobs:
       CI_PROJECT_NAMESPACE: "${{ github.repository_owner }}"
       CI_PROJECT_PATH: "${{ github.repository }}"
       CI_PIPELINE_ID: "${{ github.run_id }}"
-      CI_PROJECT_DIR: "/project"
+      CI_PROJECT_DIR: "${{ github.workspace }}"
       CI_JOB_TOKEN: "${{ secrets.SEC_RULES_TOKEN }}"
       CI_SERVER_HOST: "${{ github.server_url }}"
       CI_COMMIT_REF_NAME: "${{ github.ref_name }}"
