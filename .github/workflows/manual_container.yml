@@ -1,21 +1,12 @@
 name: Manual workflow inside the container
-
 on:
   workflow_dispatch:
-    inputs:
-      name:
-        description: 'Person to greet'
-        default: 'World'
-        required: true
-        type: string
-
 jobs:
   code-scan:
     runs-on: self-hosted
     container:
       image: hub.softswiss.net/security-pub/pipeguard:feature-nl-appsec-541-github
       options: --user root
-      # options: --entrypoint ""
     env:
       CI_JOB_ID: "${{ github.run_id }}-${{ github.run_number }}"
       CI_COMMIT_SHA: "${{ github.sha }}"
@@ -31,12 +22,9 @@ jobs:
       CI_PROJECT_URL: "${{ github.server_url }}/${{ github.repository }}"
       CI_PIPELINE_URL: "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
       DANGER_GITLAB_API_TOKEN: "TOKENN"
-    
     steps:
-
     - name: Checkout repository
-      uses: actions/checkout@v4 
-
+      uses: actions/checkout@v4
     - name: code-scan
       run: |
         bash /sec_temp/pipeline/scripts/00_start.sh

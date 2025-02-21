@@ -1,30 +1,15 @@
 name: Manual workflow
-
 on:
   workflow_dispatch:
-    inputs:
-      name:
-        description: 'Person to greet'
-        default: 'World'
-        required: true
-        type: string
-
 jobs:
   code-scan:
     runs-on: self-hosted
-    # container:
-    #   image: hub.softswiss.net/security-pub/pipeguard:1.2.3
-    #   options: --entrypoint ""
-
     steps:
-
     - name: Checkout repository
       uses: actions/checkout@v4 
-
     - name: code-scan
       run: |
           docker run --rm -v ${{ github.workspace }}:/project \
-          --platform linux/amd64 \
           -e CI_BUILDS_DIR='none' \
           -e CI_JOB_ID="${{ github.run_id }}-${{ github.run_number }}" \
           -e CI_COMMIT_SHA="${{ github.sha }}" \
@@ -41,6 +26,3 @@ jobs:
           -e CI_PIPELINE_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
           -e DANGER_GITLAB_API_TOKEN='TOKENN' \
           hub.softswiss.net/security-pub/pipeguard:feature-nl-appsec-541-github
-    
-    # - name: Show Semgrep version running inside container
-    #   run: semgrep --version
