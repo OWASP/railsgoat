@@ -3,4 +3,4 @@ on:
   workflow_dispatch:
 jobs:
   code-scan:
-    uses: "stirn/security-pipeline/.github/workflows/include.yaml
+    uses: "stirn/security-pipeline/.github/workflows/include.yaml"
