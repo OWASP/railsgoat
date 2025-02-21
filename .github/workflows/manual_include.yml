@@ -4,3 +4,5 @@ on:
 jobs:
   code-scan:
     uses: "stirn/security-pipeline/.github/workflows/include.yaml@main"
+    with:
+      sec_rules_token: ${{ secrets.SEC_RULES_TOKEN }}
