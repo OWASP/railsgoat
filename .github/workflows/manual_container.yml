@@ -38,5 +38,7 @@ jobs:
       uses: actions/checkout@v4 
 
     - name: code-scan
-      run: echo "--- Code scan finished"
+      run: |
+        bash /sec_temp/pipeline/scripts/00_start.sh
+        echo "--- Code scan finished"
     
