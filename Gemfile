@@ -2,9 +2,9 @@
 source "https://rubygems.org"
 
 #don't upgrade
-gem "rails", "6.0.0"
+gem "rails", "7.1.5"
 
-ruby "2.6.5"
+ruby "3.3.8"
 
 gem "aruba"
 gem "bcrypt"
@@ -24,7 +24,7 @@ gem "ruby-prof"
 gem "sassc-rails"
 gem "simplecov", require: false, group: :test
 gem "sqlite3"
-gem "therubyracer"
+gem "mini_racer" # Modern V8 JavaScript runtime
 gem "turbolinks"
 gem "uglifier"
 gem "unicorn"
@@ -61,5 +61,5 @@ group :openshift do
 end
 
 group :mysql do
-  gem "mysql2"
+  # gem "mysql2"  # Commented out for initial setup - install MySQL first if needed
 end
