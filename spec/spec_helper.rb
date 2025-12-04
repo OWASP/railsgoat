@@ -9,7 +9,7 @@ SimpleCov.start if ENV["COVERAGE"]
 require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 require "capybara/rails"
-require "capybara/poltergeist"
+require "selenium-webdriver"
 require "database_cleaner"
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -61,6 +61,6 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 end
 
-Capybara.javascript_driver = :poltergeist
+Capybara.javascript_driver = :selenium_headless
 
 DatabaseCleaner.strategy = :truncation
