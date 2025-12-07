@@ -29,13 +29,18 @@
               <%= u.admin ? %{<span class="fs1" aria-label="check" data-icon="&#xe0fe;"}.html_safe : nil %>
             </td>
             <td>
-              <%= link_to "Edit", "#", {:onClick => "javascript:openEditModal(#{u.id});", :role => "button", :style => "width:70px", :class => "btn btn-inverse", "data-toggle" => "modal"}%>
+              <%= link_to "Edit", "#", {:onClick => "javascript:openEditModal(#{u.id});", :role => "button", :style => "width:70px", :class => "btn btn-inverse"}%>
             </td>
           </tr>
      <% end %>
       </tbody>
     </table>
-  <div id="editAcct" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+  <div id="editAcct" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <!-- Content will be loaded here dynamically -->
+      </div>
+    </div>
   </div>
     <div class="clearfix">
     </div>
@@ -46,8 +51,9 @@
 
 function openEditModal(id){
  var link = '/admin/'+ id +'/get_user';
- $("#editAcct").load(link);
- $("#editAcct").modal('show');
+ $("#editAcct .modal-content").load(link);
+ var modal = new bootstrap.Modal(document.getElementById('editAcct'));
+ modal.show();
 };
 
 function dataTablePagination(){
