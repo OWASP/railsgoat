@@ -23,21 +23,21 @@ users = [
   },
 
   {
-    email: "jack@metacorp.com",
+    email: "john@metacorp.com",
     admin: false,
     password: "yankeessuck",
     password_confirmation: "yankeessuck",
-    first_name: "Jack",
-    last_name: "Mannino",
+    first_name: "John",
+    last_name: "Smith",
   },
 
   {
-    email: "jim@metacorp.com",
+    email: "james@metacorp.com",
     admin: false,
     password: "alohaowasp",
     password_confirmation: "alohaowasp",
-    first_name: "Jim",
-    last_name: "Manico",
+    first_name: "James",
+    last_name: "Anderson",
   },
 
   {
@@ -70,13 +70,13 @@ users = [
 
 retirements = [
   {
-    user: "jack@metacorp.com",
+    user: "john@metacorp.com",
     employee_contrib: "1000",
     employer_contrib: "2000",
     total: "4500"
   },
   {
-    user: "jim@metacorp.com",
+    user: "james@metacorp.com",
     employee_contrib: "8000",
     employer_contrib: "16000",
     total: "30000"
@@ -97,14 +97,14 @@ retirements = [
 
 paid_time_off = [
   {
-    user: "jack@metacorp.com",
+    user: "john@metacorp.com",
     sick_days_taken: 2,
     sick_days_earned: 5,
     pto_taken: 5,
     pto_earned: 30
   },
   {
-    user: "jim@metacorp.com",
+    user: "james@metacorp.com",
     sick_days_taken: 3,
     sick_days_earned: 6,
     pto_taken: 3,
@@ -128,7 +128,7 @@ paid_time_off = [
 
 schedule = [
   {
-    user: "jack@metacorp.com",
+    user: "john@metacorp.com",
     date_begin: Date.new(2014, 7, 30),
     date_end: Date.new(2014, 8, 2),
     event_type: "pto",
@@ -136,7 +136,7 @@ schedule = [
     event_name: "My 2014 Vacation"
   },
   {
-    user: "jim@metacorp.com",
+    user: "james@metacorp.com",
     date_begin: Date.new(2013, 9, 1),
     date_end: Date.new(2013, 9, 12),
     event_type: "pto",
@@ -163,7 +163,7 @@ schedule = [
 
 work_info = [
   {
-    user: "jack@metacorp.com",
+    user: "john@metacorp.com",
     income: "$50,000",
     bonuses: "$10,000",
     years_worked: 2,
@@ -171,7 +171,7 @@ work_info = [
     DoB: "01-01-1980"
   },
   {
-    user: "jim@metacorp.com",
+    user: "james@metacorp.com",
     income: "$40,000",
     bonuses: "$10,000",
     years_worked: 1,
@@ -198,21 +198,21 @@ work_info = [
 
 performance = [
   {
-    user: "jack@metacorp.com",
+    user: "john@metacorp.com",
     reviewer: 1,
     comments: "Great job! You are my hero",
     date_submitted: Date.new(2012, 01, 01),
     score: 5
   },
   {
-    user: "jack@metacorp.com",
+    user: "john@metacorp.com",
     reviewer: 1,
     comments: "Once again, you've done a great job this year. We greatly appreciate your hard work.",
     date_submitted: Date.new(2013, 01, 01),
     score: 5
   },
   {
-    user: "jim@metacorp.com",
+    user: "james@metacorp.com",
     reviewer: 1,
     comments: "Great worker, great attitude for this newcomer!",
     date_submitted: Date.new(2013, 01, 01),
@@ -251,24 +251,24 @@ performance = [
 messages = [
   {
     creator: "ken@metacorp.com",
-    receiver: "jack@metacorp.com",
+    receiver: "john@metacorp.com",
     message: "Your benefits have been updated.",
     read: false
   },
   {
     creator: "mike@metacorp.com",
-    receiver: "jim@metacorp.com",
+    receiver: "james@metacorp.com",
     message: "Please update your profile.",
     read: false
   },
   {
-    creator: "jim@metacorp.com",
+    creator: "james@metacorp.com",
     receiver: "mike@metacorp.com",
     message: "Welcome to Railsgoat.",
     read: false
   },
   {
-    creator: "jack@metacorp.com",
+    creator: "john@metacorp.com",
     receiver: "ken@metacorp.com",
     message: "Hello friend.",
     read: false
