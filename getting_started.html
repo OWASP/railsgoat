@@ -251,9 +251,14 @@
             <div class="tab-content mt-4">
               <!-- Installation Tab -->
               <div class="tab-pane fade show active" id="installation" role="tabpanel">
-                <h4 class="mb-3">Support Disclaimer</h4>
-                <div class="alert-custom mb-4">
-                  <p class="mb-0">These tutorials assume you are running Linux or Mac OS. If you are using Windows, I've got nothing for you right now. Sorry!</p>
+                <h4 class="mb-3">Platform Support</h4>
+                <p>RailsGoat works on <strong>Linux, Mac OS, and Windows</strong>. For Windows users, we recommend using WSL2 (Windows Subsystem for Linux) for the best Rails development experience.</p>
+
+                <div class="alert alert-info d-flex align-items-start mb-4" role="alert">
+                  <i class="bi bi-info-circle-fill me-3 mt-1" style="font-size: 1.25rem;"></i>
+                  <div>
+                    <strong>Windows Users:</strong> Before proceeding, install <a href="https://learn.microsoft.com/en-us/windows/wsl/install" target="_blank" style="color: var(--rg-primary); font-weight: 600;">WSL2 with Ubuntu</a>. Once WSL2 is installed, open your Ubuntu terminal and follow the Linux/Mac instructions below.
+                  </div>
                 </div>
 
                 <h4 class="mb-3">Language</h4>
@@ -293,6 +298,13 @@
 
                 <p><strong>8) Browse to the application</strong></p>
                 <p>Open your browser and navigate to: <a href="http://localhost:3000" style="color: var(--rg-primary); font-weight: 600;">http://localhost:3000</a></p>
+
+                <div class="alert alert-success d-flex align-items-start mt-4" role="alert">
+                  <i class="bi bi-windows me-3 mt-1" style="font-size: 1.25rem;"></i>
+                  <div>
+                    <strong>Windows WSL2 Tip:</strong> Your Windows files are accessible from WSL2 at <code>/mnt/c/</code>. You can also access your WSL files from Windows Explorer by typing <code>\\wsl$</code> in the address bar!
+                  </div>
+                </div>
               </div>
 
               <!-- Running Tab -->
