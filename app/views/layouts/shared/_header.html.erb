@@ -135,59 +135,28 @@
       const modalElement = document.getElementById('credentialsModal');
 
       if (showCredsBtn && modalElement) {
-        // Remove any existing listeners
+        // Remove any existing listeners by cloning
         const newBtn = showCredsBtn.cloneNode(true);
         showCredsBtn.parentNode.replaceChild(newBtn, showCredsBtn);
 
-        // Fix aria-hidden timing issue with Bootstrap 5
-        modalElement.addEventListener('hide.bs.modal', function() {
-          // Remove aria-hidden before the modal closes to prevent focus conflict
-          this.removeAttribute('aria-hidden');
-        });
-
-        modalElement.addEventListener('hidden.bs.modal', function() {
-          // Add aria-hidden back after modal is fully closed and focus has moved
-          setTimeout(() => {
-            this.setAttribute('aria-hidden', 'true');
-          }, 0);
-        });
-
-        modalElement.addEventListener('show.bs.modal', function() {
-          // Ensure aria-hidden is removed when opening
-          this.removeAttribute('aria-hidden');
-        });
-
         newBtn.addEventListener('click', function(event) {
           event.preventDefault();
-          console.log('Demo Credentials button clicked');
-          console.log('Bootstrap available:', typeof bootstrap !== 'undefined');
-          console.log('Modal element:', modalElement);
 
           fetch('<%= credentials_tutorials_path %>')
-            .then(response => {
-              console.log('Fetch response status:', response.status);
-              return response.text();
-            })
+            .then(response => response.text())
             .then(html => {
-              console.log('Content loaded, length:', html.length);
               document.getElementById('modal_content').innerHTML = html;
 
-              if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
-                const modal = new bootstrap.Modal(modalElement);
-                console.log('Modal instance created:', modal);
-                modal.show();
-              } else {
-                console.error('Bootstrap Modal not available');
-              }
+              // Use Bootstrap 5 Modal API directly
+              const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+              modal.show();
             })
             .catch(error => {
               console.error('Error loading credentials:', error);
               document.getElementById('modal_content').innerHTML = '<p class="text-danger">Error loading credentials. Please try again.</p>';
 
-              if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
-                const modal = new bootstrap.Modal(modalElement);
-                modal.show();
-              }
+              const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+              modal.show();
             });
         });
       }
