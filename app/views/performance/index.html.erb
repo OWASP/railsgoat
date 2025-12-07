@@ -51,11 +51,13 @@
 
 <script type="text/javascript">
 
- google.load("visualization", "1", {
-  packages: ["corechart"]
-});
-
 function drawChart2() {
+  // Guard against calling before Google Charts is loaded
+  if (typeof google === 'undefined' || !google.visualization) {
+    console.warn('Google Charts not loaded yet');
+    return;
+  }
+
   var data = google.visualization.arrayToDataTable([
     ['Year', 'Score'],
     <% @perf.each do |p| %>
@@ -118,9 +120,15 @@ function makeActive(){
   $('li[id="performance"]').addClass('active');
 };
 
-$(document).ready(function () {
-  drawChart2(),
-  makeActive()
+// Load Google Charts and set callback
+google.load("visualization", "1", {
+  packages: ["corechart"],
+  callback: function() {
+    $(document).ready(function () {
+      drawChart2();
+      makeActive();
+    });
+  }
 });
 
 </script>
