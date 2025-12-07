@@ -1,138 +1,309 @@
-<div class="dashboard-wrapper">
-  <div class="main-container">
-  <!-- Begin Row -->
-    <div class="row-fluid">
-    <!-- Begin Span12 -->
-        <div class="span12">
-          <div class="widget">
-            <div class="widget-header">
-              <div class="title">
-                <span class="fs1" aria-hidden="true" data-icon="&#xe022;"></span> Messages for <%= current_user.full_name %>
-                  <!--<span class="fs1" aria-hidden="true" data-icon="&#xe006;"><%#= link_to "Send Message", new_user_message_path %></span>-->
-              </div>
-            </div>
-            <div class="widget-body">
-              <table class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th style="width:7%">From:</th>
-                    <th style="width:6%">Date</th>
-                    <th style="width:16%">Message</th>
-                    <th style="width:6%">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <% if @messages.empty? %>
-                    <td><%= "No messages!" %></td><td></td><td></td><td></td>
-                    <% end %>
-                <% @messages.each do |message| %>
-                    <td><%= message.creator_name %></td>
-                    <td><%= message.created_at.to_date %></td>
-                    <td><%= message.message %></td>
-                    <td><%= link_to "Details", user_message_path(:id => message.id), {:class => "btn btn-info pull-left"}%>
-                    <%= link_to "Delete", user_message_path(:id => message.id), {:method => 'delete', :class => "btn btn-danger pull-left"}%></td>
-                    </tr>
-                </tbody>
-                <% end %>
-              </table>
-            </div>
-          </div>
-        </div>
-    <!-- End Span12 -->
+<div class="container-fluid">
+  <!-- Header -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <h2 class="mb-3">
+        <i class="bi bi-envelope-fill text-primary"></i> Messages
+      </h2>
+      <p class="text-muted">Inbox for <%= current_user.full_name %></p>
     </div>
-    <!-- End Row -->
-  <!-- Begin Row -->
-    <div class="row-fluid">
-    <!-- Begin Span12 -->
-        <div class="span12">
-          <div class="widget">
-            <div class="widget-header">
-              <div class="title">
-                  <span class="fs1" aria-hidden="true" data-icon="&#xe006;"></span> Send Message
-              </div>
+  </div>
+
+  <div class="row g-3">
+    <!-- Messages Inbox -->
+    <div class="col-lg-8">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white py-3">
+          <h4 class="mb-0">
+            <i class="bi bi-inbox text-primary"></i> Inbox
+          </h4>
+          <p class="text-muted mb-0 small mt-1">Your received messages</p>
+        </div>
+        <div class="card-body p-0">
+          <% if @messages.any? %>
+            <div class="messages-list">
+              <% @messages.each do |message| %>
+                <div class="message-item">
+                  <div class="message-avatar">
+                    <div class="avatar-circle">
+                      <i class="bi bi-person-fill"></i>
+                    </div>
+                  </div>
+                  <div class="message-content">
+                    <div class="message-header">
+                      <div class="message-from">
+                        <strong><%= message.creator_name %></strong>
+                      </div>
+                      <div class="message-date">
+                        <i class="bi bi-calendar3 me-1"></i>
+                        <%= message.created_at.strftime("%b %d, %Y") %>
+                      </div>
+                    </div>
+                    <div class="message-text">
+                      <%= message.message %>
+                    </div>
+                    <div class="message-actions">
+                      <%= link_to user_message_path(:id => message.id), class: "btn btn-sm btn-outline-primary" do %>
+                        <i class="bi bi-eye"></i> Details
+                      <% end %>
+                      <%= link_to user_message_path(:id => message.id), method: 'delete', data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-danger" do %>
+                        <i class="bi bi-trash"></i> Delete
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
             </div>
-            <div class="widget-body">
-        <div id="success" style="display: none;" class="alert alert-block alert-success fade in">
-                <h4 class="alert-heading">
-                  Success!
-                </h4>
-                <p>
-                  Message successfully sent.
-                </p>
-           </div>
-        <div id="failure" style="display: none;" class="alert alert-block alert-error fade in">
-                    <h4 class="alert-heading">
-                      Error!
-                    </h4>
-                    <p>
-                      Failed to send message.
-                    </p>
-               </div>
-        <div class="row-fluid">
-          <div class="span8">
-          <!-- Begin Message Draft Content-->
-          <%= form_for @message, :url => user_messages_path, :method => :post, :html => {:id => "send_message"} do |f|%>
-            <%= f.hidden_field :creator_id, :value => current_user.id %>
-            <%= f.hidden_field :read, :value => '0' %>
-             <div class="control-group">
-               <%= f.label "To:", nil, {:class => "control-label"}%>
-               <%= f.select(:receiver_id, options_from_collection_for_select(User.all, :id, :full_name)) %>
-             </div>
-
-             <div class="control-group">
-               <%= f.label :message, nil, {:class => "control-label"}%>
-               <%= f.text_area :message, {:class => "span12"} %>
-             </div>
-
-             <div class="form-actions no-margin">
-               <%= f.submit "Submit", {:id => 'submit_button', :class => "btn btn-info pull-right"} %>
-             </div>
-
-             <div class="clearfix"></div>
+          <% else %>
+            <div class="empty-state">
+              <i class="bi bi-inbox"></i>
+              <h5>No Messages Yet</h5>
+              <p class="text-muted">Your inbox is empty. Send a message to get started!</p>
+            </div>
           <% end %>
-          <!-- End Message Draft Content-->
-          </div>
-          </div>
-            </div>
-          </div>
         </div>
-    <!-- End Span12 -->
+      </div>
     </div>
-    <!-- End Row -->
+
+    <!-- Send Message Form -->
+    <div class="col-lg-4">
+      <div class="card shadow-sm sticky-top" style="top: 80px; border-left: 4px solid var(--rg-success);">
+        <div class="card-header py-3" style="background: linear-gradient(135deg, rgba(6, 214, 160, 0.05), rgba(30, 130, 94, 0.05));">
+          <h4 class="mb-0">
+            <i class="bi bi-send text-success"></i> Send Message
+          </h4>
+          <p class="text-muted mb-0 small mt-1">Compose a new message</p>
+        </div>
+        <div class="card-body p-4">
+          <!-- Alert Messages -->
+          <div id="success" style="display: none;" class="alert alert-success alert-dismissible fade show" role="alert">
+            <div class="d-flex align-items-center">
+              <i class="bi bi-check-circle-fill me-2" style="font-size: 1.5rem;"></i>
+              <div>
+                <strong>Success!</strong>
+                <p class="mb-0 small">Message sent successfully.</p>
+              </div>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+          <div id="failure" style="display: none;" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <div class="d-flex align-items-center">
+              <i class="bi bi-exclamation-triangle-fill me-2" style="font-size: 1.5rem;"></i>
+              <div>
+                <strong>Error!</strong>
+                <p class="mb-0 small">Failed to send message.</p>
+              </div>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+          <%= form_for @message, url: user_messages_path, method: :post, html: { id: "send_message" } do |f| %>
+            <%= f.hidden_field :creator_id, value: current_user.id %>
+            <%= f.hidden_field :read, value: '0' %>
+
+            <div class="mb-4">
+              <label class="form-label fw-semibold">
+                <i class="bi bi-person-circle text-success me-2"></i>To
+              </label>
+              <%= f.select(:receiver_id,
+                          options_from_collection_for_select(User.all, :id, :full_name),
+                          {},
+                          { class: "form-select form-select-lg" }) %>
+              <small class="text-muted">Select message recipient</small>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-semibold">
+                <i class="bi bi-chat-left-text text-success me-2"></i>Message
+              </label>
+              <%= f.text_area :message,
+                              class: "form-control form-control-lg",
+                              rows: 6,
+                              placeholder: "Type your message here...",
+                              style: "resize: vertical;" %>
+              <small class="text-muted">Write your message content</small>
+            </div>
+
+            <div class="d-grid">
+              <%= f.submit "Send Message",
+                          id: 'submit_button',
+                          class: "btn btn-success btn-lg" %>
+            </div>
+
+            <div class="mt-3 p-3 rounded" style="background: var(--rg-light); border-left: 3px solid var(--rg-success);">
+              <small class="text-muted">
+                <i class="bi bi-info-circle-fill text-success me-1"></i>
+                <strong>Tip:</strong> Messages are delivered instantly
+              </small>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-</body>
-</html>
 
 <script type="text/javascript">
+function makeActive(){
+  $('li[id="messages"]').addClass('active');
+}
 
+$(document).ready(function() {
+  makeActive();
+});
+
+// Handle Turbolinks page loads
+$(document).on('turbolinks:load', function() {
+  makeActive();
+});
+
+// Form submission with AJAX
 $("#submit_button").click(function(event) {
-    var valuesToSubmit = $("#send_message").serialize();
-    event.preventDefault();
-    $.ajax({
-      url: <%= "/users/#{current_user.id}/messages.json".inspect.html_safe %>,
+  event.preventDefault();
+  var valuesToSubmit = $("#send_message").serialize();
+
+  $.ajax({
+    url: <%= "/users/#{current_user.id}/messages.json".inspect.html_safe %>,
     data: valuesToSubmit,
     type: "POST",
     success: function(response) {
-    if (response.msg == "failure") {
-      $('#failure').show(500).delay(1500).fadeOut();
-    } else {
-      $('#success').show(500).delay(1500).fadeOut();
-    }
+      if (response.msg == "failure") {
+        $('#failure').show(500).delay(2000).fadeOut();
+      } else {
+        $('#success').show(500).delay(2000).fadeOut();
+        // Clear form on success
+        $('#send_message')[0].reset();
+        // Reload page after delay to show new message
+        setTimeout(function() {
+          location.reload();
+        }, 2500);
+      }
     },
     error: function(event) {
-    $('#failure').show(500).delay(1500).fadeOut();
+      $('#failure').show(500).delay(2000).fadeOut();
     }
   });
 });
-
-function makeActive(){
-  $('li[id="messages"]').addClass('active');
-};
-
-$(document).ready(function () {
-  makeActive()
-});
-
 </script>
+
+<style>
+  /* Messages List Styling */
+  .messages-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .message-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.2s ease;
+  }
+
+  .message-item:hover {
+    background-color: rgba(230, 57, 70, 0.03);
+  }
+
+  .message-item:last-child {
+    border-bottom: none;
+  }
+
+  .message-avatar {
+    flex-shrink: 0;
+  }
+
+  .avatar-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rg-primary) 0%, var(--rg-primary-dark) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: 0 2px 8px rgba(230, 57, 70, 0.2);
+  }
+
+  .message-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .message-from {
+    font-size: 1.1rem;
+    color: var(--rg-dark);
+  }
+
+  .message-date {
+    font-size: 0.875rem;
+    color: #6c757d;
+    white-space: nowrap;
+  }
+
+  .message-text {
+    color: #495057;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    word-wrap: break-word;
+  }
+
+  .message-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  /* Empty State */
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #6c757d;
+  }
+
+  .empty-state i {
+    font-size: 4rem;
+    opacity: 0.3;
+    margin-bottom: 1rem;
+  }
+
+  .empty-state h5 {
+    margin-bottom: 0.5rem;
+    color: #495057;
+  }
+
+  /* Sticky Form */
+  @media (min-width: 992px) {
+    .sticky-top {
+      position: sticky;
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .message-item {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .message-header {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .message-actions {
+      justify-content: center;
+    }
+  }
+</style>
