@@ -29,7 +29,7 @@
               <%= u.admin ? %{<span class="fs1" aria-label="check" data-icon="&#xe0fe;"}.html_safe : nil %>
             </td>
             <td>
-              <%= link_to "Edit", "#", {:onClick => "javascript:openEditModal(#{u.id});", :role => "button", :style => "width:70px", :class => "btn btn-inverse"}%>
+              <%= link_to "Edit", "#", {:onClick => "javascript:openEditModal(#{u.id}); return false;", :role => "button", :style => "width:70px", :class => "btn btn-inverse"}%>
             </td>
           </tr>
      <% end %>
