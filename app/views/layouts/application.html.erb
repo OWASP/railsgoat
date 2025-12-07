@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>RailsGoat - OWASP Security Training</title>
 
-  <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
-  <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   <%#= csrf_meta_tags %> <!-- <~ What is this for? I hear it helps w/ JS and Sea-surfing.....whatevz -->
 
   <!-- VULNERABILITY A03:2025 - Software Supply Chain Failures
@@ -16,8 +14,19 @@
        SECURE: Should include integrity="sha384-..." crossorigin="anonymous"
        See: /tutorials/supply_chain for exploitation details
   -->
+
+  <!-- Load jQuery FIRST - other scripts depend on it -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+  <!-- Bootstrap CSS and Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Rails assets - loaded AFTER jQuery -->
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => "reload" %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => "reload" %>
+
+  <!-- Bootstrap JS - loaded last -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- Modern Design System -->
@@ -188,7 +197,7 @@
       }
     }
 
-    /* VULNERABILITY: XSS via cookie font-size -->
+    /* VULNERABILITY: XSS via cookie font-size */
 <%
 if cookies[:font]
 %>
