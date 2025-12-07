@@ -132,10 +132,30 @@
   <script>
     function initCredentialsModal() {
       const showCredsBtn = document.getElementById('show_creds_btn');
-      if (showCredsBtn) {
+      const modalElement = document.getElementById('credentialsModal');
+
+      if (showCredsBtn && modalElement) {
         // Remove any existing listeners
         const newBtn = showCredsBtn.cloneNode(true);
         showCredsBtn.parentNode.replaceChild(newBtn, showCredsBtn);
+
+        // Fix aria-hidden timing issue with Bootstrap 5
+        modalElement.addEventListener('hide.bs.modal', function() {
+          // Remove aria-hidden before the modal closes to prevent focus conflict
+          this.removeAttribute('aria-hidden');
+        });
+
+        modalElement.addEventListener('hidden.bs.modal', function() {
+          // Add aria-hidden back after modal is fully closed and focus has moved
+          setTimeout(() => {
+            this.setAttribute('aria-hidden', 'true');
+          }, 0);
+        });
+
+        modalElement.addEventListener('show.bs.modal', function() {
+          // Ensure aria-hidden is removed when opening
+          this.removeAttribute('aria-hidden');
+        });
 
         newBtn.addEventListener('click', function(event) {
           event.preventDefault();
@@ -143,13 +163,13 @@
             .then(response => response.text())
             .then(html => {
               document.getElementById('modal_content').innerHTML = html;
-              const modal = new bootstrap.Modal(document.getElementById('credentialsModal'));
+              const modal = new bootstrap.Modal(modalElement);
               modal.show();
             })
             .catch(error => {
               console.error('Error loading credentials:', error);
               document.getElementById('modal_content').innerHTML = '<p class="text-danger">Error loading credentials. Please try again.</p>';
-              const modal = new bootstrap.Modal(document.getElementById('credentialsModal'));
+              const modal = new bootstrap.Modal(modalElement);
               modal.show();
             });
         });
