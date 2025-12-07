@@ -147,15 +147,29 @@
             .then(html => {
               document.getElementById('modal_content').innerHTML = html;
 
-              // Use Bootstrap 5 Modal API directly
-              const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
-              modal.show();
+              // Dispose of any existing modal instance first
+              const existingModal = bootstrap.Modal.getInstance(modalElement);
+              if (existingModal) {
+                existingModal.dispose();
+              }
+
+              // Create fresh modal instance and show
+              const modal = new bootstrap.Modal(modalElement, {
+                backdrop: true,
+                keyboard: true,
+                focus: true
+              });
+
+              // Force show after a small delay to ensure DOM is ready
+              setTimeout(() => {
+                modal.show();
+              }, 10);
             })
             .catch(error => {
               console.error('Error loading credentials:', error);
               document.getElementById('modal_content').innerHTML = '<p class="text-danger">Error loading credentials. Please try again.</p>';
 
-              const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+              const modal = new bootstrap.Modal(modalElement);
               modal.show();
             });
         });
