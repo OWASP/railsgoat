@@ -29,59 +29,18 @@
               <%= u.admin ? %{<span class="fs1" aria-label="check" data-icon="&#xe0fe;"}.html_safe : nil %>
             </td>
             <td>
-              <%= link_to "Edit", "#", {:onClick => "javascript:openEditModal(#{u.id}); return false;", :role => "button", :style => "width:70px", :class => "btn btn-inverse"}%>
+              <%= link_to "Edit", admin_get_user_path(u.id), {:style => "width:70px", :class => "btn btn-inverse"}%>
             </td>
           </tr>
      <% end %>
       </tbody>
     </table>
-  <div id="editAcct" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <!-- Content will be loaded here dynamically -->
-      </div>
-    </div>
-  </div>
     <div class="clearfix">
     </div>
   </div>
 </div>
 
 <script type="text/javascript">
-
-function openEditModal(id){
- var link = '/admin/'+ id +'/get_user';
- console.log('Loading modal content from:', link);
-
- $("#editAcct .modal-content").load(link, function(response, status, xhr) {
-   console.log('Load status:', status);
-   if (status == "success") {
-     console.log('Initializing Bootstrap 5 modal');
-     var modalEl = document.getElementById('editAcct');
-
-     // Ensure any existing instance is disposed
-     var existingModal = bootstrap.Modal.getInstance(modalEl);
-     if (existingModal) {
-       existingModal.dispose();
-     }
-
-     // Create new modal with options
-     var modal = new bootstrap.Modal(modalEl, {
-       backdrop: true,
-       keyboard: true,
-       focus: true
-     });
-
-     console.log('Modal created, calling show()');
-     modal.show();
-
-     console.log('Modal should be visible now');
-   } else {
-     console.error('Failed to load modal content:', xhr.statusText);
-   }
- });
-};
-
 function dataTablePagination(){
   $('#data-table').dataTable({
       "sPaginationType": "full_numbers"

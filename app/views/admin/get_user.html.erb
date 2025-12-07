@@ -1,94 +1,55 @@
-<!-- Begin Modal -->
-    <div class="modal-header">
-      <h5 class="modal-title" id="myModalLabel1">
-        Account Settings
-      </h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <div class="card shadow-sm mt-4">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+          <h4 class="mb-0">
+            <i class="bi bi-person-gear text-primary"></i> Edit User Account
+          </h4>
+          <%= link_to "Back to Users", admin_get_all_users_path(current_user.id), class: "btn btn-outline-secondary btn-sm" %>
+        </div>
+        <div class="card-body p-4">
+          <%= form_for @user, url: admin_update_user_path(params[:admin_id]), method: :patch do |f| %>
+            <div class="mb-3">
+              <%= f.label :email, nil, {:class => "form-label"}%>
+              <%= f.text_field :email, {:class => "form-control"}%>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :first_name, nil, {:class => "form-label"}%>
+              <%= f.text_field :first_name, {:class => "form-control"} %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :last_name, nil, {:class => "form-label"}%>
+              <%= f.text_field :last_name, {:class => "form-control"} %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :password, "Password (leave blank to keep current)", {:class => "form-label"}%>
+              <%= f.password_field :password, {:class => "form-control", :placeholder => "Enter new password"}%>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :password_confirmation, nil, {:class => "form-label"}%>
+              <%= f.password_field :password_confirmation, {:class => "form-control", :placeholder => "Confirm new password"} %>
+            </div>
+
+            <div class="mb-4">
+              <%= f.label :admin, "Administrator", {:class => "form-label"}%>
+              <%= f.select(:admin, @admin_select, {}, {:class => "form-select"}) %>
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <%= link_to "Delete User", admin_delete_user_path(params[:admin_id]), method: :post, data: { confirm: "Are you sure you want to delete this user?" }, class: "btn btn-danger" %>
+              <div>
+                <%= link_to "Cancel", admin_get_all_users_path(current_user.id), class: "btn btn-secondary me-2" %>
+                <%= f.submit "Save Changes", class: "btn btn-primary" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div class="modal-body">
-      <%= form_for @user, :html => {:id => "account_edit"} do |f| %>
-        <div class="mb-3">
-          <%= f.label :email, nil, {:class => "form-label"}%>
-          <%= f.text_field :email, {:class => "form-control"}%>
-        </div>
-
-        <div class="mb-3">
-          <%= f.label :first_name, nil, {:class => "form-label"}%>
-          <%= f.text_field :first_name, {:class => "form-control"} %>
-        </div>
-
-        <div class="mb-3">
-          <%= f.label :last_name, nil, {:class => "form-label"}%>
-          <%= f.text_field :last_name, {:class => "form-control"} %>
-        </div>
-
-        <div class="mb-3">
-          <%= f.label :password, nil, {:class => "form-label"}%>
-          <%= f.password_field :password, {:class => "form-control", :placeholder => "Enter Password"}%>
-        </div>
-
-        <div class="mb-3">
-          <%= f.label :password_confirmation, nil, {:class => "form-label"}%>
-          <%= f.password_field :password_confirmation, {:class => "form-control", :placeholder => "Enter Password"} %>
-        </div>
-
-        <div class="mb-3">
-          <%= f.label :admin, nil, {:class => "form-label"}%>
-          <%= f.select(:admin, @admin_select, {}, {:class => "form-select", :id => "user_admin", :name => "user[admin]"}) %>
-        </div>
-    </div>
-    <div class="modal-footer">
-         <%= link_to "Delete", "#", {:id => "delete_button", :class => "btn btn-danger"} %>
-         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-         <%= f.submit "Submit", {:id => 'submit_button', :class => "btn btn-primary"} %>
-    </div>
-       <% end %>
-<!-- End Modal -->
-
-<%= javascript_include_tag ('validation.js')%>
-
-<script type="text/javascript">
-
-$('#submit_button').click(function(e) {
-  e.preventDefault();
-  var valuesToSubmit = $("#account_edit").serialize();
-  var modalElement = document.getElementById('editAcct');
-  var modal = bootstrap.Modal.getInstance(modalElement);
-  modal.hide();
-
-  $.ajax({
-      url: "/admin/" +  <%= @user.id %> + "/update_user.json",
-    data: valuesToSubmit,
-    type: "POST",
-    success: function(response) {
-      $('#success').show(500).delay(1500).fadeOut();
-    loadTable();
-    },
-    error: function(event) {
-    $('#failure').show(500).delay(1500).fadeOut();
-    }
-  });
-
-});
-
-$('#delete_button').click(function(e) {
-  e.preventDefault();
-  var modalElement = document.getElementById('editAcct');
-  var modal = bootstrap.Modal.getInstance(modalElement);
-  modal.hide();
-
-  $.ajax({
-      url: "/admin/" +  <%= params[:admin_id] %> + "/delete_user.json",
-    type: "POST",
-    success: function(response) {
-      $('#success').show(500).delay(1500).fadeOut();
-    loadTable();
-    },
-    error: function(event) {
-    $('#failure').show(500).delay(1500).fadeOut();
-    }
-  });
-
-});
-
-</script>
+  </div>
+</div>
