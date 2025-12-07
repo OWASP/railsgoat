@@ -1,54 +1,94 @@
- <div id="column_chart"></div>
- <!-- Google Visualization JS -->
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<div class="p-4">
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>Year</th>
+          <th class="text-end">Visitors</th>
+          <th class="text-end">Orders</th>
+          <th class="text-end">Income</th>
+          <th class="text-end">Expenses</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>2007</strong></td>
+          <td class="text-end">300</td>
+          <td class="text-end">800</td>
+          <td class="text-end">900</td>
+          <td class="text-end">300</td>
+        </tr>
+        <tr>
+          <td><strong>2008</strong></td>
+          <td class="text-end">1,170</td>
+          <td class="text-end">860</td>
+          <td class="text-end">1,220</td>
+          <td class="text-end">564</td>
+        </tr>
+        <tr>
+          <td><strong>2009</strong></td>
+          <td class="text-end">260</td>
+          <td class="text-end">1,120</td>
+          <td class="text-end">2,870</td>
+          <td class="text-end">2,340</td>
+        </tr>
+        <tr>
+          <td><strong>2010</strong></td>
+          <td class="text-end">1,030</td>
+          <td class="text-end">540</td>
+          <td class="text-end">3,430</td>
+          <td class="text-end">1,200</td>
+        </tr>
+        <tr>
+          <td><strong>2011</strong></td>
+          <td class="text-end">200</td>
+          <td class="text-end">700</td>
+          <td class="text-end">1,700</td>
+          <td class="text-end">770</td>
+        </tr>
+        <tr>
+          <td><strong>2012</strong></td>
+          <td class="text-end">1,170</td>
+          <td class="text-end">2,160</td>
+          <td class="text-end">3,920</td>
+          <td class="text-end">800</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<script type="text/javascript">
-   // google.load("visualization", "1", {packages:["corechart"]});
-  
- 
-
-	function drawChart3() {
-     var data = google.visualization.arrayToDataTable([
-       ['Year', 'Visitors', 'Orders', 'Income', 'Expenses'],
-       ['2007', 300, 800, 900, 300],
-       ['2008', 1170, 860, 1220, 564],
-       ['2009', 260, 1120, 2870, 2340],
-       ['2010', 1030, 540, 3430, 1200],
-       ['2011', 200, 700, 1700, 770],
-       ['2012', 1170, 2160, 3920, 800], ]);
-
-     var options = {
-       width: 'auto',
-       height: '160',
-       backgroundColor: 'transparent',
-       colors: ['#b5799e', '#579da9', '#e26666', '#1e825e', '#dba26b'],
-       tooltip: {
-         textStyle: {
-           color: '#666666',
-           fontSize: 11
-         },
-         showColorCode: true
-       },
-       legend: {
-         textStyle: {
-           color: 'black',
-           fontSize: 12
-         }
-       },
-       chartArea: {
-         left: 60,
-         top: 10,
-         height: '80%'
-       },
-     };
-
-     var chart = new google.visualization.ColumnChart(document.getElementById('column_chart'));
-     chart.draw(data, options);
-   }
-
-
-$(document).ready(
-  drawChart3()
-);
-
-</script>
+  <div class="row mt-4 g-3">
+    <div class="col-md-3">
+      <div class="card text-center" style="border-left: 4px solid #b5799e;">
+        <div class="card-body">
+          <div class="text-muted small mb-1">Total Visitors</div>
+          <h3 class="mb-0" style="color: #b5799e;">3,130</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center" style="border-left: 4px solid #579da9;">
+        <div class="card-body">
+          <div class="text-muted small mb-1">Total Orders</div>
+          <h3 class="mb-0" style="color: #579da9;">6,180</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center" style="border-left: 4px solid #e26666;">
+        <div class="card-body">
+          <div class="text-muted small mb-1">Total Income</div>
+          <h3 class="mb-0" style="color: #e26666;">14,040</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center" style="border-left: 4px solid #1e825e;">
+        <div class="card-body">
+          <div class="text-muted small mb-1">Total Expenses</div>
+          <h3 class="mb-0" style="color: #1e825e;">5,174</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

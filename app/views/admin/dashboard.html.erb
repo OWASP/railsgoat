@@ -1,54 +1,70 @@
-<div class="dashboard-wrapper">
-  <div class="main-container">
-    <div class="row-fluid">
-      <div class="span12">
-        <div id="success" style="display: none;" class="alert alert-block alert-success fade in">
-          <h4 class="alert-heading">Success!</h4>
-          <p>User information successfully updated.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="row-fluid">
-      <div class="span12">
-        <div id="failure" style="display: none;" class="alert alert-block alert-error fade in">
-          <h4 class="alert-heading">Error!</h4>
-          <p>Something went wrong.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="row-fluid">
-      <div class="span12">
-        <div class="widget">
-          <div class="widget-header">
-            <div class="title">
-              <span class="fs1" aria-hidden="true" data-icon="&#xe071;"></span>Manage Users
-            </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <!-- Success Alert -->
+      <div id="success" style="display: none;" class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="d-flex align-items-center">
+          <i class="bi bi-check-circle-fill me-2" style="font-size: 1.5rem;"></i>
+          <div>
+            <h5 class="alert-heading mb-1">Success!</h5>
+            <p class="mb-0">User information successfully updated.</p>
           </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
 
-          <div id="userDataTable" class="widget-body">
-          </div> <!-- End widget-body-->
-        </div> <!-- End widget header-->
+      <!-- Error Alert -->
+      <div id="failure" style="display: none;" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="d-flex align-items-center">
+          <i class="bi bi-exclamation-triangle-fill me-2" style="font-size: 1.5rem;"></i>
+          <div>
+            <h5 class="alert-heading mb-1">Error!</h5>
+            <p class="mb-0">Something went wrong. Please try again.</p>
+          </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+      <!-- User Management Card -->
+      <div class="card shadow-sm">
+        <div class="card-header bg-white py-3">
+          <h4 class="mb-0">
+            <i class="bi bi-people-fill text-primary"></i> Manage Users
+          </h4>
+        </div>
+
+        <div id="userDataTable" class="card-body p-0">
+          <!-- Loading state -->
+          <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading users...</span>
+            </div>
+            <p class="text-muted mt-3">Loading user data...</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<%= javascript_include_tag "jquery.dataTables.min.js"%>
+<%= javascript_include_tag "jquery.dataTables.min.js" %>
 
 <script type="text/javascript">
-
-function makeActive(){
+function makeActive() {
   $('li[id="admin"]').addClass('active');
-};
+}
 
-function loadTable(){
-  $("#userDataTable").load("/admin/"+ <%= params[:admin_id] %> + "/get_all_users")
-};
+function loadTable() {
+  $("#userDataTable").load("/admin/" + <%= params[:admin_id] %> + "/get_all_users");
+}
 
-$(document).ready(
-  makeActive,
-  loadTable()
-);
+$(document).ready(function() {
+  makeActive();
+  loadTable();
+});
+
+// Handle Turbolinks page loads
+$(document).on('turbolinks:load', function() {
+  makeActive();
+});
 </script>

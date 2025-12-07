@@ -1,19 +1,38 @@
 <% flash.each do |name, msg| %>
   <% name = name.to_sym %>
-  <% if name == :error %>
-    <div class="alert alert-error">
-      <a class="close" aria-label="dismiss" data-dismiss="alert" href="#">×</a>
-          <%= content_tag :div, msg, :id => "flash_notice" %>
+  <%
+    alert_class = case name
+    when :error, :alert
+      'alert-danger'
+    when :success, :notice
+      'alert-success'
+    when :info
+      'alert-info'
+    when :warning
+      'alert-warning'
+    else
+      'alert-secondary'
+    end
+
+    icon_class = case name
+    when :error, :alert
+      'bi-exclamation-circle-fill'
+    when :success, :notice
+      'bi-check-circle-fill'
+    when :info
+      'bi-info-circle-fill'
+    when :warning
+      'bi-exclamation-triangle-fill'
+    else
+      'bi-bell-fill'
+    end
+  %>
+
+  <div class="alert <%= alert_class %> alert-dismissible fade show d-flex align-items-center" role="alert">
+    <i class="bi <%= icon_class %> me-2"></i>
+    <div class="flex-grow-1">
+      <%= msg %>
     </div>
-  <% elsif name == :success %>
-    <div class="alert alert-success">
-      <a class="close" aria-label="dismiss" data-dismiss="alert" href="#">×</a>
-          <%= content_tag :div, msg, :id => "flash_notice" %>
-    </div>
-  <% elsif name == :info %>
-    <div class="alert alert-info">
-      <a class="close" aria-label="dismiss" data-dismiss="alert" href="#">×</a>
-        <%= content_tag :div, msg, :id => "flash_notice" %>
-    </div>
-  <% end %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
 <% end %>

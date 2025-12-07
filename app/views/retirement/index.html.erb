@@ -1,84 +1,181 @@
-<div class="dashboard-wrapper">
-  <div class="main-container">
-    <div class="row-fluid">
-        <div class="span3">  <!-- Beginning of span-->
-             <div class="widget">
-                  <div class="widget-header">
-                    <div class="title">
-                      <span class="fs1" aria-hidden="true" data-icon="&#xe071;"></span> Employee Contribution
-                    </div>
-                  </div>
-                  <div class="widget-body">
-                    <div class="current-statistics">
-                      <div class="expenses">
-                        <h3><%= @info.employee_contrib %></h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-        </div> <!-- End of span-->
-      <div class="span3">  <!-- Beginning of span-->
-             <div class="widget">
-                  <div class="widget-header">
-                    <div class="title">
-                      <span class="fs1" aria-hidden="true" data-icon="&#xe075;"></span> Employer Contribution
-                    </div>
-                  </div>
-                  <div class="widget-body">
-                    <div class="current-statistics">
-                      <div class="signups">
-                        <h3><%= @info.employer_contrib %></h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-        </div> <!-- End of span-->
-      <div class="span3">  <!-- Beginning of span-->
-             <div class="widget">
-                  <div class="widget-header">
-                    <div class="title">
-                      <span class="fs1" aria-hidden="true" data-icon="&#xe14a;"></span> Total Contribution
-                    </div>
-                  </div>
-                  <div class="widget-body">
-                    <div class="current-statistics">
-                      <div class="income">
-                        <h3><%= @info.total %></h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-        </div> <!-- End of span-->
+<div class="container-fluid">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h2 class="mb-3">
+        <i class="bi bi-piggy-bank-fill text-primary"></i> 401(k) Retirement Plan
+      </h2>
+      <p class="text-muted">Your retirement savings summary and employee benefits</p>
     </div>
-    <div class="row-fluid">
-       <div class="span6">  <!-- Beginning of span-->
-               <div class="widget">
-                    <div class="widget-header">
-                      <div class="title">
-                        <span class="fs1" aria-hidden="true" data-icon="&#xe0d4;"></span> Employee Services
-                      </div>
-                    </div>
-                    <div class="widget-body">
-                     <p>
-              Saving for retirement can be difficult. Choosing the plan that is right for you is incredibly important. MetaCorp understands this and and offers free one-on-one interaction with a savings counselor. This service is available weekly, Monday thru Wednesday. Sign up through your departments designated finance lead.
-                   </p>
-             <hr/>
-             <p>
-              MetaCorp is dedicated to its employees and this service is just one way of showing it!
-             </p>
-                    </div>
+  </div>
+
+  <!-- Contribution Stats -->
+  <div class="row g-3 mb-4">
+    <!-- Employee Contribution -->
+    <div class="col-lg-4">
+      <div class="card shadow-sm text-center hover-stat-card" style="border-top: 4px solid #579da9;">
+        <div class="card-body p-4">
+          <div class="mb-3">
+            <i class="bi bi-person-fill-check" style="font-size: 3rem; color: #579da9;"></i>
+          </div>
+          <h6 class="text-muted text-uppercase mb-2" style="font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px;">
+            Employee Contribution
+          </h6>
+          <h2 class="mb-0" style="color: #579da9; font-weight: 700; font-size: 2.5rem;">
+            <%= @info.employee_contrib %>
+          </h2>
+          <p class="text-muted mt-2 mb-0 small">Your contributions to date</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Employer Contribution -->
+    <div class="col-lg-4">
+      <div class="card shadow-sm text-center hover-stat-card" style="border-top: 4px solid #1e825e;">
+        <div class="card-body p-4">
+          <div class="mb-3">
+            <i class="bi bi-building-fill-check" style="font-size: 3rem; color: #1e825e;"></i>
+          </div>
+          <h6 class="text-muted text-uppercase mb-2" style="font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px;">
+            Employer Contribution
+          </h6>
+          <h2 class="mb-0" style="color: #1e825e; font-weight: 700; font-size: 2.5rem;">
+            <%= @info.employer_contrib %>
+          </h2>
+          <p class="text-muted mt-2 mb-0 small">MetaCorp matching funds</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Total Contribution -->
+    <div class="col-lg-4">
+      <div class="card shadow-sm text-center hover-stat-card" style="border-top: 4px solid var(--rg-primary); background: linear-gradient(135deg, rgba(230, 57, 70, 0.03), rgba(214, 40, 40, 0.03));">
+        <div class="card-body p-4">
+          <div class="mb-3">
+            <i class="bi bi-cash-stack" style="font-size: 3rem; color: var(--rg-primary);"></i>
+          </div>
+          <h6 class="text-muted text-uppercase mb-2" style="font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px;">
+            Total Contribution
+          </h6>
+          <h2 class="mb-0" style="color: var(--rg-primary); font-weight: 700; font-size: 2.5rem;">
+            <%= @info.total %>
+          </h2>
+          <p class="text-muted mt-2 mb-0 small">Combined retirement savings</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Employee Services Section -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-sm" style="border-left: 5px solid var(--rg-secondary);">
+        <div class="card-body p-4">
+          <div class="row align-items-center">
+            <div class="col-md-2 text-center mb-3 mb-md-0">
+              <i class="bi bi-person-workspace" style="font-size: 4rem; color: var(--rg-secondary);"></i>
+            </div>
+            <div class="col-md-10">
+              <h4 class="mb-3">
+                <i class="bi bi-star-fill text-warning"></i> Employee Retirement Services
+              </h4>
+              <p class="mb-3" style="line-height: 1.7;">
+                Saving for retirement can be difficult. Choosing the plan that is right for you is incredibly important.
+                MetaCorp understands this and offers <strong>free one-on-one interaction with a savings counselor</strong>.
+                This service is available weekly, Monday through Wednesday.
+              </p>
+
+              <div class="alert alert-info mb-3" role="alert">
+                <div class="d-flex align-items-start">
+                  <i class="bi bi-calendar-check me-2" style="font-size: 1.5rem;"></i>
+                  <div>
+                    <strong>How to Sign Up:</strong><br>
+                    Contact your department's designated finance lead to schedule your consultation.
                   </div>
-          </div> <!-- End of span-->
+                </div>
+              </div>
+
+              <div class="p-3 rounded" style="background: linear-gradient(135deg, rgba(69, 123, 157, 0.1), rgba(29, 53, 87, 0.1)); border-left: 4px solid var(--rg-secondary);">
+                <i class="bi bi-heart-fill text-danger"></i>
+                <strong>MetaCorp is dedicated to its employees</strong> - This service is just one way of showing it!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Additional Info Cards -->
+  <div class="row mt-3 g-3">
+    <div class="col-md-4">
+      <div class="card shadow-sm h-100" style="border-left: 3px solid #579da9;">
+        <div class="card-body">
+          <h6 class="card-title">
+            <i class="bi bi-graph-up-arrow text-primary"></i> Investment Options
+          </h6>
+          <p class="card-text small text-muted">
+            Choose from a variety of investment funds to match your risk tolerance and retirement goals.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm h-100" style="border-left: 3px solid #1e825e;">
+        <div class="card-body">
+          <h6 class="card-title">
+            <i class="bi bi-percent text-success"></i> Employer Matching
+          </h6>
+          <p class="card-text small text-muted">
+            MetaCorp matches your contributions up to 6% of your salary to maximize your retirement savings.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm h-100" style="border-left: 3px solid var(--rg-warning);">
+        <div class="card-body">
+          <h6 class="card-title">
+            <i class="bi bi-shield-check text-warning"></i> Tax Advantages
+          </h6>
+          <p class="card-text small text-muted">
+            Contributions are pre-tax, reducing your taxable income while building your retirement nest egg.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <script type="text/javascript">
+function makeActive() {
+  $('li[id="retirement"]').addClass('active');
+}
 
-  function makeActive(){
-    $('li[id="retirement"]').addClass('active');
-  };
+$(document).ready(makeActive);
 
- $(document).ready(makeActive)
-
+// Handle Turbolinks page loads
+$(document).on('turbolinks:load', function() {
+  makeActive();
+});
 </script>
+
+<style>
+  .hover-stat-card {
+    transition: all 0.3s ease;
+  }
+
+  .hover-stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
+  }
+
+  .hover-stat-card h2 {
+    transition: transform 0.3s ease;
+  }
+
+  .hover-stat-card:hover h2 {
+    transform: scale(1.05);
+  }
+</style>

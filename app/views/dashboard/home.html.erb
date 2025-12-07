@@ -1,56 +1,90 @@
-<div class="dashboard-wrapper">
-  <div class="main-container">
-    <div class="row-fluid">
-      <div class="span12"> <!--begin span12 -->
-        <div class="widget">
-          <div class="widget-header">
-            <div class="title">
-              <span class="fs1" aria-hidden="true" data-icon="&#xe0a0;"></span> Current Statistics
-            </div>
-            <!-- Begin Title Buttons-->
-            <div class="tools pull-right">
-              <div class="btn-group">
-                <button id="change_to_bar_graph" class="btn btn-small">
-                  <span aria-label="change to bar graph" data-icon="&#xe14b;"></span>
-                </button>
-                <button id="change_to_pie_charts" class="btn btn-small">
-                  <span aria-label="change to pie charts" data-icon="&#xe096;"></span>
-                </button>
-              </div>
-            </div>
-            <!-- End Title Buttons-->
-          </div>
-          <div id="charts_body" class="widget-body">
-            <%#= render partial: "dashboard_stats" %>
-          </div>
-          <div class="clearfix">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+          <h4 class="mb-0">
+            <i class="bi bi-graph-up text-primary"></i> Current Statistics
+          </h4>
+          <!-- Chart Type Toggle -->
+          <div class="btn-group" role="group" aria-label="Chart type selection">
+            <button id="change_to_bar_graph" class="btn btn-outline-primary btn-sm" title="Bar Graph View" aria-label="Switch to bar graph">
+              <i class="bi bi-bar-chart-fill"></i> Bar Graph
+            </button>
+            <button id="change_to_pie_charts" class="btn btn-outline-primary btn-sm" title="Pie Charts View" aria-label="Switch to pie charts">
+              <i class="bi bi-pie-chart-fill"></i> Pie Charts
+            </button>
           </div>
         </div>
-      </div> <!-- end span12 -->
+        <div id="charts_body" class="card-body p-4">
+          <!-- Charts will load here dynamically -->
+          <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading charts...</span>
+            </div>
+            <p class="text-muted mt-3">Loading statistics...</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <script type="text/javascript">
-function makeActive(){
+function makeActive() {
   $('li[id="home"]').addClass('active');
-};
+}
 
 $("#change_to_bar_graph").click(function(event) {
-	event.preventDefault();
-	$("#charts_body").empty()
-	$("#charts_body").load(<%= sanitize change_graph_dashboard_index_path(:graph => "bar_graph").inspect %>);
-	
-})
+  event.preventDefault();
+
+  // Add loading state
+  $("#charts_body").html('<div class="text-center py-5"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div><p class="text-muted mt-3">Loading bar graph...</p></div>');
+
+  // Remove active state from other button
+  $("#change_to_pie_charts").removeClass('active');
+  $(this).addClass('active');
+
+  // Load new content
+  $("#charts_body").load(<%= sanitize change_graph_dashboard_index_path(:graph => "bar_graph").inspect %>);
+});
 
 $("#change_to_pie_charts").click(function(event) {
-	event.preventDefault();
-	$("#charts_body").empty()
-	$("#charts_body").load(<%= sanitize change_graph_dashboard_index_path(:graph => "pie_charts").inspect %>);
-})
+  event.preventDefault();
 
-$(document).ready(
-  makeActive,
-  $("#charts_body").load(<%= sanitize change_graph_dashboard_index_path(:graph => "pie_charts").inspect %>)
-);
+  // Add loading state
+  $("#charts_body").html('<div class="text-center py-5"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div><p class="text-muted mt-3">Loading pie charts...</p></div>');
+
+  // Remove active state from other button
+  $("#change_to_bar_graph").removeClass('active');
+  $(this).addClass('active');
+
+  // Load new content
+  $("#charts_body").load(<%= sanitize change_graph_dashboard_index_path(:graph => "pie_charts").inspect %>);
+});
+
+$(document).ready(function() {
+  makeActive();
+
+  // Mark pie charts as default active view
+  $("#change_to_pie_charts").addClass('active');
+
+  // Load default view
+  $("#charts_body").load(<%= sanitize change_graph_dashboard_index_path(:graph => "pie_charts").inspect %>);
+});
+
+// Handle Turbolinks page loads
+$(document).on('turbolinks:load', function() {
+  makeActive();
+});
 </script>
+
+<style>
+  /* Active button state for chart toggles */
+  #change_to_bar_graph.active,
+  #change_to_pie_charts.active {
+    background-color: var(--rg-primary);
+    color: white;
+    border-color: var(--rg-primary);
+  }
+</style>

@@ -1,43 +1,438 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" data-bs-theme="light">
 <head>
-  <title>RailsGoat</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RailsGoat - OWASP Security Training</title>
+
   <%#= csrf_meta_tags %> <!-- <~ What is this for? I hear it helps w/ JS and Sea-surfing.....whatevz -->
-  <!-- bootstrap css -->
+
+  <!-- VULNERABILITY A03:2025 - Software Supply Chain Failures
+       Missing Subresource Integrity (SRI) checks on CDN assets
+       If the CDN is compromised, malicious code can be injected without detection
+
+       SECURE: Should include integrity="sha384-..." crossorigin="anonymous"
+       See: /tutorials/supply_chain for exploitation details
+  -->
+
+  <!-- Load jQuery FIRST - other scripts depend on it -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+  <!-- Bootstrap CSS and Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Rails assets - loaded AFTER jQuery -->
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => "reload" %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => "reload" %>
+
+  <!-- Bootstrap JS - loaded last -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- FullCalendar and dependencies for PTO page -->
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.5/dist/fullcalendar.min.js"></script>
+
+  <!-- Modern Design System -->
+  <style>
+    :root {
+      --rg-primary: #e63946;
+      --rg-primary-dark: #d62828;
+      --rg-secondary: #457b9d;
+      --rg-secondary-dark: #1d3557;
+      --rg-success: #06d6a0;
+      --rg-warning: #ffb703;
+      --rg-danger: #e63946;
+      --rg-light: #f8f9fa;
+      --rg-dark: #1d3557;
+      --rg-sidebar-width: 250px;
+      --rg-header-height: 60px;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--rg-light);
+      min-height: 100vh;
+    }
+
+    /* Modern Header */
+    .rg-header {
+      background: white;
+      border-bottom: none;
+      height: var(--rg-header-height);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1030;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      overflow: visible;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .rg-header .container-fluid {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    .rg-header .col-auto:first-child {
+      padding-left: 0;
+      margin-left: 0;
+    }
+
+    .rg-brand {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--rg-primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      line-height: 1;
+    }
+
+    .rg-brand:hover {
+      color: var(--rg-primary-dark);
+    }
+
+    .rg-brand i {
+      font-size: 1.75rem;
+      line-height: 1;
+      display: inline-block;
+      min-width: 1.75rem;
+      text-align: center;
+    }
+
+    .rg-header .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    /* Modern Sidebar */
+    .rg-sidebar {
+      position: fixed;
+      top: var(--rg-header-height);
+      left: 0;
+      bottom: 0;
+      width: var(--rg-sidebar-width);
+      background: var(--rg-dark);
+      color: white;
+      overflow-y: auto;
+      transition: transform 0.3s ease;
+      box-shadow: 2px 0 12px rgba(0,0,0,0.1);
+    }
+
+    .rg-sidebar-nav {
+      list-style: none;
+      padding: 1rem 0;
+      margin: 0;
+    }
+
+    .rg-sidebar-nav li a {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      margin: 0.25rem 0.75rem;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: all 0.2s;
+      border-radius: 0.75rem;
+    }
+
+    .rg-sidebar-nav li a:hover,
+    .rg-sidebar-nav li a.active {
+      background: rgba(255,255,255,0.15);
+      color: white;
+      transform: translateX(4px);
+    }
+
+    .rg-sidebar-nav li a i {
+      font-size: 1.25rem;
+      margin-right: 0.75rem;
+      width: 24px;
+      text-align: center;
+    }
+
+    /* Main Content */
+    .rg-main {
+      margin-top: var(--rg-header-height);
+      margin-left: var(--rg-sidebar-width);
+      padding: 2rem;
+      min-height: calc(100vh - var(--rg-header-height));
+    }
+
+    .rg-main.no-sidebar {
+      margin-left: 0;
+    }
+
+    /* Modern Cards */
+    .rg-card, .card {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 1.5rem;
+      border: none;
+      overflow: hidden;
+    }
+
+    .rg-card:hover, .card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      transition: box-shadow 0.3s ease;
+    }
+
+    /* Modern Buttons */
+    .btn {
+      border-radius: 0.75rem;
+      padding: 0.5rem 1.25rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      border: none;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .btn-sm {
+      border-radius: 0.625rem;
+      padding: 0.375rem 1rem;
+      font-size: 0.875rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--rg-primary) 0%, var(--rg-primary-dark) 100%);
+      border-color: transparent;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--rg-primary-dark) 0%, #c11f2b 100%);
+      border-color: transparent;
+      color: white;
+    }
+
+    .btn-outline-primary {
+      border: 2px solid var(--rg-primary);
+      color: var(--rg-primary);
+      background: white;
+    }
+
+    .btn-outline-primary:hover {
+      background: var(--rg-primary);
+      color: white;
+      border-color: var(--rg-primary);
+    }
+
+    .btn-warning {
+      background: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
+      color: white;
+      border: none;
+    }
+
+    .btn-warning:hover {
+      background: linear-gradient(135deg, #fb8500 0%, #e85d04 100%);
+      color: white;
+    }
+
+    .btn-outline-secondary {
+      border: 2px solid #dee2e6;
+      color: #6c757d;
+      background: white;
+    }
+
+    .btn-outline-secondary:hover {
+      background: #f8f9fa;
+      border-color: #adb5bd;
+      color: #495057;
+    }
+
+    /* Modern Alerts */
+    .alert {
+      border-radius: 0.875rem;
+      border: none;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    /* Modern Tables */
+    .table {
+      border-radius: 0.75rem;
+      overflow: hidden;
+    }
+
+    .table thead th {
+      background: var(--rg-light);
+      font-weight: 600;
+      border-bottom: 2px solid #dee2e6;
+      padding: 1rem;
+    }
+
+    .table tbody tr {
+      transition: background-color 0.2s ease;
+    }
+
+    .table tbody tr:hover {
+      background-color: rgba(230, 57, 70, 0.03);
+    }
+
+    /* Modern Badges */
+    .badge {
+      border-radius: 0.5rem;
+      padding: 0.35rem 0.65rem;
+      font-weight: 500;
+    }
+
+    /* Modern Dropdowns */
+    .dropdown-menu {
+      border-radius: 0.75rem;
+      border: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      padding: 0.5rem;
+    }
+
+    .dropdown-item {
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .dropdown-item:hover {
+      background-color: rgba(230, 57, 70, 0.08);
+      transform: translateX(2px);
+    }
+
+    /* Modern Widget Styling */
+    .widget {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 1.5rem;
+      border: none;
+      overflow: hidden;
+    }
+
+    .widget-header {
+      background: var(--rg-light);
+      border-bottom: none;
+      padding: 1.25rem 1.5rem;
+      border-radius: 1rem 1rem 0 0;
+    }
+
+    .widget-header .title {
+      font-weight: 600;
+      color: var(--rg-dark);
+      font-size: 1.1rem;
+    }
+
+    .widget-body {
+      padding: 1.5rem;
+    }
+
+    /* Modern Login Page */
+    .rg-login-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--rg-secondary-dark) 0%, var(--rg-secondary) 100%);
+      position: relative;
+    }
+
+    .rg-login-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(230, 57, 70, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(69, 123, 157, 0.1) 0%, transparent 50%);
+    }
+
+    .rg-login-card {
+      background: white;
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      padding: 3rem;
+      width: 100%;
+      max-width: 450px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-control, .form-select {
+      border-radius: 0.75rem;
+      border: 2px solid #e9ecef;
+      padding: 0.75rem 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: var(--rg-primary);
+      box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+    }
+
+    .input-group-text {
+      border-radius: 0.75rem 0 0 0.75rem;
+      border: 2px solid #e9ecef;
+      border-right: none;
+      background: #f8f9fa;
+    }
+
+    .input-group .form-control {
+      border-radius: 0 0.75rem 0.75rem 0;
+    }
+
+    .rg-login-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .rg-login-logo {
+      font-size: 3rem;
+      color: var(--rg-primary);
+      margin-bottom: 1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .rg-sidebar {
+        transform: translateX(-100%);
+      }
+
+      .rg-sidebar.show {
+        transform: translateX(0);
+      }
+
+      .rg-main {
+        margin-left: 0;
+      }
+    }
+
+    /* VULNERABILITY: XSS via cookie font-size */
 <%
 if cookies[:font]
 %>
-<style>body { font-size:<%= raw cookies[:font] %> !important;}</style>
+    body { font-size:<%= raw cookies[:font] %> !important;}
 <%
 end
 %>
+  </style>
 
 </head>
 <body>
   <%= render "layouts/shared/header" %>
   <%= render "layouts/shared/sidebar" %>
-<div class="container-fluid">
-  <% if current_user %>
-    <div class="dashboard-wrapper">
-      <%= render "layouts/shared/messages" %>
-      <%= yield %>
-    </div>
-  <% else %>
-  <div class="login-wrapper">
+
+  <main class="rg-main <%= 'no-sidebar' unless current_user %>">
     <%= render "layouts/shared/messages" %>
-    <%= yield %> 
-  </div>  
-  <% end %>
-</div>
+    <%= yield %>
+  </main>
+
   <%= render "layouts/shared/footer" %>
-
-<script type="text/javascript">
-
-//Dropdown
-$('.dropdown-toggle').dropdown();
-</script>
-
 </body>
 </html>

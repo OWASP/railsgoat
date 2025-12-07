@@ -29,27 +29,18 @@
               <%= u.admin ? %{<span class="fs1" aria-label="check" data-icon="&#xe0fe;"}.html_safe : nil %>
             </td>
             <td>
-              <%= link_to "Edit", "#", {:onClick => "javascript:openEditModal(#{u.id});", :role => "button", :style => "width:70px", :class => "btn btn-inverse", "data-toggle" => "modal"}%>
+              <%= link_to "Edit", admin_get_user_path(u.id), {:style => "width:70px", :class => "btn btn-inverse"}%>
             </td>
           </tr>
      <% end %>
       </tbody>
     </table>
-  <div id="editAcct" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-  </div>
     <div class="clearfix">
     </div>
   </div>
 </div>
 
 <script type="text/javascript">
-
-function openEditModal(id){
- var link = '/admin/'+ id +'/get_user';
- $("#editAcct").load(link);
- $("#editAcct").modal('show');
-};
-
 function dataTablePagination(){
   $('#data-table').dataTable({
       "sPaginationType": "full_numbers"

@@ -48,8 +48,18 @@
 <% end %>
 <script type="text/javascript">
 
+// Store timeout IDs so we can clear them on page navigation
+var chartTimeouts = [];
+
 function pieChartHome() {
+  // Clear any existing timeouts first
+  chartTimeouts.forEach(function(id) { clearTimeout(id); });
+  chartTimeouts = [];
+
   $(function () {
+    // Only initialize if chart elements exist
+    if ($('.chart1').length === 0) return;
+
     //create instance
     $('.chart1').easyPieChart({
       animate: 2000,
@@ -60,24 +70,37 @@ function pieChartHome() {
       lineWidth: 7,
     });
     //update instance after 5 sec
-    setTimeout(function () {
-      $('.chart1').data('easyPieChart').update(50);
-    }, 5000);
-    setTimeout(function () {
-      $('.chart1').data('easyPieChart').update(70);
-    }, 10000);
-    setTimeout(function () {
-      $('.chart1').data('easyPieChart').update(30);
-    }, 15000);
-    setTimeout(function () {
-      $('.chart1').data('easyPieChart').update(90);
-    }, 19000);
-    setTimeout(function () {
-      $('.chart1').data('easyPieChart').update(40);
-    }, 32000);
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart1').length && $('.chart1').data('easyPieChart')) {
+        $('.chart1').data('easyPieChart').update(50);
+      }
+    }, 5000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart1').length && $('.chart1').data('easyPieChart')) {
+        $('.chart1').data('easyPieChart').update(70);
+      }
+    }, 10000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart1').length && $('.chart1').data('easyPieChart')) {
+        $('.chart1').data('easyPieChart').update(30);
+      }
+    }, 15000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart1').length && $('.chart1').data('easyPieChart')) {
+        $('.chart1').data('easyPieChart').update(90);
+      }
+    }, 19000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart1').length && $('.chart1').data('easyPieChart')) {
+        $('.chart1').data('easyPieChart').update(40);
+      }
+    }, 32000));
   });
 
   $(function () {
+    // Only initialize if chart elements exist
+    if ($('.chart2').length === 0) return;
+
     //create instance
     $('.chart2').easyPieChart({
       animate: 2000,
@@ -88,24 +111,37 @@ function pieChartHome() {
       lineWidth: 7,
     });
     //update instance after 5 sec
-    setTimeout(function () {
-      $('.chart2').data('easyPieChart').update(90);
-    }, 10000);
-    setTimeout(function () {
-      $('.chart2').data('easyPieChart').update(40);
-    }, 18000);
-    setTimeout(function () {
-      $('.chart2').data('easyPieChart').update(70);
-    }, 28000);
-    setTimeout(function () {
-      $('.chart2').data('easyPieChart').update(50);
-    }, 32000);
-    setTimeout(function () {
-      $('.chart2').data('easyPieChart').update(80);
-    }, 40000);
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart2').length && $('.chart2').data('easyPieChart')) {
+        $('.chart2').data('easyPieChart').update(90);
+      }
+    }, 10000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart2').length && $('.chart2').data('easyPieChart')) {
+        $('.chart2').data('easyPieChart').update(40);
+      }
+    }, 18000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart2').length && $('.chart2').data('easyPieChart')) {
+        $('.chart2').data('easyPieChart').update(70);
+      }
+    }, 28000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart2').length && $('.chart2').data('easyPieChart')) {
+        $('.chart2').data('easyPieChart').update(50);
+      }
+    }, 32000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart2').length && $('.chart2').data('easyPieChart')) {
+        $('.chart2').data('easyPieChart').update(80);
+      }
+    }, 40000));
   });
 
   $(function () {
+    // Only initialize if chart elements exist
+    if ($('.chart3').length === 0) return;
+
     //create instance
     $('.chart3').easyPieChart({
       animate: 2000,
@@ -116,24 +152,37 @@ function pieChartHome() {
       lineWidth: 7,
     });
     //update instance after 5 sec
-    setTimeout(function () {
-      $('.chart3').data('easyPieChart').update(20);
-    }, 9000);
-    setTimeout(function () {
-      $('.chart3').data('easyPieChart').update(59);
-    }, 20000);
-    setTimeout(function () {
-      $('.chart3').data('easyPieChart').update(38);
-    }, 35000);
-    setTimeout(function () {
-      $('.chart3').data('easyPieChart').update(79);
-    }, 49000);
-    setTimeout(function () {
-      $('.chart3').data('easyPieChart').update(96);
-    }, 52000);
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart3').length && $('.chart3').data('easyPieChart')) {
+        $('.chart3').data('easyPieChart').update(20);
+      }
+    }, 9000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart3').length && $('.chart3').data('easyPieChart')) {
+        $('.chart3').data('easyPieChart').update(59);
+      }
+    }, 20000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart3').length && $('.chart3').data('easyPieChart')) {
+        $('.chart3').data('easyPieChart').update(38);
+      }
+    }, 35000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart3').length && $('.chart3').data('easyPieChart')) {
+        $('.chart3').data('easyPieChart').update(79);
+      }
+    }, 49000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart3').length && $('.chart3').data('easyPieChart')) {
+        $('.chart3').data('easyPieChart').update(96);
+      }
+    }, 52000));
   });
 
   $(function () {
+    // Only initialize if chart elements exist
+    if ($('.chart4').length === 0) return;
+
     //create instance
     $('.chart4').easyPieChart({
       animate: 2000,
@@ -144,24 +193,37 @@ function pieChartHome() {
       lineWidth: 7,
     });
     //update instance after 5 sec
-    setTimeout(function () {
-      $('.chart4').data('easyPieChart').update(40);
-    }, 6000);
-    setTimeout(function () {
-      $('.chart4').data('easyPieChart').update(67);
-    }, 14000);
-    setTimeout(function () {
-      $('.chart4').data('easyPieChart').update(43);
-    }, 23000);
-    setTimeout(function () {
-      $('.chart4').data('easyPieChart').update(80);
-    }, 36000);
-    setTimeout(function () {
-      $('.chart4').data('easyPieChart').update(66);
-    }, 41000);
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart4').length && $('.chart4').data('easyPieChart')) {
+        $('.chart4').data('easyPieChart').update(40);
+      }
+    }, 6000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart4').length && $('.chart4').data('easyPieChart')) {
+        $('.chart4').data('easyPieChart').update(67);
+      }
+    }, 14000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart4').length && $('.chart4').data('easyPieChart')) {
+        $('.chart4').data('easyPieChart').update(43);
+      }
+    }, 23000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart4').length && $('.chart4').data('easyPieChart')) {
+        $('.chart4').data('easyPieChart').update(80);
+      }
+    }, 36000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart4').length && $('.chart4').data('easyPieChart')) {
+        $('.chart4').data('easyPieChart').update(66);
+      }
+    }, 41000));
   });
 
   $(function () {
+    // Only initialize if chart elements exist
+    if ($('.chart5').length === 0) return;
+
     //create instance
     $('.chart5').easyPieChart({
       animate: 3000,
@@ -172,28 +234,42 @@ function pieChartHome() {
       lineWidth: 7,
     });
     //update instance after 5 sec
-    setTimeout(function () {
-      $('.chart5').data('easyPieChart').update(30);
-    }, 9000);
-    setTimeout(function () {
-      $('.chart5').data('easyPieChart').update(87);
-    }, 19000);
-    setTimeout(function () {
-      $('.chart5').data('easyPieChart').update(28);
-    }, 27000);
-    setTimeout(function () {
-      $('.chart5').data('easyPieChart').update(69);
-    }, 39000);
-    setTimeout(function () {
-      $('.chart5').data('easyPieChart').update(99);
-    }, 47000);
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart5').length && $('.chart5').data('easyPieChart')) {
+        $('.chart5').data('easyPieChart').update(30);
+      }
+    }, 9000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart5').length && $('.chart5').data('easyPieChart')) {
+        $('.chart5').data('easyPieChart').update(87);
+      }
+    }, 19000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart5').length && $('.chart5').data('easyPieChart')) {
+        $('.chart5').data('easyPieChart').update(28);
+      }
+    }, 27000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart5').length && $('.chart5').data('easyPieChart')) {
+        $('.chart5').data('easyPieChart').update(69);
+      }
+    }, 39000));
+    chartTimeouts.push(setTimeout(function () {
+      if ($('.chart5').length && $('.chart5').data('easyPieChart')) {
+        $('.chart5').data('easyPieChart').update(99);
+      }
+    }, 47000));
   });
 
 }
 
-$(document).ready(
-  pieChartHome()
-);
+$(document).ready(pieChartHome);
+
+// Clear timeouts when navigating away with Turbolinks
+$(document).on('turbolinks:before-visit', function() {
+  chartTimeouts.forEach(function(id) { clearTimeout(id); });
+  chartTimeouts = [];
+});
 </script>
 
 

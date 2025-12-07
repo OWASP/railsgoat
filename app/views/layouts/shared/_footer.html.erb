@@ -1,22 +1,56 @@
-<footer>
-  <p align="center">
-    &copy; The Open Worldwide Application Security Project - OWASP, 2015
-  </p>
-</footer>
+<% if current_user %>
+  <footer class="border-top mt-5 py-4 text-center text-muted bg-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="mb-1">
+            <i class="bi bi-shield-check"></i>
+            &copy; <%= Date.current.year %> The Open Worldwide Application Security Project - OWASP
+          </p>
+          <p class="small mb-0">
+            <a href="https://owasp.org" target="_blank" class="text-decoration-none me-3">
+              <i class="bi bi-globe"></i> OWASP.org
+            </a>
+            <a href="https://github.com/OWASP/railsgoat" target="_blank" class="text-decoration-none me-3">
+              <i class="bi bi-github"></i> GitHub
+            </a>
+            <a href="https://github.com/OWASP/railsgoat/wiki" target="_blank" class="text-decoration-none">
+              <i class="bi bi-book"></i> Documentation
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+<% end %>
 
- <script type="text/javascript">
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" class="btn btn-primary rounded-circle position-fixed bottom-0 end-0 m-4" style="width: 48px; height: 48px; display: none; z-index: 1000;" title="Scroll to top">
+  <i class="bi bi-arrow-up"></i>
+</button>
 
- //ScrollUp
-  $(function () {
-    $.scrollUp({
-      scrollName: 'scrollUp', // Element ID
-      topDistance: '300', // Distance from top before showing element (px)
-      topSpeed: 300, // Speed back to top (ms)
-      animation: 'fade', // Fade, slide, none
-      animationInSpeed: 400, // Animation in speed (ms)
-      animationOutSpeed: 400, // Animation out speed (ms)
-      scrollText: 'Scroll to top', // Text for element
-      activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
-    });
-  });
+<script>
+  // Modern scroll-to-top without jQuery
+  (function() {
+    const scrollBtn = document.getElementById('scrollTopBtn');
+
+    if (scrollBtn) {
+      // Show/hide button based on scroll position
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+          scrollBtn.style.display = 'block';
+        } else {
+          scrollBtn.style.display = 'none';
+        }
+      });
+
+      // Scroll to top on click
+      scrollBtn.addEventListener('click', function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+  })();
 </script>

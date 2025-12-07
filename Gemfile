@@ -1,33 +1,31 @@
 # frozen_string_literal: true
 source "https://rubygems.org"
 
-#don't upgrade
-gem "rails", "6.0.0"
+gem "rails", "~> 8.0.0"
 
-ruby "2.6.5"
+ruby "3.3.6"
 
 gem "aruba"
 gem "bcrypt"
-gem "coffee-rails"
-gem "execjs"
 gem "foreman"
 gem "jquery-fileupload-rails"
 gem "jquery-rails"
 gem "minitest"
-gem "powder" # Pow related gem
 gem "pry-rails" # not in dev group in case running via prod/staging @ a training
-gem "puma"
-gem "rails-perftest"
+gem "puma", "~> 6.0"
 gem "rake"
-gem "responders" #For Rails 4.2 # LOCKED DOWN
+gem "responders"
 gem "ruby-prof"
 gem "sassc-rails"
 gem "simplecov", require: false, group: :test
-gem "sqlite3"
-gem "therubyracer"
+gem "sqlite3", "~> 2.0"
 gem "turbolinks"
-gem "uglifier"
-gem "unicorn"
+
+# Asset pipeline
+gem "sprockets-rails"
+gem "importmap-rails"
+gem "stimulus-rails"
+gem "turbo-rails"
 
 # Add SMTP server support using MailCatcher
 # NOTE: https://github.com/sj26/mailcatcher#bundler
@@ -43,16 +41,15 @@ group :development, :mysql do
   gem "pry"
   gem "rack-livereload"
   gem "rb-fsevent"
-  gem "rubocop-github"
-  gem "travis-lint"
+  gem "rubocop"
 end
 
 group :development, :test, :mysql do
   gem "capybara"
   gem "database_cleaner"
   gem "launchy"
-  gem "poltergeist"
-  gem "rspec-rails", '4.0.0.beta3' # 4/26/2019: LOCKED DOWN
+  gem "selenium-webdriver"
+  gem "rspec-rails"
   gem "test-unit"
 end
 

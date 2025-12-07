@@ -1,88 +1,115 @@
 <% if current_user %>
-  <header>
-      
-      <span style="color:#eee;margin-left:10px;">
-        Font Size:
-        <a data-no-turbolink='true' href="/dashboard/home?font=8pt" style="font-size:10pt;color:#eee" aria-label="small font">A</a>
-        <a data-no-turbolink='true' href="/dashboard/home?font=200%25" style="font-size:18pt;color:#eee;" aria-label="large font">A</a>
-      </span>
-      
-      <div class="user-profile">
-        <button data-toggle="dropdown" class="dropdown-toggle">
-          <img src=" <%= image_path('profile_color.jpg')%>"  alt="profile">
-        </button>
-        <span class="caret"></span>
-        <ul class="dropdown-menu pull-right">
-          <li>
-           <%= link_to "Account settings", user_account_settings_path(user_id: current_user.id) %>
-          </li>
-          <li>
-            <%= link_to "Logout", logout_path %>
-          </li>
-        </ul>
+  <!-- Authenticated Header -->
+  <header class="rg-header">
+    <div class="container-fluid h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-auto">
+          <a href="<%= home_dashboard_index_path %>" class="rg-brand">
+            <i class="bi bi-shield-fill-exclamation"></i> RailsGoat
+          </a>
+        </div>
+
+        <div class="col"></div>
+
+        <div class="col-auto">
+          <div class="d-flex align-items-center gap-3">
+            <!-- Font Size Controls -->
+            <div class="btn-group btn-group-sm" role="group" aria-label="Font size controls">
+              <a href="/dashboard/home?font=8pt" class="btn btn-outline-secondary" style="font-size: 10pt;" title="Small font" aria-label="Small font">
+                <i class="bi bi-type"></i>
+              </a>
+              <a href="/dashboard/home?font=200%25" class="btn btn-outline-secondary" style="font-size: 14pt;" title="Large font" aria-label="Large font">
+                <i class="bi bi-type"></i>
+              </a>
+            </div>
+
+            <!-- Tutorial Link -->
+            <%= button_to "https://github.com/OWASP/railsgoat/wiki", {
+              method: "get",
+              class: "btn btn-sm btn-outline-primary",
+              onclick: "window.open('https://github.com/OWASP/railsgoat/wiki', '_blank'); return false;"
+            } do %>
+              <i class="bi bi-book"></i> Tutorials
+            <% end %>
+
+            <!-- User Dropdown -->
+            <div class="dropdown">
+              <button class="btn btn-link text-decoration-none dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                  <i class="bi bi-person-fill text-white"></i>
+                </div>
+                <!--
+                VULNERABILITY: XSS via html_safe
+                I'm going to use HTML safe because we had some weird stuff
+                going on with funny chars and jquery, plus it says safe so I'm guessing
+                nothing bad will happen
+                -->
+                <span class="text-dark"><%= current_user.first_name.html_safe %></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <%= link_to user_account_settings_path(user_id: current_user.id), class: "dropdown-item" do %>
+                    <i class="bi bi-gear"></i> Account Settings
+                  <% end %>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <%= link_to logout_path, class: "dropdown-item text-danger" do %>
+                    <i class="bi bi-box-arrow-right"></i> Logout
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-      <ul class="mini-nav">
-       <li style="color: #FFFFFF">
-          <!--
-          I'm going to use HTML safe because we had some weird stuff
-          going on with funny chars and jquery, plus it says safe so I'm guessing
-          nothing bad will happen
-          -->
-          Welcome, <%= current_user.first_name.html_safe %>
-       </li>
-      </ul>
-      <ul class="mini-nav">
-        <li>
-          <%= button_to "Visit Tutorial", nil,
-          {
-           :class => "btn",
-           :method => "get",
-           :onclick => "window.open('https://github.com/OWASP/railsgoat/wiki', '_blank')"
-           }  %>
-        </li>
-      </ul>
+    </div>
   </header>
+
 <% else %>
-  <!-- Want to use this template whether auth'd or not so I've got some code to determine how to render below -->
-  <header>
-      <ul class="mini-nav">
-           <li>
-             <%= button_to "Signup", signup_path, {:class => "btn btn-primary", :method => "get"} %>
-           </li>
-         </ul>
-      <ul class="mini-nav">
-           <li>
-             <%= button_to "login", login_path, {:class => "btn", :method => "get"} %>
-           </li>
-         </ul>
-      <ul class="mini-nav">
-           <li>
-             <%= button_to "Tutorial Credentials", "#myModalLabel1", {:id => "show_creds_btn", :class => "btn btn-danger", :method => "get"} %>
-           </li>
-      </ul>
-      <ul class="mini-nav">
-        <li>
-            <%= button_to "Visit Tutorial", nil,
-            {
-             :class => "btn",
-             :method => "get",
-             :onclick => "window.open('https://github.com/OWASP/railsgoat/wiki', '_blank')"
-             }  %>
-        </li>
-      </ul>
+  <!-- Unauthenticated Header -->
+  <header class="rg-header">
+    <div class="container-fluid h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-auto">
+          <a href="<%= login_path %>" class="rg-brand">
+            <i class="bi bi-shield-fill-exclamation"></i> RailsGoat
+          </a>
+        </div>
+
+        <div class="col"></div>
+
+        <div class="col-auto">
+          <div class="d-flex align-items-center gap-2">
+            <%= link_to credentials_tutorials_path, class: "btn btn-sm btn-warning" do %>
+              <i class="bi bi-key"></i> Demo Credentials
+            <% end %>
+
+            <%= button_to "https://github.com/OWASP/railsgoat/wiki", {
+              method: "get",
+              class: "btn btn-sm btn-outline-primary",
+              onclick: "window.open('https://github.com/OWASP/railsgoat/wiki', '_blank'); return false;"
+            } do %>
+              <i class="bi bi-book"></i> Tutorials
+            <% end %>
+
+            <%= button_to signup_path, {
+              class: "btn btn-sm btn-primary",
+              method: "get"
+            } do %>
+              <i class="bi bi-person-plus"></i> Sign Up
+            <% end %>
+
+            <%= button_to login_path, {
+              class: "btn btn-sm btn-outline-primary",
+              method: "get"
+            } do %>
+              <i class="bi bi-box-arrow-in-right"></i> Login
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </header>
-
-  <div id="modal_div" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myAlert" aria-hidden="true">
-  </div>
-
-<script type="text/javascript">
-
-$('#show_creds_btn').click(function(event) {
-  event.preventDefault();
-  $("#modal_div").load(<%= credentials_tutorials_path.inspect.html_safe %>);
-  $("#modal_div").modal("show");
-});
-</script>
 
 <% end %>
-

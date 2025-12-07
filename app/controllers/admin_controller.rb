@@ -2,7 +2,7 @@
 class AdminController < ApplicationController
   before_action :administrative, if: :admin_param, except: [:get_user]
   skip_before_action :has_info
-  layout false, only: [:get_all_users, :get_user]
+  layout false, only: [:get_all_users]
 
   def dashboard
   end
@@ -38,10 +38,11 @@ class AdminController < ApplicationController
       pass = params[:user][:password]
       user.password = pass if !(pass.blank?)
       user.save!
-      message = true
-    end
-    respond_to do |format|
-      format.json { render json: { msg: message ? "success" : "failure"} }
+      flash[:success] = "User updated successfully"
+      redirect_to admin_get_all_users_path(current_user.id)
+    else
+      flash[:error] = "User not found"
+      redirect_to admin_get_all_users_path(current_user.id)
     end
   end
 
@@ -51,11 +52,11 @@ class AdminController < ApplicationController
       # Call destroy here so that all association records w/ id are destroyed as well
       # Example user.retirement records would be destroyed
       user.destroy
-      message = true
+      flash[:success] = "User deleted successfully"
+    else
+      flash[:error] = "Cannot delete this user"
     end
-    respond_to do |format|
-      format.json { render json: { msg: message ? "success" : "failure"} }
-    end
+    redirect_to admin_get_all_users_path(current_user.id)
   end
 
   private
