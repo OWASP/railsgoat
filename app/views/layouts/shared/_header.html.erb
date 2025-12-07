@@ -81,14 +81,9 @@
 
         <div class="col-auto">
           <div class="d-flex align-items-center gap-2">
-            <%= button_to "#", {
-              id: "show_creds_btn",
-              class: "btn btn-sm btn-warning",
-              method: "get",
-              data: { bs_toggle: "modal", bs_target: "#credentialsModal" }
-            } do %>
+            <button type="button" id="show_creds_btn" class="btn btn-sm btn-warning">
               <i class="bi bi-key"></i> Demo Credentials
-            <% end %>
+            </button>
 
             <%= button_to "https://github.com/OWASP/railsgoat/wiki", {
               method: "get",
@@ -135,10 +130,14 @@
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    function initCredentialsModal() {
       const showCredsBtn = document.getElementById('show_creds_btn');
       if (showCredsBtn) {
-        showCredsBtn.addEventListener('click', function(event) {
+        // Remove any existing listeners
+        const newBtn = showCredsBtn.cloneNode(true);
+        showCredsBtn.parentNode.replaceChild(newBtn, showCredsBtn);
+
+        newBtn.addEventListener('click', function(event) {
           event.preventDefault();
           fetch('<%= credentials_tutorials_path %>')
             .then(response => response.text())
@@ -146,10 +145,20 @@
               document.getElementById('modal_content').innerHTML = html;
               const modal = new bootstrap.Modal(document.getElementById('credentialsModal'));
               modal.show();
+            })
+            .catch(error => {
+              console.error('Error loading credentials:', error);
+              document.getElementById('modal_content').innerHTML = '<p class="text-danger">Error loading credentials. Please try again.</p>';
+              const modal = new bootstrap.Modal(document.getElementById('credentialsModal'));
+              modal.show();
             });
         });
       }
-    });
+    }
+
+    // Handle both initial load and Turbolinks navigation
+    document.addEventListener('DOMContentLoaded', initCredentialsModal);
+    document.addEventListener('turbolinks:load', initCredentialsModal);
   </script>
 
 <% end %>
