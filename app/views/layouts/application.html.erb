@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" data-bs-theme="light">
 <head>
-  <title>RailsGoat</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RailsGoat - OWASP Security Training</title>
+
+  <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   <%#= csrf_meta_tags %> <!-- <~ What is this for? I hear it helps w/ JS and Sea-surfing.....whatevz -->
 
   <!-- VULNERABILITY A03:2025 - Software Supply Chain Failures
@@ -14,41 +17,197 @@
        See: /tutorials/supply_chain for exploitation details
   -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- bootstrap css -->
+  <!-- Modern Design System -->
+  <style>
+    :root {
+      --rg-primary: #e63946;
+      --rg-primary-dark: #d62828;
+      --rg-secondary: #457b9d;
+      --rg-secondary-dark: #1d3557;
+      --rg-success: #06d6a0;
+      --rg-warning: #ffb703;
+      --rg-danger: #e63946;
+      --rg-light: #f8f9fa;
+      --rg-dark: #1d3557;
+      --rg-sidebar-width: 250px;
+      --rg-header-height: 60px;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--rg-light);
+      min-height: 100vh;
+    }
+
+    /* Modern Header */
+    .rg-header {
+      background: white;
+      border-bottom: 1px solid #dee2e6;
+      height: var(--rg-header-height);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1030;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    }
+
+    .rg-brand {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--rg-primary);
+      text-decoration: none;
+    }
+
+    .rg-brand:hover {
+      color: var(--rg-primary-dark);
+    }
+
+    /* Modern Sidebar */
+    .rg-sidebar {
+      position: fixed;
+      top: var(--rg-header-height);
+      left: 0;
+      bottom: 0;
+      width: var(--rg-sidebar-width);
+      background: var(--rg-dark);
+      color: white;
+      overflow-y: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .rg-sidebar-nav {
+      list-style: none;
+      padding: 1rem 0;
+      margin: 0;
+    }
+
+    .rg-sidebar-nav li a {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .rg-sidebar-nav li a:hover,
+    .rg-sidebar-nav li a.active {
+      background: rgba(255,255,255,0.1);
+      color: white;
+    }
+
+    .rg-sidebar-nav li a i {
+      font-size: 1.25rem;
+      margin-right: 0.75rem;
+      width: 24px;
+      text-align: center;
+    }
+
+    /* Main Content */
+    .rg-main {
+      margin-top: var(--rg-header-height);
+      margin-left: var(--rg-sidebar-width);
+      padding: 2rem;
+      min-height: calc(100vh - var(--rg-header-height));
+    }
+
+    .rg-main.no-sidebar {
+      margin-left: 0;
+    }
+
+    /* Cards */
+    .rg-card {
+      background: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: var(--rg-primary);
+      border-color: var(--rg-primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--rg-primary-dark);
+      border-color: var(--rg-primary-dark);
+    }
+
+    /* Alerts */
+    .alert {
+      border-radius: 0.5rem;
+      border: none;
+    }
+
+    /* Login Page */
+    .rg-login-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--rg-secondary-dark) 0%, var(--rg-secondary) 100%);
+    }
+
+    .rg-login-card {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      padding: 3rem;
+      width: 100%;
+      max-width: 450px;
+    }
+
+    .rg-login-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .rg-login-logo {
+      font-size: 3rem;
+      color: var(--rg-primary);
+      margin-bottom: 1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .rg-sidebar {
+        transform: translateX(-100%);
+      }
+
+      .rg-sidebar.show {
+        transform: translateX(0);
+      }
+
+      .rg-main {
+        margin-left: 0;
+      }
+    }
+
+    /* VULNERABILITY: XSS via cookie font-size -->
 <%
 if cookies[:font]
 %>
-<style>body { font-size:<%= raw cookies[:font] %> !important;}</style>
+    body { font-size:<%= raw cookies[:font] %> !important;}
 <%
 end
 %>
+  </style>
 
 </head>
 <body>
   <%= render "layouts/shared/header" %>
   <%= render "layouts/shared/sidebar" %>
-<div class="container-fluid">
-  <% if current_user %>
-    <div class="dashboard-wrapper">
-      <%= render "layouts/shared/messages" %>
-      <%= yield %>
-    </div>
-  <% else %>
-  <div class="login-wrapper">
+
+  <main class="rg-main <%= 'no-sidebar' unless current_user %>">
     <%= render "layouts/shared/messages" %>
-    <%= yield %> 
-  </div>  
-  <% end %>
-</div>
+    <%= yield %>
+  </main>
+
   <%= render "layouts/shared/footer" %>
-
-<script type="text/javascript">
-
-//Dropdown
-$('.dropdown-toggle').dropdown();
-</script>
-
 </body>
 </html>
