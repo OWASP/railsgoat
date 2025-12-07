@@ -44,46 +44,64 @@
 
     <!-- Schedule PTO Form -->
     <div class="col-lg-6">
-      <div class="card shadow-sm">
-        <div class="card-header bg-white py-3">
+      <div class="card shadow-sm" style="border-left: 4px solid var(--rg-primary);">
+        <div class="card-header py-3" style="background: linear-gradient(135deg, rgba(230, 57, 70, 0.05), rgba(214, 40, 40, 0.05));">
           <h4 class="mb-0">
             <i class="bi bi-calendar-plus text-primary"></i> Schedule PTO
           </h4>
+          <p class="text-muted mb-0 small mt-1">Plan your time away from work</p>
         </div>
-        <div id="scheduleDiv" class="card-body">
+        <div id="scheduleDiv" class="card-body p-4">
           <%= form_for @schedule, url: "#", html: { id: "cal_update" } do |s| %>
-            <div class="mb-3">
-              <%= s.label :event_name, "Event Name", class: "form-label" %>
+            <div class="mb-4">
+              <label class="form-label fw-semibold">
+                <i class="bi bi-tag-fill text-primary me-2"></i>Event Name
+              </label>
               <%= s.text_field :event_name, {
-                placeholder: "My PTO",
-                class: "form-control"
+                placeholder: "e.g., Summer Vacation, Personal Day",
+                class: "form-control form-control-lg"
               } %>
             </div>
 
             <%= s.text_field :event_type, type: "hidden", value: "pto" %>
 
-            <div class="mb-3">
-              <%= s.label :event_desc, "Event Description", class: "form-label" %>
+            <div class="mb-4">
+              <label class="form-label fw-semibold">
+                <i class="bi bi-chat-left-text-fill text-primary me-2"></i>Event Description
+              </label>
               <%= s.text_field :event_desc, {
-                placeholder: "Travel to Europe",
-                class: "form-control"
+                placeholder: "e.g., Family trip to Hawaii, Medical appointment",
+                class: "form-control form-control-lg"
+              } %>
+              <small class="text-muted">Optional: Add details about your time off</small>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-semibold" for="date_range1">
+                <i class="bi bi-calendar-event-fill text-primary me-2"></i>Event Dates
+              </label>
+              <div class="input-group input-group-lg">
+                <span class="input-group-text bg-white">
+                  <i class="bi bi-calendar-range text-primary"></i>
+                </span>
+                <input type="text" name="date_range1" id="date_range1" class="form-control date_picker" placeholder="Click to select date range"/>
+              </div>
+              <small class="text-muted">Choose the start and end dates for your PTO</small>
+            </div>
+
+            <div class="d-grid">
+              <%= s.submit "Schedule PTO", {
+                id: 'cal_update_submit',
+                class: "btn btn-primary btn-lg"
               } %>
             </div>
 
-            <div class="mb-3">
-              <label class="form-label" for="date_range1">Event Dates</label>
-              <div class="input-group">
-                <span class="input-group-text">
-                  <i class="bi bi-calendar-range"></i>
-                </span>
-                <input type="text" name="date_range1" id="date_range1" class="form-control date_picker" placeholder="Select Date Range"/>
-              </div>
+            <div class="mt-3 p-3 rounded" style="background: var(--rg-light); border-left: 3px solid var(--rg-success);">
+              <small class="text-muted">
+                <i class="bi bi-info-circle-fill text-primary me-1"></i>
+                <strong>Tip:</strong> Your PTO request will appear on the calendar after submission
+              </small>
             </div>
-
-            <%= s.submit "Schedule PTO", {
-              id: 'cal_update_submit',
-              class: "btn btn-primary"
-            } %>
           <% end %>
         </div>
       </div>
