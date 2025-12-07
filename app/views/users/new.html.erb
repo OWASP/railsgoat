@@ -1,36 +1,119 @@
-<div class="row-fluid">
-  <div class="span12">
+<div class="rg-login-wrapper">
+  <div class="rg-login-card" style="max-width: 500px;">
+    <div class="rg-login-header">
+      <div class="rg-login-logo">
+        <i class="bi bi-person-plus-fill"></i>
+      </div>
+      <h2 class="mb-1">Create Account</h2>
+      <p class="text-muted mb-0">Join the MetaCorp team</p>
+    </div>
 
-        <div class="row-fluid">
-          <div class="span4 offset4">
-            <div class="signup">
-      <%= form_for @user, :html => {:id => "account_edit", :class=> "signup-wrapper"} do |f| %>
-          <div class="header">
-            <h2>Sign Up</h2>
-            <p>Fill out the form below to login</p>
-           </div>
-          <div class="content">
-            <%= f.text_field :email, {:class => "input input-block-level", :placeholder => "Email"} %>
-            <%= f.text_field :first_name, {:class => "input input-block-level", :placeholder => "First Name"} %>
-            <%= f.text_field :last_name, {:class => "input input-block-level", :placeholder => "Last Name"} %>
-            <div class="control-group">
-              <%= f.password_field :password, {:class => "input input-block-level", :placeholder => "Password (at least six characters)"}%>
-            </div>
-            <div class="control-group">
-                <%= f.password_field :password_confirmation, {:class => "input input-block-level", :placeholder => "Confirm Password"}%>
-            </div>
-          </div>
-          <div class="actions">
-            <%= f.submit "Submit", {:id => 'submit_button', :class => "btn btn-info btn-large pull-right"} %>
-          </div>
-          <div class="clearfix"></div>
-      <% end %>
+    <%= form_for @user, html: { id: "account_edit", class: "needs-validation", novalidate: true } do |f| %>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+          <%= f.text_field :email, {
+            class: "form-control",
+            id: "email",
+            placeholder: "you@example.com",
+            required: true,
+            autofocus: true
+          } %>
+        </div>
+      </div>
 
-            </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="first_name" class="form-label">First Name</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-person"></i></span>
+            <%= f.text_field :first_name, {
+              class: "form-control",
+              id: "first_name",
+              placeholder: "First Name",
+              required: true
+            } %>
           </div>
         </div>
 
+        <div class="col-md-6 mb-3">
+          <label for="last_name" class="form-label">Last Name</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-person"></i></span>
+            <%= f.text_field :last_name, {
+              class: "form-control",
+              id: "last_name",
+              placeholder: "Last Name",
+              required: true
+            } %>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-lock"></i></span>
+          <%= f.password_field :password, {
+            class: "form-control",
+            id: "password",
+            placeholder: "At least 6 characters",
+            required: true,
+            minlength: 6
+          } %>
+        </div>
+        <div class="form-text">Password must be at least 6 characters long</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="password_confirmation" class="form-label">Confirm Password</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+          <%= f.password_field :password_confirmation, {
+            class: "form-control",
+            id: "password_confirmation",
+            placeholder: "Re-enter password",
+            required: true
+          } %>
+        </div>
+      </div>
+
+      <div class="d-grid gap-2 mt-4">
+        <%= f.submit "Create Account", {
+          id: "submit_button",
+          class: "btn btn-primary btn-lg"
+        } %>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="text-center">
+        <p class="text-muted mb-2">Already have an account?</p>
+        <%= link_to login_path, class: "btn btn-outline-primary" do %>
+          <i class="bi bi-box-arrow-in-right"></i> Sign in
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="mt-4 p-3 rounded" style="background: linear-gradient(135deg, rgba(6, 214, 160, 0.1), rgba(17, 138, 178, 0.1)); border: 2px solid rgba(6, 214, 160, 0.3);">
+      <div class="d-flex align-items-start">
+        <i class="bi bi-info-circle-fill me-2 mt-1" style="font-size: 1.25rem; color: var(--rg-success);"></i>
+        <div class="small">
+          <strong class="d-block mb-1">Training Environment</strong>
+          This application is intentionally vulnerable for security training purposes.
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<%= javascript_include_tag "validation.js"%>
+<%= javascript_include_tag "validation.js" %>
+
+<style>
+  /* Override main content styling for signup page */
+  .rg-main.no-sidebar {
+    margin: 0;
+    padding: 0;
+  }
+</style>
