@@ -56,7 +56,17 @@ function openEditModal(id){
  $("#editAcct .modal-content").load(link, function(response, status, xhr) {
    console.log('Load status:', status);
    if (status == "success") {
-     var modal = new bootstrap.Modal(document.getElementById('editAcct'));
+     var modalElement = document.getElementById('editAcct');
+     console.log('Modal element:', modalElement);
+
+     // Get or create modal instance
+     var modal = bootstrap.Modal.getInstance(modalElement);
+     if (!modal) {
+       console.log('Creating new modal instance');
+       modal = new bootstrap.Modal(modalElement);
+     }
+
+     console.log('Showing modal');
      modal.show();
    } else {
      console.error('Failed to load modal content:', xhr.statusText);
