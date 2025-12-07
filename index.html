@@ -1,315 +1,408 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RailsGoat - Vulnerable Ruby on Rails Application</title>
+  <meta name="description" content="RailsGoat is a vulnerable Ruby on Rails application for security training">
+  <link rel="icon" type="image/png" href="img/favicon.ico">
 
-<html class="lt-ie9 lt-ie8 lt-ie7" lang="en">
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
-<![endif]-->
-<!--[if IE 7]>
+  <style>
+    :root {
+      --rg-primary: #e63946;
+      --rg-primary-dark: #d62828;
+      --rg-secondary: #457b9d;
+      --rg-secondary-dark: #1d3557;
+      --rg-light: #f8f9fa;
+      --rg-dark: #1d3557;
+    }
 
-<html class="lt-ie9 lt-ie8" lang="en">
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--rg-light);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-<![endif]-->
-<!--[if IE 8]>
+    /* Modern Navigation */
+    .navbar {
+      background: white;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 1rem 0;
+    }
 
-<html class="lt-ie9" lang="en">
+    .navbar-brand {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--rg-primary) !important;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
-<![endif]-->
-<!--[if gt IE 8]>
-  <!-->
+    .navbar-brand i {
+      font-size: 2rem;
+    }
 
-  <html lang="en">
-  
-  <!--
-  <![endif]-->
-  <head>
-    <meta charset="utf-8">
-    <title>
-      RailsGoat Home Page
-    </title>
-    <meta name="author" content="">
-    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- bootstrap css -->
-    <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
-    </script>
-	<link rel="icon" 
-	      type="image/png" 
-	      href="img/favicon.ico">
-    <link href="icomoon/style.css" rel="stylesheet">
-    <!--[if lte IE 7]>
-    <script src="css/icomoon-font/lte-ie7.js">
-    </script>
-    <![endif]-->
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/wysiwyg/bootstrap-wysihtml5.css" rel="stylesheet">
-    <link href="css/wysiwyg/wysiwyg-color.css" rel="stylesheet">
-    <link href="css/charts-graphs.css" rel="stylesheet">
-  </head>
-  <body>
-    <header>
-      <ul class="mini-nav">
- 		<li style="color: #FFFFFF"> </li>
-      </ul>
-    </header>
-    <div class="container-fluid">
-      <div id="mainnav" class="hidden-phone hidden-tablet">
-        <ul style="display: block;">
-          <li class="active">
-            <a href="index.html">
-              <div class="icon">
-                <span class="fs1" aria-hidden="true" data-icon="&#xe001;"></span>
-              </div>
-              Project Home
+    .navbar-nav .nav-link {
+      color: var(--rg-dark);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      margin: 0 0.25rem;
+      border-radius: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      background: rgba(230, 57, 70, 0.1);
+      color: var(--rg-primary);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--rg-secondary-dark) 0%, var(--rg-secondary) 100%);
+      color: white;
+      padding: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(230, 57, 70, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(69, 123, 157, 0.1) 0%, transparent 50%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Cards */
+    .card {
+      border: none;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      transform: translateY(-4px);
+    }
+
+    .card-header {
+      background: white;
+      border-bottom: 2px solid var(--rg-light);
+      border-radius: 1rem 1rem 0 0 !important;
+      padding: 1.5rem;
+    }
+
+    .card-title {
+      color: var(--rg-primary);
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-title i {
+      font-size: 1.5rem;
+    }
+
+    /* Contributor Cards */
+    .contributor-card {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .contributor-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rg-primary) 0%, var(--rg-primary-dark) 100%);
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+      box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+    }
+
+    .contributor-name {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--rg-dark);
+      margin-bottom: 1rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--rg-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--rg-dark);
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .social-link:hover {
+      background: var(--rg-primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--rg-dark);
+      color: white;
+      padding: 2rem 0;
+      margin-top: auto;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--rg-primary) 0%, var(--rg-primary-dark) 100%);
+      border: none;
+      border-radius: 0.75rem;
+      padding: 0.75rem 2rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-shield-fill-exclamation"></i>
+        RailsGoat
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">
+              <i class="bi bi-house-fill me-1"></i> Home
             </a>
           </li>
-          <li>
-            <a href="getting_started.html">
-              <div class="icon">
-                <span class="fs1" aria-hidden="true" data-icon="&#xe068;"></span>
-              </div>
-              Get Started
+          <li class="nav-item">
+            <a class="nav-link" href="getting_started.html">
+              <i class="bi bi-rocket-takeoff me-1"></i> Get Started
             </a>
           </li>
-          <li>
-            <a href="faq.html">
-              <div class="icon">
-                <span class="fs1" aria-hidden="true" data-icon="&#xe0f6;"></span>
-              </div>
-              FAQ
+          <li class="nav-item">
+            <a class="nav-link" href="faq.html">
+              <i class="bi bi-question-circle me-1"></i> FAQ
             </a>
           </li>
-          <li>
-            <a href="about.html">
-              <div class="icon">
-                <span class="fs1" aria-hidden="true" data-icon="&#xe0f7;"></span>
-              </div>
-              About
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">
+              <i class="bi bi-info-circle me-1"></i> About
             </a>
           </li>
-			<li>
-            <a href="https://github.com/OWASP/railsgoat" target="_blank">
-              <div class="icon">
-                <span class="fs1" aria-hidden="true" data-icon="&#xe18b;"></span>
-              </div>
-              Code
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/OWASP/railsgoat" target="_blank">
+              <i class="bi bi-github me-1"></i> GitHub
             </a>
           </li>
-      	</ul>
-	 </div>
-      <div class="dashboard-wrapper">
-        <div class="main-container">
-          <div  class="navbar hidden-desktop">
-            <div class="navbar-inner">
-              <div class="container">
-                <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
-                  <span class="icon-bar">
-                  </span>
-                  <span class="icon-bar">
-                  </span>
-                  <span class="icon-bar">
-                  </span>
-                </a>
-                <div class="nav-collapse collapse navbar-responsive-collapse">
-                  <ul class="nav">
-                    <li class="active">
-                      <a href="index.html">Project Home</a>
-                    </li>
-                    <li>
-                      <a href="getting_started.html">Getting Started</a>
-                    </li>
-                    <li>
-                      <a href="faq.html">FAQ</a>
-                    </li>
-                    <li>
-                      <a href="about.html">About</a>
-                    </li>
-					<li>
-                      <a href="https://github.com/OWASP/railsgoat" target="_blank">Fork me on GitHub</a>
-                    </li>
-                  </ul>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <h1 class="display-4 fw-bold mb-3">RailsGoat Project</h1>
+          <p class="lead mb-4">A vulnerable Ruby on Rails application for security training. Learn to identify and fix security vulnerabilities in a safe, educational environment.</p>
+          <div class="d-flex gap-3">
+            <a href="getting_started.html" class="btn btn-primary btn-lg">
+              <i class="bi bi-rocket-takeoff me-2"></i> Get Started
+            </a>
+            <a href="https://github.com/OWASP/railsgoat" class="btn btn-outline-light btn-lg" target="_blank">
+              <i class="bi bi-github me-2"></i> View on GitHub
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-4 text-center mt-4 mt-lg-0">
+          <img src="img/owasp_175x45.jpg" alt="OWASP" class="img-fluid" style="max-width: 250px; filter: brightness(0) invert(1);">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container my-5">
+    <!-- About Section -->
+    <div class="row mb-5">
+      <div class="col-lg-8 mx-auto">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">
+              <i class="bi bi-book"></i>
+              The Project
+            </h2>
+          </div>
+          <div class="card-body p-4">
+            <p class="lead text-center" style="color: #b5799e;">
+              <strong>The idea is simple.</strong>
+            </p>
+            <p class="text-center">
+              Free training for both developers and security professionals.<br>
+              All of it specific to the Ruby on Rails framework.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contributors Section -->
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header text-center">
+            <h2 class="card-title justify-content-center">
+              <i class="bi bi-people"></i>
+              The Contributors
+            </h2>
+          </div>
+          <div class="card-body p-4">
+            <div class="row g-4">
+              <!-- Ken Johnson -->
+              <div class="col-md-6 col-lg-3">
+                <div class="contributor-card">
+                  <div class="contributor-avatar">
+                    <i class="bi bi-person-fill"></i>
+                  </div>
+                  <div class="contributor-name">Ken Johnson</div>
+                  <div class="social-links">
+                    <a href="https://github.com/cktricky" target="_blank" class="social-link" title="GitHub">
+                      <i class="bi bi-github"></i>
+                    </a>
+                    <a href="http://www.linkedin.com/profile/view?id=149508020" target="_blank" class="social-link" title="LinkedIn">
+                      <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com/cktricky" target="_blank" class="social-link" title="Twitter">
+                      <i class="bi bi-twitter-x"></i>
+                    </a>
+                  </div>
                 </div>
-                <!-- /.nav-collapse -->
+              </div>
+
+              <!-- Mike McCabe -->
+              <div class="col-md-6 col-lg-3">
+                <div class="contributor-card">
+                  <div class="contributor-avatar">
+                    <i class="bi bi-person-fill"></i>
+                  </div>
+                  <div class="contributor-name">Mike McCabe</div>
+                  <div class="social-links">
+                    <a href="https://github.com/mccabe615" target="_blank" class="social-link" title="GitHub">
+                      <i class="bi bi-github"></i>
+                    </a>
+                    <a href="http://www.linkedin.com/profile/view?id=56801448" target="_blank" class="social-link" title="LinkedIn">
+                      <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com/mccabe615" target="_blank" class="social-link" title="Twitter">
+                      <i class="bi bi-twitter-x"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chris Morris -->
+              <div class="col-md-6 col-lg-3">
+                <div class="contributor-card">
+                  <div class="contributor-avatar">
+                    <i class="bi bi-person-fill"></i>
+                  </div>
+                  <div class="contributor-name">Chris Morris</div>
+                  <div class="social-links">
+                    <a href="https://github.com/chrismo" target="_blank" class="social-link" title="GitHub">
+                      <i class="bi bi-github"></i>
+                    </a>
+                    <a href="http://www.linkedin.com/profile/view?id=5830386" target="_blank" class="social-link" title="LinkedIn">
+                      <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com/the_chrismo" target="_blank" class="social-link" title="Twitter">
+                      <i class="bi bi-twitter-x"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Al Snow -->
+              <div class="col-md-6 col-lg-3">
+                <div class="contributor-card">
+                  <div class="contributor-avatar">
+                    <i class="bi bi-person-fill"></i>
+                  </div>
+                  <div class="contributor-name">Al Snow</div>
+                  <div class="social-links">
+                    <a href="https://github.com/jasnow" target="_blank" class="social-link" title="GitHub">
+                      <i class="bi bi-github"></i>
+                    </a>
+                    <a href="http://www.linkedin.com/profile/view?id=10772007" target="_blank" class="social-link" title="LinkedIn">
+                      <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com/jasnow" target="_blank" class="social-link" title="Twitter">
+                      <i class="bi bi-twitter-x"></i>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-            <!-- /navbar-inner -->
-		 </div> <!-- Insert code to be shown to the right of the navbar-->
-		  
-			<h1 align="center"> RailsGoat Project </h1>
-			<h3 align="center"> Welcome! </h3>
-		
-		
-				<div class="row-fluid">
-		            <div class="span6 offset3">
-		              <div class="widget">
-		                <div class="widget-header">
-		                  <div class="title">
-		                    <span class="fs1" aria-hidden="true" data-icon="&#xe0b9;"></span> The project
-		                  </div>
-		                </div>
-		                <div class="widget-body" align="center">
-				        <img src="img/owasp_175x45.jpg" alt="header" /><br/><br/>
-							<p>
-							 	<b style="color: rgb(181, 121, 158);">The idea is simple.</b></br> 
-							   Free training for both developers and security professionals.</br>
-							    All of it specific to the Ruby on Rails framework.</br>
-							</p>
-		                </div>
-		              </div>
-		            </div>	
-		
-					<div class="row-fluid">
-			            <div class="span6 offset3">
-			              <div class="widget">
-			                <div class="widget-header">
-			                  <div class="title">
-			                    <span class="fs1" aria-hidden="true" data-icon="&#xe071;"></span> The contributors
-			                  </div>
-			                </div>
-			                <div class="widget-body">
-								 <div class="row-fluid">
-									<div class="span3 offset1">
-									
-										<h5 align="center"> Ken Johnson </h5>
-										<a href="#" class="img-rounded"><img src="img/profile.png" alt=""></a>
-										<ul class="icomoon-icons-container" style="width:300px">
-								 		<a href="https://github.com/cktricky" target="_blank"> 
-											<li class="rounded">
-				                    		 <span class="fs1" aria-hidden="true" data-icon="&#xe18b;"></span>
-				                    		</li>
-										</a>
-										<a href="http://www.linkedin.com/profile/view?id=149508020" target="_blank">
-											<li class="rounded">
-				                    		  <span class="fs1" aria-hidden="true" data-icon="&#xe19f;"></span>
-				                    		</li>
-										</a>
-										<a href="https://twitter.com/cktricky" target="_blank"> 
-											<li class="rounded">
-				                    		  <span class="fs1" aria-hidden="true" data-icon="&#xe16f;"></span>
-				                    		</li>
-										</a>
-										</ul>
-									
-									 	<div class="clearfix">
-					                 	   &nbsp;
-					                 	 </div>
-									</div>
-									<div class="span3 offset2">
-										<h5 align="center"> Mike McCabe </h5>
-										<a href="#" class="img-rounded"><img src="img/profile.png" alt=""></a>
-										<ul class="icomoon-icons-container" style="width:300px">
-								 		<a href="https://github.com/mccabe615" target="_blank"> 
-											<li class="rounded">
-				                    		 <span class="fs1" aria-hidden="true" data-icon="&#xe18b;"></span>
-				                    		</li>
-										</a>
-										<a href="http://www.linkedin.com/profile/view?id=56801448" target="_blank">
-											<li class="rounded">
-				                    		  <span class="fs1" aria-hidden="true" data-icon="&#xe19f;"></span>
-				                    		</li>
-										</a>
-										<a href="https://twitter.com/mccabe615" target="_blank"> 
-											<li class="rounded">
-				                    		  <span class="fs1" aria-hidden="true" data-icon="&#xe16f;"></span>
-				                    		</li>
-										</a>
-										</ul>
-									 	<div class="clearfix">
-					                 	   &nbsp;
-					                 	 </div>
-									</div>
-									<div class="span3 offset2">
-										<h5 align="center"> Chris Morris </h5>
-										<a href="#" class="img-rounded"><img src="img/profile.png" alt=""></a>
-										<ul class="icomoon-icons-container"  style="width:300px">
-										<a href="https://github.com/chrismo" target="_blank"> 
-											<li class="rounded">
-					                		 <span class="fs1" aria-hidden="true" data-icon="&#xe18b;"></span>
-					                		</li>
-										</a>
-										<a href="http://www.linkedin.com/profile/view?id=5830386" target="_blank">
-											<li class="rounded">
-					                		  <span class="fs1" aria-hidden="true" data-icon="&#xe19f;"></span>
-					                		</li>
-										</a>
-										<a href="https://twitter.com/the_chrismo" target="_blank"> 
-											<li class="rounded">
-					                		  <span class="fs1" aria-hidden="true" data-icon="&#xe16f;"></span>
-					                		</li>
-										</a>
-										</ul>
-									 	<div class="clearfix">
-						             	   &nbsp;
-						             	 </div>
-									</div>
-									<div class="span3 offset1">
-										<h5 align="center"> Al Snow </h5>
-										<a href="#" class="img-rounded"><img src="img/profile.png" alt=""></a>
-										<ul class="icomoon-icons-container"  style="width:300px">
-										<a href="https://github.com/jasnow" target="_blank"> 
-											<li class="rounded">
-					                		 <span class="fs1" aria-hidden="true" data-icon="&#xe18b;"></span>
-					                		</li>
-										</a>
-										<a href="http://www.linkedin.com/profile/view?id=10772007" target="_blank">
-											<li class="rounded">
-					                		  <span class="fs1" aria-hidden="true" data-icon="&#xe19f;"></span>
-					                		</li>
-										</a>
-										<a href="https://twitter.com/jasnow" target="_blank"> 
-											<li class="rounded">
-					                		  <span class="fs1" aria-hidden="true" data-icon="&#xe16f;"></span>
-					                		</li>
-										</a>
-										</ul>
-									 	<div class="clearfix">
-						             	   &nbsp;
-						             	 </div>
-									</div>
-								 </div>
-							
-			                </div>
-			              </div>
-			            </div>
-					</div>
-        </div> <!-- end code insert -->
+          </div>
+        </div>
       </div>
-
-      <!--/.fluid-container-->
     </div>
-    <footer>
-      	<p align="center">
-		    &copy; The Open Web Application Security Project - OWASP, 2015
-		  </p>
-    </footer>
-    
-    <script src="js/wysiwyg/wysihtml5-0.3.0.js">
-    </script>
-    <script src="js/jquery.min.js">
-    </script>
-    <script src="js/bootstrap.js">
-    </script>
-    <script src="js/jquery.scrollUp.js">
-    </script>
+  </main>
 
-    <script src="js/wysiwyg/bootstrap-wysihtml5.js">
-    </script>
-    <script type="text/javascript" src="js/date-picker/date.js">
-    </script>
-    <script type="text/javascript" src="js/date-picker/daterangepicker.js">
-    </script>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="text-center">
+        <p class="mb-0">&copy; 2025 The Open Web Application Security Project - OWASP</p>
+      </div>
+    </div>
+  </footer>
 
-    <!-- Google Visualization JS -->
-    <script type="text/javascript" src="https://www.google.com/jsapi">
-    </script>
-
-    <!-- Sparkline JS -->
-    <script src="js/jquery.sparkline.js">
-    </script>
-    
-    <!-- Tiny Scrollbar JS -->
-    <script src="js/tiny-scrollbar.js">
-    </script>
-      
-    </body>
-    </html>
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,324 +1,405 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RailsGoat - Getting Started</title>
+  <meta name="description" content="Installation and setup guide for RailsGoat">
+  <link rel="icon" type="image/png" href="img/favicon.ico">
 
-<html class="lt-ie9 lt-ie8 lt-ie7" lang="en">
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
-<![endif]-->
-<!--[if IE 7]>
+  <style>
+    :root {
+      --rg-primary: #e63946;
+      --rg-primary-dark: #d62828;
+      --rg-secondary: #457b9d;
+      --rg-secondary-dark: #1d3557;
+      --rg-light: #f8f9fa;
+      --rg-dark: #1d3557;
+    }
 
-<html class="lt-ie9 lt-ie8" lang="en">
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--rg-light);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-<![endif]-->
-<!--[if IE 8]>
+    /* Modern Navigation */
+    .navbar {
+      background: white;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 1rem 0;
+    }
 
-<html class="lt-ie9" lang="en">
+    .navbar-brand {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--rg-primary) !important;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
-<![endif]-->
-<!--[if gt IE 8]>
-  <!-->
+    .navbar-brand i {
+      font-size: 2rem;
+    }
 
-  <html lang="en">
-  
-  <!--
-  <![endif]-->
-  <head>
-    <meta charset="utf-8">
-    <title>
-      RailsGoat Home Page
-    </title>
-    <meta name="author" content="">
-    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- bootstrap css -->
-    <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
-    </script>
-    <link href="icomoon/style.css" rel="stylesheet">
-    <!--[if lte IE 7]>
-    <script src="css/icomoon-font/lte-ie7.js">
-    </script>
-    <![endif]-->
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/wysiwyg/bootstrap-wysihtml5.css" rel="stylesheet">
-    <link href="css/wysiwyg/wysiwyg-color.css" rel="stylesheet">
-    <link href="css/charts-graphs.css" rel="stylesheet">
-  </head>
-  <body>
-    <header>
-      <ul class="mini-nav">
- 		<li style="color: #FFFFFF"> </li>
-      </ul>
-    </header>
+    .navbar-nav .nav-link {
+      color: var(--rg-dark);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      margin: 0 0.25rem;
+      border-radius: 0.5rem;
+      transition: all 0.2s ease;
+    }
 
-    <div class="container-fluid">
-      <div id="mainnav" class="hidden-phone hidden-tablet">
-        <ul style="display: block;">
-          <li>
-            <a href="index.html">
-              <div class="icon">
-                <span class="fs1" aria-hidden="true" data-icon="&#xe001;"></span>
-              </div>
-              Project Home
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      background: rgba(230, 57, 70, 0.1);
+      color: var(--rg-primary);
+    }
+
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(135deg, var(--rg-secondary-dark) 0%, var(--rg-secondary) 100%);
+      color: white;
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    /* Cards */
+    .card {
+      border: none;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 1.5rem;
+    }
+
+    .card-header {
+      background: white;
+      border-bottom: 2px solid var(--rg-light);
+      border-radius: 1rem 1rem 0 0 !important;
+      padding: 1.5rem;
+    }
+
+    .card-title {
+      color: var(--rg-primary);
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-title i {
+      font-size: 1.75rem;
+    }
+
+    /* Modern Tabs */
+    .nav-tabs {
+      border-bottom: 2px solid var(--rg-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .nav-tabs .nav-link {
+      color: var(--rg-dark);
+      font-weight: 500;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-bottom: 3px solid transparent;
+      background: none;
+      transition: all 0.2s ease;
+    }
+
+    .nav-tabs .nav-link:hover {
+      border-bottom-color: rgba(230, 57, 70, 0.3);
+      color: var(--rg-primary);
+    }
+
+    .nav-tabs .nav-link.active {
+      color: var(--rg-primary);
+      border-bottom-color: var(--rg-primary);
+      background: none;
+    }
+
+    /* Code Blocks */
+    code {
+      background: #f5f2f0;
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.25rem;
+      color: #d62828;
+      font-family: 'Courier New', monospace;
+    }
+
+    .code-block {
+      background: #2d3748;
+      color: #e2e8f0;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin: 1rem 0;
+      font-family: 'Courier New', monospace;
+      overflow-x: auto;
+    }
+
+    /* Alert Box */
+    .alert-custom {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--rg-dark);
+      color: white;
+      padding: 2rem 0;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-shield-fill-exclamation"></i>
+        RailsGoat
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+              <i class="bi bi-house-fill me-1"></i> Home
             </a>
           </li>
-          <li class="active">
-            <a href="getting_started.html">
-              <div class="icon">
-                <span class="fs1" aria-hidden="true" data-icon="&#xe068;"></span>
-              </div>
-              Get Started
+          <li class="nav-item">
+            <a class="nav-link active" href="getting_started.html">
+              <i class="bi bi-rocket-takeoff me-1"></i> Get Started
             </a>
           </li>
-          <li>
-            <a href="faq.html">
-              <div class="icon">
-                <span class="fs1" aria-hidden="true" data-icon="&#xe0f6;"></span>
-              </div>
-              FAQ
+          <li class="nav-item">
+            <a class="nav-link" href="faq.html">
+              <i class="bi bi-question-circle me-1"></i> FAQ
             </a>
           </li>
-          <li>
-            <a href="about.html">
-              <div class="icon">
-                <span class="fs1" aria-hidden="true" data-icon="&#xe0f7;"></span>
-              </div>
-              About
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">
+              <i class="bi bi-info-circle me-1"></i> About
             </a>
           </li>
-		  <li>
-           <a href="https://github.com/OWASP/railsgoat" target="_blank">
-            	<div class="icon">
-              		<span class="fs1" aria-hidden="true" data-icon="&#xe18b;"></span>
-            	</div>
-            	Code
-          	</a>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/OWASP/railsgoat" target="_blank">
+              <i class="bi bi-github me-1"></i> GitHub
+            </a>
           </li>
-      	</ul>
-	 </div>
-      <div class="dashboard-wrapper">
-        <div class="main-container">
-          <div class="navbar hidden-desktop">
-              <div class="navbar-inner">
-	              <div class="container">
-	                <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
-	                  <span class="icon-bar">
-	                  </span>
-	                  <span class="icon-bar">
-	                  </span>
-	                  <span class="icon-bar">
-	                  </span>
-	                </a>
-	                <div class="nav-collapse collapse navbar-responsive-collapse">
-	                  <ul class="nav">
-	                    <li>
-	                      <a href="index.html">Project Home</a>
-	                    </li>
-	                    <li class="active">
-	                      <a href="getting_started.html">Getting Started</a>
-	                    </li>
-	                    <li>
-	                      <a href="faq.html">FAQ</a>
-	                    </li>
-	                    <li>
-	                      <a href="about.html">About</a>
-	                    </li>
-						<li>
-	                      <a href="https://github.com/OWASP/railsgoat" target="_blank">Fork me on GitHub</a>
-	                    </li>
-	                  </ul>
-	                </div>
-	                <!-- /.nav-collapse -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="display-5 fw-bold">Getting Started</h1>
+      <p class="lead mb-0">Let's do this!</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container my-5">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">
+              <i class="bi bi-book"></i>
+              Where to Begin
+            </h2>
+          </div>
+          <div class="card-body p-4">
+            <!-- Tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="installation-tab" data-bs-toggle="tab" data-bs-target="#installation" type="button" role="tab">
+                  <i class="bi bi-download me-2"></i>Installation
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="running-tab" data-bs-toggle="tab" data-bs-target="#running" type="button" role="tab">
+                  <i class="bi bi-play-circle me-2"></i>Running
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="using-tab" data-bs-toggle="tab" data-bs-target="#using" type="button" role="tab">
+                  <i class="bi bi-compass me-2"></i>Using
+                </button>
+              </li>
+            </ul>
+
+            <!-- Tab Content -->
+            <div class="tab-content mt-4">
+              <!-- Installation Tab -->
+              <div class="tab-pane fade show active" id="installation" role="tabpanel">
+                <h4 class="mb-3">Support Disclaimer</h4>
+                <div class="alert-custom mb-4">
+                  <p class="mb-0">These tutorials assume you are running Linux or Mac OS. If you are using Windows, I've got nothing for you right now. Sorry!</p>
+                </div>
+
+                <h4 class="mb-3">Language</h4>
+                <p>The Ruby on Rails framework is of course built on Ruby. This particular version runs best on version 1.9.3 of Ruby. There are several ways this can work but we will use the Ruby Version Manager.</p>
+                <p class="mb-4">RVM has a great site and if you need more info than what I've provided you can find it <a href="https://rvm.io/rvm/install/" target="_blank" style="color: var(--rg-primary); font-weight: 600;">available here</a>.</p>
+
+                <h5 class="mb-3">Installation Steps</h5>
+
+                <p><strong>1) Install RVM</strong></p>
+                <p>To begin the install of RVM, from the command line, type:</p>
+                <div class="code-block">$ \curl -#L https://get.rvm.io | bash -s stable --autolibs=3 --ruby</div>
+
+                <p><strong>2) Install Ruby 1.9.3</strong></p>
+                <div class="code-block">$ rvm install ruby-1.9.3</div>
+
+                <p><strong>3) Clone the repository</strong></p>
+                <p>Clone the repo into a directory of your choosing:</p>
+                <div class="code-block">$ git clone git://github.com/cktricky/railsgoat.git</div>
+
+                <p><strong>4) Change directory and accept .rvmrc</strong></p>
+                <p>Now change into the directory you just downloaded and accept the .rvmrc file (type: yes):</p>
+                <div class="code-block">$ cd railsgoat</div>
+
+                <p><strong>5) Install the gems</strong></p>
+                <div class="code-block">$ bundle install</div>
+
+                <p><strong>5a) If bundler is not installed</strong></p>
+                <p>If you get an error about bundler not being installed:</p>
+                <div class="code-block">$ gem install bundler</div>
+                <p class="mb-4">Then run step 5 again</p>
+
+                <p><strong>6) Initialize the database</strong></p>
+                <div class="code-block">$ rake db:setup</div>
+
+                <p><strong>7) Start the application</strong></p>
+                <div class="code-block">$ rails s</div>
+
+                <p><strong>8) Browse to the application</strong></p>
+                <p>Open your browser and navigate to: <a href="http://localhost:3000" style="color: var(--rg-primary); font-weight: 600;">http://localhost:3000</a></p>
+              </div>
+
+              <!-- Running Tab -->
+              <div class="tab-pane fade" id="running" role="tabpanel">
+                <div class="alert alert-danger d-flex align-items-center mb-4" role="alert">
+                  <i class="bi bi-exclamation-triangle-fill me-3" style="font-size: 1.5rem;"></i>
+                  <div>
+                    <strong>Warning:</strong> This application has very serious vulnerabilities inside of it. Do not bind it to a public interface unless you have limited connectivity to the system hosting this application.
+                  </div>
+                </div>
+
+                <h4 class="mb-3">Pow</h4>
+                <p>If you have not heard of Pow, it will allow you to browse to a URL name of your choice (minus the TLD always being ".dev"). For example, I want a URL of railsgoat.dev instead of localhost:3000. It is useful stuff and simple to get going.</p>
+                <p class="mb-4">Here is the link to the <a href="http://pow.cx" target="_blank" style="color: var(--rg-primary); font-weight: 600;">Pow website</a></p>
+
+                <h5 class="mb-3">Pow Installation</h5>
+                <p><strong>1) Install Pow</strong></p>
+                <p>Open a terminal, type:</p>
+                <div class="code-block">$ curl get.pow.cx | sh</div>
+
+                <p><strong>2) Create a URL of your choosing</strong></p>
+                <p>We choose railsgoat.dev. Note that I have railsgoat stored under the ~/tmp directory:</p>
+                <div class="code-block">$ cd ~/.pow
+ln -s ~/tmp/railsgoat railsgoat
+open http://railsgoat.dev</div>
+
+                <p><strong>3) You are finished!</strong></p>
+
+                <p><strong>3a) Restarting Pow</strong></p>
+                <p>Remember, if you make any Rails changes that would normally require a restart of the framework (adding an initializer file, for example), you need to restart Pow. In order to do that, navigate to the railsgoat directory and type:</p>
+                <div class="code-block mb-4">$ powder restart</div>
+
+                <h4 class="mb-3">Database Commands</h4>
+                <p>The following is a list of basic database commands that may be helpful when administering the site.</p>
+
+                <p><strong>Delete the entire database</strong></p>
+                <div class="code-block">$ rake db:drop</div>
+
+                <p><strong>Create the database file</strong></p>
+                <div class="code-block">$ rake db:create</div>
+
+                <p><strong>Create the columns and migrate over any database changes</strong></p>
+                <div class="code-block">$ rake db:migrate</div>
+
+                <p><strong>Seed the database with data</strong></p>
+                <div class="code-block">$ rake db:seed</div>
+
+                <p><strong>Completely rebuild the database (deletes/creates/migrates/seeds)</strong></p>
+                <div class="code-block mb-4">$ rake db:setup</div>
+
+                <h4 class="mb-3">Unicorn</h4>
+                <p>If you throw a large amount of requests at this application, WEBrick just won't do. You'll need a beefier Rack HTTP Server. I'd suggest running Unicorn. Keep in mind, if you are running Pow, you are already good to go. If not running Pow and need the extra power:</p>
+
+                <p><strong>Start Unicorn</strong></p>
+                <div class="code-block">$ rvmsudo bundle exec unicorn -p 3000</div>
+
+                <p><strong>Stop Unicorn</strong></p>
+                <div class="code-block mb-4">type ctrl + c</div>
+
+                <h4 class="mb-3">Updating Code</h4>
+                <p>Keeping the project up-to-date is fairly easy. Navigate to the railsgoat directory.</p>
+
+                <p><strong>Pull latest changes</strong></p>
+                <div class="code-block">$ git pull origin master</div>
+
+                <p><strong>Update gems</strong></p>
+                <p>Next, make sure any new gems are updated and installed:</p>
+                <div class="code-block">$ bundle</div>
+
+                <p><strong>Restart Pow (if using)</strong></p>
+                <div class="code-block">$ powder restart</div>
+              </div>
+
+              <!-- Using Tab -->
+              <div class="tab-pane fade" id="using" role="tabpanel">
+                <h4 class="mb-3">How to Use the Application</h4>
+                <p>The application is designed in a "choose your own adventure" style. Once the application is up and running, navigate to the tutorials homepage and it will walk you through it.</p>
+                <p class="mb-4">Essentially, you can either go straight into attacking the application and identifying weaknesses or you can look at each tutorial to get an idea how each vulnerability is introduced, how to fix it, and how to attack it. For those who just want a hint, each tutorial comes with one!</p>
+
+                <div class="card" style="background: linear-gradient(135deg, rgba(230, 57, 70, 0.1) 0%, rgba(69, 123, 157, 0.1) 100%); border: 2px solid var(--rg-primary);">
+                  <div class="card-body text-center">
+                    <i class="bi bi-lightbulb" style="font-size: 3rem; color: var(--rg-primary);"></i>
+                    <h5 class="mt-3 mb-3">Ready to Start?</h5>
+                    <p class="mb-3">Launch the application and navigate to the tutorials section to begin your security training journey!</p>
+                    <a href="http://localhost:3000" class="btn btn-primary">
+                      <i class="bi bi-play-circle me-2"></i>Open Application
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-            <!-- /navbar-inner -->
-		 </div> <!-- Insert code to be shown to the right of the navbar-->
-			<h1 align="center"> Getting Started </h1>
-			<h3 align="center"> Let's do this! </h3>
-			<div class="row-fluid">
-	            <div class="span8 offset2">
-	              <div class="widget">
-	                <div class="widget-header">
-	                  <div class="title">
-	                    <span class="fs1" aria-hidden="true" data-icon="&#xe0b6;"></span> Getting Started
-	                  </div>
-	                </div>
-	                <div class="widget-body">
-	                  <div class="row-fluid">
-	                    <div class="span12">
-	                      <div class="row-fluid">
-	                        <div class="span12">
-	                         <h4> Where to begin </h4>
-	                        </div>
-	                      </div>
-	                      <div class="row-fluid">
-	                        <div class="span9">
-	                          <div class="tabbable tabs-left">
-	                            <ul class="nav nav-tabs" style="padding-top:15px; margin-left: 0px;">
-	                              <li class="active"><a href="#A" data-toggle="tab">Installation</a></li>
-	                              <li><a href="#B" data-toggle="tab">Running</a></li>
-	                              <li><a href="#C" data-toggle="tab">Using</a></li>
-	                            </ul>
-
-	                            <div class="tab-content">
-								  <!-- Begin tab pane A -->
-	                              <div class="tab-pane active" id="A">
-								  		<p><b> Support Disclaimer </b></p>  
-										<p> These tutorials assume you are running Linux or Mac OS. If you are using Windows, 
-										  I've got nothing for you right now. Sorry <i class="icon-wink-2">
-				                        </i></br>
-										</p>
-
-									  	<p><b> Language </b></p>  
-									  	<p> The Ruby on Rails framework is of course built on Ruby. 
-									  	  This particular version runs best on version 1.9.3 of Ruby. 
-									  	  There are several ways this can work but we will use the Ruby Version Manager.</br>
-									  	  RVM has a great site and if you need more info than what I've provided you can find it <a href="https://rvm.io/rvm/install/" target="_blank"><b style="color: rgb(181, 121, 158);"> available here.</b></a>
-										</p>
-										<p>
-
-											1) To begin the install of RVM, from the command line, type:</br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ \curl -#L https://get.rvm.io | bash -s stable --autolibs=3 --ruby</b> </font></br></br>
-											2) Then install Ruby 1.9.3</br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ rvm install ruby-1.9.3</b> </font></br></br>
-											3) Then clone the repo into a directory of your choosing</br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ git clone git://github.com/cktricky/railsgoat.git</b> </font></br></br>
-											4) Now change into the directory you just downloaded and accept the .rvmrc file (type: yes)</br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ cd railsgoat</b> </font></br></br>
-											5) Install the gems</br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ bundle install</b></font></br></br>
-											5a) <b>if you get an error about bundler not being installed</b></br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ gem install bundler</b> (run step 5 again)</font></br></br>
-											6) Initialize the database</br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ rake db:setup</b></font></br></br>
-											7) Start the application</br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ rails s</b></font></br></br>
-											8) Browse to the application at http://localhost:3000</br></br>
-								
-
-	                              </div>
-								  <!-- End tab pane A -->
-	                              <div class="tab-pane" id="B">
-		 							    <p><b>Warning</b></p>
-										<p>This application has very serious vulnerabilities inside of it. Do not bind it to a public interface unless you have limited connectivity to the system hosting this application.</p>
-	                               		<p><b> Pow </b></p> 
-	  									
-										<p>
-											If you have not heard of Pow, it will allow you to browse to a URL name of your choice (minus the TLD always being ".dev"). For example, I want a URL of railsgoat.dev instead of localhost:3000. It is useful stuff and simple to get going. Here is the link to the <a href="http://pow.cx" target="_blank" ><b style="color: rgb(181, 121, 158);">Pow website</b></a></br></br>
-											<b> Pow Installation </b></br>
-											1) Open a terminal, type: </br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ curl get.pow.cx | sh</b></font></br></br>
-											2) Create a URL of your choosing (we choose railsgoat.dev). Note that I have railsgoat stored under the ~/tmp directory:</br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ cd ~/.pow</br>
-											ln -s ~/tmp/railsgoat railsgoat</br>
-											open http://railsgoat.dev</b></font></br></br>
-											
-											3) You are finished!</br></br>
-											
-											3a) Remember, if you make any Rails changes that would normally require a restart of the framework (adding an initializer file, for example), you need to restart Pow. In order to do that, navigate to the railsgoat directory and type:</br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);"> $ powder restart</b></font></br>
-										</p>
-										<p><b> Database Commands </b></p>
-										<p>
-											The following is a list of basic database commands that may be helpful when administering the site.</br></br>
-											
-											Delete the entire database</br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">$ rake db:drop</b></font></br></br>
-											
-											Create the database file</br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">$ rake db:create</b></font></br></br>
-											
-											Create the columns and migrate over any database changes</br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">$ rake db:migrate</b></font></br></br>
-											
-											Seed the database with data</br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">$ rake db:seed</b></font></br></br>
-											
-											Completely rebuild the database (deletes/creates/migrates/seeds)</br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">$ rake db:setup</b></font></br></br>
-										</p>	 
-										<p><b> Unicorn </b></p>	
-										<p>
-											If you throw a large amount of requests at this application, WEBrick just won't do. You'll need a beefier Rack HTTP Server. I'd suggest running Unicorn. Keep in mind, if you are running Pow, you are already good to go. If not running Pow and need the extra power:</br></br>
-											Start Unicorn</br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">$ rvmsudo bundle exec unicorn -p 3000</b></font></br></br>
-											Stop Unicorn</br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">type ctrl + c</b></font></br></br>
-										</p> 
-										<p><b> Updating code </b></p>
-										<p>
-											Keeping the project up-to-date is fairly easy. Navigate to the railsgoat directory.</br></br>
-											Type:</br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">$ git pull origin master</b></font></br></br>
-											Next, make sure any new gems are updated and installed:</br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">$ bundle</b></font></br></br>
-										
-											Restart Pow (if using)</br>
-											<font face="CourierNew"><b style="color: rgb(181, 121, 158);">$ powder restart</b></font></br></br>
-										
-										</p>		
-	                              </div>
-	
-	                              <div class="tab-pane" id="C">
-		 							 <p><b> How to use the application</b></p>
-	                                 <p>The application is designed in a "choose your own adventure" style. Once the application is up and running, navigate to the tutorials homepage and it will walk you through it.<br/><br/>Essentially, you can either go straight into attacking the application and identifying weaknesses or you can look at each tutorial to get an idea how each vulnerability is introduced, how to fix it, and how to attack it. For those who just want a hint, each tutorial comes with one!</p>
-	                              </div>
-	                             </div>
-	                           </div> <!-- /tabbable -->
-	                         </div>
-	                       </div>
-	                       <div class="row-fluid">
-	                        <div class="span12 no-margin">
-	                          <p>
-	                          </p>
-	                        </div>
-	                      </div>
-	                    </div>
-	                  </div>
-
-	                </div>
-	              </div>
-	            </div>
-	          </div>
-				
-        </div> <!-- end code insert -->
+          </div>
+        </div>
       </div>
-
-      <!--/.fluid-container-->
     </div>
-    <footer>
-       	<p align="center">
-		    &copy; The Open Web Application Security Project - OWASP, 2015
-		  </p>
-    </footer>
-    
-    <script src="js/wysiwyg/wysihtml5-0.3.0.js">
-    </script>
-    <script src="js/jquery.min.js">
-    </script>
-    <script src="js/bootstrap.js">
-    </script>
-    <script src="js/jquery.scrollUp.js">
-    </script>
+  </main>
 
-    <script src="js/wysiwyg/bootstrap-wysihtml5.js">
-    </script>
-    <script type="text/javascript" src="js/date-picker/date.js">
-    </script>
-    <script type="text/javascript" src="js/date-picker/daterangepicker.js">
-    </script>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="text-center">
+        <p class="mb-0">&copy; 2025 The Open Web Application Security Project - OWASP</p>
+      </div>
+    </div>
+  </footer>
 
-    <!-- Google Visualization JS -->
-    <script type="text/javascript" src="https://www.google.com/jsapi">
-    </script>
-
-    <!-- Sparkline JS -->
-    <script src="js/jquery.sparkline.js">
-    </script>
-    
-    <!-- Tiny Scrollbar JS -->
-    <script src="js/tiny-scrollbar.js">
-    </script>
- 
-      
-    </body>
-    </html>
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,195 +1,280 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RailsGoat - About</title>
+  <meta name="description" content="About the RailsGoat project">
+  <link rel="icon" type="image/png" href="img/favicon.ico">
 
-<html class="lt-ie9 lt-ie8 lt-ie7" lang="en">
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
-<![endif]-->
-<!--[if IE 7]>
+  <style>
+    :root {
+      --rg-primary: #e63946;
+      --rg-primary-dark: #d62828;
+      --rg-secondary: #457b9d;
+      --rg-secondary-dark: #1d3557;
+      --rg-light: #f8f9fa;
+      --rg-dark: #1d3557;
+    }
 
-<html class="lt-ie9 lt-ie8" lang="en">
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--rg-light);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-<![endif]-->
-<!--[if IE 8]>
+    /* Modern Navigation */
+    .navbar {
+      background: white;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 1rem 0;
+    }
 
-<html class="lt-ie9" lang="en">
+    .navbar-brand {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--rg-primary) !important;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
-<![endif]-->
-<!--[if gt IE 8]>
-  <!-->
+    .navbar-brand i {
+      font-size: 2rem;
+    }
 
-  <html lang="en">
-  
-  <!--
-  <![endif]-->
-  <head>
-    <meta charset="utf-8">
-    <title>
-      RailsGoat Home Page
-    </title>
-    <meta name="author" content="">
-    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- bootstrap css -->
-    <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
-    </script>
-    <link href="icomoon/style.css" rel="stylesheet">
-    <!--[if lte IE 7]>
-    <script src="css/icomoon-font/lte-ie7.js">
-    </script>
-    <![endif]-->
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/wysiwyg/bootstrap-wysihtml5.css" rel="stylesheet">
-    <link href="css/wysiwyg/wysiwyg-color.css" rel="stylesheet">
-    <link href="css/charts-graphs.css" rel="stylesheet">
-  </head>
-  <body>
-    <header>
-      <ul class="mini-nav">
- 		<li style="color: #FFFFFF"> </li>
-      </ul>
-    </header>
+    .navbar-nav .nav-link {
+      color: var(--rg-dark);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      margin: 0 0.25rem;
+      border-radius: 0.5rem;
+      transition: all 0.2s ease;
+    }
 
-    <div class="container-fluid">
-      <div id="mainnav" class="hidden-phone hidden-tablet">
-        <ul style="display: block;">
-          <li>
-            <a href="index.html">
-              <div class="icon">
-                <span class="fs1" aria-hidden="true" data-icon="&#xe001;"></span>
-              </div>
-              Project Home
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      background: rgba(230, 57, 70, 0.1);
+      color: var(--rg-primary);
+    }
+
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(135deg, var(--rg-secondary-dark) 0%, var(--rg-secondary) 100%);
+      color: white;
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    /* Cards */
+    .card {
+      border: none;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 1.5rem;
+    }
+
+    .card-header {
+      background: white;
+      border-bottom: 2px solid var(--rg-light);
+      border-radius: 1rem 1rem 0 0 !important;
+      padding: 1.5rem;
+    }
+
+    .card-title {
+      color: var(--rg-primary);
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-title i {
+      font-size: 1.75rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--rg-dark);
+      color: white;
+      padding: 2rem 0;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-shield-fill-exclamation"></i>
+        RailsGoat
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+              <i class="bi bi-house-fill me-1"></i> Home
             </a>
           </li>
-          <li>
-            <a href="getting_started.html">
-              <div class="icon">
-                <span class="fs1" aria-hidden="true" data-icon="&#xe068;"></span>
-              </div>
-              Get Started
+          <li class="nav-item">
+            <a class="nav-link" href="getting_started.html">
+              <i class="bi bi-rocket-takeoff me-1"></i> Get Started
             </a>
           </li>
-          <li>
-            <a href="faq.html">
-              <div class="icon">
-                <span class="fs1" aria-hidden="true" data-icon="&#xe0f6;"></span>
-              </div>
-              FAQ
+          <li class="nav-item">
+            <a class="nav-link" href="faq.html">
+              <i class="bi bi-question-circle me-1"></i> FAQ
             </a>
           </li>
-          <li class="active">
-            <a href="about.html">
-              <div class="icon">
-                <span class="fs1" aria-hidden="true" data-icon="&#xe0f7;"></span>
-              </div>
-              About
+          <li class="nav-item">
+            <a class="nav-link active" href="about.html">
+              <i class="bi bi-info-circle me-1"></i> About
             </a>
           </li>
-		<li>
-          	<a href="https://github.com/OWASP/railsgoat" target="_blank">
-            	<div class="icon">
-              		<span class="fs1" aria-hidden="true" data-icon="&#xe18b;"></span>
-            	</div>
-            	Code
-          	</a>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/OWASP/railsgoat" target="_blank">
+              <i class="bi bi-github me-1"></i> GitHub
+            </a>
           </li>
-      	</ul>
-	 </div>
-      <div class="dashboard-wrapper">
-        <div class="main-container">
-          <div class="navbar hidden-desktop">
-            <div class="navbar-inner">
-              <div class="container">
-                <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
-                  <span class="icon-bar">
-                  </span>
-                  <span class="icon-bar">
-                  </span>
-                  <span class="icon-bar">
-                  </span>
-                </a>
-                <div class="nav-collapse collapse navbar-responsive-collapse">
-                  <ul class="nav">
-                    <li>
-                      <a href="index.html">Project Home</a>
-                    </li>
-                    <li>
-                      <a href="getting_started.html">Getting Started</a>
-                    </li>
-                    <li>
-                      <a href="faq.html">FAQ</a>
-                    </li>
-                    <li class="active">
-                      <a href="about.html">About</a>
-                    </li>
-					<li>
-                      <a href="https://github.com/OWASP/railsgoat" target="_blank">Fork me on GitHub</a>
-                    </li>
-                  </ul>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="display-5 fw-bold">About This Project</h1>
+      <p class="lead mb-0">Built with care and lots of coffee</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container my-5">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">
+              <i class="bi bi-chat-heart"></i>
+              Our Mission
+            </h2>
+          </div>
+          <div class="card-body p-4">
+            <p class="lead mb-4">
+              This project is intended to grow, scale, and tackle other versions of the Rails framework.
+            </p>
+            <p>
+              Additionally, we put a lot of love into making it seem like a more realistic application that can be enhanced to the point it mirrors a production application... only SUPER vulnerable. We hope you enjoy it, we hope you make it better.
+            </p>
+          </div>
+        </div>
+
+        <!-- Features Card -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">
+              <i class="bi bi-stars"></i>
+              What Makes RailsGoat Special
+            </h2>
+          </div>
+          <div class="card-body p-4">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="d-flex align-items-start gap-3">
+                  <div class="flex-shrink-0">
+                    <div class="bg-primary bg-opacity-10 p-3 rounded-circle">
+                      <i class="bi bi-shield-exclamation text-primary" style="font-size: 1.5rem;"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h5>Real-World Vulnerabilities</h5>
+                    <p class="text-muted mb-0">Learn about actual security issues found in production applications</p>
+                  </div>
                 </div>
-                <!-- /.nav-collapse -->
+              </div>
+
+              <div class="col-md-6">
+                <div class="d-flex align-items-start gap-3">
+                  <div class="flex-shrink-0">
+                    <div class="bg-success bg-opacity-10 p-3 rounded-circle">
+                      <i class="bi bi-mortarboard text-success" style="font-size: 1.5rem;"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h5>Educational Focus</h5>
+                    <p class="text-muted mb-0">Designed for both developers and security professionals</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="d-flex align-items-start gap-3">
+                  <div class="flex-shrink-0">
+                    <div class="bg-warning bg-opacity-10 p-3 rounded-circle">
+                      <i class="bi bi-code-square text-warning" style="font-size: 1.5rem;"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h5>Rails Framework</h5>
+                    <p class="text-muted mb-0">Specifically tailored for Ruby on Rails development</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="d-flex align-items-start gap-3">
+                  <div class="flex-shrink-0">
+                    <div class="bg-info bg-opacity-10 p-3 rounded-circle">
+                      <i class="bi bi-github text-info" style="font-size: 1.5rem;"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h5>Open Source</h5>
+                    <p class="text-muted mb-0">Free to use, modify, and contribute back to the community</p>
+                  </div>
+                </div>
               </div>
             </div>
-            <!-- /navbar-inner -->
-		 </div> <!-- Insert code to be shown to the right of the navbar-->
-					<h1 align="center"> About This Project </h1>
-					<h3 align="center"> Let's Chat!</h3>
-			
-					<div class="row-fluid">
-			            <div class="span10 offset1">
-			              <div class="widget">
-			                <div class="widget-header">
-			                  <div class="title">
-			                    <span class="fs1" aria-hidden="true" data-icon="&#xe09c;"></span> About - Made with a lot of Coffee
-			                  </div>
-			                </div>
-			                <div class="widget-body">
-					          <p> This project is intended to grow, scale, and tackle other versions of the Rails framework.</p><p> Additionally, we put a lot of love into making it seem like a more realistic application that can be enhanced to the point it mirrors a production application.... only SUPER vulnerable. We hope you enjoy it, we hope you make it better.
-						      </p>
-			                </div>
-			              </div>
-			            </div>
-					</div>
-				
-        </div> <!-- end code insert -->
+          </div>
+        </div>
+
+        <!-- Contact Card -->
+        <div class="card">
+          <div class="card-body p-4 text-center">
+            <h5 class="mb-3">Want to contribute?</h5>
+            <p class="text-muted mb-4">We welcome contributions from the community. Check out our GitHub repository to get involved!</p>
+            <a href="https://github.com/OWASP/railsgoat" class="btn btn-primary" target="_blank">
+              <i class="bi bi-github me-2"></i> View on GitHub
+            </a>
+          </div>
+        </div>
       </div>
-
-      <!--/.fluid-container-->
     </div>
-    <footer>
-		<p align="center">
-		    &copy; The Open Web Application Security Project - OWASP, 2015
-		  </p>
-    </footer>
-    
-    <script src="js/wysiwyg/wysihtml5-0.3.0.js">
-    </script>
-    <script src="js/jquery.min.js">
-    </script>
-    <script src="js/bootstrap.js">
-    </script>
-    <script src="js/jquery.scrollUp.js">
-    </script>
+  </main>
 
-    <script src="js/wysiwyg/bootstrap-wysihtml5.js">
-    </script>
-    <script type="text/javascript" src="js/date-picker/date.js">
-    </script>
-    <script type="text/javascript" src="js/date-picker/daterangepicker.js">
-    </script>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="text-center">
+        <p class="mb-0">&copy; 2025 The Open Web Application Security Project - OWASP</p>
+      </div>
+    </div>
+  </footer>
 
-    <!-- Google Visualization JS -->
-    <script type="text/javascript" src="https://www.google.com/jsapi">
-    </script>
-
-    <!-- Sparkline JS -->
-    <script src="js/jquery.sparkline.js">
-    </script>
-    
-    <!-- Tiny Scrollbar JS -->
-    <script src="js/tiny-scrollbar.js">
-    </script>
- 
-      
-    </body>
-    </html>
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
