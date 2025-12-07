@@ -1,50 +1,187 @@
-<div class="dashboard-wrapper">
-  <div class="main-container">
-    <div class="row-fluid">
-          <div class="span12">
-            <div class="widget">
-              <div class="widget-header">
-                <div class="title">
-                  <span class="fs1" aria-hidden="true" data-icon="&#xe096;"></span> Performance History Visualization
-                </div>
-              </div>
-              <div class="widget-body">
-                <div id="line_chart"></div>
-              </div>
-            </div>
+<div class="container-fluid">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h2 class="mb-3">
+        <i class="bi bi-graph-up-arrow text-primary"></i> Performance Reviews
+      </h2>
+      <p class="text-muted">Track your performance history and feedback</p>
+    </div>
+  </div>
+
+  <!-- Performance Summary Stats -->
+  <div class="row g-3 mb-4">
+    <%
+      total_reviews = @perf.count
+      avg_score = @perf.any? ? (@perf.sum(&:score).to_f / total_reviews).round(1) : 0
+      latest_score = @perf.last&.score || 0
+      highest_score = @perf.any? ? @perf.max_by(&:score).score : 0
+    %>
+
+    <div class="col-lg-3 col-md-6">
+      <div class="card shadow-sm text-center hover-stat-card" style="border-top: 4px solid #579da9;">
+        <div class="card-body p-4">
+          <div class="mb-3">
+            <i class="bi bi-star-fill" style="font-size: 2.5rem; color: #579da9;"></i>
           </div>
-    <div class="row-fluid">
-        <div class="span12">
-          <div class="widget">
-            <div class="widget-header">
-              <div class="title">
-                <span class="fs1" aria-hidden="true" data-icon="&#xe004;"></span> Performance History
-              </div>
-            </div>
-            <div class="widget-body">
-              <table class="table table-bordered table-striped">
-                <thead>
+          <h6 class="text-muted text-uppercase mb-2" style="font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px;">
+            Average Score
+          </h6>
+          <h2 class="mb-0" style="color: #579da9; font-weight: 700; font-size: 2.5rem;">
+            <%= avg_score %>
+          </h2>
+          <p class="text-muted mt-2 mb-0 small">Out of 5.0</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+      <div class="card shadow-sm text-center hover-stat-card" style="border-top: 4px solid var(--rg-primary);">
+        <div class="card-body p-4">
+          <div class="mb-3">
+            <i class="bi bi-trophy-fill" style="font-size: 2.5rem; color: var(--rg-primary);"></i>
+          </div>
+          <h6 class="text-muted text-uppercase mb-2" style="font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px;">
+            Highest Score
+          </h6>
+          <h2 class="mb-0" style="color: var(--rg-primary); font-weight: 700; font-size: 2.5rem;">
+            <%= highest_score %>
+          </h2>
+          <p class="text-muted mt-2 mb-0 small">Best performance</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+      <div class="card shadow-sm text-center hover-stat-card" style="border-top: 4px solid #1e825e;">
+        <div class="card-body p-4">
+          <div class="mb-3">
+            <i class="bi bi-calendar-check-fill" style="font-size: 2.5rem; color: #1e825e;"></i>
+          </div>
+          <h6 class="text-muted text-uppercase mb-2" style="font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px;">
+            Latest Score
+          </h6>
+          <h2 class="mb-0" style="color: #1e825e; font-weight: 700; font-size: 2.5rem;">
+            <%= latest_score %>
+          </h2>
+          <p class="text-muted mt-2 mb-0 small">Most recent review</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+      <div class="card shadow-sm text-center hover-stat-card" style="border-top: 4px solid #b5799e;">
+        <div class="card-body p-4">
+          <div class="mb-3">
+            <i class="bi bi-file-earmark-text-fill" style="font-size: 2.5rem; color: #b5799e;"></i>
+          </div>
+          <h6 class="text-muted text-uppercase mb-2" style="font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px;">
+            Total Reviews
+          </h6>
+          <h2 class="mb-0" style="color: #b5799e; font-weight: 700; font-size: 2.5rem;">
+            <%= total_reviews %>
+          </h2>
+          <p class="text-muted mt-2 mb-0 small">Performance evaluations</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Performance Chart -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white py-3">
+          <h4 class="mb-0">
+            <i class="bi bi-graph-up text-primary"></i> Performance Trend
+          </h4>
+          <p class="text-muted mb-0 small mt-1">Your performance scores over time</p>
+        </div>
+        <div class="card-body p-4">
+          <div id="line_chart" style="min-height: 300px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Performance History Table -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white py-3">
+          <h4 class="mb-0">
+            <i class="bi bi-table text-primary"></i> Performance History
+          </h4>
+          <p class="text-muted mb-0 small mt-1">Detailed review feedback and comments</p>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th style="width: 20%;">
+                    <i class="bi bi-person-badge me-2"></i>Reviewer
+                  </th>
+                  <th style="width: 15%;">
+                    <i class="bi bi-calendar-event me-2"></i>Date
+                  </th>
+                  <th style="width: 10%;">
+                    <i class="bi bi-star me-2"></i>Score
+                  </th>
+                  <th style="width: 55%;">
+                    <i class="bi bi-chat-left-text me-2"></i>Comments
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if @perf.any? %>
+                  <% @perf.each do |p| %>
+                    <tr>
+                      <td class="fw-semibold">
+                        <div class="d-flex align-items-center">
+                          <div class="rounded-circle bg-primary bg-opacity-10 p-2 me-2">
+                            <i class="bi bi-person-fill text-primary"></i>
+                          </div>
+                          <%= p.reviewer_name %>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge bg-light text-dark">
+                          <i class="bi bi-calendar-date me-1"></i><%= p.date_submitted %>
+                        </span>
+                      </td>
+                      <td>
+                        <%
+                          score_color = case p.score
+                            when 5 then 'success'
+                            when 4 then 'primary'
+                            when 3 then 'warning'
+                            else 'danger'
+                          end
+                        %>
+                        <span class="badge bg-<%= score_color %>" style="font-size: 1rem; padding: 0.5rem 0.75rem;">
+                          <%= p.score %> / 5
+                        </span>
+                      </td>
+                      <td>
+                        <div class="text-muted">
+                          <%= p.comments %>
+                        </div>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% else %>
                   <tr>
-            <th style="width:16%">Reviewer</th>
-                    <th style="width:16%">Date</th>
-                    <th style="width:16%">Score</th>
-                    <th style="width:16%">Comments</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <% @perf.each do |p| %>
-            <tr>
-                    <td><%= p.reviewer_name %></td>
-                    <td><%= p.date_submitted %></td>
-                    <td><%= p.score %></td>
-                    <td><%= p.comments %></td>
+                    <td colspan="4" class="text-center text-muted py-5">
+                      <i class="bi bi-inbox" style="font-size: 3rem; opacity: 0.3;"></i>
+                      <p class="mt-3 mb-0">No performance reviews available yet</p>
+                    </td>
                   </tr>
                 <% end %>
-                </tbody>
-              </table>
-            </div>
+              </tbody>
+            </table>
           </div>
         </div>
+      </div>
     </div>
   </div>
 </div>
@@ -79,47 +216,52 @@ function drawChart2() {
   var options = {
     min: 1,
     max: 5,
-    width: 'auto',
-    height: '160',
+    width: '100%',
+    height: 300,
     backgroundColor: 'transparent',
-    colors: ['#e26666', '#579da9', '#1e825e', '#b5799e', '#dba26b'],
+    colors: ['#e63946'],
     tooltip: {
       textStyle: {
         color: '#666666',
-        fontSize: 11
+        fontSize: 12
       },
       showColorCode: true
     },
     legend: {
       textStyle: {
-        color: 'black',
-        fontSize: 12
+        color: '#333333',
+        fontSize: 13
       }
     },
     chartArea: {
-      left: 100,
-      top: 10
+      left: 60,
+      top: 20,
+      right: 20,
+      bottom: 50,
+      width: '90%',
+      height: '70%'
     },
     focusTarget: 'category',
     hAxis: {
       textStyle: {
-        color: 'black',
-        fontSize: 12
-      }
+        color: '#666666',
+        fontSize: 11
+      },
+      slantedText: true,
+      slantedTextAngle: 45
     },
     vAxis: {
       textStyle: {
-        color: 'black',
-        fontSize: 12
+        color: '#666666',
+        fontSize: 11
+      },
+      gridlines: {
+        color: '#f0f0f0'
       }
     },
-    pointSize: 8,
-    chartArea: {
-      left: 60,
-      top: 10,
-      height: '80%'
-    },
-    lineWidth: 2,
+    pointSize: 6,
+    lineWidth: 3,
+    curveType: 'function'
   };
 
   var chart = new google.visualization.LineChart(chartElement);
@@ -160,3 +302,30 @@ $(document).on('turbolinks:load', function() {
 });
 
 </script>
+
+<style>
+  .hover-stat-card {
+    transition: all 0.3s ease;
+  }
+
+  .hover-stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
+  }
+
+  .hover-stat-card h2 {
+    transition: transform 0.3s ease;
+  }
+
+  .hover-stat-card:hover h2 {
+    transform: scale(1.05);
+  }
+
+  .table tbody tr {
+    transition: background-color 0.2s ease;
+  }
+
+  .table tbody tr:hover {
+    background-color: rgba(230, 57, 70, 0.03);
+  }
+</style>
