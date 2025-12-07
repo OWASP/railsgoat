@@ -159,18 +159,35 @@
 
         newBtn.addEventListener('click', function(event) {
           event.preventDefault();
+          console.log('Demo Credentials button clicked');
+          console.log('Bootstrap available:', typeof bootstrap !== 'undefined');
+          console.log('Modal element:', modalElement);
+
           fetch('<%= credentials_tutorials_path %>')
-            .then(response => response.text())
+            .then(response => {
+              console.log('Fetch response status:', response.status);
+              return response.text();
+            })
             .then(html => {
+              console.log('Content loaded, length:', html.length);
               document.getElementById('modal_content').innerHTML = html;
-              const modal = new bootstrap.Modal(modalElement);
-              modal.show();
+
+              if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+                const modal = new bootstrap.Modal(modalElement);
+                console.log('Modal instance created:', modal);
+                modal.show();
+              } else {
+                console.error('Bootstrap Modal not available');
+              }
             })
             .catch(error => {
               console.error('Error loading credentials:', error);
               document.getElementById('modal_content').innerHTML = '<p class="text-danger">Error loading credentials. Please try again.</p>';
-              const modal = new bootstrap.Modal(modalElement);
-              modal.show();
+
+              if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+                const modal = new bootstrap.Modal(modalElement);
+                modal.show();
+              }
             });
         });
       }
