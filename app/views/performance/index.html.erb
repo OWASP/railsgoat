@@ -50,11 +50,21 @@
 </div>
 
 <script type="text/javascript">
+// Prevent multiple initializations with Turbolinks
+if (typeof window.performanceChartLoaded === 'undefined') {
+  window.performanceChartLoaded = false;
+}
 
 function drawChart2() {
   // Guard against calling before Google Charts is loaded
   if (typeof google === 'undefined' || !google.visualization) {
     console.warn('Google Charts not loaded yet');
+    return;
+  }
+
+  var chartElement = document.getElementById('line_chart');
+  if (!chartElement) {
+    console.warn('Chart element not found');
     return;
   }
 
@@ -112,7 +122,7 @@ function drawChart2() {
     lineWidth: 2,
   };
 
-  var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
+  var chart = new google.visualization.LineChart(chartElement);
   chart.draw(data, options);
 }
 
@@ -121,21 +131,32 @@ function makeActive(){
 };
 
 function initializeChart() {
-  // Check if element exists before drawing
-  if (document.getElementById('line_chart')) {
-    drawChart2();
-  }
   makeActive();
+
+  // Check if Google Charts visualization is already loaded
+  if (typeof google !== 'undefined' && google.visualization && google.visualization.LineChart) {
+    drawChart2();
+    window.performanceChartLoaded = true;
+  } else if (typeof google !== 'undefined' && google.load && !window.performanceChartLoaded) {
+    // Load Google Charts
+    google.load("visualization", "1", {
+      packages: ["corechart"],
+      callback: function() {
+        drawChart2();
+        window.performanceChartLoaded = true;
+      }
+    });
+  } else {
+    console.error('Google JSAPI not available');
+  }
 }
 
-// Load Google Charts and set callback
-if (typeof google !== 'undefined' && google.load) {
-  google.load("visualization", "1", {
-    packages: ["corechart"],
-    callback: initializeChart
-  });
-} else {
-  console.error('Google JSAPI not loaded');
-}
+// Initialize immediately (page is already loaded with Turbolinks)
+initializeChart();
+
+// Handle Turbolinks page loads
+$(document).on('turbolinks:load', function() {
+  initializeChart();
+});
 
 </script>
