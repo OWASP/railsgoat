@@ -3,7 +3,9 @@ class TutorialsController < ApplicationController
   skip_before_action :has_info
   skip_before_action :authenticated
 
-  layout false, only: [:credentials]
+  def credentials
+    # Render credentials page with layout
+  end
 
   # VULNERABILITY: Regular Expression Denial of Service (ReDoS)
   # This endpoint demonstrates how malicious input can cause catastrophic backtracking

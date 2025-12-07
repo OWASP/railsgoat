@@ -81,9 +81,9 @@
 
         <div class="col-auto">
           <div class="d-flex align-items-center gap-2">
-            <button type="button" id="show_creds_btn" class="btn btn-sm btn-warning">
+            <%= link_to credentials_tutorials_path, class: "btn btn-sm btn-warning" do %>
               <i class="bi bi-key"></i> Demo Credentials
-            </button>
+            <% end %>
 
             <%= button_to "https://github.com/OWASP/railsgoat/wiki", {
               method: "get",
@@ -111,74 +111,5 @@
       </div>
     </div>
   </header>
-
-  <!-- Credentials Modal -->
-  <div class="modal fade" id="credentialsModal" tabindex="-1" aria-labelledby="credentialsModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="credentialsModalLabel">
-            <i class="bi bi-key"></i> Demo Credentials
-          </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div id="modal_content" class="modal-body">
-          <!-- Content loaded via AJAX -->
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    function initCredentialsModal() {
-      const showCredsBtn = document.getElementById('show_creds_btn');
-      const modalElement = document.getElementById('credentialsModal');
-
-      if (showCredsBtn && modalElement) {
-        // Remove any existing listeners by cloning
-        const newBtn = showCredsBtn.cloneNode(true);
-        showCredsBtn.parentNode.replaceChild(newBtn, showCredsBtn);
-
-        newBtn.addEventListener('click', function(event) {
-          event.preventDefault();
-
-          fetch('<%= credentials_tutorials_path %>')
-            .then(response => response.text())
-            .then(html => {
-              document.getElementById('modal_content').innerHTML = html;
-
-              // Dispose of any existing modal instance first
-              const existingModal = bootstrap.Modal.getInstance(modalElement);
-              if (existingModal) {
-                existingModal.dispose();
-              }
-
-              // Create fresh modal instance and show
-              const modal = new bootstrap.Modal(modalElement, {
-                backdrop: true,
-                keyboard: true,
-                focus: true
-              });
-
-              // Force show after a small delay to ensure DOM is ready
-              setTimeout(() => {
-                modal.show();
-              }, 10);
-            })
-            .catch(error => {
-              console.error('Error loading credentials:', error);
-              document.getElementById('modal_content').innerHTML = '<p class="text-danger">Error loading credentials. Please try again.</p>';
-
-              const modal = new bootstrap.Modal(modalElement);
-              modal.show();
-            });
-        });
-      }
-    }
-
-    // Handle both initial load and Turbolinks navigation
-    document.addEventListener('DOMContentLoaded', initCredentialsModal);
-    document.addEventListener('turbolinks:load', initCredentialsModal);
-  </script>
 
 <% end %>
