@@ -120,15 +120,22 @@ function makeActive(){
   $('li[id="performance"]').addClass('active');
 };
 
-// Load Google Charts and set callback
-google.load("visualization", "1", {
-  packages: ["corechart"],
-  callback: function() {
-    $(document).ready(function () {
-      drawChart2();
-      makeActive();
-    });
+function initializeChart() {
+  // Check if element exists before drawing
+  if (document.getElementById('line_chart')) {
+    drawChart2();
   }
-});
+  makeActive();
+}
+
+// Load Google Charts and set callback
+if (typeof google !== 'undefined' && google.load) {
+  google.load("visualization", "1", {
+    packages: ["corechart"],
+    callback: initializeChart
+  });
+} else {
+  console.error('Google JSAPI not loaded');
+}
 
 </script>
