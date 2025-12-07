@@ -54,15 +54,17 @@
     /* Modern Header */
     .rg-header {
       background: white;
-      border-bottom: 1px solid #dee2e6;
+      border-bottom: none;
       height: var(--rg-header-height);
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 1030;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
       overflow: visible;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.95);
     }
 
     .rg-header .container-fluid {
@@ -114,6 +116,7 @@
       color: white;
       overflow-y: auto;
       transition: transform 0.3s ease;
+      box-shadow: 2px 0 12px rgba(0,0,0,0.1);
     }
 
     .rg-sidebar-nav {
@@ -126,15 +129,18 @@
       display: flex;
       align-items: center;
       padding: 0.75rem 1.5rem;
+      margin: 0.25rem 0.75rem;
       color: rgba(255,255,255,0.8);
       text-decoration: none;
       transition: all 0.2s;
+      border-radius: 0.75rem;
     }
 
     .rg-sidebar-nav li a:hover,
     .rg-sidebar-nav li a.active {
-      background: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.15);
       color: white;
+      transform: translateX(4px);
     }
 
     .rg-sidebar-nav li a i {
@@ -156,47 +162,224 @@
       margin-left: 0;
     }
 
-    /* Cards */
-    .rg-card {
+    /* Modern Cards */
+    .rg-card, .card {
       background: white;
-      border-radius: 0.5rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       margin-bottom: 1.5rem;
+      border: none;
+      overflow: hidden;
     }
 
-    /* Buttons */
+    .rg-card:hover, .card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      transition: box-shadow 0.3s ease;
+    }
+
+    /* Modern Buttons */
+    .btn {
+      border-radius: 0.75rem;
+      padding: 0.5rem 1.25rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      border: none;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .btn-sm {
+      border-radius: 0.625rem;
+      padding: 0.375rem 1rem;
+      font-size: 0.875rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
     .btn-primary {
-      background: var(--rg-primary);
-      border-color: var(--rg-primary);
+      background: linear-gradient(135deg, var(--rg-primary) 0%, var(--rg-primary-dark) 100%);
+      border-color: transparent;
+      color: white;
     }
 
     .btn-primary:hover {
-      background: var(--rg-primary-dark);
-      border-color: var(--rg-primary-dark);
+      background: linear-gradient(135deg, var(--rg-primary-dark) 0%, #c11f2b 100%);
+      border-color: transparent;
+      color: white;
     }
 
-    /* Alerts */
-    .alert {
-      border-radius: 0.5rem;
+    .btn-outline-primary {
+      border: 2px solid var(--rg-primary);
+      color: var(--rg-primary);
+      background: white;
+    }
+
+    .btn-outline-primary:hover {
+      background: var(--rg-primary);
+      color: white;
+      border-color: var(--rg-primary);
+    }
+
+    .btn-warning {
+      background: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
+      color: white;
       border: none;
     }
 
-    /* Login Page */
+    .btn-warning:hover {
+      background: linear-gradient(135deg, #fb8500 0%, #e85d04 100%);
+      color: white;
+    }
+
+    .btn-outline-secondary {
+      border: 2px solid #dee2e6;
+      color: #6c757d;
+      background: white;
+    }
+
+    .btn-outline-secondary:hover {
+      background: #f8f9fa;
+      border-color: #adb5bd;
+      color: #495057;
+    }
+
+    /* Modern Alerts */
+    .alert {
+      border-radius: 0.875rem;
+      border: none;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    /* Modern Tables */
+    .table {
+      border-radius: 0.75rem;
+      overflow: hidden;
+    }
+
+    .table thead th {
+      background: var(--rg-light);
+      font-weight: 600;
+      border-bottom: 2px solid #dee2e6;
+      padding: 1rem;
+    }
+
+    .table tbody tr {
+      transition: background-color 0.2s ease;
+    }
+
+    .table tbody tr:hover {
+      background-color: rgba(230, 57, 70, 0.03);
+    }
+
+    /* Modern Badges */
+    .badge {
+      border-radius: 0.5rem;
+      padding: 0.35rem 0.65rem;
+      font-weight: 500;
+    }
+
+    /* Modern Dropdowns */
+    .dropdown-menu {
+      border-radius: 0.75rem;
+      border: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      padding: 0.5rem;
+    }
+
+    .dropdown-item {
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .dropdown-item:hover {
+      background-color: rgba(230, 57, 70, 0.08);
+      transform: translateX(2px);
+    }
+
+    /* Modern Widget Styling */
+    .widget {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 1.5rem;
+      border: none;
+      overflow: hidden;
+    }
+
+    .widget-header {
+      background: var(--rg-light);
+      border-bottom: none;
+      padding: 1.25rem 1.5rem;
+      border-radius: 1rem 1rem 0 0;
+    }
+
+    .widget-header .title {
+      font-weight: 600;
+      color: var(--rg-dark);
+      font-size: 1.1rem;
+    }
+
+    .widget-body {
+      padding: 1.5rem;
+    }
+
+    /* Modern Login Page */
     .rg-login-wrapper {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       background: linear-gradient(135deg, var(--rg-secondary-dark) 0%, var(--rg-secondary) 100%);
+      position: relative;
+    }
+
+    .rg-login-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(230, 57, 70, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(69, 123, 157, 0.1) 0%, transparent 50%);
     }
 
     .rg-login-card {
       background: white;
-      border-radius: 1rem;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
       padding: 3rem;
       width: 100%;
       max-width: 450px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-control, .form-select {
+      border-radius: 0.75rem;
+      border: 2px solid #e9ecef;
+      padding: 0.75rem 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: var(--rg-primary);
+      box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+    }
+
+    .input-group-text {
+      border-radius: 0.75rem 0 0 0.75rem;
+      border: 2px solid #e9ecef;
+      border-right: none;
+      background: #f8f9fa;
+    }
+
+    .input-group .form-control {
+      border-radius: 0 0.75rem 0.75rem 0;
     }
 
     .rg-login-header {
