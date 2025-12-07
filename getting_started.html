@@ -261,43 +261,67 @@
                   </div>
                 </div>
 
-                <h4 class="mb-3">Language</h4>
-                <p>The Ruby on Rails framework is of course built on Ruby. This particular version runs best on version 1.9.3 of Ruby. There are several ways this can work but we will use the Ruby Version Manager.</p>
-                <p class="mb-4">RVM has a great site and if you need more info than what I've provided you can find it <a href="https://rvm.io/rvm/install/" target="_blank" style="color: var(--rg-primary); font-weight: 600;">available here</a>.</p>
+                <h4 class="mb-3">Ruby Version Management</h4>
+                <p>RailsGoat is built with <strong>Ruby on Rails 8.0</strong> and requires <strong>Ruby 3.3.6</strong>. We recommend using rbenv to manage your Ruby versions, though RVM is also supported.</p>
 
                 <h5 class="mb-3">Installation Steps</h5>
 
-                <p><strong>1) Install RVM</strong></p>
-                <p>To begin the install of RVM, from the command line, type:</p>
-                <div class="code-block">$ \curl -#L https://get.rvm.io | bash -s stable --autolibs=3 --ruby</div>
+                <p><strong>1) Install rbenv and Ruby</strong></p>
+                <p>Install rbenv and ruby-build:</p>
 
-                <p><strong>2) Install Ruby 1.9.3</strong></p>
-                <div class="code-block">$ rvm install ruby-1.9.3</div>
+                <p class="mb-2"><em>On macOS (using Homebrew):</em></p>
+                <div class="code-block">$ brew install rbenv ruby-build</div>
 
-                <p><strong>3) Clone the repository</strong></p>
-                <p>Clone the repo into a directory of your choosing:</p>
-                <div class="code-block">$ git clone git://github.com/cktricky/railsgoat.git</div>
+                <p class="mb-2"><em>On Linux or WSL2:</em></p>
+                <div class="code-block">$ curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash</div>
 
-                <p><strong>4) Change directory and accept .rvmrc</strong></p>
-                <p>Now change into the directory you just downloaded and accept the .rvmrc file (type: yes):</p>
-                <div class="code-block">$ cd railsgoat</div>
+                <p>Add rbenv to your shell (add to ~/.bashrc or ~/.zshrc):</p>
+                <div class="code-block">$ echo 'eval "$(rbenv init - bash)"' >> ~/.bashrc
+$ source ~/.bashrc</div>
 
-                <p><strong>5) Install the gems</strong></p>
+                <p>Install Ruby 3.3.6:</p>
+                <div class="code-block">$ rbenv install 3.3.6
+$ rbenv global 3.3.6</div>
+
+                <p>Verify installation:</p>
+                <div class="code-block">$ ruby -v
+# Should show: ruby 3.3.6</div>
+
+                <div class="alert alert-secondary mt-3 mb-4">
+                  <strong>Alternative: Using RVM</strong><br>
+                  If you prefer RVM, you can install it with: <code>curl -sSL https://get.rvm.io | bash -s stable</code><br>
+                  Then install Ruby: <code>rvm install 3.3.6 && rvm use 3.3.6 --default</code>
+                </div>
+
+                <p><strong>2) Clone the repository</strong></p>
+                <p>Clone RailsGoat from GitHub:</p>
+                <div class="code-block">$ git clone https://github.com/OWASP/railsgoat.git
+$ cd railsgoat</div>
+
+                <p><strong>3) Install Bundler and dependencies</strong></p>
+                <p>Install the Bundler gem if you don't have it:</p>
+                <div class="code-block">$ gem install bundler</div>
+
+                <p>Install all application dependencies:</p>
                 <div class="code-block">$ bundle install</div>
 
-                <p><strong>5a) If bundler is not installed</strong></p>
-                <p>If you get an error about bundler not being installed:</p>
-                <div class="code-block">$ gem install bundler</div>
-                <p class="mb-4">Then run step 5 again</p>
+                <p><strong>4) Setup the database</strong></p>
+                <p>Initialize the database with seed data:</p>
+                <div class="code-block">$ bin/rails db:setup</div>
 
-                <p><strong>6) Initialize the database</strong></p>
-                <div class="code-block">$ rake db:setup</div>
+                <p><strong>5) Start the application</strong></p>
+                <p>Launch the Rails server:</p>
+                <div class="code-block">$ bin/rails server</div>
 
-                <p><strong>7) Start the application</strong></p>
-                <div class="code-block">$ rails s</div>
-
-                <p><strong>8) Browse to the application</strong></p>
+                <p><strong>6) Browse to the application</strong></p>
                 <p>Open your browser and navigate to: <a href="http://localhost:3000" style="color: var(--rg-primary); font-weight: 600;">http://localhost:3000</a></p>
+
+                <div class="alert alert-info d-flex align-items-start mt-4" role="alert">
+                  <i class="bi bi-lightbulb me-3 mt-1" style="font-size: 1.25rem;"></i>
+                  <div>
+                    <strong>Modern Rails Tip:</strong> Use <code>bin/rails</code> instead of just <code>rails</code> to ensure you're running the correct version bundled with your application!
+                  </div>
+                </div>
 
                 <div class="alert alert-success d-flex align-items-start mt-4" role="alert">
                   <i class="bi bi-windows me-3 mt-1" style="font-size: 1.25rem;"></i>
@@ -316,66 +340,71 @@
                   </div>
                 </div>
 
-                <h4 class="mb-3">Pow</h4>
-                <p>If you have not heard of Pow, it will allow you to browse to a URL name of your choice (minus the TLD always being ".dev"). For example, I want a URL of railsgoat.dev instead of localhost:3000. It is useful stuff and simple to get going.</p>
-                <p class="mb-4">Here is the link to the <a href="http://pow.cx" target="_blank" style="color: var(--rg-primary); font-weight: 600;">Pow website</a></p>
+                <h4 class="mb-3">Running the Server</h4>
+                <p>Rails 8.0 comes with <strong>Puma</strong> as the default web server, which is production-ready and handles concurrent requests efficiently.</p>
 
-                <h5 class="mb-3">Pow Installation</h5>
-                <p><strong>1) Install Pow</strong></p>
-                <p>Open a terminal, type:</p>
-                <div class="code-block">$ curl get.pow.cx | sh</div>
+                <p><strong>Start the server</strong></p>
+                <div class="code-block">$ bin/rails server</div>
 
-                <p><strong>2) Create a URL of your choosing</strong></p>
-                <p>We choose railsgoat.dev. Note that I have railsgoat stored under the ~/tmp directory:</p>
-                <div class="code-block">$ cd ~/.pow
-ln -s ~/tmp/railsgoat railsgoat
-open http://railsgoat.dev</div>
+                <p><strong>Start on a different port</strong></p>
+                <div class="code-block">$ bin/rails server -p 4000</div>
 
-                <p><strong>3) You are finished!</strong></p>
+                <p><strong>Run in the background</strong></p>
+                <div class="code-block">$ bin/rails server -d</div>
 
-                <p><strong>3a) Restarting Pow</strong></p>
-                <p>Remember, if you make any Rails changes that would normally require a restart of the framework (adding an initializer file, for example), you need to restart Pow. In order to do that, navigate to the railsgoat directory and type:</p>
-                <div class="code-block mb-4">$ powder restart</div>
+                <p><strong>Stop a background server</strong></p>
+                <div class="code-block mb-4">$ kill -9 $(cat tmp/pids/server.pid)</div>
 
                 <h4 class="mb-3">Database Commands</h4>
-                <p>The following is a list of basic database commands that may be helpful when administering the site.</p>
+                <p>Here are the essential database commands for managing RailsGoat's database:</p>
 
                 <p><strong>Delete the entire database</strong></p>
-                <div class="code-block">$ rake db:drop</div>
+                <div class="code-block">$ bin/rails db:drop</div>
 
-                <p><strong>Create the database file</strong></p>
-                <div class="code-block">$ rake db:create</div>
+                <p><strong>Create the database</strong></p>
+                <div class="code-block">$ bin/rails db:create</div>
 
-                <p><strong>Create the columns and migrate over any database changes</strong></p>
-                <div class="code-block">$ rake db:migrate</div>
+                <p><strong>Run migrations</strong></p>
+                <div class="code-block">$ bin/rails db:migrate</div>
 
                 <p><strong>Seed the database with data</strong></p>
-                <div class="code-block">$ rake db:seed</div>
+                <div class="code-block">$ bin/rails db:seed</div>
 
-                <p><strong>Completely rebuild the database (deletes/creates/migrates/seeds)</strong></p>
-                <div class="code-block mb-4">$ rake db:setup</div>
+                <p><strong>Completely rebuild the database (drop/create/migrate/seed)</strong></p>
+                <div class="code-block">$ bin/rails db:reset</div>
 
-                <h4 class="mb-3">Unicorn</h4>
-                <p>If you throw a large amount of requests at this application, WEBrick just won't do. You'll need a beefier Rack HTTP Server. I'd suggest running Unicorn. Keep in mind, if you are running Pow, you are already good to go. If not running Pow and need the extra power:</p>
+                <p><strong>Reset and re-seed (keeps structure, reloads data)</strong></p>
+                <div class="code-block mb-4">$ bin/rails db:seed:replant</div>
 
-                <p><strong>Start Unicorn</strong></p>
-                <div class="code-block">$ rvmsudo bundle exec unicorn -p 3000</div>
+                <h4 class="mb-3">Development Console</h4>
+                <p>Access the Rails console to interact with your application directly:</p>
+                <div class="code-block">$ bin/rails console</div>
 
-                <p><strong>Stop Unicorn</strong></p>
-                <div class="code-block mb-4">type ctrl + c</div>
+                <p>Run database queries, test models, and debug issues interactively:</p>
+                <div class="code-block mb-4"># Example: Find all users
+User.all
+
+# Example: Create a test user
+User.create(email: 'test@test.com', first_name: 'Test', last_name: 'User')</div>
 
                 <h4 class="mb-3">Updating Code</h4>
-                <p>Keeping the project up-to-date is fairly easy. Navigate to the railsgoat directory.</p>
+                <p>Keep your local copy up-to-date with the latest changes from the repository.</p>
 
-                <p><strong>Pull latest changes</strong></p>
+                <p><strong>Pull latest changes from the main branch</strong></p>
                 <div class="code-block">$ git pull origin master</div>
 
-                <p><strong>Update gems</strong></p>
-                <p>Next, make sure any new gems are updated and installed:</p>
-                <div class="code-block">$ bundle</div>
+                <p><strong>Update dependencies</strong></p>
+                <div class="code-block">$ bundle install</div>
 
-                <p><strong>Restart Pow (if using)</strong></p>
-                <div class="code-block">$ powder restart</div>
+                <p><strong>Apply any new database migrations</strong></p>
+                <div class="code-block">$ bin/rails db:migrate</div>
+
+                <p><strong>Restart the server</strong></p>
+                <div class="code-block">$ bin/rails restart</div>
+
+                <div class="alert alert-secondary mt-4">
+                  <strong>Legacy Note:</strong> Older versions of this documentation mentioned Pow and Unicorn. Modern Rails uses Puma by default, which is more performant and easier to configure. If you're interested in legacy server options, they're still available but not recommended for new setups.
+                </div>
               </div>
 
               <!-- Using Tab -->
