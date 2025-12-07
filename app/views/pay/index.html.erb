@@ -264,14 +264,38 @@ function buildDeleteLink(dd_id){
 */
 function parseDirectDepostInfo(response){
   var msg = jQuery.parseJSON(JSON.stringify(response));
+  var table = $('#data_table').DataTable();
+
    $.each(msg.user, function(index, val){
-    $('#data_table').dataTable().fnAddData( [
+    table.row.add( [
         '<code class="text-monospace">' + val.bank_account_num + '</code>',
         '<span class="badge bg-light text-dark">' + val.bank_routing_num + '</span>',
         '<span class="badge bg-success">' + val.percent_of_deposit + '%</span>',
         buildDeleteLink(val.id)
     ] );
   });
+
+  table.draw();
+};
+
+/*
+  createDataTable initializes the dd table as a datatable
+*/
+function createDataTable(){
+  // Check if DataTable is already initialized
+  if ($.fn.DataTable.isDataTable('#data_table')) {
+    $('#data_table').DataTable().destroy();
+  }
+
+  $('#data_table').DataTable({
+      "sPaginationType": "full_numbers",
+      "language": {
+        "emptyTable": "No direct deposit accounts configured yet"
+      },
+      "autoWidth": false,
+      "searching": true,
+      "ordering": true
+    });
 };
 
 /*
@@ -280,7 +304,9 @@ function parseDirectDepostInfo(response){
   with the response from the endpoint in order to populate the data table.
 */
 function populateTable() {
-  $('#data_table').dataTable().fnClearTable();
+  var table = $('#data_table').DataTable();
+  table.clear();
+
   $.ajax({
       url: <%= sanitize(user_pay_path(:format => "json", user_id: current_user.id, id: current_user.id).inspect) %>,
     type: "GET",
@@ -291,18 +317,6 @@ function populateTable() {
     $('#failure').show(500).delay(1500).fadeOut();
     }
   });
-};
-
-/*
-  createDataTable initializes the dd table as a datatable
-*/
-function createDataTable(){
-  $('#data_table').dataTable({
-      "sPaginationType": "full_numbers",
-      "language": {
-        "emptyTable": "No direct deposit accounts configured yet"
-      }
-    });
 };
 
 /*
@@ -426,19 +440,22 @@ function makeActive(){
 };
 
 /*
-  1) makeActive - Adds the active class to the sidebar element
-  2) createDataTable - Initializes the dataTable as such
-  3) populateTable - populates the newly initialized dataTable
+  Initialize page - called on both ready and turbolinks:load
 */
-$(document).ready(function() {
+function initializePage() {
   makeActive();
   createDataTable();
   populateTable();
+}
+
+// Handle normal page loads
+$(document).ready(function() {
+  initializePage();
 });
 
 // Handle Turbolinks page loads
 $(document).on('turbolinks:load', function() {
-  makeActive();
+  initializePage();
 });
 
 </script>
