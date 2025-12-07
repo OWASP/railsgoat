@@ -48,34 +48,43 @@
         </div>
         <div class="card-body p-4">
           <%= form_tag "#", { class: "needs-validation", id: "bank_info_form" } do %>
-            <div class="mb-3">
-              <label class="form-label">Bank Account Number</label>
+            <div class="mb-4">
+              <label class="form-label fw-semibold">
+                <i class="bi bi-bank2 text-success me-2"></i>Bank Account Number
+              </label>
               <%= text_field_tag :bank_account_num, params[:bank_account_num], {
                 placeholder: "Enter account number",
-                class: "form-control"
+                class: "form-control form-control-lg"
               } %>
+              <small class="text-muted">Your bank account number</small>
             </div>
 
-            <div class="mb-3">
-              <label class="form-label">Bank Routing Number</label>
+            <div class="mb-4">
+              <label class="form-label fw-semibold">
+                <i class="bi bi-diagram-3 text-success me-2"></i>Bank Routing Number
+              </label>
               <%= text_field_tag :bank_routing_num, params[:bank_routing_num], {
                 placeholder: "9-digit routing number",
-                class: "form-control"
+                class: "form-control form-control-lg"
               } %>
+              <small class="text-muted">Usually found at the bottom of checks</small>
             </div>
 
-            <div class="mb-3">
-              <label class="form-label">Percentage of Deposit</label>
+            <div class="mb-4">
+              <label class="form-label fw-semibold">
+                <i class="bi bi-percent text-success me-2"></i>Percentage of Deposit
+              </label>
               <%= text_field_tag :dd_percent, params[:dd_percent], {
-                placeholder: "1-100",
-                class: "form-control"
+                placeholder: "e.g., 100",
+                class: "form-control form-control-lg"
               } %>
+              <small class="text-muted">What percentage to deposit (1-100)</small>
             </div>
 
-            <div class="d-grid mt-4">
+            <div class="d-grid">
               <%= submit_tag "Add Account", {
                 id: "dd_form_btn",
-                class: "btn btn-success"
+                class: "btn btn-success btn-lg"
               } %>
             </div>
           <% end %>
@@ -91,18 +100,21 @@
         </div>
         <div class="card-body p-4">
           <%= form_tag "#", { class: "needs-validation", id: "decrypt_form" } do %>
-            <div class="mb-3">
-              <label class="form-label">Encrypted Account Number</label>
+            <div class="mb-4">
+              <label class="form-label fw-semibold">
+                <i class="bi bi-key-fill text-warning me-2"></i>Encrypted Account Number
+              </label>
               <%= text_field_tag :value_to_decrypt, params[:value_to_decrypt], {
                 placeholder: "Paste encrypted value",
-                class: "form-control"
+                class: "form-control form-control-lg"
               } %>
+              <small class="text-muted">Copy from the table to the right</small>
             </div>
 
-            <div class="d-grid mt-4">
+            <div class="d-grid">
               <%= submit_tag "Decrypt", {
                 id: "decrypt_btn",
-                class: "btn btn-warning"
+                class: "btn btn-warning btn-lg"
               } %>
             </div>
           <% end %>
@@ -410,21 +422,7 @@ $(document).on('turbolinks:load', function() {
     background-color: rgba(230, 57, 70, 0.03);
   }
 
-  /* Clean, minimal form controls */
-  .form-control {
-    border-radius: 0.75rem;
-    border: 2px solid #e9ecef;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    transition: all 0.2s ease;
-  }
-
-  .form-control:focus {
-    border-color: var(--rg-primary);
-    box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
-    outline: none;
-  }
-
+  /* Override focus colors for specific forms */
   #bank_info_form .form-control:focus {
     border-color: var(--rg-success);
     box-shadow: 0 0 0 3px rgba(6, 214, 160, 0.1);
@@ -433,25 +431,5 @@ $(document).on('turbolinks:load', function() {
   #decrypt_form .form-control:focus {
     border-color: var(--rg-warning);
     box-shadow: 0 0 0 3px rgba(255, 183, 3, 0.1);
-  }
-
-  .form-label {
-    font-weight: 500;
-    color: var(--rg-dark);
-    margin-bottom: 0.4rem;
-    font-size: 0.9rem;
-  }
-
-  /* Button styling */
-  .btn {
-    border-radius: 0.75rem;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    padding: 0.75rem 1.5rem;
-  }
-
-  .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   }
 </style>
