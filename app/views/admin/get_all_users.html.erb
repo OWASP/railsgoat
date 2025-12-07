@@ -51,9 +51,17 @@
 
 function openEditModal(id){
  var link = '/admin/'+ id +'/get_user';
- $("#editAcct .modal-content").load(link);
- var modal = new bootstrap.Modal(document.getElementById('editAcct'));
- modal.show();
+ console.log('Loading modal content from:', link);
+
+ $("#editAcct .modal-content").load(link, function(response, status, xhr) {
+   console.log('Load status:', status);
+   if (status == "success") {
+     var modal = new bootstrap.Modal(document.getElementById('editAcct'));
+     modal.show();
+   } else {
+     console.error('Failed to load modal content:', xhr.statusText);
+   }
+ });
 };
 
 function dataTablePagination(){

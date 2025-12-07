@@ -34,7 +34,7 @@
 
         <div class="mb-3">
           <%= f.label :admin, nil, {:class => "form-label"}%>
-          <%= f.select(:admin, @admin_select, {}, {:class => "form-select"}) %>
+          <%= f.select(:admin, @admin_select, {}, {:class => "form-select", :id => "user_admin", :name => "user[admin]"}) %>
         </div>
     </div>
     <div class="modal-footer">
