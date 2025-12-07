@@ -1,25 +1,17 @@
 <div id="column_chart"></div>
 
-<!-- Google Visualization JS -->
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-
 <script type="text/javascript">
-// Prevent multiple initializations
-if (typeof window.barChartLoaded === 'undefined') {
-  window.barChartLoaded = false;
-}
-
 function drawChart3() {
   // Guard against calling before Google Charts is loaded
   if (typeof google === 'undefined' || !google.visualization) {
-    console.warn('Google Charts not loaded yet');
-    return;
+    console.warn('Google Charts not loaded yet, waiting...');
+    return false;
   }
 
   var chartElement = document.getElementById('column_chart');
   if (!chartElement) {
     console.warn('Chart element not found');
-    return;
+    return false;
   }
 
   var data = google.visualization.arrayToDataTable([
@@ -59,27 +51,33 @@ function drawChart3() {
 
   var chart = new google.visualization.ColumnChart(chartElement);
   chart.draw(data, options);
+  console.log('Bar chart drawn successfully');
+  return true;
 }
 
-function initializeBarChart() {
-  // Check if Google Charts visualization is already loaded
-  if (typeof google !== 'undefined' && google.visualization && google.visualization.ColumnChart) {
-    drawChart3();
-    window.barChartLoaded = true;
-  } else if (typeof google !== 'undefined' && google.load && !window.barChartLoaded) {
-    // Load Google Charts
-    google.load("visualization", "1", {
-      packages: ["corechart"],
-      callback: function() {
-        drawChart3();
-        window.barChartLoaded = true;
-      }
-    });
-  } else {
-    console.error('Google JSAPI not available');
-  }
+// Wait for Google Charts to be ready, then draw
+function initBarChart() {
+  var attempts = 0;
+  var maxAttempts = 50; // 5 seconds max
+
+  var checkAndDraw = function() {
+    if (drawChart3()) {
+      // Success!
+      return;
+    }
+
+    attempts++;
+    if (attempts < maxAttempts) {
+      setTimeout(checkAndDraw, 100);
+    } else {
+      console.error('Failed to load Google Charts after ' + (maxAttempts * 100) + 'ms');
+    }
+  };
+
+  checkAndDraw();
 }
 
-// Initialize immediately (page is already loaded when this partial loads via AJAX)
-initializeBarChart();
+// Initialize when partial loads
+console.log('Bar chart partial loaded, waiting for Google Charts...');
+initBarChart();
 </script>
