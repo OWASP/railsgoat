@@ -309,11 +309,17 @@ $("#submit_button").click(function(event) {
 
   /* Fix dropdown height and padding to prevent text cutoff */
   #message_receiver_id {
-    min-height: 52px !important;
-    line-height: 1.6 !important;
-    padding: 0.85rem 0.75rem !important;
+    min-height: 48px !important;
+    line-height: 1.5 !important;
+    padding: 0.5rem 0.75rem !important;
     vertical-align: middle !important;
     box-sizing: border-box !important;
+  }
+
+  /* Ensure dropdown options have proper spacing too */
+  #message_receiver_id option {
+    padding: 0.5rem 0.75rem !important;
+    line-height: 1.5 !important;
   }
 
   /* Ensure dropdown has proper focus styling */
