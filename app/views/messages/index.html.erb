@@ -109,7 +109,7 @@
               <%= f.select(:receiver_id,
                           options_from_collection_for_select(User.all, :id, :full_name),
                           { prompt: "Select a recipient..." },
-                          { class: "form-select form-select-lg" }) %>
+                          { class: "form-control form-control-lg", id: "message_receiver_id" }) %>
               <small class="text-muted">Select message recipient</small>
             </div>
 
@@ -305,5 +305,26 @@ $("#submit_button").click(function(event) {
     .message-actions {
       justify-content: center;
     }
+  }
+
+  /* Fix dropdown height and padding to prevent text cutoff */
+  #message_receiver_id {
+    min-height: 48px !important;
+    line-height: 1.5 !important;
+    padding: 0.5rem 0.75rem !important;
+    vertical-align: middle !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Ensure dropdown options have proper spacing too */
+  #message_receiver_id option {
+    padding: 0.5rem 0.75rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Ensure dropdown has proper focus styling */
+  #message_receiver_id:focus {
+    border-color: var(--rg-success);
+    box-shadow: 0 0 0 3px rgba(6, 214, 160, 0.1);
   }
 </style>
