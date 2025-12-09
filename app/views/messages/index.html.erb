@@ -158,50 +158,6 @@ $(document).on('turbolinks:load', function() {
   makeActive();
 });
 
-// Debug and force dropdown to display selected value
-$('#message_receiver_id').on('change', function() {
-  var $select = $(this);
-  var selectedText = $select.find('option:selected').text();
-  var selectedValue = $select.val();
-
-  console.log('=== DROPDOWN DEBUG ===');
-  console.log('Selected recipient:', selectedText);
-  console.log('Selected value:', selectedValue);
-  console.log('Selected index:', this.selectedIndex);
-  console.log('Options count:', $select.find('option').length);
-  console.log('Option at selectedIndex:', $select.find('option')[this.selectedIndex].text);
-
-  // Check computed styles that might hide text
-  var computedStyle = window.getComputedStyle(this);
-  console.log('Font size:', computedStyle.fontSize);
-  console.log('Font family:', computedStyle.fontFamily);
-  console.log('Color:', computedStyle.color);
-  console.log('Background:', computedStyle.backgroundColor);
-  console.log('Text indent:', computedStyle.textIndent);
-  console.log('Overflow:', computedStyle.overflow);
-  console.log('Display:', computedStyle.display);
-  console.log('Visibility:', computedStyle.visibility);
-  console.log('Opacity:', computedStyle.opacity);
-  console.log('Width:', computedStyle.width);
-  console.log('Height:', computedStyle.height);
-  console.log('Transform:', computedStyle.transform);
-  console.log('Position:', computedStyle.position);
-  console.log('Z-index:', computedStyle.zIndex);
-  console.log('Padding:', computedStyle.padding);
-
-  // Check if there's actually content
-  console.log('Inner text:', this.options[this.selectedIndex].text);
-  console.log('Inner HTML:', this.options[this.selectedIndex].innerHTML);
-  console.log('Display value property:', this.value);
-
-  // Try forcing the selected attribute
-  $select.find('option').removeAttr('selected');
-  $select.find('option:selected').attr('selected', 'selected');
-
-  // Force re-render
-  $select.hide().show(0);
-});
-
 // Form submission with AJAX
 $("#submit_button").click(function(event) {
   event.preventDefault();
@@ -351,38 +307,9 @@ $("#submit_button").click(function(event) {
     }
   }
 
-  /* Force dropdown to display selected value */
-  #message_receiver_id {
-    color: #212529 !important;
-    background-color: #fff !important;
-    -webkit-appearance: menulist !important;
-    -moz-appearance: menulist !important;
-    appearance: menulist !important;
-    text-indent: 0 !important;
-    text-overflow: clip !important;
-    overflow: visible !important;
-    font-size: 1rem !important;
-    line-height: 1.5 !important;
-    padding: 0.5rem 2.25rem 0.5rem 0.75rem !important;
-  }
-
-  #message_receiver_id option {
-    color: #212529 !important;
-    background-color: #fff !important;
-  }
-
-  #message_receiver_id option:checked {
-    color: #fff !important;
-    background-color: var(--rg-success) !important;
-  }
-
+  /* Ensure dropdown has proper focus styling */
   #message_receiver_id:focus {
     border-color: var(--rg-success);
     box-shadow: 0 0 0 3px rgba(6, 214, 160, 0.1);
-  }
-
-  /* Debug: Add a colored border to see the element boundaries */
-  #message_receiver_id {
-    border: 2px solid red !important;
   }
 </style>
