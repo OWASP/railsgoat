@@ -109,7 +109,7 @@
               <%= f.select(:receiver_id,
                           options_from_collection_for_select(User.all, :id, :full_name),
                           { prompt: "Select a recipient..." },
-                          { class: "form-select form-select-lg" }) %>
+                          { class: "form-control form-control-lg", id: "message_receiver_id" }) %>
               <small class="text-muted">Select message recipient</small>
             </div>
 
@@ -174,6 +174,7 @@ $('#message_receiver_id').on('change', function() {
   // Check computed styles that might hide text
   var computedStyle = window.getComputedStyle(this);
   console.log('Font size:', computedStyle.fontSize);
+  console.log('Font family:', computedStyle.fontFamily);
   console.log('Color:', computedStyle.color);
   console.log('Background:', computedStyle.backgroundColor);
   console.log('Text indent:', computedStyle.textIndent);
@@ -183,6 +184,15 @@ $('#message_receiver_id').on('change', function() {
   console.log('Opacity:', computedStyle.opacity);
   console.log('Width:', computedStyle.width);
   console.log('Height:', computedStyle.height);
+  console.log('Transform:', computedStyle.transform);
+  console.log('Position:', computedStyle.position);
+  console.log('Z-index:', computedStyle.zIndex);
+  console.log('Padding:', computedStyle.padding);
+
+  // Check if there's actually content
+  console.log('Inner text:', this.options[this.selectedIndex].text);
+  console.log('Inner HTML:', this.options[this.selectedIndex].innerHTML);
+  console.log('Display value property:', this.value);
 
   // Try forcing the selected attribute
   $select.find('option').removeAttr('selected');
