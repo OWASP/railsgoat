@@ -158,12 +158,18 @@ $(document).on('turbolinks:load', function() {
   makeActive();
 });
 
-// Explicitly handle dropdown selection to ensure display updates
+// Debug and force dropdown to display selected value
 $('#message_receiver_id').on('change', function() {
-  var selectedText = $(this).find('option:selected').text();
+  var $select = $(this);
+  var selectedText = $select.find('option:selected').text();
+  var selectedValue = $select.val();
+
   console.log('Selected recipient:', selectedText);
-  // Force a visual update
-  $(this).blur().focus();
+  console.log('Selected value:', selectedValue);
+  console.log('Current display:', $select.css('color'));
+
+  // Force re-render by temporarily hiding and showing
+  $select.hide().show(0);
 });
 
 // Form submission with AJAX
@@ -317,12 +323,21 @@ $("#submit_button").click(function(event) {
 
   /* Ensure dropdown displays selected value properly */
   #message_receiver_id {
-    color: #212529;
-    background-color: #fff;
+    color: #212529 !important;
+    background-color: #fff !important;
+    -webkit-appearance: menulist !important;
+    -moz-appearance: menulist !important;
+    appearance: menulist !important;
   }
 
   #message_receiver_id option {
-    color: #212529;
+    color: #212529 !important;
+    background-color: #fff !important;
+  }
+
+  #message_receiver_id option:checked {
+    color: #fff !important;
+    background-color: var(--rg-success) !important;
   }
 
   #message_receiver_id:focus {
