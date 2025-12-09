@@ -207,7 +207,13 @@ function createDataTable(){
       },
       "autoWidth": false,
       "searching": true,
-      "ordering": true
+      "ordering": true,
+      "columns": [
+        { "title": "Account Number" },
+        { "title": "Routing Number" },
+        { "title": "Deposit %" },
+        { "title": "Actions", "orderable": false }
+      ]
     });
 };
 
