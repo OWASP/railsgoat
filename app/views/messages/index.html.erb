@@ -108,7 +108,7 @@
               </label>
               <%= f.select(:receiver_id,
                           options_from_collection_for_select(User.all, :id, :full_name),
-                          {},
+                          { prompt: "Select a recipient..." },
                           { class: "form-select form-select-lg" }) %>
               <small class="text-muted">Select message recipient</small>
             </div>
