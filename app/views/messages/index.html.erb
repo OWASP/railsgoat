@@ -164,15 +164,25 @@ $('#message_receiver_id').on('change', function() {
   var selectedText = $select.find('option:selected').text();
   var selectedValue = $select.val();
 
+  console.log('=== DROPDOWN DEBUG ===');
   console.log('Selected recipient:', selectedText);
   console.log('Selected value:', selectedValue);
-  console.log('Current display:', $select.css('color'));
-  console.log('Select element text:', $select.text());
   console.log('Selected index:', this.selectedIndex);
   console.log('Options count:', $select.find('option').length);
-
-  // Log the actual option that should be selected
   console.log('Option at selectedIndex:', $select.find('option')[this.selectedIndex].text);
+
+  // Check computed styles that might hide text
+  var computedStyle = window.getComputedStyle(this);
+  console.log('Font size:', computedStyle.fontSize);
+  console.log('Color:', computedStyle.color);
+  console.log('Background:', computedStyle.backgroundColor);
+  console.log('Text indent:', computedStyle.textIndent);
+  console.log('Overflow:', computedStyle.overflow);
+  console.log('Display:', computedStyle.display);
+  console.log('Visibility:', computedStyle.visibility);
+  console.log('Opacity:', computedStyle.opacity);
+  console.log('Width:', computedStyle.width);
+  console.log('Height:', computedStyle.height);
 
   // Try forcing the selected attribute
   $select.find('option').removeAttr('selected');
@@ -331,13 +341,19 @@ $("#submit_button").click(function(event) {
     }
   }
 
-  /* Ensure dropdown displays selected value properly */
+  /* Force dropdown to display selected value */
   #message_receiver_id {
     color: #212529 !important;
     background-color: #fff !important;
     -webkit-appearance: menulist !important;
     -moz-appearance: menulist !important;
     appearance: menulist !important;
+    text-indent: 0 !important;
+    text-overflow: clip !important;
+    overflow: visible !important;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    padding: 0.5rem 2.25rem 0.5rem 0.75rem !important;
   }
 
   #message_receiver_id option {
@@ -353,5 +369,10 @@ $("#submit_button").click(function(event) {
   #message_receiver_id:focus {
     border-color: var(--rg-success);
     box-shadow: 0 0 0 3px rgba(6, 214, 160, 0.1);
+  }
+
+  /* Debug: Add a colored border to see the element boundaries */
+  #message_receiver_id {
+    border: 2px solid red !important;
   }
 </style>
