@@ -1,41 +1,53 @@
-<div id="dt_example" class="example_alt_pagination">
-    <table class="table table-striped table-hover table-bordered pull-left" id="data-table">
-      <thead>
-        <tr>
-          <th>
-            Name
-          </th>
-          <th>
-            Email
-          </th>
-          <th>
-            Admin User
-          </th>
-          <th>
-            Action
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-       <% @users.each do |u|%>
-      <tr>
-            <td style="word-wrap:break-word;">
-              <%= "#{u.first_name} #{u.last_name}"%>
-            </td>
-            <td>
-              <%= u.email%>
-            </td>
-            <td>
-              <%= u.admin ? %{<span class="fs1" aria-label="check" data-icon="&#xe0fe;"}.html_safe : nil %>
-            </td>
-            <td>
-              <%= link_to "Edit", admin_get_user_path(u.id), {:style => "width:70px", :class => "btn btn-inverse"}%>
-            </td>
-          </tr>
-     <% end %>
-      </tbody>
-    </table>
-    <div class="clearfix">
+<div class="container-fluid">
+  <!-- Header -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <h2 class="mb-3">
+        <i class="bi bi-people-fill text-primary"></i> Manage Users
+      </h2>
+      <p class="text-muted">View and manage all system users</p>
+    </div>
+  </div>
+
+  <!-- Users Table -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div id="dt_example" class="example_alt_pagination">
+            <table class="table table-striped table-hover table-bordered" id="data-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Admin User</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @users.each do |u| %>
+                  <tr>
+                    <td style="word-wrap:break-word;">
+                      <%= "#{u.first_name} #{u.last_name}" %>
+                    </td>
+                    <td>
+                      <%= u.email %>
+                    </td>
+                    <td class="text-center">
+                      <%= u.admin ? '<i class="bi bi-check-circle-fill text-success" title="Admin"></i>'.html_safe : '<i class="bi bi-dash-circle text-muted" title="Not Admin"></i>'.html_safe %>
+                    </td>
+                    <td>
+                      <%= link_to admin_get_user_path(u.id), class: "btn btn-sm btn-outline-primary" do %>
+                        <i class="bi bi-pencil"></i> Edit
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

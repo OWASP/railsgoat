@@ -2,7 +2,6 @@
 class AdminController < ApplicationController
   before_action :administrative, if: :admin_param, except: [:get_user]
   skip_before_action :has_info
-  layout false, only: [:get_all_users]
 
   def dashboard
   end
@@ -34,9 +33,16 @@ class AdminController < ApplicationController
   def update_user
     user = User.find_by_id(params[:admin_id])
     if user
-      user.update(params[:user].reject { |k| k == ("password" || "password_confirmation") })
-      pass = params[:user][:password]
-      user.password = pass if !(pass.blank?)
+      # VULNERABILITY: Using params[:user] directly without strong parameters
+      # This allows mass assignment of any user attribute including 'admin'
+      # See wiki: Extras:-Mass-Assignment-Admin-Role.md
+      user_params = params[:user].to_unsafe_h if params[:user].respond_to?(:to_unsafe_h)
+      user_params ||= params[:user]
+
+      # Filter out password fields if blank to avoid validation errors
+      filtered_params = user_params.reject { |k, v| (k == "password" || k == "password_confirmation") && v.blank? }
+
+      user.update(filtered_params)
       user.save!
       flash[:success] = "User updated successfully"
       redirect_to admin_get_all_users_path(current_user.id)
