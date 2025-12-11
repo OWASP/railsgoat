@@ -16,6 +16,11 @@ class BenefitFormsController < ApplicationController
    end
   end
 
+  def redirect_to_benefit_forms
+    flash[:info] = "Please use the upload form below to upload files"
+    redirect_to user_benefit_forms_path(user_id: current_user.id)
+  end
+
   def upload
     file = params[:benefits][:upload]
 

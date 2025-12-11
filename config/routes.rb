@@ -34,6 +34,7 @@ Railsgoat::Application.routes.draw do
   end
 
   get "download" => "benefit_forms#download"
+  get "upload" => "benefit_forms#redirect_to_benefit_forms"
   post "upload" => "benefit_forms#upload"
 
   resources :tutorials do
