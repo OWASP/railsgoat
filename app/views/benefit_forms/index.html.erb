@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <!-- Flash Messages -->
-  <% if flash.any? || flash.now.any? %>
+  <% if flash.any? || !flash.now.to_hash.empty? %>
     <div class="row mb-3">
       <div class="col-12">
         <% (flash.to_hash.merge(flash.now.to_hash)).each do |name, msg| %>
