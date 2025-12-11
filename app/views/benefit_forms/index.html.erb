@@ -1,38 +1,4 @@
 <div class="container-fluid">
-  <!-- Flash Messages -->
-  <% if flash.any? %>
-    <div class="row mb-3">
-      <div class="col-12">
-        <% flash.each do |name, msg| %>
-          <%
-            alert_class = case name.to_sym
-            when :error, :alert then 'alert-danger'
-            when :success, :notice then 'alert-success'
-            when :info then 'alert-info'
-            when :warning then 'alert-warning'
-            else 'alert-secondary'
-            end
-
-            icon_class = case name.to_sym
-            when :error, :alert then 'bi-exclamation-circle-fill'
-            when :success, :notice then 'bi-check-circle-fill'
-            when :info then 'bi-info-circle-fill'
-            when :warning then 'bi-exclamation-triangle-fill'
-            else 'bi-bell-fill'
-            end
-          %>
-          <div class="alert <%= alert_class %> alert-dismissible fade show d-flex align-items-center" role="alert">
-            <i class="bi <%= icon_class %> me-2"></i>
-            <div class="flex-grow-1">
-              <%= msg %>
-            </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-
   <div class="row mb-4">
     <div class="col-12">
       <h2 class="mb-3">
