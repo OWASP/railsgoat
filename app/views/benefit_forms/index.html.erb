@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <!-- Flash Messages -->
-  <% if flash.any? || !flash.now.to_hash.empty? %>
+  <% if flash.any? %>
     <div class="row mb-3">
       <div class="col-12">
-        <% (flash.to_hash.merge(flash.now.to_hash)).each do |name, msg| %>
+        <% flash.each do |name, msg| %>
           <%
             alert_class = case name.to_sym
             when :error, :alert then 'alert-danger'
