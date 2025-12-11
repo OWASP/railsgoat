@@ -3,15 +3,7 @@ class BenefitFormsController < ApplicationController
 
   def index
     @benefits = Benefits.new
-    # List uploaded files
-    data_path = Rails.root.join("public", "data")
-    @uploaded_files = Dir.glob("#{data_path}/*").reject { |f| File.directory?(f) || File.basename(f) == '.gitkeep' }.map do |file|
-      {
-        name: File.basename(file),
-        size: File.size(file),
-        modified: File.mtime(file)
-      }
-    end.sort_by { |f| f[:modified] }.reverse
+    load_uploaded_files
   end
 
   def download
@@ -28,8 +20,10 @@ class BenefitFormsController < ApplicationController
     file = params[:benefits][:upload]
 
     if file.nil?
-      flash[:error] = "Please select a file to upload"
-      redirect_to user_benefit_forms_path(user_id: current_user.id)
+      flash.now[:error] = "Please select a file to upload"
+      @benefits = Benefits.new
+      load_uploaded_files
+      render :index
       return
     end
 
@@ -38,16 +32,20 @@ class BenefitFormsController < ApplicationController
     file_extension = File.extname(file.original_filename).downcase
 
     unless allowed_extensions.include?(file_extension)
-      flash[:error] = "Invalid file type. Accepted formats: PDF, DOC, DOCX, JPG, PNG. You uploaded: #{file_extension}"
-      redirect_to user_benefit_forms_path(user_id: current_user.id)
+      flash.now[:error] = "Invalid file type. Accepted formats: PDF, DOC, DOCX, JPG, PNG. You uploaded: #{file_extension}"
+      @benefits = Benefits.new
+      load_uploaded_files
+      render :index
       return
     end
 
     # Validate file size (10MB max)
     max_size = 10.megabytes
     if file.size > max_size
-      flash[:error] = "File too large. Maximum size: 10MB. Your file: #{(file.size / 1.megabyte.to_f).round(2)}MB"
-      redirect_to user_benefit_forms_path(user_id: current_user.id)
+      flash.now[:error] = "File too large. Maximum size: 10MB. Your file: #{(file.size / 1.megabyte.to_f).round(2)}MB"
+      @benefits = Benefits.new
+      load_uploaded_files
+      render :index
       return
     end
 
@@ -59,6 +57,19 @@ class BenefitFormsController < ApplicationController
     end
 
     redirect_to user_benefit_forms_path(user_id: current_user.id)
+  end
+
+  private
+
+  def load_uploaded_files
+    data_path = Rails.root.join("public", "data")
+    @uploaded_files = Dir.glob("#{data_path}/*").reject { |f| File.directory?(f) || File.basename(f) == '.gitkeep' }.map do |file|
+      {
+        name: File.basename(file),
+        size: File.size(file),
+        modified: File.mtime(file)
+      }
+    end.sort_by { |f| f[:modified] }.reverse
   end
 
 end
