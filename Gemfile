@@ -3,7 +3,7 @@ source "https://rubygems.org"
 
 gem "rails", "~> 8.0.0"
 
-ruby "3.3.6"
+ruby "3.2.9"
 
 gem "aruba"
 gem "bcrypt"
