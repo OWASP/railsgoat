@@ -37,64 +37,22 @@ end
 
 def login(user)
   visit "/"
-  within(".signup") do
-    fill_in "email", with: user.email
-    fill_in "password", with: user.clear_password
-  end
-  within(".actions") do
-    click_on "Login"
-  end
+  fill_in "email", with: user.email
+  fill_in "password", with: user.clear_password
+  click_button "Login"
 end
 
-##Hack to fix PhantomJS errors on Mavericks - https://gist.github.com/ericboehs/7125105
-module Capybara::Poltergeist
-  class Client
-    private
-    def redirect_stdout
-      prev = STDOUT.dup
-      prev.autoclose = false
-      $stdout = @write_io
-      STDOUT.reopen(@write_io)
+# Configure Selenium with headless Chrome for JavaScript testing
+# This works across macOS, Linux, and Windows without requiring Firefox
+Capybara.register_driver :selenium_chrome_headless do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument("--headless")
+  options.add_argument("--disable-gpu")
+  options.add_argument("--no-sandbox")
+  options.add_argument("--disable-dev-shm-usage")
+  options.add_argument("--window-size=1920,1080")
 
-      prev = STDERR.dup
-      prev.autoclose = false
-      $stderr = @write_io
-      STDERR.reopen(@write_io)
-      yield
-    ensure
-      STDOUT.reopen(prev)
-      $stdout = STDOUT
-      STDERR.reopen(prev)
-      $stderr = STDERR
-    end
-  end
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
-class WarningSuppressor
-  IGNORE_PATTERNS = [
-    /QFont::setPixelSize: Pixel size <= 0/,
-    /CoreText performance note:/,
-    /WARNING: Method userSpaceScaleFactor/
-  ]
-
-  def write(message)
-    if ignore?(message)
-      0
-    else
-      puts(message)
-      1
-    end
-  end
-
-  private
-
-  def ignore?(message)
-    IGNORE_PATTERNS.any? { |regexp| message =~ regexp }
-  end
-end
-
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, phantomjs_logger: WarningSuppressor.new, timeout: 60)
-end
-
-Capybara.javascript_driver = :poltergeist
+Capybara.javascript_driver = :selenium_chrome_headless

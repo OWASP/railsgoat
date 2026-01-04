@@ -57,5 +57,8 @@ module Railsgoat
     I18n.config.enforce_available_locales = false
 
     config.action_dispatch.return_only_media_type_on_content_type = false
+
+    # Opt in to Rails 8.1 behavior for to_time timezone preservation
+    config.active_support.to_time_preserves_timezone = :zone
   end
 end

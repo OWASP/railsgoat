@@ -61,6 +61,7 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 end
 
-Capybara.javascript_driver = :selenium_headless
+# Driver is configured in spec/support/capybara_shared.rb
+# to use :poltergeist (PhantomJS) which is more reliable across platforms
 
 DatabaseCleaner.strategy = :truncation
