@@ -6,7 +6,6 @@ feature "improper password hashing" do
 
   before do
     UserFixture.reset_all_users
-    pending unless verifying_fixed?
   end
 
   scenario "with just md5\nTutorial: https://github.com/OWASP/railsgoat/wiki/A6-Sensitive-Data-Exposure-Insecure-Password-Storage" do
@@ -15,7 +14,13 @@ feature "improper password hashing" do
     normal_user.password_confirmation = new_pass
     normal_user.save!
 
-    expect(normal_user.password).not_to eq(Digest::MD5.hexdigest(new_pass))
+    if verifying_fixed?
+      # Training mode: expect BCrypt (not MD5) - test should fail because vulnerability exists
+      expect(normal_user.password).not_to eq(Digest::MD5.hexdigest(new_pass))
+    else
+      # Maintainer mode: expect MD5 to verify vulnerability still exists - test should pass
+      expect(normal_user.password).to eq(Digest::MD5.hexdigest(new_pass))
+    end
   end
 
 end
