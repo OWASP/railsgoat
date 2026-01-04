@@ -1,7 +1,5 @@
 # RailsGoat
 
-[![OWASP Flagship](https://img.shields.io/badge/owasp-flagship%20project-orange.svg)](https://owasp.org/www-project-railsgoat/)
-
 RailsGoat is a deliberately vulnerable web application built on Ruby on Rails. It demonstrates real-world security vulnerabilities from the OWASP Top 10 and serves as a hands-on training platform for developers and security professionals.
 
 ## What is RailsGoat?
