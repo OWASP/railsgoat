@@ -1,145 +1,196 @@
 # RailsGoat
 
-RailsGoat is a vulnerable version of the Ruby on Rails Framework from versions 3 to 6. It includes vulnerabilities from the OWASP Top 10, as well as some "extras" that the initial project contributors felt worthwhile to share. This project is designed to educate both developers, as well as security professionals.
+RailsGoat is a deliberately vulnerable web application built on Ruby on Rails. It demonstrates real-world security vulnerabilities from the OWASP Top 10 and serves as a hands-on training platform for developers and security professionals.
+
+## What is RailsGoat?
+
+RailsGoat is an intentionally insecure Rails application designed to teach web application security. By exploring and exploiting its vulnerabilities, you'll learn:
+
+- How common security flaws manifest in Rails applications
+- How to identify vulnerabilities through code review and testing
+- How to implement proper security controls and remediation strategies
+
+**Current Version:** Rails 8.0 with Ruby 3.3.6
+
+## Vulnerabilities Included
+
+RailsGoat includes examples of these security issues:
+
+- **SQL Injection** - Unsafe database queries
+- **Cross-Site Scripting (XSS)** - Unescaped user input
+- **Cross-Site Request Forgery (CSRF)** - Missing request validation
+- **Insecure Direct Object Reference** - Unauthorized data access
+- **Mass Assignment** - Unprotected model attributes
+- **Authentication Issues** - Weak login mechanisms
+- **Sensitive Data Exposure** - Cleartext storage of SSNs and weak password hashing
+- **Missing Access Controls** - Unauthorized admin access
+- **Command Injection** - Unsafe system command execution
+- **Unvalidated Redirects** - Open redirect vulnerabilities
+- **Password Complexity Issues** - Insufficient password requirements
+
+Each vulnerability includes a failing test that demonstrates the security flaw and a wiki tutorial explaining the attack and remediation.
+
+## Quick Start
+
+### Prerequisites
+
+- Ruby 3.3.6
+- Git
+- SQLite3 (included by default)
+- MySQL (optional, required for certain SQL injection demos)
+
+**New to Ruby?** Follow the setup guide at [GoRails](https://gorails.com/setup) for your operating system.
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/OWASP/railsgoat.git
+   cd railsgoat
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   gem install bundler
+   bundle install
+   ```
+
+3. **Setup the database:**
+   ```bash
+   rails db:setup
+   ```
+
+4. **Start the server:**
+   ```bash
+   rails server
+   ```
+
+5. **Open your browser:**
+   Navigate to `http://localhost:3000` and start exploring!
+
+### Other Rails Versions
+
+The `main` branch runs Rails 8. For older versions, switch branches:
+
+```bash
+git checkout rails_3_2  # Rails 3.2
+git checkout rails_4_2  # Rails 4.2
+git checkout rails_5    # Rails 5.x
+```
+
+## Learning Path
+
+### 1. Training Mode (Recommended for Learners)
+
+Run the vulnerability test suite to see which security flaws exist:
+
+```bash
+rails training
+```
+
+Each failing test indicates a vulnerability. The test output includes a link to a wiki tutorial explaining:
+- How the vulnerability works
+- How to exploit it
+- How to fix it
+
+To run a specific vulnerability test:
+
+```bash
+rails training SPEC=spec/vulnerabilities/sql_injection_spec.rb
+```
+
+### 2. Explore the Application
+
+- Create an account and log in
+- Browse the different features
+- Try to access other users' data
+- Attempt various injection attacks
+- Review the source code to understand the vulnerabilities
+
+### 3. Learn from the Wiki
+
+Visit the [RailsGoat Wiki](https://github.com/OWASP/railsgoat/wiki) for detailed tutorials on each vulnerability, including:
+- Vulnerability explanation
+- Exploitation techniques
+- Code examples
+- Remediation steps
+
+## Docker Installation
+
+**Requirements:** [Docker](https://docs.docker.com/engine/installation/) and [Docker Compose](https://docs.docker.com/compose/install/) 1.6.0+
+
+**For Mac Apple Silicon (ARM64):** Rosetta must be installed
+
+```bash
+docker-compose build
+docker-compose run web rails db:setup
+docker-compose up
+```
+
+The application will be available at `http://localhost:3000`
+
+**Troubleshooting:** If the container exits with "A server is already running", remove `tmp/pids/server.pid` from your working directory and try again.
+
+## Advanced Configuration
+
+### MySQL Environment
+
+Some SQL injection vulnerabilities require MySQL. To run with MySQL:
+
+```bash
+# Create and migrate the database
+RAILS_ENV=mysql rails db:create
+RAILS_ENV=mysql rails db:migrate
+
+# Start the server
+RAILS_ENV=mysql rails server
+```
+
+### Email Testing
+
+RailsGoat uses [MailCatcher](https://mailcatcher.me/) to intercept emails:
+
+```bash
+gem install mailcatcher
+mailcatcher
+```
+
+View emails at `http://localhost:1080`
+
+## For Contributors and Maintainers
+
+### Running Tests in Maintainer Mode
+
+Set the `RAILSGOAT_MAINTAINER` environment variable to verify that vulnerabilities still exist:
+
+```bash
+RAILSGOAT_MAINTAINER="yes" bundle exec rspec
+```
+
+In maintainer mode, tests pass when vulnerabilities are correctly implemented (opposite of training mode).
+
+### Contributing
+
+We welcome contributions! Please see our [contribution guidelines](./CONTRIBUTING.md) for details.
 
 ## Support
 
-If you are looking for support or troubleshooting assistance, please visit our [OWASP Slack Channel](https://owasp.slack.com/messages/project-railsgoat/).
+Need help?
 
-## Getting Started
+- Join the [OWASP Slack Channel](https://owasp.slack.com/messages/project-railsgoat/)
+- Check the [Wiki](https://github.com/OWASP/railsgoat/wiki) for tutorials
+- Open an [issue](https://github.com/OWASP/railsgoat/issues) for bugs or questions
 
-To begin, if you do not have Ruby, Git, MySQL, and Postgres, we suggest
-using this [site](https://gorails.com/setup) to install the software.
-Pick the appropriate operating system and follow the instructions.
+## Project History
 
-After installing the above software, clone this repo:
+RailsGoat was created to demonstrate security vulnerabilities in Rails applications and teach secure coding practices. It has been continuously updated through Rails versions 3, 4, 5, 6, and now 8, maintaining relevance as the framework evolves.
 
-```bash
-$ git clone git@github.com:OWASP/railsgoat.git
-```
+Conversion to OWASP Top Ten 2013 completed in November 2013.
 
-**NOTE: NOT NECESSARY IF YOU WANT TO WORK WITH RAILS 6.** Otherwise, if you wish to use the Rails 3 or 4 versions, you'll need to switch branches:
-
-```bash
-$ cd railsgoat
-$ git checkout rails_3_2
-$ git checkout rails_4_2
-```
-
-Navigate into the directory (already there if you followed the previous step) and install the dependencies:
-
-```bash
-$ bundle install
-```
-
-If you receive an error, make sure you have `bundler` installed:
-
-```bash
-$ gem install bundler
-```
-
-Initialize the database:
-
-```bash
-$ rails db:setup
-```
-
-Start the Thin web server:
-
-```bash
-$ rails server
-```
-
-Open your favorite browser, navigate to `http://localhost:3000` and start hacking!
-
-## Docker Install
-To run Railsgoat with Docker you must first have [Docker](https://docs.docker.com/engine/installation/) and [Docker Compose](https://docs.docker.com/compose/install/) installed. Once those dependencies are installed, cd into the Railsgoat directory where you've cloned the code and run. Rails requires Compose **1.6.0** or above and require a Docker Engine of version **1.10.0** or above.
-
-For Mac Apple Silicon (ARM64) you must also have Rosetta install
-
-```
-#~/code/railsgoat
-$ docker-compose build
-$ docker-compose run web rails db:setup
-$ docker-compose up
-...
-  Creating railsgoat_web_1
-  Attaching to railsgoat_web_1
-$
-```
-Once you see the preceeding message Railsgoat is running on your localhost on port 3000.
-
-Open your favorite browser, navigate to `http://<dockerIP>:3000` and start hacking! The Docker IP is usually `192.168.99.100`. Run `docker-machine env` to verify.
-
-Note: if your container exits with an error, it may be because a server is already running:
-```
-A server is already running. Check /myapp/tmp/pids/server.pid.
-=> Booting Thin
-=> Rails 6.0.0 application starting in development on
-http://0.0.0.0:3000
-=> Run `rails server -h` for more startup options
-=> Ctrl-C to shutdown server
-Exiting
-```
-In this case, remove that server.pid file and try again. Note also that this file is in your current working directory, not inside the container.
-
-## Capybara Tests
-
-RailsGoat now includes a set of failing Capybara RSpecs, each one indicating that a separate vulnerability exists in the application. To run them, you first need to install [PhantomJS](https://github.com/jonleighton/poltergeist#installing-phantomjs) (version 2.1.1 has been tested in Dev and on Travis CI), which is required by the Poltergeist Capybara driver. Upon installation, simply run the following task:
-
-```
-$ rails training
-```
-
-To run just one spec:
-
-```
-$ rails training SPEC=spec/vulnerabilities/sql_injection_spec.rb
-```
-
-## MySQL Environment
-
-By default in development mode Railsgoat runs with a SQLite database. There is an environment defined to use MySQL. For some of the SQL injection vulnerabilities to work you have to run the app with MySQL as the database. The following steps will setup and run Railsgoat to use MySQL. *MySQL must be installed and running before running these steps*
-
-```
-#Create the MySQL database
-RAILS_ENV=mysql rails db:create
-
-#Run the migrations against the database
-RAILS_ENV=mysql rails db:migrate
-
-#Boot Rails using MySQl
-RAILS_ENV=mysql rails s
-```
-
-## Processing Email
-
-In order for RailsGoat to effectively process email, you will first need to run MailCatcher, an SMTP server that will intercept email messages and display them in a web interface.
-
-Mailcatcher is not installed by default. To install MailCatcher and start an instance of it, simply run:
-
-```
-$ gem install mailcatcher
-$ mailcatcher
-```
-
-If successful, you should see the following output:
-
-```
-Starting MailCatcher
-==> smtp://127.0.0.1:1025
-==> http://127.0.0.1:1080
-*** MailCatcher runs as a daemon by default. Go to the web interface to quit.
-```
-
-Alternatively, you can run MailCatcher in the foreground by running `mailcatcher -f` in your terminal.
-
-## Contributing
-
-Please see our [contribution document](./CONTRIBUTING.md) to learn more. Additionally, note that as changes are made to the application, the Capybara RSpecs can be used to verify that the vulnerabilities in the application are still intact. To use them in this way, and have them change to `pending` instead of `fail`, set the `RAILSGOAT_MAINTAINER` environment variable.
-
-Conversion to the OWASP Top Ten 2013 completed in November, 2013.
-
-# License
+## License
 
 [The MIT License (MIT)](./LICENSE.md)
+
+---
+
+**Warning:** This application contains serious security vulnerabilities. Never deploy it on a public server or network. Use only in isolated training environments.
