@@ -14,21 +14,9 @@ RailsGoat is an intentionally insecure Rails application designed to teach web a
 
 ## Vulnerabilities Included
 
-RailsGoat includes examples of these security issues:
+RailsGoat demonstrates real-world security vulnerabilities from the OWASP Top 10, including SQL injection, cross-site scripting (XSS), authentication issues, insecure direct object references, and more.
 
-- **SQL Injection** - Unsafe database queries
-- **Cross-Site Scripting (XSS)** - Unescaped user input
-- **Cross-Site Request Forgery (CSRF)** - Missing request validation
-- **Insecure Direct Object Reference** - Unauthorized data access
-- **Mass Assignment** - Unprotected model attributes
-- **Authentication Issues** - Weak login mechanisms
-- **Sensitive Data Exposure** - Cleartext storage of SSNs and weak password hashing
-- **Missing Access Controls** - Unauthorized admin access
-- **Command Injection** - Unsafe system command execution
-- **Unvalidated Redirects** - Open redirect vulnerabilities
-- **Password Complexity Issues** - Insufficient password requirements
-
-Each vulnerability includes a failing test that demonstrates the security flaw and a wiki tutorial explaining the attack and remediation.
+For a complete list of vulnerabilities with detailed explanations and tutorials, visit the [RailsGoat Wiki](https://github.com/OWASP/railsgoat/wiki).
 
 ## Quick Start
 
