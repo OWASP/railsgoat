@@ -14,26 +14,18 @@ feature "broken_auth" do
     wrong_email = normal_user.email + "not"
 
     visit "/"
-    within(".signup") do
-      fill_in "email", with: wrong_email
-      fill_in "password", with: normal_user.clear_password
-    end
-    within(".actions") do
-      click_on "Login"
-    end
+    fill_in "email", with: wrong_email
+    fill_in "password", with: normal_user.clear_password
+    find("input[type='submit'][value='Login']").click
 
     expect(find("div#flash_notice").text).not_to include(wrong_email)
   end
 
   scenario "two\nTutorial: https://github.com/OWASP/railsgoat/wiki/A2-Credential-Enumeration" do
     visit "/"
-    within(".signup") do
-      fill_in "email", with: normal_user.email
-      fill_in "password", with: normal_user.clear_password + "not"
-    end
-    within(".actions") do
-      click_on "Login"
-    end
+    fill_in "email", with: normal_user.email
+    fill_in "password", with: normal_user.clear_password + "not"
+    find("input[type='submit'][value='Login']").click
 
     expect(find("div#flash_notice").text).not_to include("Incorrect Password!")
   end
