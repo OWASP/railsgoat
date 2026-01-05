@@ -39,7 +39,7 @@ def login(user)
   visit "/"
   fill_in "email", with: user.email
   fill_in "password", with: user.clear_password
-  click_button "Login"
+  find("input[type='submit'][value='Login']").click
 end
 
 # Configure Selenium with headless Chrome for JavaScript testing

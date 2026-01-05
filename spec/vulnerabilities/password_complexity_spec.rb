@@ -13,14 +13,12 @@ feature "password complexity" do
     new_user_email = normal_user.email + "two"
 
     visit "/signup"
-    within(".signup") do
-      fill_in "user_email", with: new_user_email
-      fill_in "user_first_name", with: normal_user.first_name
-      fill_in "user_last_name", with: normal_user.last_name + "not"
-      fill_in "user_password", with: "password"
-      fill_in "user_password_confirmation", with: "password"
-    end
-    click_on "Submit"
+    fill_in "email", with: new_user_email
+    fill_in "first_name", with: normal_user.first_name
+    fill_in "last_name", with: normal_user.last_name + "not"
+    fill_in "password", with: "password"
+    fill_in "password_confirmation", with: "password"
+    click_on "Create Account"
 
     expect(User.find_by(email: new_user_email)).to be_nil
     expect(current_path).to eq("/signup")
