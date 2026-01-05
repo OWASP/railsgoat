@@ -28,8 +28,8 @@ jobs:
 
     - name: Setup database
       run: |
-        RAILS_ENV=test bin/rails db:create
-        RAILS_ENV=test bin/rails db:migrate
+        RAILS_ENV=test bundle exec rails db:create
+        RAILS_ENV=test bundle exec rails db:migrate
 
     - name: Run tests
       env:
