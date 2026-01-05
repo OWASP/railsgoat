@@ -10,7 +10,7 @@ RailsGoat is an intentionally insecure Rails application designed to teach web a
 - How to identify vulnerabilities through code review and testing
 - How to implement proper security controls and remediation strategies
 
-**Current Version:** Rails 8.0 with Ruby 3.3.6
+**Current Version:** Rails 8.0 with Ruby 3.4.1
 
 ## Vulnerabilities Included
 
@@ -22,7 +22,7 @@ For a complete list of vulnerabilities with detailed explanations and tutorials,
 
 ### Prerequisites
 
-- Ruby 3.3.6
+- Ruby 3.4.1
 - Git
 - SQLite3 (included by default)
 - MySQL (optional, required for certain SQL injection demos)
