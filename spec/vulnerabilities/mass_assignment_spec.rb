@@ -6,7 +6,7 @@ feature "mass assignment" do
 
   before do
     UserFixture.reset_all_users
-    pending unless verifying_fixed?
+    skip unless verifying_fixed?
   end
 
   scenario "attack one" do

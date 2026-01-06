@@ -7,7 +7,7 @@ feature "broken_auth" do
   before do
     UserFixture.reset_all_users
 
-    pending unless verifying_fixed?
+    skip unless verifying_fixed?
   end
 
   scenario "one\nTutorial: https://github.com/OWASP/railsgoat/wiki/A2-Credential-Enumeration" do

@@ -9,7 +9,7 @@ feature "sensitive data exposure" do
     UserFixture.reset_all_users
     normal_user.work_info.update(:SSN, user_ssn)
 
-    pending unless verifying_fixed?
+    skip unless verifying_fixed?
   end
 
   # this won't work with javascript_driver, as it'll apply the javascript

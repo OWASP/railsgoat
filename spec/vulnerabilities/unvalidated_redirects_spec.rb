@@ -7,7 +7,7 @@ feature "unvalidated redirect" do
   before do
     UserFixture.reset_all_users
 
-    pending unless verifying_fixed?
+    skip unless verifying_fixed?
   end
 
   scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A10-Unvalidated-Redirects-and-Forwards-(redirect_to)", js: true do
