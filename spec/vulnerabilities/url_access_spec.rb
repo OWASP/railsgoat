@@ -7,7 +7,7 @@ feature "url access" do
   before do
     UserFixture.reset_all_users
 
-    pending unless verifying_fixed?
+    skip unless verifying_fixed?
   end
 
   scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A7-Missing-Function-Level-Access-Control--(Admin-Controller)", js: true do

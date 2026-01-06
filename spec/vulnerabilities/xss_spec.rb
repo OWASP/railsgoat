@@ -7,7 +7,7 @@ feature "xss" do
   before(:each) do
     UserFixture.reset_all_users
 
-    pending unless verifying_fixed?
+    skip unless verifying_fixed?
   end
 
   scenario "attack\nTutorial: https://github.com/OWASP/railsgoat/wiki/A3-Cross-Site-Scripting", js: true do
