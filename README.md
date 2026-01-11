@@ -103,6 +103,14 @@ Visit the [RailsGoat Wiki](https://github.com/OWASP/railsgoat/wiki) for detailed
 - Code examples
 - Remediation steps
 
+## Bonus Security Topics
+
+Additional documentation covering advanced and modern Rails security concepts:
+
+- [Bonus: Encrypted Secrets and Credentials in Rails 5.1+](docs/bonus_encrypted_secrets.md)
+
+
+
 ## Docker Installation
 
 **Requirements:** [Docker](https://docs.docker.com/engine/installation/) and [Docker Compose](https://docs.docker.com/compose/install/) 1.6.0+
