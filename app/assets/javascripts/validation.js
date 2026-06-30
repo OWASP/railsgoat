@@ -8,7 +8,7 @@ function validation(){
 	        "user[password_confirmation]": {
 	            required: false,
 	            minlength: 5,
-	            equalTo: "#user_password"
+	            equalTo: "#password"
 	        }
 	    },
 	    messages: {
