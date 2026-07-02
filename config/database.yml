@@ -8,17 +8,11 @@
 <% db_service = ENV.fetch("DATABASE_SERVICE_NAME","").upcase %>
 
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
-  pool: 5
-  timeout: 5000
-
-mysql:
   adapter: mysql2
   database: development_railsgoat
   pool: 5
   timeout: 5000
-  host: localhost
+  host: <%= ENV.fetch("DATABASE_HOST", "db") %>
   username: root
   password:
 
